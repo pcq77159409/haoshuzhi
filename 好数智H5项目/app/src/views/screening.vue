@@ -7,8 +7,10 @@
         <h3>移动号码</h3>
       </div>
       <div class="input_bg">
-        <div class="tail">
-          <img src="../assets/yes.png" alt="" />
+        <div class="tail" @click="onclickTyped">
+          <div class="img">
+            <img src="../assets/yes.png" alt="" v-show="typed == 0" />
+          </div>
           <p>尾号</p>
           <span></span>
         </div>
@@ -18,10 +20,11 @@
             <input
               type="text"
               placeholder="搜索你想要的号码"
-              @click="onSearch"
+              v-model="searchInput"
+              @keyup.enter="onSearch"
             />
           </div>
-          <h4>搜索</h4>
+          <h4 @click="onSearch">搜索</h4>
         </div>
       </div>
     </div>
@@ -30,17 +33,44 @@
     <!-- 搜索号码 开始-->
     <div class="accurate">
       <ul class="phoneNumber">
-        <li><input type="number" value="1" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
-        <li><input type="number" /></li>
+        <li>
+          <input
+            type="number"
+            value="1"
+            @keyup="onkeyupInputSearch(0)"
+            class="number"
+          />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(1)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(2)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(3)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(4)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(5)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(6)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(7)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(8)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(9)" class="number" />
+        </li>
+        <li>
+          <input type="number" @keyup="onkeyupInputSearch(10)" class="number" />
+        </li>
       </ul>
       <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
       <ul class="reset">
@@ -96,13 +126,13 @@
       <router-link to="/details" v-for="(val, index) in list" :key="index">
         <div class="start">
           <img src="../assets/矩形 47@2x.png" alt="" style="" />
-          <h5>{{ val.number }}</h5>
+          <h5 v-html="val.number_tag"></h5>
           <div class="commission">
             <p>{{ val.location }}</p>
             <span>佣金{{ val.returned_commission }}</span>
           </div>
           <div class="contains">
-            <p>含通话费{{val.contain_charge }}</p>
+            <p>含通话费{{ val.contain_charge }}</p>
             <span>￥{{ val.sale_price }}</span>
           </div>
         </div>
@@ -127,10 +157,10 @@
         <li
           v-for="(item, index) in cityList[nums]"
           :key="index"
-          :class="{ currents: wrap == index }"
-          @click="onClickHided(index)"
+          :class="{ currents: wrap == item }"
+          @click="onClickHided(item)"
         >
-          <img src="../assets/right.png" alt="" v-show="wrap == index" />
+          <img src="../assets/right.png" alt="" v-show="wrap == item" />
           <p>{{ item }}</p>
         </li>
       </ul>
@@ -140,8 +170,17 @@
     <!-- 运营商 开始-->
     <div class="opeateing" v-show="cut">
       <ul>
-        <li v-for="(item, index) in chinese" :key="index">
-          <img src="../assets/right.png" alt="" />
+        <li
+          v-for="(item, index) in chinese"
+          :key="index"
+          :class="{ currents: opList == item.operators_name }"
+          @click="onclickOpeateing(item.operators_name)"
+        >
+          <img
+            src="../assets/right.png"
+            alt=""
+            v-show="opList == item.operators_name"
+          />
           <p>{{ item.operators_name }}</p>
         </li>
       </ul>
@@ -151,11 +190,15 @@
     <!-- 规律 开始-->
     <div class="regular" v-show="regulars">
       <ul>
-        <li v-for="(item,index) in rule" :key="index">
-          <img src="../assets/right.png" alt="" />
-          <p>{{item.name}}</p>
+        <li
+          v-for="(item, index) in rule"
+          :key="index"
+          :class="{ currents: regList == index }"
+          @click="onclickRegList(index, item.id)"
+        >
+          <img src="../assets/right.png" alt="" v-show="regList == index" />
+          <p>{{ item.name }}</p>
         </li>
-        
       </ul>
     </div>
     <!-- 规律 结束-->
@@ -570,6 +613,11 @@ export default {
       two: false,
       three: false,
       nums: "",
+      opList: -1,
+      regList: -1,
+      typed: 1,
+      parameter: {},
+      searchInput: "",
     };
   },
   methods: {
@@ -595,9 +643,14 @@ export default {
     onClickHide(val, v) {
       this.num = val;
       this.nums = v;
+      this.wrap = "";
     },
     onClickHided(val) {
       this.wrap = val;
+      this.flag = false;
+      this.active = -1;
+      this.parameter.from = val;
+      this.onclickQuery();
     },
     onClickOperating() {
       if (this.cut == false) {
@@ -647,7 +700,16 @@ export default {
       this.two = false;
       this.three = false;
     },
-    onSearch() {},
+    onSearch() {
+      this.parameter = {};
+      if (this.typed) {
+        this.parameter.type = 1;
+      } else {
+        this.parameter.type = 0;
+      }
+      this.parameter.search = this.searchInput;
+      this.onclickQuery();
+    },
     onFen(id) {
       this.$axios
         .get("/api/home_page/getChildCategory?id=" + id)
@@ -655,11 +717,73 @@ export default {
           this.rule = val.data;
         });
     },
+    onclickOpeateing(index) {
+      console.log(index);
+      let id = 0;
+      if (index == "中国移动") {
+        id = 1;
+      } else if (index == "中国联通") {
+        id = 2;
+      } else if (index == "中国电信") {
+        id = 3;
+      } else {
+        id = 4;
+      }
+      this.cut = false;
+      this.opList = index;
+      this.active = -1;
+      this.parameter.operator_id = id;
+      this.onclickQuery();
+    },
+    onclickRegList(index, id) {
+      this.regList = index;
+      this.regulars = false;
+      this.active = -1;
+      // this.parameter={};
+      this.parameter.tag = id;
+      this.onclickQuery();
+    },
+    onclickTyped() {
+      this.typed = !this.typed;
+    },
+    onkeyupInputSearch(index) {
+      var number = document.querySelectorAll(".number");
+
+      var words = number[index].value.replace(/\D+/g, "");
+      console.log(words);
+      words = words.substring(words.length - 1, words.length);
+      number[index].value = words;
+
+      if (event.code == "Backspace") {
+        if (index >= 1) {
+          number[index - 1].focus();
+        }
+      } else {
+        if (index < number.length - 1) {
+          number[index + 1].focus();
+        }
+      }
+    },
+    onclickQuery() {
+      this.$router.push({
+        path: "/screen",
+        query: this.parameter,
+      });
+
+      this.$axios
+        .post("/api/home_page/getNumList", this.$route.query)
+        .then((val) => {
+          console.log(val);
+          this.list = val.data.data;
+        });
+    },
   },
   mounted() {
-    this.$axios.post("/api/home_page/getNumList").then((val) => {
-      this.list = val.data.data;
-    });
+    this.$axios
+      .post("/api/home_page/getNumList", this.$route.query)
+      .then((val) => {
+        this.list = val.data.data;
+      });
     this.$axios.get("api/home_page/getLocation").then((val) => {
       this.nums = Object.keys(val.data)[0];
       for (var k in val.data) {
@@ -668,9 +792,11 @@ export default {
       this.cityList = val.data;
     });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
+      console.log(val);
       this.chinese = val.data;
     });
   },
+  updated() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -741,11 +867,20 @@ a {
   display: flex;
   align-items: center;
 }
-.Mobile_phone .reds .input_bg .tail img {
+.Mobile_phone .reds .input_bg .tail .img {
   width: 12px;
   height: 12px;
   margin: 0 10px 0 15px;
-  vertical-align: middle;
+  border: #ccc solid 1px;
+  // border-radius: 2px;
+  overflow: hidden;
+}
+
+.Mobile_phone .reds .input_bg .tail img {
+  width: 100%;
+  height: 100%;
+  // vertical-align: middle;
+  transform: translateY(-5px);
 }
 .Mobile_phone .reds .input_bg .tail p {
   font-size: 10pt;
@@ -795,12 +930,10 @@ a {
 .Mobile_phone .accurate .phoneNumber li {
   width: 22px;
   height: 26px;
-  border: 1px solid #cacaca;
   text-align: center;
-  border-radius: 3px;
   font-size: 14px;
 }
-.Mobile_phone .accurate .phoneNumber li:hover {
+.Mobile_phone .accurate .phoneNumber li input:focus {
   border: 1px solid #dc0101;
 }
 .Mobile_phone .accurate .phoneNumber li:first-child input {
@@ -809,11 +942,13 @@ a {
 .Mobile_phone .accurate .phoneNumber li input {
   width: 100%;
   height: 100%;
-  border: none;
   text-align: center;
   color: #dc0101;
   outline: none;
+  border-radius: 3px;
+  border: 1px solid #cacaca;
 }
+
 .Mobile_phone .accurate p {
   font-size: 12px;
   color: #fe5858;
@@ -1007,7 +1142,7 @@ a {
   left: 40px;
   width: 10pt;
   height: 7pt;
-  display: none;
+  // display: none;
 }
 .Mobile_phone .opeateing ul li p {
   color: #333333;
@@ -1015,18 +1150,22 @@ a {
   margin-left: 63px;
   text-align: center;
 }
-.Mobile_phone .opeateing ul li:hover,
-.Mobile_phone .regular ul li:hover {
+.Mobile_phone .regular .currents,
+.Mobile_phone .opeateing .currents {
   background-color: #ececec;
 }
+// .Mobile_phone .opeateing ul li:hover,
+// .Mobile_phone .regular ul li:hover {
+//   background-color: #ececec;
+// }
 .Mobile_phone .opeateing ul li:hover p,
 .Mobile_phone .regular ul li:hover p {
   color: #fe5858;
 }
-.Mobile_phone .opeateing ul li:hover img,
-.Mobile_phone .regular ul li:hover img {
-  display: block;
-}
+// .Mobile_phone .opeateing ul li:hover img,
+// .Mobile_phone .regular ul li:hover img {
+//   display: block;
+// }
 .Mobile_phone .regular ul {
   width: 100%;
   height: 100%;
@@ -1046,7 +1185,7 @@ a {
   left: 15px;
   width: 10pt;
   height: 7pt;
-  display: none;
+  // display: none;
 }
 .Mobile_phone .regular ul li p {
   color: #333333;
