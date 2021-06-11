@@ -45,7 +45,7 @@
     </div>
     <div class="yes">
       <p>
-        <img src="../assets/v.png" alt="" class="v" />
+        <img src="../assets/v@2x.png" alt="" class="v" />
         获得<span>160</span>点积分
       </p>
     </div>
@@ -244,17 +244,18 @@ export default {
   padding: 6px 17px;
   font-size: 15px;
 }
-
 .del p {
   position: absolute;
   right: 11px;
   bottom: 13px;
   border: 1px solid #fe5858;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 25px;
   color: #fe5858;
-  padding: 6px 17px;
-  font-size: 15px;
+  font-size: 14px;
+  width: 112px;
+  height: 30px;
+  line-height: 30px;
 }
 .del {
   width: 100px;
@@ -273,22 +274,23 @@ export default {
 .borders {
   border-right: 1px solid #ccc;
   width: 1px;
-  height: 40px;
-  margin-top: 10px;
+  height: 22px;
 }
 .make {
   width: 350px;
-  height: 60px;
+  height: 46px;
   background-color: white;
   margin: -52px 13px;
   border-radius: 5px;
-
   display: flex;
   color: #666666;
-  font-size: 16px;
   justify-content: space-evenly;
-  line-height: 60px;
+  line-height: 46px;
   margin-bottom: 15px;
+  align-items: center;
+}
+.make p {
+  font-size: 15px;
 }
 
 .rights {
@@ -325,7 +327,8 @@ export default {
 }
 .yes p {
   line-height: 40px;
-  margin: 0 40px;
+  display: flex;
+  align-items: center;
 }
 .yes span {
   color: #fe5858;
@@ -337,6 +340,11 @@ export default {
   margin: 11px 13px;
   border-radius: 5px;
   font-size: 13px;
+}
+.v {
+  width: 20px;
+  height: 20px;
+  margin: 0 14px;
 }
 .redmoney {
   color: #fe5858;
@@ -458,17 +466,18 @@ export default {
   background-color: #fe5858;
   display: flex;
   position: relative;
+  align-items: center;
 }
 
 .back {
-  width: 16px;
-  height: 19px;
-  margin: 38px 15px;
+  width: 10px;
+  height: 16px;
+  margin-left: 15px;
 }
 .detalis {
   width: 100px;
   height: 30px;
-  margin: 32px 97px;
+  margin: 0 auto;
   color: white;
   font-size: 18px;
   font-weight: Medium;

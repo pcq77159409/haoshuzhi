@@ -10,12 +10,15 @@
         <p class="two">交易将在25分钟30秒后自动关闭</p>
       </div>
       <div class="right">
-        <img src="../assets/cars.png" alt="" />
+        <img src="../assets/qq.png" alt="" />
       </div>
     </div>
     <div class="address">
-      <p class="name">好名字 <span class="number">13133393741</span></p>
-      <p class="add">收货地址:上海嘉定区平城路118弄</p>
+      <img src="../assets/ding.png" alt="" />
+      <div>
+        <p class="name">好名字 <span class="number">13133393741</span></p>
+        <p class="add">收货地址:上海嘉定区平城路118弄</p>
+      </div>
     </div>
     <div>
       <div class="orders">
@@ -35,22 +38,16 @@
             <p class="redmoney">￥400</p>
           </div>
           <p class="yidong">上海移动</p>
-          <p class="spend">含话费￥230</p>
-          <p class="ordertime">
-            <span class="need"
-              >实付
-              <h6 class="pay">￥400</h6></span
-            >
-          </p>
-          <div class="money">
-            <p class="moneys">退款</p>
+          <div class="hhf">
+            <p class="spend">含话费￥230</p>
+            <p class="ordertime">需付<span class="pays">￥400</span></p>
           </div>
         </div>
       </div>
     </div>
     <div class="yes">
       <p>
-        <img src="../assets/v.png" alt="" class="v" />
+        <img src="../assets/v@2x.png" alt="" class="v" />
         获得<span>160</span>点积分
       </p>
     </div>
@@ -133,7 +130,7 @@ export default {
 };
 </script>
 
-<style>
+<style  scoped>
 .phonels {
   margin-left: 42px;
   margin-bottom: 41px;
@@ -212,7 +209,6 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-
 .el-button {
   display: inline-block;
   line-height: 1;
@@ -264,42 +260,48 @@ export default {
   text-align: center;
   border-radius: 15px;
   color: #999999;
-  padding: 6px 17px;
-  font-size: 14px;
+  font-size: 12px;
+  width: 112px;
+  height: 26px;
+  line-height: 26px;
 }
 .delivery p {
   border: 1px solid #fe5858;
   text-align: center;
   border-radius: 15px;
   color: #fe5858;
-  padding: 6px 17px;
-  font-size: 14px;
+  font-size: 12px;
+  width: 112px;
+  height: 26px;
+  line-height: 26px;
+  margin-right: 15px;
 }
 .v {
   width: 20px;
   height: 20px;
+  margin: 0 14px;
 }
 .borders {
   border-right: 1px solid #ccc;
   width: 1px;
-  height: 40px;
-  margin-top: 10px;
+  height: 22px;
 }
 .make {
   width: 350px;
-  height: 60px;
+  height: 46px;
   background-color: white;
   margin: -52px 13px;
   border-radius: 5px;
-
   display: flex;
   color: #666666;
-  font-size: 16px;
   justify-content: space-evenly;
-  line-height: 60px;
+  line-height: 46px;
   margin-bottom: 15px;
+  align-items: center;
 }
-
+.make p {
+  font-size: 15px;
+}
 .rights {
   margin-left: 25px;
 }
@@ -333,7 +335,8 @@ export default {
 }
 .yes p {
   line-height: 40px;
-  margin: 0 40px;
+  display: flex;
+  align-items: center;
 }
 .yes span {
   color: #fe5858;
@@ -369,8 +372,7 @@ export default {
   padding: 0 18px;
   font-size: 12px;
 }
-.pay {
-  margin: -25px 28px;
+.pays {
   font-size: 16px;
   color: #fe5858;
 }
@@ -383,7 +385,14 @@ export default {
 .ordertime {
   font-size: 12px;
   display: flex;
-  margin-top: 5px;
+  color: #333333;
+  font-weight: 600;
+}
+.hhf {
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 .spend {
   font-size: 12px;
@@ -414,11 +423,14 @@ export default {
   font-size: 15px;
   font-weight: bold;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 .shops {
   width: 15px;
   height: 15px;
   padding: 0px 2px;
+  margin-right: 8px;
 }
 .times {
   display: flex;
@@ -427,9 +439,9 @@ export default {
 }
 .orders {
   width: 350px;
-  height: 183px;
+  height: 148px;
   background-color: white;
-  margin: 64px 13px;
+  margin: 64px auto;
   border-radius: 5px;
   position: relative;
 }
@@ -439,7 +451,7 @@ export default {
   font-weight: bold;
   color: #333333;
   width: 200px;
-  margin: 10px 45px;
+  margin: 6px 15px;
 }
 .number {
   font-size: 13px;
@@ -450,7 +462,7 @@ export default {
   font-size: 13px;
   color: #333333;
   width: 200px;
-  margin: 0 45px;
+  margin: 0 15px;
 }
 .A {
   width: 100%;
@@ -466,17 +478,18 @@ export default {
   background-color: #fe5858;
   display: flex;
   position: relative;
+  align-items: center;
 }
 
 .back {
-  width: 16px;
-  height: 19px;
-  margin: 38px 15px;
+  width: 10px;
+  height: 16px;
+  margin-left: 15px;
 }
 .detalis {
   width: 100px;
   height: 30px;
-  margin: 32px 97px;
+  margin: 0 auto;
   color: white;
   font-size: 18px;
   font-weight: Medium;
@@ -496,8 +509,8 @@ export default {
   background-color: #fe5858;
 }
 .right img {
-  width: 60px;
-  height: 52px;
+  width: 43px;
+  height: 45px;
   margin: 0 29px;
 }
 .address {
@@ -507,8 +520,15 @@ export default {
   height: 80px;
   background-color: white;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
-
+.address img {
+  width: 20px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 8px;
+}
 .one {
   width: 100px;
   height: 35px;

@@ -13,7 +13,22 @@
     </div>
     <div class="huts">
       <h4><img src="../assets/矩形 16@2x.png" alt="" />团队消费额完成进度</h4>
-      <div class="bg"></div>
+      <div class="bg">
+        <el-steps :active="2" align-center space="60%">
+          <el-step
+            title="步骤1"
+          ></el-step>
+          <el-step
+            title="步骤2"
+          ></el-step>
+          <el-step
+            title="步骤3"
+          ></el-step>
+          <el-step
+            title="步骤4"
+          ></el-step>
+        </el-steps>
+      </div>
       <h4><img src="../assets/矩形 16@2x.png" alt="" />我的邀请</h4>
       <ul>
         <li>
@@ -142,6 +157,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.my_commission .huts .bg .el-step__head.is-finish {
+  color: #ffffff !important;
+  border-color: #ff9797 !important;
+}
+.my_commission .huts .bg .el-step__title.is-finish{
+  color: #ff9797 !important;
+}
 .my_commission {
   width: 100%;
   height: 100%;
@@ -240,7 +262,6 @@ export default {
   width: 319px;
   height: 60px;
   margin: 20px 13px 0;
-  background-color: #000;
 }
 .my_commission .huts ul {
   width: 325px;

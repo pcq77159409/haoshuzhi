@@ -14,9 +14,12 @@
       </div>
     </div>
     <div class="address">
-      <p class="name">运输中</p>
-      <p class="add">您的快递已到达上海嘉定区嘉定北</p>
-      <div class="liu" @click="onlogistics">查看物流</div>
+      <img src="../assets/kac.png" alt="" />
+      <div>
+        <p class="name">运输中</p>
+        <p class="add">您的快递已到达上海嘉定区嘉定北</p>
+        <div class="liu" @click="onlogistics">查看物流</div>
+      </div>
     </div>
     <div>
       <div class="orders">
@@ -51,7 +54,7 @@
     </div>
     <div class="yes">
       <p>
-        <img src="../assets/v.png" alt="" class="v" />
+        <img src="../assets/v@2x.png" alt="" class="v" />
         获得<span>160</span>点积分
       </p>
     </div>
@@ -129,14 +132,14 @@ export default {
 <style>
 .liu {
   width: 66px;
-  height: 25px;
+  height: 17px;
   font-size: 12px;
   float: right;
-  margin: -34px 8px;
+  margin: -28px -60px;
   border: 1px solid #666666;
   border-radius: 20px;
   text-align: center;
-  line-height: 24px;
+  line-height: 17px;
   color: #666666;
 }
 .phonels {
@@ -273,10 +276,12 @@ export default {
   bottom: 13px;
   border: 1px solid #fe5858;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 25px;
   color: #fe5858;
-  padding: 6px 17px;
-  font-size: 15px;
+  font-size: 14px;
+  width: 112px;
+  height: 30px;
+  line-height: 30px;
 }
 .del {
   width: 100px;
@@ -288,10 +293,6 @@ export default {
   height: 60px;
   background-color: white;
 }
-.v {
-  width: 20px;
-  height: 20px;
-}
 .borders {
   border-right: 1px solid #ccc;
   width: 1px;
@@ -300,19 +301,20 @@ export default {
 }
 .make {
   width: 350px;
-  height: 60px;
+  height: 46px;
   background-color: white;
   margin: -52px 13px;
   border-radius: 5px;
-
   display: flex;
   color: #666666;
-  font-size: 16px;
   justify-content: space-evenly;
-  line-height: 60px;
+  line-height: 46px;
   margin-bottom: 15px;
+  align-items: center;
 }
-
+.make p {
+  font-size: 15px;
+}
 .rights {
   margin-left: 25px;
 }
@@ -346,7 +348,8 @@ export default {
 }
 .yes p {
   line-height: 40px;
-  margin: 0 40px;
+  display: flex;
+  align-items: center;
 }
 .yes span {
   color: #fe5858;
@@ -358,6 +361,11 @@ export default {
   margin: -52px 13px;
   border-radius: 5px;
   font-size: 13px;
+}
+.v {
+  width: 20px;
+  height: 20px;
+  margin: 0 14px;
 }
 .redmoney {
   color: #fe5858;
@@ -427,11 +435,14 @@ export default {
   font-size: 15px;
   font-weight: bold;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 .shops {
   width: 15px;
   height: 15px;
   padding: 0px 2px;
+  margin-right: 8px;
 }
 .times {
   display: flex;
@@ -447,23 +458,10 @@ export default {
   position: relative;
 }
 
-.name {
-  font-size: 15px;
-  font-weight: bold;
-  color: #333333;
-  width: 200px;
-  margin: 10px 45px;
-}
 .number {
   font-size: 13px;
   font-weight: 500;
   color: #333333;
-}
-.add {
-  font-size: 13px;
-  color: #333333;
-  width: 200px;
-  margin: 0 45px;
 }
 .A {
   width: 100%;
@@ -471,7 +469,7 @@ export default {
   position: relative;
   background-color: #f5f5f5;
   overflow-y: auto;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 .imgs {
   width: 100%;
@@ -520,8 +518,28 @@ export default {
   height: 80px;
   background-color: white;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
-
+.address img {
+  width: 24pt;
+  height: 24pt;
+  margin-left: 20px;
+  margin-top: 8px;
+}
+.name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+  width: 200px;
+  margin: 6px 15px;
+}
+.add {
+  font-size: 13px;
+  color: #333333;
+  width: 200px;
+  margin: 0 15px;
+}
 .one {
   width: 100px;
   height: 35px;

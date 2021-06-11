@@ -108,7 +108,7 @@
         </el-tab-pane>
         <!-- 待收货订单 -->
         <el-tab-pane label="待收货" name="fourth">
-          <div class="ordersed">
+          <div class="ordersed" @click="$router.push('receipt')">
             <div class="times">
               <p class="shoping">
                 <img
@@ -139,7 +139,7 @@
         >
         <!-- 已完成订单 -->
         <el-tab-pane label="已完成" name="complete">
-          <div class="ordersed">
+          <div class="ordersed" @click="$router.push('/completed')">
             <div class="times">
               <p class="shoping">
                 <img

@@ -14,8 +14,11 @@
       </div>
     </div>
     <div class="address">
-      <p class="name">好名字 <span class="number">13133393741</span></p>
-      <p class="add">收货地址:上海嘉定区平城路118弄</p>
+      <img src="../assets/ding.png" alt="" />
+      <div>
+        <p class="name">好名字 <span class="number">13133393741</span></p>
+        <p class="add">收货地址:上海嘉定区平城路118弄</p>
+      </div>
     </div>
     <div>
       <div class="orders">
@@ -50,7 +53,7 @@
     </div>
     <div class="yes">
       <p>
-        <img src="../assets/v.png" alt="" class="v" />
+        <img src="../assets/v@2x.png" alt="" class="v" />
         获得<span>160</span>点积分
       </p>
     </div>
@@ -164,15 +167,15 @@ export default {
   margin-top: 45vh;
 }
 .del p {
-  position: absolute;
-  right: 11px;
-  bottom: 13px;
   border: 1px solid #f5f5f5;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 25px;
   color: #999999;
-  padding: 6px 17px;
-  font-size: 15px;
+  font-size: 14px;
+  width: 112px;
+  height: 32px;
+  line-height: 32px;
+  margin-left: 250px;
 }
 .del {
   width: 100px;
@@ -183,6 +186,8 @@ export default {
   width: 100%;
   height: 60px;
   background-color: white;
+  display: flex;
+  align-items: center;
 }
 .v {
   width: 20px;
@@ -191,22 +196,23 @@ export default {
 .borders {
   border-right: 1px solid #ccc;
   width: 1px;
-  height: 40px;
-  margin-top: 10px;
+  height: 22px;
 }
 .make {
   width: 350px;
-  height: 60px;
+  height: 46px;
   background-color: white;
   margin: -52px 13px;
   border-radius: 5px;
-  font-size: 13px;
   display: flex;
   color: #666666;
-  font-size: 14px;
   justify-content: space-evenly;
-  line-height: 60px;
+  line-height: 46px;
   margin-bottom: 15px;
+  align-items: center;
+}
+.make p {
+  font-size: 15px;
 }
 
 .rights {
@@ -242,7 +248,8 @@ export default {
 }
 .yes p {
   line-height: 40px;
-  margin: 0 40px;
+  display: flex;
+  align-items: center;
 }
 .yes span {
   color: #fe5858;
@@ -343,24 +350,12 @@ export default {
   position: relative;
 }
 
-.name {
-  font-size: 15px;
-  font-weight: bold;
-  color: #333333;
-  width: 200px;
-  margin: 10px 45px;
-}
 .number {
   font-size: 13px;
   font-weight: 500;
   color: #333333;
 }
-.add {
-  font-size: 13px;
-  color: #333333;
-  width: 200px;
-  margin: 0 45px;
-}
+
 .A {
   width: 100%;
   height: 100%;
@@ -375,17 +370,18 @@ export default {
   background-color: #fe5858;
   display: flex;
   position: relative;
+  align-items: center;
 }
 
 .back {
-  width: 16px;
-  height: 19px;
-  margin: 38px 15px;
+  width: 10px;
+  height: 16px;
+  margin-left: 15px;
 }
 .detalis {
   width: 100px;
   height: 30px;
-  margin: 32px 97px;
+  margin: 0 auto;
   color: white;
   font-size: 18px;
   font-weight: Medium;
@@ -416,8 +412,44 @@ export default {
   height: 80px;
   background-color: white;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
-
+.address img {
+  width: 20px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 8px;
+}
+.name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+  width: 200px;
+  margin: 6px 15px;
+}
+.add {
+  font-size: 13px;
+  color: #333333;
+  width: 200px;
+  margin: 0 15px;
+}
+.address {
+  position: absolute;
+  margin: -27px 13px;
+  width: 350px;
+  height: 80px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.address img {
+  width: 20px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 8px;
+}
 .one {
   width: 100px;
   height: 35px;
