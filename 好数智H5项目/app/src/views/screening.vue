@@ -15,7 +15,11 @@
         <div class="searchs">
           <div class="want">
             <img src="../assets/搜索@2x.png" alt="" />
-            <input type="text" placeholder="搜索你想要的号码" />
+            <input
+              type="text"
+              placeholder="搜索你想要的号码"
+              @click="onSearch"
+            />
           </div>
           <h4>搜索</h4>
         </div>
@@ -89,17 +93,17 @@
 
     <!--手机号 开始-->
     <div class="class_name">
-      <router-link to="/details" v-for="(val,index) in list" :key="index">
+      <router-link to="/details" v-for="(val, index) in list" :key="index">
         <div class="start">
           <img src="../assets/矩形 47@2x.png" alt="" style="" />
-          <h5>{{val.number}}</h5>
+          <h5>{{ val.number }}</h5>
           <div class="commission">
-            <p>{{val.location}}</p>
-            <span>佣金{{val.returned_commission}}</span>
+            <p>{{ val.location }}</p>
+            <span>佣金{{ val.returned_commission }}</span>
           </div>
           <div class="contains">
-            <p>含通话费{{contain_charge}}</p>
-            <span>￥{{val.sale_price}}</span>
+            <p>含通话费{{val.contain_charge }}</p>
+            <span>￥{{ val.sale_price }}</span>
           </div>
         </div>
       </router-link>
@@ -136,21 +140,9 @@
     <!-- 运营商 开始-->
     <div class="opeateing" v-show="cut">
       <ul>
-        <li>
+        <li v-for="(item, index) in chinese" :key="index">
           <img src="../assets/right.png" alt="" />
-          <p>中国移动</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>中国电信</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>中国联通</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>虚拟号码</p>
+          <p>{{ item.operators_name }}</p>
         </li>
       </ul>
     </div>
@@ -159,30 +151,11 @@
     <!-- 规律 开始-->
     <div class="regular" v-show="regulars">
       <ul>
-        <li>
+        <li v-for="(item,index) in rule" :key="index">
           <img src="../assets/right.png" alt="" />
-          <p>不限</p>
+          <p>{{item.name}}</p>
         </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
+        
       </ul>
     </div>
     <!-- 规律 结束-->
@@ -328,6 +301,145 @@ export default {
       active: null,
       proList: [],
       cityList: [],
+      chinese: [],
+      rule: [
+        {
+          id: 37,
+          name: "中间AAAA",
+        },
+        {
+          id: 38,
+          name: "中间AAAAA",
+        },
+        {
+          id: 39,
+          name: "中间AAAAAA",
+        },
+        {
+          id: 42,
+          name: "中间AAAB",
+        },
+        {
+          id: 35,
+          name: "中间AABB",
+        },
+        {
+          id: 36,
+          name: "中间ABAB",
+        },
+        {
+          id: 40,
+          name: "中间ABBA",
+        },
+        {
+          id: 41,
+          name: "中间ABBB",
+        },
+        {
+          id: 43,
+          name: "中间ABCDE",
+        },
+        {
+          id: 33,
+          name: "*ABC*ABC",
+        },
+        {
+          id: 25,
+          name: "AA",
+        },
+        {
+          id: 1,
+          name: "AAA",
+        },
+        {
+          id: 17,
+          name: "AAA*BBB*",
+        },
+        {
+          id: 2,
+          name: "AAAA",
+        },
+        {
+          id: 3,
+          name: "AAAAA",
+        },
+        {
+          id: 4,
+          name: "AAAAAA",
+        },
+        {
+          id: 12,
+          name: "AAAAAB",
+        },
+        {
+          id: 13,
+          name: "AAAAB",
+        },
+        {
+          id: 29,
+          name: "AAAABB",
+        },
+        {
+          id: 5,
+          name: "AAAABBBB",
+        },
+        {
+          id: 14,
+          name: "AAAB",
+        },
+        {
+          id: 21,
+          name: "AAABAAAB",
+        },
+        {
+          id: 27,
+          name: "AAABB",
+        },
+        {
+          id: 6,
+          name: "AAABBB",
+        },
+        {
+          id: 9,
+          name: "AABB",
+        },
+        {
+          id: 24,
+          name: "AABBB",
+        },
+        {
+          id: 8,
+          name: "AABBCC",
+        },
+        {
+          id: 34,
+          name: "AABBCC*",
+        },
+        {
+          id: 7,
+          name: "AABBCCDD",
+        },
+        {
+          id: 16,
+          name: "ABAB",
+        },
+        {
+          id: 15,
+          name: "ABABAB",
+        },
+        {
+          id: 32,
+          name: "ABABAB*",
+        },
+        {
+          id: 20,
+          name: "ABABCCDD",
+        },
+        {
+          id: 22,
+          name: "ABBA",
+        },
+      ],
       dataList: [
         {
           name: "全部价格",
@@ -444,7 +556,7 @@ export default {
           name: "不含9",
         },
       ],
-      list:[],
+      list: [],
       num: null,
       wrap: null,
       flag: false,
@@ -480,10 +592,9 @@ export default {
         this.flag = false;
       }
     },
-    onClickHide(val,v) {
+    onClickHide(val, v) {
       this.num = val;
       this.nums = v;
-      console.log(v);
     },
     onClickHided(val) {
       this.wrap = val;
@@ -536,13 +647,19 @@ export default {
       this.two = false;
       this.three = false;
     },
-  },
-  created(){
-    this.$axios.post('/api/home_page/getNumList').then(val=>{
-      this.list=val.data.data;
-    })
+    onSearch() {},
+    onFen(id) {
+      this.$axios
+        .get("/api/home_page/getChildCategory?id=" + id)
+        .then((val) => {
+          this.rule = val.data;
+        });
+    },
   },
   mounted() {
+    this.$axios.post("/api/home_page/getNumList").then((val) => {
+      this.list = val.data.data;
+    });
     this.$axios.get("api/home_page/getLocation").then((val) => {
       this.nums = Object.keys(val.data)[0];
       for (var k in val.data) {
@@ -550,9 +667,9 @@ export default {
       }
       this.cityList = val.data;
     });
-    this.$$axios.get('/api/home_page/getOperator').then(val=>{
-      console.log(val);
-    })
+    this.$axios.get("/api/home_page/getOperator").then((val) => {
+      this.chinese = val.data;
+    });
   },
 };
 </script>
@@ -866,7 +983,7 @@ a {
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 293px;
+  top: 303px;
   display: flex;
 }
 .Mobile_phone .opeateing ul {
@@ -914,6 +1031,7 @@ a {
   width: 100%;
   height: 100%;
   background-color: #ffffff;
+  overflow: auto;
 }
 .Mobile_phone .regular ul li {
   width: 100%;

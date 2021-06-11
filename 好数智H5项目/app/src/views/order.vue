@@ -7,10 +7,10 @@
       </div>
     </div>
     <div>
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activenamed" @tab-click="handleClick">
         <!-- 全部订单 -->
         <el-tab-pane label="全部" name="second">
-          <div class="orders">
+          <div class="ordersed" @click="$router.push('/paid')">
             <!-- 店铺 -->
             <div class="times">
               <p class="shoping">
@@ -25,18 +25,18 @@
               </p>
             </div>
             <div class="xian"></div>
-            <div class="name">
+            <div class="named">
               <p class="phonenumber">13133393741</p>
               <p class="yidong">上海移动</p>
               <p class="spend">含话费</p>
-              <p class="ordertime">
+              <p class="ordertimed">
                 下单时间：2021-02-13 11:20
-                <span class="need"
+                <span class="needsed"
                   >需付
                   <h6 class="pay">￥400</h6></span
                 >
               </p>
-              <div class="money">
+              <div class="moneyed">
                 <p class="payment">付款</p>
               </div>
             </div>
@@ -44,7 +44,7 @@
         </el-tab-pane>
         <!-- 待付款订单 -->
         <el-tab-pane label="待付款" name="first">
-          <div class="orders">
+          <div class="ordersed" @click="$router.push('/paid')">
             <div class="times">
               <p class="shoping">
                 <img
@@ -58,18 +58,18 @@
               </p>
             </div>
             <div class="xian"></div>
-            <div class="name">
+            <div class="named">
               <p class="phonenumber">13133393741</p>
               <p class="yidong">上海移动</p>
               <p class="spend">含话费</p>
-              <p class="ordertime">
+              <p class="ordertimed">
                 下单时间：2021-02-13 11:20
-                <span class="need"
+                <span class="needsed"
                   >需付
                   <h6 class="pay">￥400</h6></span
                 >
               </p>
-              <div class="money">
+              <div class="moneyed">
                 <p class="payment">付款</p>
               </div>
             </div>
@@ -77,7 +77,7 @@
         </el-tab-pane>
         <!-- 待发货订单 -->
         <el-tab-pane label="待发货" name="third">
-          <div class="orders">
+          <div class="ordersed"  @click="$router.push('/deta')">
             <div class="times">
               <p class="shoping">
                 <img
@@ -89,26 +89,26 @@
               <p class="paid">买家已付款</p>
             </div>
             <div class="xian"></div>
-            <div class="name">
+            <div class="named">
               <p class="phonenumber">13133393741</p>
               <p class="yidong">上海移动</p>
               <p class="spend">含话费</p>
-              <p class="ordertime">
+              <p class="ordertimed">
                 下单时间：2021-02-13 11:20
-                <span class="need"
+                <span class="needsed"
                   >需付
                   <h6 class="pay">￥400</h6></span
                 >
               </p>
-              <div class="money">
-                <p class="moneys">修改地址</p>
+              <div class="moneyed">
+                <p class="moneyeds">修改地址</p>
               </div>
             </div>
           </div>
         </el-tab-pane>
         <!-- 待收货订单 -->
         <el-tab-pane label="待收货" name="fourth">
-          <div class="orders">
+          <div class="ordersed">
             <div class="times">
               <p class="shoping">
                 <img
@@ -120,26 +120,26 @@
               <p class="paid">卖家已发货</p>
             </div>
             <div class="xian"></div>
-            <div class="name">
+            <div class="named">
               <p class="phonenumber">13133393741</p>
               <p class="yidong">上海移动</p>
               <p class="spend">含话费</p>
-              <p class="ordertime">
+              <p class="ordertimed">
                 下单时间：2021-02-13 11:20
-                <span class="need"
+                <span class="needsed"
                   >需付
                   <h6 class="pay">￥400</h6></span
                 >
               </p>
-              <div class="money">
-                <p class="moneys">查看物流</p>
+              <div class="moneyed">
+                <p class="moneyeds">查看物流</p>
               </div>
             </div>
           </div></el-tab-pane
         >
         <!-- 已完成订单 -->
         <el-tab-pane label="已完成" name="complete">
-          <div class="orders">
+          <div class="ordersed">
             <div class="times">
               <p class="shoping">
                 <img
@@ -151,19 +151,19 @@
               <p class="paid">订单已完成</p>
             </div>
             <div class="xian"></div>
-            <div class="name">
+            <div class="named">
               <p class="phonenumber">13133393741</p>
               <p class="yidong">上海移动</p>
               <p class="spend">含话费</p>
-              <p class="ordertime">
+              <p class="ordertimed">
                 下单时间：2021-02-13 11:20
-                <span class="need"
+                <span class="needsed"
                   >需付
                   <h6 class="pay">￥400</h6></span
                 >
               </p>
-              <div class="money">
-                <p class="moneys">删除订单</p>
+              <div class="moneyed">
+                <p class="moneyeds">删除订单</p>
               </div>
             </div>
           </div>
@@ -176,7 +176,7 @@
 export default {
   data() {
     return {
-      activeName: "second",
+      activenamed: "second",
     };
   },
   methods: {
@@ -188,6 +188,7 @@ export default {
 </script>
 
 <style>
+
 body,
 html {
   background-color: #f5f5f5;
@@ -218,13 +219,13 @@ html {
   font-size: 16px;
   color: #ff5757;
 }
-.need {
+.needsed {
   margin: 0 15px;
   font-weight: bold;
   font-size: 14px;
   color: #333333;
 }
-.ordertime {
+.ordertimed {
   font-size: 12px;
   display: flex;
   margin-top: 5px;
@@ -272,7 +273,7 @@ html {
   background-color: #f2f2f2;
   margin: 10px auto;
 }
-.moneys {
+.moneyeds {
   position: absolute;
   right: 0px;
   bottom: 0px;
@@ -306,7 +307,7 @@ html {
 .el-tabs__active-bar {
   background-color: #ff5757;
 }
-.name {
+.named {
   margin: 0 10px;
   line-height: 25px;
   color: #666666;
@@ -324,7 +325,7 @@ html {
   margin: 20px 103px;
 }
 
-.orders {
+.ordersed {
   width: 350px;
   height: 183px;
   background-color: white;
