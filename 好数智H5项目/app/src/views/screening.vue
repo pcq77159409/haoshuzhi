@@ -74,8 +74,8 @@
       </ul>
       <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
       <ul class="reset">
-        <li>重置</li>
-        <li>精准搜索</li>
+        <li @click="onclickResetInput">重置</li>
+        <li @click="onclickAccurateSearch">精准搜索</li>
       </ul>
     </div>
     <!-- 搜索号码 结束-->
@@ -123,6 +123,13 @@
 
     <!--手机号 开始-->
     <div class="class_name">
+      <!--暂无搜索内容 开始-->
+      <div class="available"  v-show="isShow">
+        <img src="../assets/sou.png" alt="" />
+        <p>暂无搜索内容</p>
+      </div>
+      <!--暂无搜索内容 结束-->
+
       <router-link to="/details" v-for="(val, index) in list" :key="index">
         <div class="start">
           <img src="../assets/矩形 47@2x.png" alt="" style="" />
@@ -208,8 +215,8 @@
       <div class="search_filter">
         <!-- 返回按钮 -->
         <div class="back">
-          <img src="../assets/back.png" alt="" @click="onClickTo" />
-          <p>筛选</p>
+          <img src="../assets/back.png" alt="" @click="back = false" />
+          <p @click="back = false">筛选</p>
         </div>
         <!-- 返回按钮 -->
 
@@ -236,8 +243,8 @@
             >
               {{ item.name }}
             </li>
-            <li><span>￥</span> <input type="number" /></li>
-            <li><span>￥</span> <input type="number" /></li>
+            <li><span>￥</span> <input type="number" v-model="minNumber" /></li>
+            <li><span>￥</span> <input type="number" v-model="maxNumber" /></li>
           </ul>
           <p>到</p>
         </div>
@@ -255,10 +262,10 @@
             >
               {{ item.val }}
             </li>
-            <li><span>￥</span> <input type="number" /></li>
-            <li><span>￥</span> <input type="number" /></li>
+            <!-- <li><span>￥</span> <input type="number" /></li>
+            <li><span>￥</span> <input type="number" /></li> -->
           </ul>
-          <p>到</p>
+          <!-- <p>到</p> -->
         </div>
         <!-- 话费筛选 -->
 
@@ -266,10 +273,23 @@
         <div class="contract">
           <h5>合约筛选</h5>
           <ul class="december">
-            <li :class="{ active: one == 0 }" @click="one = 0">不限</li>
-            <li :class="{ active: one == 1 }" @click="one = 1">无合约</li>
-            <li :class="{ active: one == 2 }" @click="one = 2">
-              12个月;30元...
+            <li
+              :class="{ active: one == 0 }"
+              @click="(one = 0), (contractListed = 0), (lowPinListed = 0)"
+            >
+              不限
+            </li>
+            <li
+              :class="{ active: one == 1 }"
+              @click="(one = 1), (contractListed = null), (lowPinListed = null)"
+            >
+              无合约
+            </li>
+            <li
+              :class="{ active: one == 2 }"
+              @click="(one = 2), (contractListed = 0), (lowPinListed = 0)"
+            >
+              含合约
             </li>
           </ul>
           <ul class="change">
@@ -278,17 +298,41 @@
               <h3>选择最低消费</h3>
             </li>
             <li>
-              <p>不限</p>
-              <p>不限</p>
+              <p
+                :class="{ actives: contractListed == 0 }"
+                @click="contractListed = 0"
+              >
+                不限
+              </p>
+              <p
+                :class="{ actives: lowPinListed == 0 }"
+                @click="lowPinListed = 0"
+              >
+                不限
+              </p>
             </li>
-            <li>
+            <li v-for="(item, index) in contractList" :key="index">
+              <p
+                :class="{ actives: contractListed == item }"
+                @click="contractListed = item"
+              >
+                {{ item }}个月
+              </p>
+              <p
+                :class="{ actives: lowPinListed == item }"
+                @click="lowPinListed = item"
+              >
+                {{ lowPinList[index] }}元/月
+              </p>
+            </li>
+            <!-- <li>
               <p>12月</p>
-              <p>30/月</p>
+              <p>30元/月</p>
             </li>
             <li>
               <p>24月</p>
-              <p>50/月</p>
-            </li>
+              <p>50元/月</p>
+            </li> -->
           </ul>
           <span class="linings"></span>
         </div>
@@ -317,8 +361,8 @@
             <li
               v-for="(item, index) in arrList"
               :key="index"
-              @click="onClickThree(index)"
-              :class="{ active: three == index }"
+              @click="onClickThree(item.num)"
+              :class="{ active: three.includes(item.num) }"
             >
               {{ item.name }}
             </li>
@@ -497,7 +541,7 @@ export default {
           name: "0-500元",
         },
         {
-          name: "500-100元",
+          name: "500-1000元",
         },
         {
           name: "1000-2000元",
@@ -525,20 +569,23 @@ export default {
         {
           val: "含话费",
         },
-        {
-          val: "含30元",
-        },
-        {
-          val: "含50元",
-        },
-        {
-          val: "含100元",
-        },
-        {
-          val: "含300元",
-        },
+        // {
+        //   val: "含30元",
+        // },
+        // {
+        //   val: "含50元",
+        // },
+        // {
+        //   val: "含100元",
+        // },
+        // {
+        //   val: "含300元",
+        // },
       ],
       wrapList: [
+        {
+          name: "不限",
+        },
         {
           name: "0较多",
         },
@@ -573,30 +620,39 @@ export default {
       arrList: [
         {
           name: "不含0",
+          num: "0",
         },
         {
           name: "不含2",
+          num: "2",
         },
         {
           name: "不含3",
+          num: "3",
         },
         {
           name: "不含4",
+          num: "4",
         },
         {
           name: "不含5",
+          num: "5",
         },
         {
           name: "不含6",
+          num: "6",
         },
         {
           name: "不含7",
+          num: "7",
         },
         {
           name: "不含8",
+          num: "8",
         },
         {
           name: "不含9",
+          num: "9",
         },
       ],
       list: [],
@@ -611,13 +667,31 @@ export default {
       cont: false,
       one: false,
       two: false,
-      three: false,
+      three: [],
       nums: "",
       opList: -1,
       regList: -1,
       typed: 1,
       parameter: {},
+      minNumber: "",
+      maxNumber: "",
       searchInput: "",
+      searchFilter: {
+        handle_type: "", //办理方式 1 线上 2线下
+        sort_price: "", //价格排序 1递增 2递减
+        min_price: "", //	最小价格
+        max_price: "", //	最大价格
+        prepaid_charge: "", //预存话费 空为不限 无话费为0 有话费传1
+        contract: "", //	合约期
+        min_charge: "", //月低消
+        include: "", //数字较多
+        no_include: "", //不含数字
+      },
+      contractList: [],
+      lowPinList: [],
+      contractListed: false,
+      lowPinListed: false,
+      isShow: false,
     };
   },
   methods: {
@@ -679,6 +753,136 @@ export default {
     },
     onClickTo() {
       this.back = false;
+      this.parameter = {};
+      if (this.tranges === null) {
+        this.searchFilter.handle_type = "";
+      } else if (this.tranges === true) {
+        this.searchFilter.handle_type = 1;
+      } else {
+        this.searchFilter.handle_type = 2;
+      }
+
+      switch (this.went) {
+        case 0:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "";
+          this.searchFilter.max_price = "";
+          break;
+        case 1:
+          this.searchFilter.sort_price = 2;
+          this.searchFilter.min_price = "";
+          this.searchFilter.max_price = "";
+          break;
+        case 2:
+          this.searchFilter.sort_price = 1;
+          this.searchFilter.min_price = "";
+          this.searchFilter.max_price = "";
+          break;
+        case 3:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "1";
+          this.searchFilter.max_price = "500";
+          break;
+        case 4:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "500";
+          this.searchFilter.max_price = "1000";
+          break;
+        case 5:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "1000";
+          this.searchFilter.max_price = "2000";
+          break;
+        case 6:
+          this.searchFilter.sort_price = 1;
+          this.searchFilter.min_price = "2000";
+          this.searchFilter.max_price = "5000";
+          break;
+        case 7:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "5000";
+          this.searchFilter.max_price = "10000";
+          break;
+        case 8:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "10000";
+          this.searchFilter.max_price = "20000";
+          break;
+        case 9:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "20000";
+          this.searchFilter.max_price = "1000000000";
+          break;
+        default:
+          break;
+      }
+
+      if (this.maxNumber != "") {
+        if (this.minNumber == "" || this.minNumber == 0) {
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "1";
+          this.searchFilter.max_price = this.maxNumber;
+        } else {
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = this.minNumber;
+          this.searchFilter.max_price = this.maxNumber;
+        }
+      }
+
+      if (this.cont == 0 || this.cont == false) {
+        this.searchFilter.prepaid_charge = "";
+      } else if (this.cont == 1) {
+        this.searchFilter.prepaid_charge = 0;
+      } else {
+        this.searchFilter.prepaid_charge = 1;
+      }
+
+      if (this.one == 0 || this.one == false) {
+        this.searchFilter.contract = this.contractListed;
+        this.searchFilter.min_charge = this.lowPinListed;
+      } else if (this.one == 1) {
+        this.searchFilter.contract = "";
+        this.searchFilter.min_charge = "";
+      } else if (this.one == 2) {
+        this.searchFilter.contract = this.contractListed;
+        this.searchFilter.min_charge = this.lowPinListed;
+      }
+
+      if (this.contractListed == 0 || this.contractListed == null) {
+        this.searchFilter.contract = "";
+      }
+
+      if (this.lowPinListed == 0 || this.lowPinListed == null) {
+        this.searchFilter.min_charge = "";
+      }
+
+      if (this.two - 1 == -1) {
+        this.searchFilter.include = "";
+      } else {
+        this.searchFilter.include = this.two - 1;
+      }
+
+      // if (this.three - 1 == -1) {
+      //   this.searchFilter.no_include = "";
+      // } else {
+      // this.searchFilter.no_include = this.three - 1;
+      // }
+      this.searchFilter.no_include = "";
+      this.three.forEach((val, index) => {
+        console.log(val);
+        if (this.three.length - 1 == index) {
+          this.searchFilter.no_include += val;
+        } else {
+          this.searchFilter.no_include += val + ",";
+        }
+      });
+
+      console.log(this.searchFilter.no_include);
+
+      this.searchFilter.type = 1;
+      this.parameter = this.searchFilter;
+
+      this.onclickQuery();
     },
     onTab(index) {
       this.went = index;
@@ -690,7 +894,11 @@ export default {
       this.two = index;
     },
     onClickThree(index) {
-      this.three = index;
+      if (this.three.includes(index)) {
+        this.three = this.three.filter((val) => val != index);
+      } else {
+        this.three.push(index);
+      }
     },
     onClickReset() {
       this.tranges = null;
@@ -698,7 +906,11 @@ export default {
       this.cont = false;
       this.one = false;
       this.two = false;
-      this.three = false;
+      this.three = [];
+      this.minNumber = "";
+      this.maxNumber = "";
+      this.contractListed = false;
+      this.lowPinListed = false;
     },
     onSearch() {
       this.parameter = {};
@@ -718,7 +930,6 @@ export default {
         });
     },
     onclickOpeateing(index) {
-      console.log(index);
       let id = 0;
       if (index == "中国移动") {
         id = 1;
@@ -736,10 +947,12 @@ export default {
       this.onclickQuery();
     },
     onclickRegList(index, id) {
+      this.parameter={};
       this.regList = index;
       this.regulars = false;
       this.active = -1;
       // this.parameter={};
+
       this.parameter.tag = id;
       this.onclickQuery();
     },
@@ -750,7 +963,6 @@ export default {
       var number = document.querySelectorAll(".number");
 
       var words = number[index].value.replace(/\D+/g, "");
-      console.log(words);
       words = words.substring(words.length - 1, words.length);
       number[index].value = words;
 
@@ -764,18 +976,63 @@ export default {
         }
       }
     },
-    onclickQuery() {
-      this.$router.push({
-        path: "/screen",
-        query: this.parameter,
+    onclickAccurateSearch() {
+      var number = document.querySelectorAll(".number");
+      let str = "";
+      number.forEach((val) => {
+        if (val.value == "") {
+          str += "_";
+        } else {
+          str += val.value;
+        }
       });
+      this.parameter = {};
+      this.parameter.accurate = str;
+      this.onclickQuery();
+    },
+    onclickResetInput() {
+      var number = document.querySelectorAll(".number");
+      let str = "";
+      number.forEach((val, index) => {
+        if (index != 0) {
+          val.value = "";
+          str += "_";
+        } else {
+          str += val.value;
+        }
+      });
+      this.parameter.accurate = str;
+      this.onclickQuery();
+    },
+    onclickQuery() {
+      // console.log(this.parameter ,this.$route.query);
+      let flag = false;
 
-      this.$axios
-        .post("/api/home_page/getNumList", this.$route.query)
-        .then((val) => {
-          console.log(val);
-          this.list = val.data.data;
+      for (var k in this.parameter) {
+        // console.log(this.parameter[k] == this.$route.query[k]);
+        // console.log(k);
+        // console.log(this.parameter[k]);
+        // console.log(this.$route.query[k]);
+        if (this.parameter[k] != this.$route.query[k]) {
+          flag = true;
+        }
+      }
+
+      if (flag) {
+        console.log(this.parameter);
+        this.$router.push({
+          path: "/screen",
+          query: this.parameter,
         });
+        console.log(this.parameter);
+        console.log(this.$route.query);
+        this.$axios
+          .post("/api/home_page/getNumList", this.$route.query)
+          .then((val) => {
+            console.log(val);
+            this.list = val.data.data;
+          });
+      }
     },
   },
   mounted() {
@@ -792,11 +1049,25 @@ export default {
       this.cityList = val.data;
     });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
-      console.log(val);
       this.chinese = val.data;
     });
+    this.$axios.get("/api/low_consumption/index").then((r) => {
+      r.data.forEach((val) => {
+        if (val.type == 1) {
+          this.contractList.push(val.name);
+        } else if (val.type == 2) {
+          this.lowPinList.push(val.name);
+        }
+      });
+    });
   },
-  updated() {},
+  updated() {
+    if (this.list.length == 0) {
+      this.isShow = true;
+    } else {
+      this.isShow = false;
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -1015,8 +1286,10 @@ a {
 .Mobile_phone .class_name {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   overflow-y: hidden;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 .Mobile_phone .start {
   width: 167px;
@@ -1027,6 +1300,7 @@ a {
   margin-top: 10px;
   background-color: #fff;
 }
+
 .Mobile_phone .start img {
   position: absolute;
   right: 0;
@@ -1055,14 +1329,14 @@ a {
   font-size: 12px;
 }
 .Mobile_phone .start .contains {
-  margin: 10px 10px 0;
+  margin: 10px 6px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .Mobile_phone .start .contains span {
-  font-size: 12pt;
+  font-size: 14px;
   color: #dc0101;
   font-weight: bold;
 }
@@ -1332,7 +1606,7 @@ a {
 
 .Mobile_phone .Montmorillonite .search_filter .charge {
   width: 286px;
-  height: 160px;
+  height: 80px;
   margin: 0 22px;
   border-bottom: 1px solid #f2f2f2;
   position: relative;
@@ -1408,9 +1682,9 @@ a {
   height: 160px;
   margin: 0 22px;
 }
-.Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-child {
-  margin-right: 142px;
-}
+// .Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-child {
+//   margin-right: 142px;
+// }
 .Mobile_phone .Montmorillonite .search_filter .none ul li:last-child {
   margin-right: 214px;
 }
@@ -1436,5 +1710,22 @@ a {
   line-height: 44px;
   font-size: 16px;
   color: #ffffff;
+}
+.Mobile_phone .Montmorillonite .search_filter .contract .change .actives {
+  color: #ea5656;
+}
+.Mobile_phone .available {
+  width: 137px;
+  margin: 46px auto;
+  text-align: center;
+}
+.Mobile_phone .available img {
+  width: 100%;
+  height: 100px;
+}
+.Mobile_phone .available p{
+    color: #999999;
+    font-size: 12px;
+    margin-top: 17px;
 }
 </style>
