@@ -2,7 +2,7 @@
   <div class="wallet_box">
     <div class="plassets">
       <div class="mine_bag">
-        <img src="../assets/left.png" alt="" class="left" />
+        <img src="../assets/left.png" alt="" class="left" @click="$router.go(-1)"/>
         <h4>我的钱包</h4>
       </div>
       <div class="dolors">
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="tix">佣金提现</div>
+    <div class="tix" @click="$router.push('/withdrala')">佣金提现</div>
     <ul>
       <li @click="$router.push('/newOrderPayment')">
         <div class="szmx">

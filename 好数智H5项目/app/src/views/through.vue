@@ -1,7 +1,7 @@
 <template>
   <div class="through_box">
     <div class="head_boxs">
-      <img src="../assets/left.png" alt="" />
+      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
       <h4>实力买家</h4>
     </div>
     <div class="nav_box">

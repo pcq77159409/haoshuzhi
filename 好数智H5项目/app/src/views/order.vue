@@ -2,7 +2,7 @@
   <div>
     <div class="order">
       <div style="display: flex" class="jian">
-        <img src="../assets/left.png" alt="" />
+        <img src="../assets/left.png" alt="" @click="$router.go(-1)"/>
         <p>全部订单</p>
       </div>
     </div>
@@ -198,7 +198,7 @@ html {
 }
 .jian img {
   height: 16px;
-  width: 16px;
+  width: 10px;
   margin: 25px 17px;
 }
 

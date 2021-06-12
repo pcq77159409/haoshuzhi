@@ -14,18 +14,16 @@
     <div class="huts">
       <h4><img src="../assets/矩形 16@2x.png" alt="" />团队消费额完成进度</h4>
       <div class="bg">
-        <el-steps :active="2" align-center space="60%">
+        <el-steps :active="1" align-center space="60%">
+          <el-step class="aaa"></el-step>
           <el-step
-            title="步骤1"
+            title="已领取500元"
           ></el-step>
           <el-step
-            title="步骤2"
+            title="未完成"
           ></el-step>
           <el-step
-            title="步骤3"
-          ></el-step>
-          <el-step
-            title="步骤4"
+            title="未完成"
           ></el-step>
         </el-steps>
       </div>
@@ -156,14 +154,46 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .my_commission .huts .bg .el-step__head.is-finish {
   color: #ffffff !important;
-  border-color: #ff9797 !important;
+  border-color: #FE5858 !important;
+  border: none;
 }
 .my_commission .huts .bg .el-step__title.is-finish{
-  color: #ff9797 !important;
+  color: #fe5858 !important;
+  font-size: 12px;
+  background-color: rgba(255,237,237,.5);
+  height: 24px;
+  line-height: 24px;
+  margin-top: 7px;
+  margin-right: 6px;
 }
+.my_commission .huts .bg .aaa .el-step__title.is-finish{
+  background-color: transparent !important;
+}
+.my_commission .huts .bg .el-step__icon.is-text {
+  background-color: #fff;
+  border: 1px dotted #ff9797;
+}
+.my_commission .huts .bg .el-step__icon-inner {
+  color: #ff9797;
+  font-weight: 600;
+  font-size: 12px;
+}
+.el-step__title.is-wait {
+  font-size: 12px;
+}
+.el-step__title.is-process {
+  color: #c0c4cc;
+  font-size: 12px;
+  font-weight: 500;
+}
+// .my_commission .huts .bg .el-step__icon.is-text{
+//   background: linear-gradient( to bottom, #fd9999, #fe5858);
+//   border: none;
+// }
+
 .my_commission {
   width: 100%;
   height: 100%;

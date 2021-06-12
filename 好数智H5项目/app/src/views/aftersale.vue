@@ -1,7 +1,12 @@
 <template>
   <div class="hui">
     <div class="header">
-      <img src="../assets/left.png" alt="" class="back" />
+      <img
+        src="../assets/left.png"
+        alt=""
+        class="back"
+        @click="$router.go(-1)"
+      />
       <p class="sales">退款/售后</p>
     </div>
     <div class="orders">
@@ -31,7 +36,7 @@
         </div>
         <div class="bottom">
           <div class="bottomA">
-            <p>删除记录</p>
+            <p @click="onclickCenel = true">删除记录</p>
           </div>
           <div class="bottomB">
             <p>查看详情</p>
@@ -66,7 +71,7 @@
         </div>
         <div class="bottom">
           <div class="bottomA">
-            <p>删除记录</p>
+            <p @click="onclickCenel = true">删除记录</p>
           </div>
           <div class="bottomB">
             <p>查看详情</p>
@@ -101,7 +106,7 @@
         </div>
         <div class="bottom">
           <div class="bottomA">
-            <p>删除记录</p>
+            <p @click="onclickCenel = true">删除记录</p>
           </div>
           <div class="bottomB">
             <p>查看详情</p>
@@ -172,16 +177,18 @@ export default {
 
 <style scoped>
 .hui {
-    width: 100%;
-    height: 100%;
-    background-color: #f5f5f5;
-    overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  overflow-y: auto;
 }
 .el-dialog--center .el-dialog__footer {
   text-align: inherit;
   height: 1px;
 }
-
+.el-icon-close:before {
+  content: "";
+}
 .buttom {
   display: flex;
   justify-content: space-around;
@@ -338,7 +345,7 @@ export default {
   top: 0;
 }
 .back {
-  width: 16px;
+  width: 10px;
   height: 16px;
   margin: 23px 12px;
 }
@@ -365,11 +372,14 @@ export default {
   width: 15px;
   height: 15px;
   padding: 0px 2px;
+  margin-right: 4px;
 }
 .shoping {
   font-size: 15px;
   font-weight: bold;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 .this {
   margin-left: 5px;

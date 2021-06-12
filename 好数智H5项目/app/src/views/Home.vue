@@ -275,7 +275,7 @@ a {
   left: 42%;
   top: 25px;
   color: white;
-  font-size: 19px;
+  font-size: 17px;
 }
 .head .bg_img {
   width: 100%;

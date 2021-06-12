@@ -1,7 +1,7 @@
 <template>
   <div class="A">
     <div class="imgs">
-      <img src="../assets/left.png" alt="" class="back" />
+      <img src="../assets/left.png" alt="" class="back" @click="$router.go(-1)"/>
       <p class="detalis">订单详情</p>
     </div>
     <div class="total">

@@ -1,7 +1,7 @@
 <template>
     <div class="hui">
         <div class="sales">
-            <img src="../assets/left.png" alt="" class="back">
+            <img src="../assets/left.png" alt="" class="back" @click="$router.go(-1)">
             <p class="aftersales">申请退款</p>
         </div>
         <div class="one">

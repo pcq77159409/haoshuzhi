@@ -249,6 +249,21 @@ const routes = [{
         name: 'aftersale',
         component: () =>
             import ('../views/aftersale.vue')
+    }, {
+        path: '/cancel',
+        name: 'cancel',
+        component: () =>
+            import ('../views/cancel.vue')
+    }, {
+        path: '/withdrala',
+        name: 'withdrala',
+        component: () =>
+            import ('../views/withdrala.vue')
+    }, {
+        path: '/withdrawal_success',
+        name: 'withdrawal_success',
+        component: () =>
+            import ('../views/withdrawal_success.vue')
     }
 ]
 

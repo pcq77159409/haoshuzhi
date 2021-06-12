@@ -1,7 +1,12 @@
 <template>
   <div class="A">
     <div class="imgs">
-      <img src="../assets/left.png" alt="" class="back" />
+      <img
+        src="../assets/left.png"
+        alt=""
+        class="back"
+        @click="$router.go(-1)"
+      />
       <p class="detalis">订单详情</p>
     </div>
     <div class="total">
@@ -101,6 +106,8 @@
     <div class="delivery">
       <p @click="onclickCenel = true">取消订单</p>
       <p>去支付</p>
+    </div>
+    <div class="chuan">
       <el-dialog :visible.sync="onclickCenel" width="295px" center>
         <span class="cencl"> </span>
         <p class="phonels">请问您是否确认取消此订单？</p>
@@ -110,7 +117,7 @@
           <div class="buttom">
             <div class="cancal" @click="onclickCenel = false">取消</div>
             <div class="rightss"></div>
-            <div class="que">确定</div>
+            <div class="que" @click="$router.push('/cancel')">确定</div>
           </div>
         </span>
       </el-dialog>
@@ -130,25 +137,20 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .phonels {
   margin-left: 42px;
   margin-bottom: 41px;
   margin-top: -29px;
 }
-
-.el-dialog--center .el-dialog__body {
-  text-align: initial;
-  padding: 50px 25px 30px;
+.chuan /deep/ .el-icon-close:before {
+  content: "";
 }
-.el-dialog__header {
-  padding: 0;
+.chuan /deep/ .el-dialog--center .el-dialog__body {
+  padding: 25px 25px 0;
 }
-.el-icon-close:before {
-  content: none;
-}
-.el-dialog__headerbtn {
-  background-color: white;
+.chuan /deep/ .el-dialog__footer {
+  padding: 10px 20px 0px;
 }
 .phonel {
   margin-left: 65px;

@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <div class="header">
+      <img src="../assets/left.png" alt="" @click="$router.go(-1)">
       <p>类别</p>
     </div>
     <div class="move">
@@ -194,12 +195,20 @@ body {
   width: 100%;
   height: 64px;
   background: #fe5858;
+  display: flex;
+  align-items: center;
 }
 .header p {
-  font-size: 16pt;
+  font-size: 16px;
   color: white;
   line-height: 64px;
   text-align: center;
+  margin: 0 auto;
+}
+.header img {
+  width: 10px;
+  height: 16px;
+  margin-left: 15px;
 }
 .move {
   width: 100%;

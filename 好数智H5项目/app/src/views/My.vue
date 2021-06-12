@@ -61,7 +61,7 @@
             <img src="../assets/complete.png" alt="" />
             <p>已完成</p>
           </li>
-          <li>
+          <li @click="$router.push('/aftersale')">
             <img src="../assets/sales.png" alt="" />
             <p>退款/售后</p>
           </li>
