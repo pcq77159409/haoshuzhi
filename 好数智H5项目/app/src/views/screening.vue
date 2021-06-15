@@ -4,7 +4,7 @@
     <div class="reds">
       <div class="moveing">
         <img src="../assets/left.png" alt="" @click="onClickGo" />
-        <h3>移动号码</h3>
+        <h3>{{ title }}</h3>
       </div>
       <div class="input_bg">
         <div class="tail" @click="onclickTyped">
@@ -124,13 +124,17 @@
     <!--手机号 开始-->
     <div class="class_name">
       <!--暂无搜索内容 开始-->
-      <div class="available"  v-show="isShow">
+      <div class="available" v-show="isShow">
         <img src="../assets/sou.png" alt="" />
         <p>暂无搜索内容</p>
       </div>
       <!--暂无搜索内容 结束-->
 
-      <router-link to="/details" v-for="(val, index) in list" :key="index">
+      <router-link
+        :to="{ path: '/details', query: { ids: val.id } }"
+        v-for="(val, index) in list"
+        :key="index"
+      >
         <div class="start">
           <img src="../assets/矩形 47@2x.png" alt="" style="" />
           <h5 v-html="val.number_tag"></h5>
@@ -692,11 +696,12 @@ export default {
       contractListed: false,
       lowPinListed: false,
       isShow: false,
+      title: "移动号码",
     };
   },
   methods: {
     onClickGo() {
-      this.$router.go(-1);
+      this.$router.push('/commons/home');
     },
     onClickShow(num) {
       if (this.active == num) {
@@ -947,7 +952,7 @@ export default {
       this.onclickQuery();
     },
     onclickRegList(index, id) {
-      this.parameter={};
+      this.parameter = {};
       this.regList = index;
       this.regulars = false;
       this.active = -1;
@@ -1039,6 +1044,7 @@ export default {
     this.$axios
       .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
+        console.log(val);
         this.list = val.data.data;
       });
     this.$axios.get("api/home_page/getLocation").then((val) => {
@@ -1060,6 +1066,25 @@ export default {
         }
       });
     });
+// console.log(this.$route.query);
+    if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
+      this.title = "移动号码";
+    } else if (
+      this.$route.query.operator_id &&
+      this.$route.query.operator_id == 2
+    ) {
+      this.title = "联通号码";
+    } else if (
+      this.$route.query.operator_id &&
+      this.$route.query.operator_id == 3
+    ) {
+      this.title = "电信号码";
+    } else if (
+      this.$route.query.operator_id &&
+      this.$route.query.operator_id == 4
+    ) {
+      this.title = "虚拟号码";
+    }
   },
   updated() {
     if (this.list.length == 0) {
@@ -1067,6 +1092,20 @@ export default {
     } else {
       this.isShow = false;
     }
+  },
+  watch: {
+    opList(val) {
+      console.log(val);
+      if (val == '中国移动') {
+        this.title = "移动号码";
+      } else if (val == '中国联通') {
+        this.title = "联通号码";
+      } else if (val == '中国电信') {
+        this.title = "电信号码";
+      } else if (val == '虚拟运营商') {
+        this.title = "虚拟号码";
+      }
+    },
   },
 };
 </script>
@@ -1388,7 +1427,7 @@ a {
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 360px;
+  height: 90px;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
@@ -1723,9 +1762,9 @@ a {
   width: 100%;
   height: 100px;
 }
-.Mobile_phone .available p{
-    color: #999999;
-    font-size: 12px;
-    margin-top: 17px;
+.Mobile_phone .available p {
+  color: #999999;
+  font-size: 12px;
+  margin-top: 17px;
 }
 </style>

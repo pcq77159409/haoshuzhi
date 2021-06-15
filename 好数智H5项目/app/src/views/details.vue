@@ -142,6 +142,15 @@ export default {
       }
     },
   },
+  mounted() {
+    console.log(this.$route.query);
+    // let data = this.$route.query.ids;
+    // console.log(data);
+    this.$axios.get("/api/number/getNumberInfo", this.$route.query).then((r=>{
+      console.log(r);
+    }));
+    console.log(123);
+  },
 };
 </script>
 
@@ -163,7 +172,7 @@ li {
 .liji {
   width: 100%;
   height: 100%;
-   background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }
 .box {
   width: 250pt;
@@ -235,7 +244,7 @@ li {
 .number {
   font-size: 18px;
   font-weight: 600;
-   margin: 21px 0 0 10px;
+  margin: 21px 0 0 10px;
 }
 .city {
   font-size: 13px;
@@ -274,6 +283,9 @@ li {
   color: #ff0000;
 }
 .bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 44px;
   background-color: #fff;
