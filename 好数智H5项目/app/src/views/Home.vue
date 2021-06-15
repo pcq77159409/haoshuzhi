@@ -7,7 +7,7 @@
       </div>
       <p>好数智</p>
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
-      <input type="text" placeholder="请输入您要搜索的内容" />
+      <input type="text" placeholder="请输入您要搜索的内容" @keyup.enter="onKeyupSearch"  v-model="search"/>
       <img src="../assets/搜索@2x.png" alt="" class="search" />
     </div>
     <div class="heads">
@@ -16,25 +16,25 @@
 
     <div class="header">
       <div class="one">
-        <dl @click="onCLickTiao">
+        <dl @click="onCLickTiao({operator_id:1})">
           <dt><img src="../assets/组 36@2x(5).png" alt="" /></dt>
           <dd>移动号码</dd>
         </dl>
-        <dl @click="onCLickTiao">
+        <dl @click="onCLickTiao({operator_id:2})">
           <dt><img src="../assets/组 22@2x.png" alt="" /></dt>
           <dd>联通号码</dd>
         </dl>
-        <dl @click="onCLickTiao">
+        <dl @click="onCLickTiao({operator_id:3})">
           <dt><img src="../assets/组 23@2x.png" alt="" /></dt>
           <dd>电信号码</dd>
         </dl>
-        <dl @click="onCLickTiao">
+        <dl @click="onCLickTiao({operator_id:4})">
           <dt><img src="../assets/组 36@2x(1).png" alt="" /></dt>
           <dd>虚拟号码</dd>
         </dl>
       </div>
       <div class="two">
-        <dl @click="onCLickTiao">
+        <dl @click="onCLickTiao({tag:44})">
           <dt><img src="../assets/组 36@2x(1).png" alt="" /></dt>
           <dd>生日号码</dd>
         </dl>
@@ -218,15 +218,19 @@ export default {
   data() {
     return {
       dataList:[],
+      search:''
     };
   },
   methods: {
     citys() {
       this.$router.push("/citys");
     },
-    onCLickTiao() {
-      this.$router.push("/screen");
+    onCLickTiao(obj) {
+      this.$router.push({path:"/screen",query:obj});
     },
+    onKeyupSearch(){
+      this.$router.push({path:"/screen",query:{type:1,search:this.search}});
+    }
   },
   created() {
     this.$axios.post("/api/home_page/getNumbers", {operator_id: 1,from: "上海",}).then((val) => {
