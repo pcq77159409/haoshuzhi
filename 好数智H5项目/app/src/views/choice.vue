@@ -1,8 +1,8 @@
 <template>
   <div class="choice_box">
     <div class="package_box">
-      <img src="../assets/left.png" alt=""  @click="onClickIntroPara"/>
-      <h4 >套餐资费</h4>
+      <img src="../assets/left.png" alt="" @click="onClickIntroPara" />
+      <h4>套餐资费</h4>
     </div>
     <!-- 下拉选择 开始-->
     <div class="select_change">
@@ -47,41 +47,39 @@
 
     <!-- 小魔卡 开始-->
     <div class="mocha">
-      <router-link to="/khssb">
-        <div class="Characteristics">
-          <img src="../assets/tao.png" alt="" class="tao" />
-          <div>
-            <div class="movement">
-              <h6>移动小魔卡</h6>
-              <div class="tea">
-                <p>上海</p>
-                <span>移动</span>
-              </div>
-            </div>
-            <p class="voice">套餐特征: 流量+语音畅享套餐</p>
-            <ul class="amount">
-              <li>
-                <img src="../assets/phone.png" alt="" />
-                <p>90分钟</p>
-              </li>
-
-              <li>
-                <img src="../assets/liu.png" alt="" />
-                <p>58G</p>
-              </li>
-
-              <li>
-                <img src="../assets/qan.png" alt="" />
-                <p>500元</p>
-              </li>
-            </ul>
-            <div class="champion">
-              <p>销量:808</p>
-              <span>￥90.00</span>
+      <div class="Characteristics" @click="onClickTsao">
+        <img src="../assets/tao.png" alt="" class="tao" />
+        <div>
+          <div class="movement">
+            <h6>移动小魔卡</h6>
+            <div class="tea">
+              <p>上海</p>
+              <span>移动</span>
             </div>
           </div>
+          <p class="voice">套餐特征: 流量+语音畅享套餐</p>
+          <ul class="amount">
+            <li>
+              <img src="../assets/phone.png" alt="" />
+              <p>90分钟</p>
+            </li>
+
+            <li>
+              <img src="../assets/liu.png" alt="" />
+              <p>58G</p>
+            </li>
+
+            <li>
+              <img src="../assets/qan.png" alt="" />
+              <p>500元</p>
+            </li>
+          </ul>
+          <div class="champion">
+            <p>销量:808</p>
+            <span>￥90.00</span>
+          </div>
         </div>
-      </router-link>
+      </div>
       <div class="Characteristics">
         <img src="../assets/tao.png" alt="" class="tao" />
         <div>
@@ -714,8 +712,11 @@ export default {
       this.two = false;
       this.three = false;
     },
-    onClickIntroPara(){
-        this.$router.go(-1)
+    onClickIntroPara() {
+      this.$router.go(-1);
+    },
+    onClickTsao(){
+      this.$router.push('/login')
     }
   },
 };
@@ -755,6 +756,7 @@ html {
 .choice_box {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 .choice_box .package_box {
   width: 100%;
@@ -1178,7 +1180,7 @@ html {
 .choice_box .mocha {
   width: 345px;
   height: 555px;
-  margin: 0 15px;
+  margin: 0 auto;
 }
 .choice_box .mocha .Characteristics {
   width: 100%;
