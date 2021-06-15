@@ -716,6 +716,7 @@ export default {
       this.$router.go(-1);
     },
     onClickTsao(){
+      this.$axios.
       this.$router.push('/login')
     }
   },

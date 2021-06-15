@@ -1,7 +1,7 @@
 <template>
   <div class="login-box">
     <div class="white_box">
-      <img src="../assets/关闭按钮@2x.png" alt="" class="colse" @click="$router.go(-1)"/>
+      <img src="../assets/关闭按钮@2x.png" alt="" class="colse" @click="$router.push('/commons/home')"/>
       <img src="../assets/logo2x.png" alt="" class="logo" />
       <ul>
         <li>
