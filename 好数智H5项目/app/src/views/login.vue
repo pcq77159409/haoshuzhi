@@ -1,31 +1,60 @@
 <template>
   <div class="login-box">
     <div class="white_box">
-      <img src="../assets/关闭按钮@2x.png" alt="" class="colse" />
+      <img src="../assets/关闭按钮@2x.png" alt="" class="colse" @click="$router.go(-1)"/>
       <img src="../assets/logo2x.png" alt="" class="logo" />
       <ul>
         <li>
           <img src="../assets/手机号码@2x.png" alt="" />
-          <input type="number" placeholder="请输入手机号码" oninput="if(value.length>11)value=value.slice(0,11)"/>
+          <input
+            type="number"
+            placeholder="请输入手机号码"
+            oninput="if(value.length>11)value=value.slice(0,11)"
+            v-model="mobile"
+          />
         </li>
         <li>
           <img src="../assets/验证码@2x.png" alt="" />
-          <input type="number" placeholder="请输入验证码" oninput="if(value.length>6)value=value.slice(0,6)"/>
-          <p>验证码</p>
+          <input
+            type="number"
+            placeholder="请输入验证码"
+            oninput="if(value.length>6)value=value.slice(0,6)"
+            v-model="code"
+          />
+          <p @click="onClickJump">验证码</p>
         </li>
       </ul>
-      <div class="login">登录</div>
+      <div class="login" @click="onClicLogin">登录</div>
     </div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      mobile: "",
+      code: "",
+    };
   },
   methods: {
-      onClicLogin(){
-      }
+    onClickJump() {
+      this.$axios.get("/api/user/getcode?mobile=" + this.mobile).then((val) => {
+        console.log(val);
+      });
+    },
+    onClicLogin() {
+      this.$axios
+        .post("/api/user/codelogin", 
+        { 
+            mobile: this.mobile,
+             verify: this.code 
+        })
+        .then((val) => {
+          console.log(val);
+          console.log(this.mobile);
+        });
+      this.$router.go(-1);
+    },
   },
 };
 </script>
@@ -93,16 +122,16 @@ export default {
   padding: 1px 8px;
 }
 .login-box .white_box .login {
-    width: 214px;
-    height: 33px;
-    background-color: #fe5858;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    line-height: 33px;
-    margin: 0 auto;
-    border-radius: 25px;
-    margin-top: 20px;
+  width: 214px;
+  height: 33px;
+  background-color: #fe5858;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 33px;
+  margin: 0 auto;
+  border-radius: 25px;
+  margin-top: 20px;
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
