@@ -125,6 +125,7 @@ export default {
     return {
       value: true,
       back: false,
+      detailsList: [],
     };
   },
   methods: {
@@ -146,9 +147,24 @@ export default {
     console.log(this.$route.query);
     // let data = this.$route.query.ids;
     // console.log(data);
-    this.$axios.get("/api/number/getNumberInfo", this.$route.query).then((r=>{
-      console.log(r);
-    }));
+
+console.log(this.$store.state.token);
+    this.$axios
+      .get("/api/number/getNumberInfo", {
+        params: this.$route.query,
+        headers: {
+          token:this.$store.state.token,
+          user_id:this.$store.state.user_id,
+        },
+      })
+      .then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          this.detailsList = r.data.data;
+        } else if (r.code == 700) {
+          this.$router.push("/login");
+        }
+      });
     console.log(123);
   },
 };

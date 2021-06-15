@@ -21,13 +21,13 @@ axios.interceptors.response.use(res => {
         //刷新token
     }
     return Promise.reject(error.response.data) // 返回错误信息
-})
+});
+
 
 
 Vue.use(ElementUI);
 
-
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 
 new Vue({

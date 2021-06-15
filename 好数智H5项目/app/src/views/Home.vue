@@ -7,7 +7,13 @@
       </div>
       <p>好数智</p>
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
-      <input type="text" placeholder="请输入您要搜索的内容" @keyup.enter="onKeyupSearch"  v-model="search"/>
+      <input
+        type="text"
+        placeholder="请输入您要搜索的内容"
+        @keyup.enter="onKeyupSearch"
+        v-model="search"
+        maxlength="11"
+      />
       <img src="../assets/搜索@2x.png" alt="" class="search" />
     </div>
     <div class="heads">
@@ -16,25 +22,25 @@
 
     <div class="header">
       <div class="one">
-        <dl @click="onCLickTiao({operator_id:1})">
+        <dl @click="onCLickTiao({ operator_id: 1 })">
           <dt><img src="../assets/组 36@2x(5).png" alt="" /></dt>
           <dd>移动号码</dd>
         </dl>
-        <dl @click="onCLickTiao({operator_id:2})">
+        <dl @click="onCLickTiao({ operator_id: 2 })">
           <dt><img src="../assets/组 22@2x.png" alt="" /></dt>
           <dd>联通号码</dd>
         </dl>
-        <dl @click="onCLickTiao({operator_id:3})">
+        <dl @click="onCLickTiao({ operator_id: 3 })">
           <dt><img src="../assets/组 23@2x.png" alt="" /></dt>
           <dd>电信号码</dd>
         </dl>
-        <dl @click="onCLickTiao({operator_id:4})">
+        <dl @click="onCLickTiao({ operator_id: 4 })">
           <dt><img src="../assets/组 36@2x(1).png" alt="" /></dt>
           <dd>虚拟号码</dd>
         </dl>
       </div>
       <div class="two">
-        <dl @click="onCLickTiao({tag:44})">
+        <dl @click="onCLickTiao({ tag: 44 })">
           <dt><img src="../assets/组 36@2x(1).png" alt="" /></dt>
           <dd>生日号码</dd>
         </dl>
@@ -71,21 +77,27 @@
         <p>特价专场</p>
       </div>
       <div class="six">
-        <p>更多<img src="../assets/形状 20@2x.png" alt="" /></p>
+        <p @click="$router.push('/screen')">
+          更多<img src="../assets/形状 20@2x.png" alt="" />
+        </p>
       </div>
     </div>
     <div class="cap">
-      <router-link to="/screen" v-for="(value,index) in  dataList" :key="index">
+      <router-link
+        :to="{ path: '/details', query: { ids: value.id } }"
+        v-for="(value, index) in dataList"
+        :key="index"
+      >
         <div class="shit">
           <img src="../assets/te.png" alt="" />
-          <div class="number">{{value.number}}</div>
+          <div class="number">{{ value.number }}</div>
           <div class="money">
-            <p>{{value.location}}</p>
-            <p class="dolor">佣金￥{{value.returned_commission}}</p>
+            <p>{{ value.location }}</p>
+            <p class="dolor">佣金￥{{ value.returned_commission }}</p>
           </div>
           <div class="money">
             <p class="han">含话费￥260</p>
-            <p class="twietion">￥{{value.initial_charge }}</p>
+            <p class="twietion">￥{{ value.initial_charge }}</p>
           </div>
         </div>
       </router-link>
@@ -146,7 +158,9 @@
         <p>靓号推荐</p>
       </div>
       <div class="six">
-        <p>更多<img src="../assets/形状 20@2x.png" alt="" /></p>
+        <p @click="$router.push('/screen')">
+          更多<img src="../assets/形状 20@2x.png" alt="" />
+        </p>
       </div>
     </div>
     <div class="cap lina">
@@ -217,8 +231,8 @@
 export default {
   data() {
     return {
-      dataList:[],
-      search:''
+      dataList: [],
+      search: "",
     };
   },
   methods: {
@@ -226,16 +240,25 @@ export default {
       this.$router.push("/citys");
     },
     onCLickTiao(obj) {
-      this.$router.push({path:"/screen",query:obj});
+      this.$router.push({ path: "/screen", query: obj });
     },
-    onKeyupSearch(){
-      this.$router.push({path:"/screen",query:{type:1,search:this.search}});
-    }
+    onKeyupSearch() {
+      this.$router.push({
+        path: "/screen",
+        query: { type: 1, search: this.search },
+      });
+    },
   },
   created() {
-    this.$axios.post("/api/home_page/getNumbers", {operator_id: 1,from: "上海",}).then((val) => {
-        this.dataList=val.data
-    });
+
+    this.$axios
+      .post("/api/home_page/getNumbers", { operator_id: 1, from: "上海"})
+      .then((val) => {
+        console.log(val.data);
+        this.dataList = val.data;
+      });
+
+
   },
 };
 </script>
