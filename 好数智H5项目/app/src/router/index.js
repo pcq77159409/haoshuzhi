@@ -48,6 +48,11 @@ const routes = [{
         component: () =>
             import ('../views/Citys.vue')
     }, {
+        path: '/login',
+        name: 'login',
+        component: () =>
+            import ('../views/login.vue')
+    }, {
         path: '/goAddress',
         name: 'GoAdderss',
 

@@ -2,11 +2,11 @@
   <div>
     <div class="order">
       <div style="display: flex" class="jian">
-        <img src="../assets/left.png" alt="" @click="$router.go(-1)"/>
+        <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
         <p>全部订单</p>
       </div>
     </div>
-    <div>
+    <div class="tabr">
       <el-tabs v-model="activenamed" @tab-click="handleClick">
         <!-- 全部订单 -->
         <el-tab-pane label="全部" name="second">
@@ -77,7 +77,7 @@
         </el-tab-pane>
         <!-- 待发货订单 -->
         <el-tab-pane label="待发货" name="third">
-          <div class="ordersed"  @click="$router.push('/deta')">
+          <div class="ordersed" @click="$router.push('/deta')">
             <div class="times">
               <p class="shoping">
                 <img
@@ -188,7 +188,15 @@ export default {
 </script>
 
 <style>
-
+.tabr .el-tabs__nav-wrap::after {
+  background-color: transparent;
+}
+.tabr .el-tabs__nav-scroll {
+  background-color: transparent;
+}
+.tabr .el-tabs__nav {
+  background-color: transparent;
+}
 body,
 html {
   background-color: #f5f5f5;

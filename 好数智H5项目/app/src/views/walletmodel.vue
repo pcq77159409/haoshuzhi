@@ -42,6 +42,11 @@ export default {
     return {};
   },
   methods: {},
+  created(){
+    this.$axios.get('/api/integral_log/getlist').then(val=>{
+      console.log(val);
+    })
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -25,7 +25,7 @@
             <img src="../assets/balance.png" alt="" />
             <p>钱包余额</p>
           </li>
-          <li>
+          <li @click="$router.push('/coupons')">
             <img src="../assets/coupon.png" alt="" />
             <p>优惠劵</p>
           </li>

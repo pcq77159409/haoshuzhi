@@ -15,7 +15,7 @@
         </div>
         <div class="boxs"></div>
         <div class="money">
-          <div style="display: flex">
+          <div style="display: flex; align-items:center;">
             <input type="radio" style="margintop: 2px" />
             <p style="fontsize: 8px; color: #333333; margin-left: 6px">
               默认地址
@@ -96,7 +96,7 @@ html {
 .number {
   display: flex;
   align-items: center;
-  margin-left: 15px;
+  margin: 15px 0 0 15px;
 }
 .number p:first-child {
   font-size: 16px;
@@ -132,11 +132,13 @@ html {
 }
 .money p {
   color: #333333;
+  display: flex;
+  align-items: center;
 }
 .home {
   width: 100%;
   height: 100%;
-  padding-bottom: 66px;
+  background-color: #f5f5f5;
 }
 .money img {
   width: 15px;

@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="header">
-      <img src="../assets/left.png" alt="" @click="$router.go(-1)">
+      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
       <p>类别</p>
     </div>
     <div class="move">
@@ -26,22 +26,7 @@
           <span></span>
         </div>
         <ul class="digital">
-          <li>134</li>
-          <li>136</li>
-          <li>137</li>
-          <li>138</li>
-          <li>139</li>
-          <li>147</li>
-          <li>150</li>
-          <li>151</li>
-          <li>159</li>
-          <li>178</li>
-          <li>182</li>
-          <li>183</li>
-          <li>184</li>
-          <li>187</li>
-          <li>188</li>
-          <li>198</li>
+          <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
         </ul>
         <div class="roughly">
           <span></span>
@@ -62,22 +47,7 @@
           <span></span>
         </div>
         <ul class="digital">
-          <li>134</li>
-          <li>136</li>
-          <li>137</li>
-          <li>138</li>
-          <li>139</li>
-          <li>147</li>
-          <li>150</li>
-          <li>151</li>
-          <li>159</li>
-          <li>178</li>
-          <li>182</li>
-          <li>183</li>
-          <li>184</li>
-          <li>187</li>
-          <li>188</li>
-          <li>198</li>
+         <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
         </ul>
         <div class="roughly">
           <span></span>
@@ -97,23 +67,8 @@
           <h5>号段</h5>
           <span></span>
         </div>
-        <ul class="digital" >
-          <li>134</li>
-          <li>136</li>
-          <li>137</li>
-          <li>138</li>
-          <li>139</li>
-          <li>147</li>
-          <li>150</li>
-          <li>151</li>
-          <li>159</li>
-          <li>178</li>
-          <li>182</li>
-          <li>183</li>
-          <li>184</li>
-          <li>187</li>
-          <li>188</li>
-          <li>198</li>
+        <ul class="digital">
+          <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
         </ul>
         <div class="roughly">
           <span></span>
@@ -134,22 +89,7 @@
           <span></span>
         </div>
         <ul class="digital">
-          <li>134</li>
-          <li>136</li>
-          <li>137</li>
-          <li>138</li>
-          <li>139</li>
-          <li>147</li>
-          <li>150</li>
-          <li>151</li>
-          <li>159</li>
-          <li>178</li>
-          <li>182</li>
-          <li>183</li>
-          <li>184</li>
-          <li>187</li>
-          <li>188</li>
-          <li>198</li>
+         <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
         </ul>
         <div class="roughly">
           <span></span>
@@ -164,17 +104,16 @@
         </ul>
       </div>
     </div>
-    
   </div>
 </template>
 <style lang="scss" scoped>
-.digital :hover{
-  color:red;
-  border:1px solid #fe5858;
+.digital :hover {
+  color: red;
+  border: 1px solid #fe5858;
 }
-.card :hover{
-  color:red;
-   border:1px solid #fe5858;
+.card :hover {
+  color: red;
+  border: 1px solid #fe5858;
 }
 html,
 body {
@@ -255,11 +194,13 @@ body {
   height: 1px;
   background-color: #eeecec;
 }
-.digital {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-top: 24px;
+.digital{
+    display: flex;
+    flex-wrap: wrap;
+    height: 190px;
+    justify-content: space-evenly;
+    margin-top: 24px;
+    overflow: auto;
 }
 .digital li {
   width: 52px;
@@ -299,6 +240,52 @@ export default {
     return {
       flag: 0,
       active: 0,
+      arrs:[
+        "134",
+        "136",
+        "137",
+        "138",
+        "139",
+        "147",
+        "150",
+        "151",
+        "152",
+        "157",
+        "158",
+        "159",
+        "178",
+        "172",
+        "182",
+        "183",
+        "184",
+        "187",
+        "188",
+        "198",
+        "130",
+        "131",
+        "132",
+        "145",
+        "155",
+        "156",
+        "166",
+        "171",
+        "175",
+        "176",
+        "185",
+        "186",
+        "133",
+        "149",
+        "153",
+        "173",
+        "177",
+        "180",
+        "181",
+        "189",
+        "199",
+        "191",
+        "162",
+        "165",
+      ],
     };
   },
   methods: {
