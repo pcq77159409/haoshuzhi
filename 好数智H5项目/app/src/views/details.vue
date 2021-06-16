@@ -10,7 +10,9 @@
           <ul>
             <li class="number">{{ detailsList.number }}</li>
             <li class="citys">
-              <p class="city">{{ detailsList.location }} <span>移动</span></p>
+              <p class="city">{{ detailsList.location }} 
+                <!-- <span>移动</span> -->
+                </p>
               <p>￥{{ detailsList.sale_price }}</p>
             </li>
           </ul>
@@ -407,6 +409,7 @@ export default {
     },
   },
   created() {
+    console.log( this.$route.query);
     // 获取手机号信息
     this.$get("/api/number/getNumberInfo", this.$route.query).then((r) => {
       console.log(r);

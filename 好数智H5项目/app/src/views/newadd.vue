@@ -12,7 +12,7 @@
         </li>
         <li>
           <p>手机号码</p>
-          <input type="number" placeholder="联系方式" v-model="way"/>
+          <input type="number" placeholder="联系方式" v-model="way" maxlength="11"/>
         </li>
         <li>
           <p>所在地区</p>
