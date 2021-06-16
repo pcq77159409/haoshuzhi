@@ -131,7 +131,7 @@
       <!--暂无搜索内容 结束-->
 
       <router-link
-        :to="{ path: '/details', query: { ids: val.id } }"
+        :to="{ path: '/details', query: { 'ids[]': val.id } }"
         v-for="(val, index) in list"
         :key="index"
       >

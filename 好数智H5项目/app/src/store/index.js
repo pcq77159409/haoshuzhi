@@ -8,7 +8,14 @@ export default new Vuex.Store({
         token: localStorage.getItem("token"),
         user_id: localStorage.getItem("user-id")
     },
-    mutations: {},
+    mutations: {
+        onToken(state, val) {
+            state.token = val;
+        },
+        onUesrId(state, val) {
+            state.user_id = val;
+        }
+    },
     actions: {},
     modules: {}
 })
