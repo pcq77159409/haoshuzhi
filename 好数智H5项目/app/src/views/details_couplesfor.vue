@@ -2,13 +2,16 @@
   <div class="liji">
     <div class="service">
       <img src="../assets/left.png" alt="" @click="onBack" />
-      <p>购买号码</p>
+      <p>号码详情</p>
     </div>
     <div class="total">
       <div class="totals">
         <div class="address">
           <ul>
-            <li class="number">13133393741 <img src="../assets/222.png" alt="" @click="onClickNickname"></li>
+            <li class="number">
+              13133393741
+              <img src="../assets/222.png" alt="" @click="onClickNickname" />
+            </li>
             <li class="citys">
               <p class="city">上海 <span>移动</span></p>
               <p>￥400</p>
@@ -52,11 +55,14 @@
         </li>
       </ul>
     </div>
-     <div class="total facingcouples">
+    <div class="total facingcouples">
       <div class="totals">
         <div class="address">
           <ul>
-            <li class="number">13133393741 <img src="../assets/222.png" alt="" @click="onClickNickname"></li>
+            <li class="number">
+              13133393741
+              <img src="../assets/222.png" alt="" @click="onClickNickname" />
+            </li>
             <li class="citys">
               <p class="city">上海 <span>移动</span></p>
               <p>￥400</p>
@@ -99,12 +105,25 @@
           >
         </li>
       </ul>
+    </div>
+    <div class="endcsname">
+      <img src="../assets/ding.png" alt="" />
+      <div class="mercifully">
+        <div class="parameter">
+          <h3>好名字</h3>
+          <p>18812345689</p>
+        </div>
+        <div class="reklameadvice">
+          <p>收货地址: 上海嘉定区平城路118弄</p>
+        </div>
+      </div>
+      <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
     <div class="bottom">
       <p>合计:</p>
       <span>￥400.00</span>
       <router-link to="/form_orders_path_couples">
-      <div class="now">立即购买</div>
+        <div class="now">提交订单</div>
       </router-link>
     </div>
     <div class="black" v-show="back">
@@ -166,13 +185,13 @@
       </div>
     </div>
     <div class="layered" v-show="metric">
-        <div class="art_publ_time">
-            <h4>请问您是否确认删除此号码?</h4>
-            <div class="measurements">
-                <p @click="onClickNickname">取消</p>
-                <span>确定</span>
-            </div>
+      <div class="art_publ_time">
+        <h4>请问您是否确认删除此号码?</h4>
+        <div class="measurements">
+          <p @click="onClickNickname">取消</p>
+          <span>确定</span>
         </div>
+      </div>
     </div>
   </div>
 </template>
@@ -182,7 +201,7 @@ export default {
     return {
       value: true,
       back: false,
-      metric:false
+      metric: false,
     };
   },
   methods: {
@@ -243,6 +262,50 @@ li {
   font-size: 13px;
   margin: auto 15px;
 }
+.endcsname {
+  width: 345px;
+  height: 68px;
+  background-color: #fff;
+  margin: 10px 15px;
+  display: flex;
+  border-radius: 4px;
+}
+
+.endcsname img:first-child {
+  width: 20px;
+  height: 29px;
+  margin: 20px 0 0 20px;
+}
+.endcsname img:last-child {
+  width: 8px;
+  height: 14px;
+  margin: 29px 0 0 10px;
+}
+.endcsname .mercifully {
+  width: 80%;
+}
+.endcsname .mercifully .parameter {
+  display: flex;
+}
+.endcsname .mercifully .parameter h3 {
+  color: #333333;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 15px 0 0 12px;
+}
+.endcsname .mercifully .parameter p {
+  color: #666666;
+  font-size: 12px;
+  margin: 17px 0 0 14px;
+}
+.endcsname .mercifully .reklameadvice {
+  display: flex;
+}
+.endcsname .mercifully .reklameadvice p {
+  font-size: 12px;
+  color: #333333;
+  margin: 4px 0 0 12px;
+}
 .phone {
   width: 250pt;
   height: 40pt;
@@ -264,7 +327,7 @@ li {
 .service {
   width: 100%;
   height: 65px;
-  background: #ff5757;
+  background: #ea5656;
   display: flex;
   align-items: center;
 }
@@ -297,8 +360,8 @@ li {
   margin-top: 10px;
   justify-content: space-evenly;
 }
-.facingcouples{
-    margin-top: 30px;
+.facingcouples {
+  margin-top: 30px;
 }
 .number {
   font-size: 18px;
@@ -308,9 +371,9 @@ li {
   justify-content: space-between;
 }
 .number img {
-    width: 16px;
-    height: 16px;
-    margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
 }
 .city {
   font-size: 13px;
@@ -370,7 +433,7 @@ li {
   height: 44px;
   background-color: #ea5656;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   margin-left: 158px;
   text-align: center;
   line-height: 44px;
@@ -529,49 +592,49 @@ li {
   color: #fff;
 }
 .layered {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.5);
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.layered .art_publ_time{
-    width: 267px;
-    height: 124px;
-    background-color: #fff;
-    border-radius: 10px;
-    text-align: center;
+.layered .art_publ_time {
+  width: 267px;
+  height: 124px;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: center;
 }
 .layered .art_publ_time h4 {
-    font-size: 12px;
-    color: #333333;
-    font-weight: 500;
-    margin-top: 34px;
+  font-size: 12px;
+  color: #333333;
+  font-weight: 500;
+  margin-top: 34px;
 }
-.layered .art_publ_time .measurements{
-    width: 100%;
-    height: 44px;
-    border-top: 1px solid #d2d2d2;
-    display: flex;
-    margin-top: 29px;
-    justify-content: center;
-    line-height: 44px;
+.layered .art_publ_time .measurements {
+  width: 100%;
+  height: 44px;
+  border-top: 1px solid #d2d2d2;
+  display: flex;
+  margin-top: 29px;
+  justify-content: center;
+  line-height: 44px;
 }
 .layered .art_publ_time .measurements p {
-    width: 50%;
-    height: 100%;
-    border-right: 1px solid #d2d2d2;
-    color: #0443d1;
-    font-size: 14px;
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid #d2d2d2;
+  color: #0443d1;
+  font-size: 14px;
 }
-.layered .art_publ_time .measurements span{
-     width: 50%;
-    height: 100%;
-    color: #0443d1;
-    font-size: 14px;
+.layered .art_publ_time .measurements span {
+  width: 50%;
+  height: 100%;
+  color: #0443d1;
+  font-size: 14px;
 }
 </style>

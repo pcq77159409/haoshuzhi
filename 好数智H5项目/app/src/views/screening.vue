@@ -956,8 +956,6 @@ export default {
       this.regList = index;
       this.regulars = false;
       this.active = -1;
-      // this.parameter={};
-
       this.parameter.tag = id;
       this.onclickQuery();
     },
@@ -1010,14 +1008,8 @@ export default {
       this.onclickQuery();
     },
     onclickQuery() {
-      // console.log(this.parameter ,this.$route.query);
       let flag = false;
-
       for (var k in this.parameter) {
-        // console.log(this.parameter[k] == this.$route.query[k]);
-        // console.log(k);
-        // console.log(this.parameter[k]);
-        // console.log(this.$route.query[k]);
         if (this.parameter[k] != this.$route.query[k]) {
           flag = true;
         }

@@ -3,22 +3,12 @@
     <div class="drawBoundingBox">
       <!-- 头部 开始-->
       <div class="summer">
-        <img src="../assets/left.png" alt="" @click="onClickGoto"/>
-        <h4>提交订单</h4>
+        <img src="../assets/left.png" alt="" @click="onClickGoto" />
+        <h4>完善信息</h4>
       </div>
       <!-- 头部 结束-->
-      <div class="endcsname">
-        <img src="../assets/ding.png" alt="" />
-        <div class="mercifully">
-          <div class="parameter">
-            <h3>好名字</h3>
-            <p>18812345689</p>
-          </div>
-          <div class="reklameadvice">
-            <p>收货地址: 上海嘉定区平城路118弄</p>
-          </div>
-        </div>
-        <img src="../assets/跳转箭头@2x.png" alt="" />
+      <div class="formal">
+        <p>正规三大运营商号码，配合国家安全，严厉打击电信诈骗，应运营商要求，必须实行实名制办理激活开通。敬请理解！平台客服会在1小时内电话为您一对一服务</p>
       </div>
       <div class="gooddata">
         <p>13641961314</p>
@@ -114,7 +104,7 @@
       <div class="sensorbox_init_osd">
         <p>合计:</p>
         <span>￥900.00</span>
-        <div class="commit">提交订单</div>
+        <div class="commit" @click="$router.push('/confirm_couples')">立即购买</div>
       </div>
     </div>
   </div>
@@ -125,9 +115,9 @@ export default {
     return {};
   },
   methods: {
-      onClickGoto(){
-          this.$router.go(-1)
-      }
+    onClickGoto() {
+      this.$router.go(-1);
+    },
   },
 };
 </script>
@@ -160,49 +150,18 @@ export default {
   color: #fff;
   font-weight: 500;
 }
-.drawBoundingBox .endcsname {
+.drawBoundingBox .formal {
   width: 345px;
   height: 68px;
-  background-color: #fff;
-  margin: 10px 15px;
-  display: flex;
-  border-radius: 4px;
+  margin: 18px auto 0;
+  background-color: rgb(248,235,235);
+  padding: 10px 10px 14px;
+  box-sizing: border-box;
+  
 }
-
-.drawBoundingBox .endcsname img:first-child {
-  width: 20px;
-  height: 29px;
-  margin: 20px 0 0 20px;
-}
-.drawBoundingBox .endcsname img:last-child {
-  width: 8px;
-  height: 14px;
-  margin: 29px 0 0 10px;
-}
-.drawBoundingBox .endcsname .mercifully {
-  width: 80%;
-}
-.drawBoundingBox .endcsname .mercifully .parameter {
-  display: flex;
-}
-.drawBoundingBox .endcsname .mercifully .parameter h3 {
-  color: #333333;
-  font-size: 15px;
-  font-weight: 500;
-  margin: 15px 0 0 12px;
-}
-.drawBoundingBox .endcsname .mercifully .parameter p {
-  color: #666666;
+.drawBoundingBox .formal p {
   font-size: 12px;
-  margin: 17px 0 0 14px;
-}
-.drawBoundingBox .endcsname .mercifully .reklameadvice {
-  display: flex;
-}
-.drawBoundingBox .endcsname .mercifully .reklameadvice p {
-  font-size: 12px;
-  color: #333333;
-  margin: 4px 0 0 12px;
+  color: #fe5858;
 }
 .drawBoundingBox .gooddata {
   width: 345px;

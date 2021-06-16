@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="bottom">
+    <div class="bottom" @click="$router.push('/newadd')">
         <p>添加收货地址</p>
     </div>
   </div>

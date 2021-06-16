@@ -1,0 +1,156 @@
+<template>
+  <div class="new_add">
+    <div class="jumplabel">
+      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
+      <h4>新增收货地址</h4>
+    </div>
+    <div class="huo">
+      <ul>
+        <li>
+          <p>收货人</p>
+          <input type="text" placeholder="收货人姓名" v-model="username"/>
+        </li>
+        <li>
+          <p>手机号码</p>
+          <input type="number" placeholder="联系方式" v-model="way"/>
+        </li>
+        <li>
+          <p>所在地区</p>
+          <input type="text" placeholder="省/市/区/街道" v-model="country"/>
+        </li>
+        <li>
+          <p>详细地址</p>
+          <input type="text" placeholder="请填写详细地址；例：1号楼101室" v-model="detailed"/>
+        </li>
+        <li>
+          <p>设为默认地址</p>
+          <el-switch
+            v-model="value"
+            active-color="#fe5858"
+            inactive-color="#ccc"
+          ></el-switch>
+        </li>
+      </ul>
+    </div>
+    <div class="save" @click="onClickCreateAddress">保存</div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      value: false,
+      username:'',
+      way:'',
+      country:'',
+      detailed:''
+    };
+  },
+  methods: {
+    onClickCreateAddress() {
+      this.$axios
+        .post("/api/address/create", {
+          id:1,
+          mobile:this.way,
+          name:this.username,
+          province:'湖南省',
+          city:'邵阳市',
+          area:'双清区',
+          address:this.detailed,
+          headers: {
+            token: this.$store.state.token,
+            user_id: this.$store.state.user_id,
+          },
+        })
+        .then((val) => {
+          console.log(val);
+          if (val.code == 700) {
+          this.$router.push("/login");
+          }else if(val.code==200){
+          console.log(val.data);
+          }else {
+            alert(val.msg)
+            this.$router.push("/login");
+          }
+        });
+    },
+  },
+};
+</script>
+<style lang="scss" scoped>
+.new_add {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+.new_add .jumplabel {
+  width: 100%;
+  height: 64px;
+  background-color: #ea5656;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+.new_add .jumplabel img {
+  width: 10px;
+  height: 16px;
+  margin-left: 15px;
+}
+.new_add .jumplabel h4 {
+  font-size: 16px;
+  margin: 0 auto;
+  color: #fff;
+  font-weight: 500;
+}
+.new_add .huo {
+  width: 345px;
+  height: 225px;
+  margin: 80px auto 0;
+  background-color: #fff;
+}
+.new_add .huo ul {
+  width: 100%;
+  height: 100%;
+}
+.new_add .huo ul li {
+  width: 325px;
+  height: 44px;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+.new_add .huo ul li input {
+  width: 246px;
+  color: #999;
+  background-color: transparent;
+}
+.new_add .huo ul li p {
+  font-size: 12px;
+  color: rgb(70, 63, 63);
+  margin-right: 30px;
+  font-weight: 600;
+}
+.new_add .huo ul li:first-child p {
+  margin-right: 40px;
+}
+.new_add .huo ul li:last-child {
+  justify-content: space-between;
+  border: none;
+}
+.new_add .save {
+  width: 345px;
+  height: 44px;
+  margin: 90px auto;
+  background-color: #ea5656;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  line-height: 44px;
+}
+</style>

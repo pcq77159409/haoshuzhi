@@ -1,7 +1,12 @@
 <template>
   <div class="A">
     <div class="imgs">
-      <img src="../assets/left.png" alt="" class="back" @click="$router.go(-1)"/>
+      <img
+        src="../assets/left.png"
+        alt=""
+        class="back"
+        @click="$router.go(-1)"
+      />
       <p class="detalis">订单详情</p>
     </div>
     <div class="total">
@@ -39,15 +44,11 @@
           </div>
           <p class="yidong">上海移动</p>
           <p class="spend">含话费￥230</p>
-          <p class="ordertime">
-            <span class="need"
-              >实付
-              <h6 class="pay">￥400</h6></span
-            >
-          </p>
-          <div class="money">
-            <p class="moneys">退款</p>
-          </div>
+          <p class="moneys">退款</p>
+          <span class="need"
+            >实付
+            <h6 class="pay">￥400.00</h6></span
+          >
         </div>
       </div>
     </div>
@@ -87,9 +88,15 @@
       </ul>
     </div>
     <div class="make">
-      <p>拨打电话</p>
+      <div class="bo">
+        <img src="../assets/dianhua.png" alt="" />
+        <p>拨打电话</p>
+      </div>
       <div class="borders"></div>
-      <p>咨询客服</p>
+      <div class="bo">
+        <img src="../assets/kefu.png" alt="" />
+        <p>咨询客服</p>
+      </div>
     </div>
     <div class="delivery">
       <div class="del" @click="onClickOpen">
@@ -114,6 +121,9 @@ export default {
   methods: {
     onClickOpen() {
       this.flag = true;
+      setTimeout(() => {
+      this.flag = false;
+      }, 2000);
     },
     onClickClose() {
       this.flag = false;
@@ -192,6 +202,7 @@ export default {
 .v {
   width: 20px;
   height: 20px;
+  margin: 0 7px 0 12px;
 }
 .borders {
   border-right: 1px solid #ccc;
@@ -211,8 +222,17 @@ export default {
   margin-bottom: 15px;
   align-items: center;
 }
+.make .bo {
+  display: flex;
+  align-items: center;
+}
 .make p {
   font-size: 15px;
+}
+.make img {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
 }
 
 .rights {
@@ -264,7 +284,8 @@ export default {
 }
 .redmoney {
   color: #fe5858;
-  font-size: 13px;
+  font-size: 16px;
+  margin-right: 6px;
 }
 .heng {
   display: flex;
@@ -274,16 +295,19 @@ export default {
   margin-left: 5px;
 }
 .moneys {
+  width: 54px;
+  height: 17px;
   position: absolute;
   right: 11px;
-  bottom: 47px;
-  border: 1px solid #666666;
+  bottom: 50px;
+  border: 1px solid #999999;
   text-align: center;
   border-radius: 15px;
   color: #666666;
   font-weight: 600;
-  padding: 0 18px;
   font-size: 12px;
+  line-height: 17px;
+  padding: 2px 0;
 }
 .pay {
   margin: -25px 28px;
@@ -291,28 +315,27 @@ export default {
   color: #fe5858;
 }
 .need {
-  margin: 0 255px;
-  font-weight: bold;
+  display: block;
   font-size: 14px;
   color: #333333;
-}
-.ordertime {
-  font-size: 12px;
-  display: flex;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-left: 231px;
 }
 .spend {
   font-size: 12px;
   margin-top: 5px;
+  margin-left: 21px;
 }
 .yidong {
   font-size: 12px;
   margin-top: 5px;
+  margin-left: 21px;
 }
 .phonenumber {
   font-size: 16px;
   font-weight: bold;
   color: #333333;
+  margin-left: 21px;
 }
 .xian {
   width: 330px;
@@ -327,14 +350,17 @@ export default {
 }
 
 .shoping {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 .shops {
   width: 15px;
   height: 15px;
   padding: 0px 2px;
+  margin-right: 4px;
 }
 .times {
   display: flex;
@@ -453,16 +479,16 @@ export default {
 .one {
   width: 100px;
   height: 35px;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 22px;
   color: white;
   margin-left: 40px;
 }
 .two {
   width: 220px;
   height: 30px;
-  font-size: 14px;
+  font-size: 12px;
   color: white;
   margin-left: 42px;
+  letter-spacing: 2px;
 }
 </style>

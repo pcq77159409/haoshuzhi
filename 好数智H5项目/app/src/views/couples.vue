@@ -15,7 +15,7 @@
         <div class="searchs">
           <div class="want">
             <img src="../assets/搜索@2x.png" alt="" />
-            <p>搜索你想要的号码</p>
+            <input type="text" placeholder="搜索你想要的号码" />
           </div>
           <h4>搜索</h4>
         </div>
@@ -26,17 +26,83 @@
     <!-- 搜索号码 开始-->
     <div class="accurate">
       <ul class="phoneNumber">
-        <li><input type="text" value="1" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
-        <li><input type="text" /></li>
+        <li>
+          <input
+            type="number"
+            value="1"
+            class="number"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
+        <li>
+          <input
+            type="number"
+            class="number"
+            oninput="if(value.length>1)value=value.slice(0,1)"
+          />
+        </li>
       </ul>
       <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
       <ul class="reset">
@@ -89,82 +155,32 @@
 
     <!--手机号 开始-->
     <router-link to="/details_couplesfor">
-    <div class="class_box">
-      <img src="../assets/矩形 47@2x.png" alt="" style="" />
-      <div class="end">
-        <h5>13596361314</h5>
-        <div class="commission">
-          <p>上海移动</p>
-          <span>佣金￥200</span>
+      <div class="class_box" v-for="(item, index) in love" :key="index">
+        <img src="../assets/矩形 47@2x.png" alt="" style="" />
+        <div class="end">
+          <h5 v-html="item[0].number_tag"></h5>
+          <div class="commission">
+            <p>{{ item[0].location }}</p>
+            <span>佣金￥200</span>
+          </div>
+          <div class="contains">
+            <p>含通话费{{ item[0].contain_charge }}</p>
+            <span>￥{{ item[0].sale_price }}</span>
+          </div>
         </div>
-        <div class="contains">
-          <p>含通话费￥320</p>
-          <span>￥400</span>
+        <span class="line"></span>
+        <div class="end">
+          <h5 v-html="item[0].number_tag"></h5>
+          <div class="commission">
+            <p>{{ item[1].location }}</p>
+          </div>
+          <div class="contains">
+            <p>含通话费{{ item[1].contain_charge }}</p>
+            <span>￥{{ item[1].sale_price }}</span>
+          </div>
         </div>
       </div>
-      <span class="line"></span>
-      <div class="end">
-        <h5>13696361314</h5>
-        <div class="commission">
-          <p>上海移动</p>
-        </div>
-        <div class="contains">
-          <p>含通话费￥320</p>
-          <span>￥400</span>
-        </div>
-      </div>
-    </div>
     </router-link>
-    <div class="class_box">
-      <img src="../assets/矩形 47@2x.png" alt="" style="" />
-      <div class="end">
-        <h5>13596361314</h5>
-        <div class="commission">
-          <p>上海移动</p>
-          <span>佣金￥200</span>
-        </div>
-        <div class="contains">
-          <p>含通话费￥320</p>
-          <span>￥400</span>
-        </div>
-      </div>
-      <span class="line"></span>
-      <div class="end">
-        <h5>13696361314</h5>
-        <div class="commission">
-          <p>上海移动</p>
-        </div>
-        <div class="contains">
-          <p>含通话费￥320</p>
-          <span>￥400</span>
-        </div>
-      </div>
-    </div>
-    <div class="class_box">
-      <img src="../assets/矩形 47@2x.png" alt="" style="" />
-      <div class="end">
-        <h5>13596361314</h5>
-        <div class="commission">
-          <p>上海移动</p>
-          <span>佣金￥200</span>
-        </div>
-        <div class="contains">
-          <p>含通话费￥320</p>
-          <span>￥400</span>
-        </div>
-      </div>
-      <span class="line"></span>
-      <div class="end">
-        <h5>13696361314</h5>
-        <div class="commission">
-          <p>上海移动</p>
-        </div>
-        <div class="contains">
-          <p>含通话费￥320</p>
-          <span>￥400</span>
-        </div>
-      </div>
-    </div>
     <!--手机号 结束-->
 
     <!-- 归属地 开始-->
@@ -441,12 +457,17 @@ export default {
           username: "石家庄市",
         },
       ],
+      parameter: {},
+      love: [],
       num: null,
       wrap: null,
       flag: false,
       cut: false,
       regulars: false,
       back: false,
+      from:'',
+      operator:'',
+      type:''
     };
   },
   methods: {
@@ -505,6 +526,12 @@ export default {
       this.back = false;
     },
   },
+  created() {
+    this.$axios.post("/api/home_page/loveNumber", {from:this.from,operator:this.operator,type:this.type}).then((val) => {
+      this.love = val.data.data;
+      console.log(val.data);
+    });
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -535,7 +562,9 @@ body {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
+  overflow-x: hidden;
 }
+
 .Mobile_phone .reds {
   width: 100%;
   height: 122px;
@@ -602,7 +631,7 @@ body {
   height: 10pt;
   margin: 0 10px 0 4px;
 }
-.Mobile_phone .reds .input_bg .searchs .want p {
+.Mobile_phone .reds .input_bg .searchs .want input {
   font-size: 12px;
   color: #999999;
 }
@@ -624,13 +653,15 @@ body {
 .Mobile_phone .accurate .phoneNumber li {
   width: 22px;
   height: 26px;
-  border: 1px solid #cacaca;
   text-align: center;
   border-radius: 3px;
   font-size: 14px;
 }
-.Mobile_phone .accurate .phoneNumber li:hover {
-  border-color: #dc0101;
+// .Mobile_phone .accurate .phoneNumber li:hover {
+//   border-color: #dc0101;
+// }
+.Mobile_phone .accurate .phoneNumber li input:focus {
+  border: 1px solid #dc0101;
 }
 .Mobile_phone .accurate .phoneNumber li:first-child input {
   color: #333333;
@@ -638,10 +669,10 @@ body {
 .Mobile_phone .accurate .phoneNumber li input {
   width: 100%;
   height: 100%;
-  border: none;
   text-align: center;
   color: #dc0101;
   outline: none;
+  border: 1px solid #cacaca;
 }
 .Mobile_phone .accurate p {
   font-size: 12px;
@@ -765,12 +796,13 @@ body {
 }
 
 .Mobile_phone .end .contains span {
-  font-size: 12pt;
+  font-size: 14px;
   color: #dc0101;
   font-weight: bold;
 }
 
-.Mobile_phone .Belonging ,.Mobile_phone .regular {
+.Mobile_phone .Belonging,
+.Mobile_phone .regular {
   width: 100%;
   height: 360px;
   position: absolute;

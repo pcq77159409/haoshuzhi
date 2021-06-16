@@ -79,8 +79,8 @@ export default {
 }
 .purchase_box .process {
   width: 345px;
-  height: 696px;
-  margin: 80px 15px 0;
+  height: 704px;
+  margin: 80px 15px 20px;
   background-color: #fff;
 }
 .purchase_box .process .network h3 {

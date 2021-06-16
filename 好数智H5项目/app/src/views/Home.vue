@@ -250,15 +250,13 @@ export default {
     },
   },
   created() {
-
-    this.$axios
-      .post("/api/home_page/getNumbers", { operator_id: 1, from: "上海"})
-      .then((val) => {
+    this.$axios.post("/api/home_page/getNumbers", { operator_id: 1, from: "上海" }).then((val) => {
         console.log(val.data);
         this.dataList = val.data;
       });
-
-
+      this.$axios.get('/api/number/getHotNumber').then(val=>{
+        console.log(val);
+      })
   },
 };
 </script>

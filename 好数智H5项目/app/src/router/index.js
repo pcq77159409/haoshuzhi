@@ -269,6 +269,16 @@ const routes = [{
         name: 'withdrawal_success',
         component: () =>
             import ('../views/withdrawal_success.vue')
+    }, {
+        path: '/newadd',
+        name: 'newadd',
+        component: () =>
+            import ('../views/newadd.vue')
+    }, {
+        path: '/confirm_couples',
+        name: 'confirm_couples',
+        component: () =>
+            import ('../views/confirm_couples.vue')
     }
 ]
 
