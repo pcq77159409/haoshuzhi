@@ -1,7 +1,12 @@
 <template>
   <div class="login-box">
     <div class="white_box">
-      <img src="../assets/关闭按钮@2x.png" alt="" class="colse" @click="$router.push('/commons/home')"/>
+      <img
+        src="../assets/关闭按钮@2x.png"
+        alt=""
+        class="colse"
+        @click="$router.push('/commons/home')"
+      />
       <img src="../assets/logo2x.png" alt="" class="logo" />
       <ul>
         <li>
@@ -44,14 +49,21 @@ export default {
     },
     onClicLogin() {
       this.$axios
-        .post("/api/user/codelogin", 
-        { 
-            mobile: this.mobile,
-             verify: this.code 
+        .post("/api/user/codelogin", {
+          mobile: this.mobile,
+          verify: this.code,
         })
         .then((val) => {
           console.log(val);
           console.log(this.mobile);
+          if (val.code == 200) {
+            localStorage.setItem("token", val.data.token);
+            localStorage.setItem("user-id", val.data.id);
+            this.$store.commit('onToken',localStorage.getItem('token'));
+            this.$store.commit('onUesrId',localStorage.getItem('user-id'));
+          }else{
+            alert(val.msg);
+          }
         });
       this.$router.go(-1);
     },

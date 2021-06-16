@@ -8,10 +8,10 @@
       <div class="totals">
         <div class="address">
           <ul>
-            <li class="number">13133393741</li>
+            <li class="number">{{ detailsList.number }}</li>
             <li class="citys">
-              <p class="city">上海 <span>移动</span></p>
-              <p>￥400</p>
+              <p class="city">{{ detailsList.location }} <span>移动</span></p>
+              <p>￥{{ detailsList.sale_price }}</p>
             </li>
           </ul>
         </div>
@@ -23,19 +23,28 @@
         </div>
       </div>
     </div>
-    <div class="phone" @click="onClickBack">
-      <p>号码套餐 <span>移动花卡宝藏版29元套餐</span></p>
+    <div class="phone" @click="onClickBack(detailsList.numberpackage[0].storepackage.id)">
+      <p>
+        号码套餐
+        <span>{{ detailsList.numberpackage[0].storepackage.package_name }}</span>
+      </p>
     </div>
     <div class="box">
       <ul>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          预存话费<span style="margin-left: 30px">￥500</span>
+          预存话费<span style="margin-left: 30px"
+            >￥{{ detailsList.contain_charge }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          花费(含)<span style="margin-left: 35px; color: #666666">￥800</span>
+          话费(含)<span style="margin-left: 35px; color: #666666"
+            >￥{{ detailsList.contain_charge }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          卡费<span style="margin-left: 55px">￥100</span>
+          卡费<span style="margin-left: 55px"
+            >￥{{ detailsList.sale_price }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           登记方式<span style="margin-left: 30px; color: #666666"
@@ -43,18 +52,33 @@
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          号码预约<span style="margin-left: 30px; color: #666666">￥500</span>
+          号码合约<span style="margin-left: 30px; color: #666666"
+            >{{ detailsList.contract }}/月</span
+          >
         </li>
         <li style="color: #999999">
           温馨提示<span style="margin-left: 30px; color: #666666"
-            >收到号码后请尽快修改号码</span
+            >收到号码后请尽快修改密码</span
           >
         </li>
       </ul>
     </div>
+    <div class="endcsname">
+      <img src="../assets/ding.png" alt="" />
+      <div class="mercifully">
+        <div class="parameter">
+          <h3>好名字</h3>
+          <p>18812345689</p>
+        </div>
+        <div class="reklameadvice">
+          <p>收货地址: 上海嘉定区平城路118弄</p>
+        </div>
+      </div>
+      <img src="../assets/跳转箭头@2x.png" alt="" />
+    </div>
     <div class="bottom">
       <p>合计:</p>
-      <span>￥400.00</span>
+      <span>￥{{ detailsList.sale_price }}</span>
       <router-link to="/form_orders_path">
         <div class="now">立即购买</div>
       </router-link>
@@ -66,10 +90,10 @@
           <p>套餐资费</p>
         </div>
         <div class="already">
-          <img src="../assets/cards.png" alt="" />
+          <img :src="packagDetail.head_image" alt="" />
           <div class="treasure">
             <span>已选:</span>
-            <p>移动花卡宝藏版19元套餐</p>
+            <p>{{packagDetail.package_name}}</p>
           </div>
         </div>
         <div class="traffic">
@@ -87,29 +111,29 @@
           <ul>
             <li>
               <p>套餐月费</p>
-              <span>￥19.00</span>
+              <span>￥{{packagDetail.month_charge}}</span>
             </li>
             <li>
               <p>通话时长</p>
-              <span>0.1元/分钟</span>
+              <span>{{packagDetail.talk_time}}分钟</span>
             </li>
-            <li>
+            <!-- <li>
               <p>通话超出部分</p>
               <span>0.1元/分钟</span>
-            </li>
+            </li> -->
             <li>
               <p>套餐流量</p>
-              <span>1元/1G</span>
+              <span>{{packagDetail.general_flow}}G/月</span>
             </li>
-            <li>
+            <!-- <li>
               <p>流量超出部分</p>
               <span>1元/1G</span>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="instructions">
           <h5>套餐说明</h5>
-          <p>套餐月费19/月,语音通话0.1元/分钟,流量1元/1G,流量超出部分1元/1G</p>
+          <p>{{packagDetail.package_describe}}</p>
         </div>
         <div class="cancel">
           <p @click="onClickTo">取消</p>
@@ -125,7 +149,103 @@ export default {
     return {
       value: true,
       back: false,
-      detailsList: [],
+      detailsList: {
+        id: 1,
+        number: "18755226962",
+        location: "蚌埠市", //归属地
+        operator: "1", //运营商：1中国移动 2中国电信 3中国联通
+        tag: null,
+        initial_charge: 150,
+        min_charge: 88, //低消
+        prepaid_charge: 50,
+        contain_charge: 0, //含话费
+        contract: "0", // 协议期，单位月
+        purchase_price: "50.00",
+        sale_price: "100.00", //卡费
+        package_group: "YD00001,YD00002",
+        status: 2,
+        handle_type: 1,
+        recommend: 0,
+        describe: "测试数据1",
+        store_id: 1,
+        store_phone: 2147483647,
+        owner: "cecil",
+        owner_phone: "18876548765",
+        create_time: 1618325669,
+        update_time: null,
+        returned_commission: 7.5,
+        numberpackage: [
+          //套餐
+          {
+            id: 188, //套餐ID
+            number: "18755226962",
+            package_id: "YD00001",
+            storepackage: {
+              id: 1,
+              store_id: 1,
+              type: 1,
+              package_id: "YD00001",
+              package_name: "19元小魔卡", //套餐名称
+              operator: 1,
+              month_charge: "20",
+              general_flow: "10",
+              directional_flow: "15",
+              talk_time: "100",
+              network_service: "5G套餐",
+              package_describe: "123和耨哈USVB",
+              head_image: null,
+              main_image: null,
+              detail_image: null,
+              location: "上海市",
+              status: 0,
+            },
+          },
+          {
+            id: 189,
+            number: "18755226962",
+            package_id: "YD00002",
+            storepackage: {
+              id: 2,
+              store_id: 1,
+              type: 1,
+              package_id: "YD00002",
+              package_name: "39元小魔卡",
+              operator: 1,
+              month_charge: "20",
+              general_flow: "10",
+              directional_flow: "15",
+              talk_time: "100",
+              network_service: "5G套餐",
+              package_describe: "123和耨哈USVB",
+              head_image: null,
+              main_image: null,
+              detail_image: null,
+              location: "上海市",
+              status: 1,
+            },
+          },
+        ],
+      },
+      packagDetail: {
+        id: 1,
+        store_id: 1,
+        type: 1,
+        package_id: "YD00001",
+        package_name: "19元小魔卡", //套餐名称
+        operator: "中国移动", //运营商
+        month_charge: "20", //月消费
+        general_flow: "10", //通用流量
+        directional_flow: "15", //定向流量
+        talk_time: "100", //通话时间
+        network_service: "5G套餐", //网络服务
+        package_describe: "123和耨哈USVB", //套餐描述
+        head_image: "../assets/card.png", //主图
+        main_image: "../assets/card.png", //主图list
+        detail_image: "../assets/card.png", //详情
+        location: "上海市",
+        status: 0,
+        from: "上海移动", //归属地
+      },
     };
   },
   methods: {
@@ -135,38 +255,59 @@ export default {
     onClickTo() {
       this.back = false;
     },
-    onClickBack() {
+    onClickBack(id) {
       if (this.back == false) {
+        this.$axios
+          .get("/api/order/packageDetail", {
+            params: { id: id },
+            headers: {
+              token: this.$store.state.token,
+              user_id: this.$store.state.user_id,
+            },
+          })
+          .then((r) => {
+            if (r.code == 200) {
+              this.packagDetail = r.data;
+              console.log(r.data);
+            } else if (r.code == 700) {
+              this.$router.push("/login");
+            } else {
+              alert(r.msg);
+            }
+          });
         this.back = true;
       } else {
         this.back = false;
       }
     },
   },
-  mounted() {
+  created() {
     console.log(this.$route.query);
     // let data = this.$route.query.ids;
     // console.log(data);
-
-console.log(this.$store.state.token);
+    console.log(this.$store.state.token);
     this.$axios
       .get("/api/number/getNumberInfo", {
         params: this.$route.query,
         headers: {
-          token:this.$store.state.token,
-          user_id:this.$store.state.user_id,
+          token: this.$store.state.token,
+          user_id: this.$store.state.user_id,
         },
       })
       .then((r) => {
         console.log(r);
         if (r.code == 200) {
-          this.detailsList = r.data.data;
+          this.detailsList = r.data[0][0];
+          this.numberpackage = r.data[0][0].numberpackage[0];
+          console.log(this.detailsList);
         } else if (r.code == 700) {
           this.$router.push("/login");
+        } else {
+          alert(r.msg);
         }
       });
-    console.log(123);
   },
+  mounted() {},
 };
 </script>
 
@@ -319,12 +460,14 @@ li {
   color: #dc0101;
 }
 .bottom .now {
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 105px;
   height: 44px;
   background-color: #ea5656;
   color: #fff;
   font-size: 16px;
-  margin-left: 158px;
   text-align: center;
   line-height: 44px;
 }
@@ -337,6 +480,7 @@ li {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .black .consumption {
+  position: relative;
   width: 330px;
   height: 100%;
   background-color: #fff;
@@ -415,7 +559,7 @@ li {
 }
 .black .consumption .unlimited ul {
   width: 310px;
-  height: 214px;
+  /* height: 214px; */
   background-color: #f8f8f8;
   margin: 15px 10px 0;
   padding: 0 10px;
@@ -439,27 +583,30 @@ li {
   color: #666666;
   font-size: 13px;
 }
-.black .consumption .unlimited ul li:last-child p {
+/* .black .consumption .unlimited ul li:last-child p {
   margin-right: 20px;
-}
-.black .consumption .unlimited ul li:nth-of-type(3) p {
+} */
+/* .black .consumption .unlimited ul li:nth-of-type(3) p {
   margin-right: 20px;
-}
+} */
 .black .consumption .unlimited ul li:last-child {
   border-bottom: none;
 }
 .black .consumption .instructions p {
   width: 310px;
-  height: 63px;
+  /* height: 63px; */
   background-color: #f5f5f5;
   margin: 15px 10px 0;
   font-size: 13px;
   color: #666666;
-  padding: 8px 15px 15px 10px;
+  padding: 8px 15px 8px 10px;
   box-sizing: border-box;
   line-height: 24px;
 }
 .black .consumption .cancel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 45px;
   display: flex;
@@ -480,5 +627,48 @@ li {
   background-color: #ea5656;
   font-size: 14px;
   color: #fff;
+}
+
+.endcsname {
+  width: 345px;
+  height: 68px;
+  background-color: #fff;
+  margin: 10px 15px 0px;
+  display: flex;
+}
+.endcsname img:first-child {
+  width: 20px;
+  height: 29px;
+  margin: 20px 0 0 20px;
+}
+.endcsname img:last-child {
+  width: 8px;
+  height: 14px;
+  margin: 29px 0 0 10px;
+}
+.endcsname .mercifully {
+  width: 80%;
+}
+.endcsname .mercifully .parameter {
+  display: flex;
+}
+.endcsname .mercifully .parameter h3 {
+  color: #333333;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 15px 0 0 12px;
+}
+.endcsname .mercifully .parameter p {
+  color: #666666;
+  font-size: 12px;
+  margin: 17px 0 0 14px;
+}
+.endcsname .mercifully .reklameadvice {
+  display: flex;
+}
+.endcsname .mercifully .reklameadvice p {
+  font-size: 12px;
+  color: #333333;
+  margin: 4px 0 0 12px;
 }
 </style>
