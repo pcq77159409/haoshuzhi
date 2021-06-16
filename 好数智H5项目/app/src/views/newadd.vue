@@ -48,30 +48,30 @@ export default {
   },
   methods: {
     onClickCreateAddress() {
-      this.$axios
-        .post("/api/address/create", {
-          id:1,
+      console.log(this.way);
+      console.log({
+          user_id:this.$store.state.user_id,
           mobile:this.way,
           name:this.username,
           province:'湖南省',
           city:'邵阳市',
           area:'双清区',
           address:this.detailed,
-          headers: {
-            token: this.$store.state.token,
-            user_id: this.$store.state.user_id,
-          },
+          is_default:false
+        });
+        
+      this.$post("/api/address/create", {
+          user_id:this.$store.state.user_id,
+          mobile:this.way,
+          name:this.username,
+          province:'湖南省',
+          city:'邵阳市',
+          area:'双清区',
+          address:this.detailed,
+          is_default:false
         })
         .then((val) => {
           console.log(val);
-          if (val.code == 700) {
-          this.$router.push("/login");
-          }else if(val.code==200){
-          console.log(val.data);
-          }else {
-            alert(val.msg)
-            this.$router.push("/login");
-          }
         });
     },
   },
