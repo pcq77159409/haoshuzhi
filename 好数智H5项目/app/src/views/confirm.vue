@@ -33,20 +33,28 @@
       </div>
       <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
-    <div class="store">
+    <div
+      class="store"
+      v-for="(item, index) in orderRetails.orderdetail"
+      :key="index"
+    >
       <div class="sizeof">
         <img src="../assets/shop.png" alt="" />
         <p>数智时代专营店</p>
         <img src="../assets/timeRight.png" alt="" />
       </div>
       <div class="number_box">
-        <p>13658948888</p>
-        <span>¥400.00</span>
+        <p>{{ item.phonenumber }}</p>
+        <span>¥{{ orderRetails.price }}</span>
       </div>
-      <p class="move_box">上海移动 <span>含话费 ¥320</span></p>
+      <p class="move_box">
+        上海移动 <span>含话费 ¥{{ prepaid_charge }}</span>
+      </p>
       <div class="mobiles">
-        <p>移动花卡宝藏版19元套餐</p>
-        <span>需付<i>¥400.00</i></span>
+        <p>{{ item.package_name }}</p>
+        <span
+          >需付<i>¥{{ orderRetails.price }}</i></span
+        >
       </div>
     </div>
     <div class="rest_name">
@@ -121,33 +129,51 @@ export default {
           created_at: null,
           updated_at: null,
         },
-        {
-          id: 3,
-          uid: 6,
-          name: "姓名",
-          mobile: "18798989898",
-          province: "安徽省",
-          city: "合肥市",
-          area: "蜀山区",
-          address: "黄山路1号",
-          created_at: 1614850523,
-          updated_at: null,
-        },
-        {
-          id: 5,
-          uid: 6,
-          name: "姓名",
-          mobile: "18798989898",
-          province: "安徽省",
-          city: "合肥市",
-          area: "蜀山区",
-          address: "黄山路1号",
-          created_at: 1615189184,
-          updated_at: 1615189184,
-        },
       ],
       shdzShow: false,
       shdzId: null,
+      orderRetails: [
+        {
+          id: 2,
+          number: "SJ20210327202033070753171",
+          user_id: 6,
+          name: "Address",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: 1616847633,
+          updated_at: 1616847633,
+          delivery: "线上配送",
+          delivery_time: "就是现在",
+          price: "3.00",
+          finishtime: null,
+          pay_money: null,
+          status: 1,
+          pay_time: null,
+          orderdetail: [
+            {
+              id: 5,
+              order_id: 11,
+              goods_id: 1,
+              store_id: 1,
+              name: "",
+              phonenumber: 1,
+              card_back: "1112",
+              card_front: "1112",
+              card_face: "11112",
+              package_id: null,
+              package_name: null,
+              created_at: 1616849212,
+              updated_at: 1616849212,
+              cardnumber: null,
+              user_id: 0,
+            },
+          ],
+        },
+      ],
+      prepaid_charge: 0,
     };
   },
   methods: {
@@ -156,20 +182,30 @@ export default {
     },
   },
   mounted() {
-
     //订单详情
     this.$get("/api/order/info", {
       user_id: this.$store.state.user_id,
       order_id: this.$route.query.order_id,
     }).then((r) => {
-      console.log(r);
+      console.log(r.data);
+      if (r.code == 200) {
+        this.orderRetails = r.data;
+        this.prepaid_charge = r.data.orderdetail[0].numberinfo.prepaid_charge;
+        this.$post("/api/number/getNumberInfo", {
+          ids: [r.data.orderdetail[0].numberinfo.id],
+        }).then((r) => {
+          console.log(r);
+        });
+      } else {
+        alert(r.msg);
+      }
     });
 
     //获取收货地址
     this.$get("/api/address/getlist", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
+      // console.log(r);
       if (r.code == 200) {
         if (r.data.length != 0) {
           this.shdzShow = true;
