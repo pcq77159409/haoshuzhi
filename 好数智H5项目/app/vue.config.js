@@ -8,7 +8,7 @@ module.exports = {
             // 匹配所有以 /api 开头的url
             '/index.php': {
                 // 请求的目标主机
-                target: 'http://digital.dushixiansheng.com/',
+                target: 'http://digital.haoshuzhi.cn',
                 changeOrigin: true,
                 ws: true,
                 // 这样重写会把路径中 /api 消去
