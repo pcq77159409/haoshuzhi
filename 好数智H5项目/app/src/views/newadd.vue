@@ -12,11 +12,11 @@
         </li>
         <li>
           <p>手机号码</p>
-          <input type="number" placeholder="联系方式" v-model="way"/>
+          <input type="tel" placeholder="联系方式" v-model="way" maxlength="11"/>
         </li>
         <li>
           <p>所在地区</p>
-          <input type="text" placeholder="省/市/区/街道" v-model="country"/>
+          <input type="text" placeholder="省/市/区/街道"/>
         </li>
         <li>
           <p>详细地址</p>
@@ -42,24 +42,11 @@ export default {
       value: false,
       username:'',
       way:'',
-      country:'',
       detailed:''
     };
   },
   methods: {
     onClickCreateAddress() {
-      console.log(this.way);
-      console.log({
-          user_id:this.$store.state.user_id,
-          mobile:this.way,
-          name:this.username,
-          province:'湖南省',
-          city:'邵阳市',
-          area:'双清区',
-          address:this.detailed,
-          is_default:false
-        });
-        
       this.$post("/api/address/create", {
           user_id:this.$store.state.user_id,
           mobile:this.way,
@@ -72,8 +59,13 @@ export default {
         })
         .then((val) => {
           console.log(val);
+          this.$router.push('/goAddress')
+          if(val.code!=200){
+            alert(val.msg)
+          }
         });
     },
+   
   },
 };
 </script>

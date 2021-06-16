@@ -5,49 +5,94 @@
       <p>收货地址</p>
     </div>
     <div class="total">
-      <div class="totals">
+      <div class="totals" v-for="(item, index) in editor" :key="index">
         <div class="number">
-          <p>张晓晨</p>
-          <p>13133393741</p>
+          <p>{{ item.name }}</p>
+          <p>{{ item.mobile }}</p>
         </div>
         <div class="money">
-          <p>上海嘉定区陈山公路清空大厦17楼201室</p>
+          <p>
+            {{ item.province }}{{ item.city }}{{ item.area }}{{ item.address }}
+          </p>
         </div>
         <div class="boxs"></div>
         <div class="money">
-          <div style="display: flex; align-items:center;">
+          <div style="display: flex; align-items: center">
             <input type="radio" style="margintop: 2px" />
             <p style="fontsize: 8px; color: #333333; margin-left: 6px">
               默认地址
             </p>
           </div>
           <p style="fontsize: 8px; color: #333333; marginright: 20px">
-            <img src="../assets/111.png" style="margin-right: 6px" /><span
-              style="margin-right: 20px"
+            <img src="../assets/111.png" style="margin-right: 6px" />
+            <span style="margin-right: 20px" @click="onClickEditGoods"
               >编辑</span
             ><img src="../assets/222.png" style="margin-right: 6px" />
-            <span style="margin-right: 10px">删除</span>
+            <span style="margin-right: 10px" @click="onClickDelete">删除</span>
           </p>
         </div>
       </div>
     </div>
     <div class="bottom" @click="$router.push('/newadd')">
-        <p>添加收货地址</p>
+      <p>添加收货地址</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
-  components: {},
+  data() {
+    return {
+      editor: {},
+      id: null,
+    };
+  },
   methods: {
-    citys() {
-      console.log(111);
-    },
     onClickIntroPara() {
       this.$router.go(-1);
     },
+    onClickDelete() {
+      this.$post("/api/address/del", {
+        user_id: this.$store.state.user_id,
+        id: this.id,
+      }).then((val) => {
+        console.log(val);
+        this.$get("/api/address/getlist", {
+          user_id: this.$store.state.user_id,
+        }).then((val) => {
+          this.editor = val.data;
+          val.data.forEach((val) => {
+            this.id = val.id;
+          });
+        });
+      });
+    },
+    onClickEditGoods() {
+      this.$post("/api/address/edit", {
+        user_id: this.$store.state.user_id,
+        id:this.id,
+        mobile: this.way,
+        name: this.username,
+        province: "湖南省",
+        city: "邵阳市",
+        area: "双清区",
+        address: this.detailed,
+        is_default: false,
+      }).then((val) => {
+        console.log(val);
+        this.$router.push("/newadd");
+      });
+    },
+  },
+  created() {
+    this.$get("/api/address/getlist", {
+      user_id: this.$store.state.user_id,
+    }).then((val) => {
+      this.editor = val.data;
+      val.data.forEach((val) => {
+        this.id = val.id;
+      });
+    });
   },
 };
 </script>
@@ -78,7 +123,7 @@ html {
   height: 34pt;
   background: #ea5656;
   border-radius: 20px;
-  margin: 315px auto 0;
+  margin: 240px auto 20px;
 }
 .bottom p {
   line-height: 34pt;
