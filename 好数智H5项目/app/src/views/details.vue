@@ -16,17 +16,17 @@
           </ul>
         </div>
         <div class="nums">
-          <p>
-            <span>提示:</span
-            >宽大的时的卡莎卡仕达话说到核实客户带来很多老客户带来喀什
-          </p>
+          <p><span>提示:</span>{{ detailsList.describe }}</p>
         </div>
       </div>
     </div>
-    <div class="phone" @click="onClickBack(detailsList.numberpackage[0].storepackage.id)">
+    <div
+      class="phone"
+      @click="onClickBack(detailsList.numberpackage[0].storepackage.id)"
+    >
       <p>
         号码套餐
-        <span>{{ detailsList.numberpackage[0].storepackage.package_name }}</span>
+        <span>{{ taocan }}</span>
       </p>
     </div>
     <div class="box">
@@ -63,15 +63,38 @@
         </li>
       </ul>
     </div>
-    <div class="endcsname">
+    <!-- 没有收货地址 -->
+    <div
+      class="endcsname endcsname_sh"
+      v-show="shdzShow == false"
+      @click="$router.push('/goAddress')"
+    >
+      <img src="../assets/tjshdz.png" alt="" />
+      <p>添加收货地址</p>
+      <img src="../assets/跳转箭头@2x.png" alt="" />
+    </div>
+    <!-- 有默认的收货地址 -->
+    <div
+      class="endcsname"
+      v-show="shdzShow == true"
+      @click="$router.push('/goAddress')"
+    >
       <img src="../assets/ding.png" alt="" />
       <div class="mercifully">
         <div class="parameter">
-          <h3>好名字</h3>
-          <p>18812345689</p>
+          <h3>{{ shdz.name }}</h3>
+          <p>{{ shdz.mobile }}</p>
         </div>
         <div class="reklameadvice">
-          <p>收货地址: 上海嘉定区平城路118弄</p>
+          <p>
+            收货地址:
+            <span
+              >{{ shdz.province }} {{ shdz.city }} {{ shdz.area }}
+              <span v-show="shdz.address != null || shdz.address != 'null'">{{
+                shdz.address
+              }}</span></span
+            >
+          </p>
         </div>
       </div>
       <img src="../assets/跳转箭头@2x.png" alt="" />
@@ -79,9 +102,9 @@
     <div class="bottom">
       <p>合计:</p>
       <span>￥{{ detailsList.sale_price }}</span>
-      <router-link to="/form_orders_path">
-        <div class="now">立即购买</div>
-      </router-link>
+      <!-- <router-link to="/form_orders_path"> -->
+      <div class="now" @click="onclickPurchase">立即购买</div>
+      <!-- </router-link> -->
     </div>
     <div class="black" v-show="back">
       <div class="consumption">
@@ -93,17 +116,29 @@
           <img :src="packagDetail.head_image" alt="" />
           <div class="treasure">
             <span>已选:</span>
-            <p>{{packagDetail.package_name}}</p>
+            <p>{{ packagDetail.package_name }}</p>
           </div>
         </div>
         <div class="traffic">
           <h5>套餐</h5>
           <ul>
-            <li>18元小魔卡</li>
+            <li
+              v-for="(item, index) in detailsList.numberpackage"
+              :key="index"
+              :class="{ current: taocanXZ == item.storepackage.id }"
+              @click="
+                onclickTaocanZX(
+                  item.storepackage.id,
+                  item.storepackage.package_name
+                )
+              "
+            >
+              {{ item.storepackage.package_name }}
+            </li>
+            <!-- <li>19元移动花卡宝藏版</li>
             <li>19元移动花卡宝藏版</li>
-            <li>19元移动花卡宝藏版</li>
             <li>18元小魔卡</li>
-            <li>58元流量+语音畅享套餐</li>
+            <li>58元流量+语音畅享套餐</li> -->
           </ul>
         </div>
         <div class="unlimited">
@@ -111,11 +146,11 @@
           <ul>
             <li>
               <p>套餐月费</p>
-              <span>￥{{packagDetail.month_charge}}</span>
+              <span>￥{{ packagDetail.month_charge }}</span>
             </li>
             <li>
               <p>通话时长</p>
-              <span>{{packagDetail.talk_time}}分钟</span>
+              <span>{{ packagDetail.talk_time }}分钟</span>
             </li>
             <!-- <li>
               <p>通话超出部分</p>
@@ -123,7 +158,7 @@
             </li> -->
             <li>
               <p>套餐流量</p>
-              <span>{{packagDetail.general_flow}}G/月</span>
+              <span>{{ packagDetail.general_flow }}G/月</span>
             </li>
             <!-- <li>
               <p>流量超出部分</p>
@@ -133,7 +168,7 @@
         </div>
         <div class="instructions">
           <h5>套餐说明</h5>
-          <p>{{packagDetail.package_describe}}</p>
+          <p>{{ packagDetail.package_describe }}</p>
         </div>
         <div class="cancel">
           <p @click="onClickTo">取消</p>
@@ -149,6 +184,60 @@ export default {
     return {
       value: true,
       back: false,
+      taocan: "",
+      taocanXZ: -1,
+      shdz: [
+        {
+          id: 1,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358663",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: null,
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 2,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 3,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1614850523,
+          updated_at: null,
+        },
+        {
+          id: 5,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1615189184,
+          updated_at: 1615189184,
+        },
+      ],
+      shdzShow: false,
+      shdzId: null,
       detailsList: {
         id: 1,
         number: "18755226962",
@@ -256,56 +345,108 @@ export default {
       this.back = false;
     },
     onClickBack(id) {
+      console.log(id);
       if (this.back == false) {
-        this.$axios
-          .get("/api/order/packageDetail", {
-            params: { id: id },
-            headers: {
-              token: this.$store.state.token,
-              user_id: this.$store.state.user_id,
-            },
-          })
-          .then((r) => {
-            if (r.code == 200) {
-              this.packagDetail = r.data;
-              console.log(r.data);
-            } else if (r.code == 700) {
-              this.$router.push("/login");
-            } else {
-              alert(r.msg);
-            }
-          });
+        this.$get("/api/order/packageDetail", { id: id }).then((r) => {
+          if (r.code == 200) {
+            this.packagDetail = r.data;
+            console.log(r.data);
+          } else if (r.code == 700) {
+            this.$router.push("/login");
+          } else {
+            alert(r.msg);
+          }
+        });
+
         this.back = true;
       } else {
         this.back = false;
       }
     },
-  },
-  created() {
-    console.log(this.$route.query);
-    // let data = this.$route.query.ids;
-    // console.log(data);
-    console.log(this.$store.state.token);
-    this.$axios
-      .get("/api/number/getNumberInfo", {
-        params: this.$route.query,
-        headers: {
-          token: this.$store.state.token,
-          user_id: this.$store.state.user_id,
-        },
-      })
-      .then((r) => {
-        console.log(r);
+    onclickTaocanZX(id, name) {
+      this.taocanXZ = id;
+      this.taocan = name;
+      console.log(id);
+      //获取套餐详情
+      this.$get("/api/order/packageDetail", { id: id }).then((r) => {
         if (r.code == 200) {
-          this.detailsList = r.data[0][0];
-          this.numberpackage = r.data[0][0].numberpackage[0];
-          console.log(this.detailsList);
+          this.packagDetail = r.data;
+          console.log(r.data);
         } else if (r.code == 700) {
           this.$router.push("/login");
         } else {
           alert(r.msg);
         }
       });
+    },
+    onCreateTheOrders() {
+      let obj = this.$store.state.createTheOrder;
+      obj.user_id = localStorage.getItem("user-id");
+      obj.delivery = "送货上门";
+      obj.delivery_time = "不限时间";
+      obj.address_id = this.shdzId;
+      obj.buyer = [
+        {
+          goods_id: this.detailsList.id,
+          package_id: this.taocanXZ,
+          handle_type: 1,
+        },
+      ];
+      this.$store.commit("onCreateTheOrder", obj);
+    },
+    onclickPurchase() {
+      if (this.shdzShow) {
+        this.onCreateTheOrders();
+        this.$router.push({
+          path: "/form_orders_path",
+          query: { money: this.detailsList.sale_price },
+        });
+      } else {
+        alert("请填写收货地址");
+      }
+    },
+  },
+  created() {
+    // 获取手机号信息
+    this.$get("/api/number/getNumberInfo", this.$route.query).then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        this.detailsList = r.data[0][0];
+        let numberpackage = r.data[0][0].numberpackage[0];
+
+        this.taocanXZ = numberpackage.storepackage.id;
+        this.taocan = numberpackage.storepackage.package_name;
+        console.log(this.detailsList);
+      } else if (r.code == 700) {
+        this.$router.push("/login");
+      } else {
+        alert(r.msg);
+      }
+    });
+
+    //获取收货地址
+    this.$get("/api/address/getlist", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        if (r.data.length != 0) {
+          this.shdzShow = true;
+          r.data.forEach((val) => {
+            if (val.is_default == 1) {
+              this.shdz = val;
+            } else {
+              this.shdz = r.data[0];
+            }
+          });
+          this.shdzId = this.shdz.id;
+        } else {
+          this.shdzShow = false;
+        }
+      } else {
+        alert(r.msg);
+      }
+    });
   },
   mounted() {},
 };
@@ -328,8 +469,13 @@ li {
 }
 .liji {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  padding: 65px 0 60px;
   background-color: #f8f8f8;
+}
+.liji .current {
+  color: #fff !important;
+  background-color: #ea5656 !important;
 }
 .box {
   width: 250pt;
@@ -363,6 +509,9 @@ li {
   margin-left: 15px;
 }
 .service {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 65px;
   background: #ea5656;
@@ -474,7 +623,7 @@ li {
 .black {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -670,5 +819,18 @@ li {
   font-size: 12px;
   color: #333333;
   margin: 4px 0 0 12px;
+}
+.endcsname.endcsname_sh img:nth-of-type(1) {
+  width: 20px;
+  height: 29px;
+  margin: 20px 15px 0 20px;
+}
+.endcsname.endcsname_sh img:nth-of-type(2) {
+  margin: 25px 15px 0 20px;
+}
+.endcsname.endcsname_sh p {
+  flex: 1;
+  line-height: 68px;
+  font-size: 14px;
 }
 </style>

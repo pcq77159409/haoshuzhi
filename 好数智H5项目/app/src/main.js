@@ -23,7 +23,35 @@ axios.interceptors.response.use(res => {
     return Promise.reject(error.response.data) // 返回错误信息
 });
 
-
+Vue.prototype.$get = function(url, val) {
+    return axios.get(url, {
+        params: val,
+        headers: {
+            token: this.$store.state.token,
+            user_id: this.$store.state.user_id,
+        }
+    }).then((r) => {
+        if (r.code == 700 || r.code == 600) {
+            Vue.$router.push('/login');
+        } else {
+            return r;
+        }
+    });
+}
+Vue.prototype.$post = function(url, val) {
+    return axios.get(url, val, {
+        headers: {
+            token: this.$store.state.token,
+            user_id: this.$store.state.user_id,
+        }
+    }).then((r) => {
+        if (r.code == 700 || r.code == 600) {
+            Vue.$router.push('/login');
+        } else {
+            return r;
+        }
+    });
+}
 
 Vue.use(ElementUI);
 

@@ -1,18 +1,34 @@
 <template>
   <div class="comfirm_box">
     <div class="jumplabel">
-      <img src="../assets/left.png" alt="" @click="$router.go(-1)"/>
-      <h4>确认订单</h4>
+      <img
+        src="../assets/left.png"
+        alt=""
+        @click="$router.push('/commons/home')"
+      />
+      <h4>支付订单</h4>
     </div>
-    <div class="endcsname">
+    <div
+      class="endcsname"
+      v-show="shdzShow == true"
+      @click="$router.push('/goAddress')"
+    >
       <img src="../assets/ding.png" alt="" />
       <div class="mercifully">
         <div class="parameter">
-          <h3>好名字</h3>
-          <p>18812345689</p>
+          <h3>{{ shdz.name }}</h3>
+          <p>{{ shdz.mobile }}</p>
         </div>
         <div class="reklameadvice">
-          <p>收货地址: 上海嘉定区平城路118弄</p>
+          <p>
+            收货地址:
+            <span
+              >{{ shdz.province }} {{ shdz.city }} {{ shdz.area }}
+              <span v-show="shdz.address != null || shdz.address != 'null'">{{
+                shdz.address
+              }}</span></span
+            >
+          </p>
         </div>
       </div>
       <img src="../assets/跳转箭头@2x.png" alt="" />
@@ -71,7 +87,7 @@
     <div class="sensorbox_init_osd">
       <p>合计:</p>
       <span>￥900.00</span>
-      <div class="commit" @click="onClickJump">提交订单</div>
+      <div class="commit" @click="onClickJump">待支付</div>
     </div>
   </div>
 </template>
@@ -80,12 +96,98 @@ export default {
   data() {
     return {
       value: false,
+      shdz: [
+        {
+          id: 1,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358663",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: null,
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 2,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 3,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1614850523,
+          updated_at: null,
+        },
+        {
+          id: 5,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1615189184,
+          updated_at: 1615189184,
+        },
+      ],
+      shdzShow: false,
+      shdzId: null,
     };
   },
   methods: {
-    onClickJump(){
-          this.$router.push('/commerce_payment')
-      },
+    onClickJump() {
+      this.$router.push("/commerce_payment");
+    },
+  },
+  mounted() {
+
+    //订单详情
+    this.$get("/api/order/info", {
+      user_id: this.$store.state.user_id,
+      order_id: this.$route.query.order_id,
+    }).then((r) => {
+      console.log(r);
+    });
+
+    //获取收货地址
+    this.$get("/api/address/getlist", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        if (r.data.length != 0) {
+          this.shdzShow = true;
+          r.data.forEach((val) => {
+            if (val.is_default == 1) {
+              this.shdz = val;
+            } else {
+              this.shdz = r.data[0];
+            }
+          });
+          this.shdzId = this.shdz.id;
+        } else {
+          this.shdzShow = false;
+        }
+      } else {
+        alert(r.msg);
+      }
+    });
   },
 };
 </script> 
@@ -326,7 +428,9 @@ export default {
   background-color: #fff;
   display: flex;
   align-items: center;
-  position: relative;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
 .comfirm_box .sensorbox_init_osd p {
   font-size: 14px;

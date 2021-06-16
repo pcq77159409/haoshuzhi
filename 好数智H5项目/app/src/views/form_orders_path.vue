@@ -3,12 +3,12 @@
     <div class="drawBoundingBox">
       <!-- 头部 开始-->
       <div class="summer">
-        <img src="../assets/left.png" alt="" @click="onClickGoto"/>
-        <h4>提交订单</h4>
+        <img src="../assets/left.png" alt="" @click="onClickGoto" />
+        <h4>完善信息</h4>
       </div>
       <!-- 头部 结束-->
       <div class="endcsname">
-        <img src="../assets/ding.png" alt="" />
+        <!-- <img src="../assets/ding.png" alt="" />
         <div class="mercifully">
           <div class="parameter">
             <h3>好名字</h3>
@@ -18,36 +18,75 @@
             <p>收货地址: 上海嘉定区平城路118弄</p>
           </div>
         </div>
-        <img src="../assets/跳转箭头@2x.png" alt="" />
+        <img src="../assets/跳转箭头@2x.png" alt="" /> -->
+        正规三大运营商号码，配合国家安全，严厉打击电信诈骗，应运营商要求，必须实行实名制办理激活开通。敬请理解！平台客服会在1小时内电
       </div>
       <h4 class="sureing">请确认你的身份信息</h4>
       <div class="reali">
         <div class="multreal">
-          <p>真实姓名</p>
-          <input type="text" placeholder="填写你的姓名" />
+          <p>真实姓名 <span style="color: red">*</span></p>
+          <input type="text" placeholder="填写你的姓名" v-model="username" />
         </div>
         <div class="box_construct">
-          <p>身份证号</p>
-          <span>341616********6610</span>
+          <p>身份证号 <span style="color: red">*</span></p>
+          <input
+            type="text"
+            placeholder="341616********6610"
+            v-model="userid"
+            maxlength="18"
+          />
         </div>
       </div>
-      <h4 class="sureing">请拍摄并上传你的身份证照片</h4>
+      <h4 class="sureing">请拍摄并上传你的身份证照片 (非必填)</h4>
       <div class="box_header">
         <ul>
           <li>
-            <img src="../assets/one.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc1" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show1"
+            />
             <p>请上传身份证正面</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file1"
+              @change="onchangeFile(1, 'file1')"
+            />
           </li>
           <li>
-            <img src="../assets/two.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc2" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show2"
+            />
             <p>请上传身份证反面</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file2"
+              @change="onchangeFile(2, 'file2')"
+            />
           </li>
           <li>
-            <img src="../assets/three.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc3" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show3"
+            />
             <p>请上传个人自拍照</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file3"
+              @change="onchangeFile(3, 'file3')"
+            />
           </li>
         </ul>
       </div>
@@ -58,21 +97,21 @@
         <h4>购号须知</h4>
         <div class="InstructionSet">
           <img src="../assets/圆角矩形 2@2x.png" alt="" />
-          <img src="../assets/yes.png" alt="" class="yes" v-show="false" />
+          <img src="../assets/yes.png" alt="" class="yes" v-show="true" />
           <p>请仔细阅读 <span>《办理须知》</span> 服务条款</p>
           <img src="../assets/跳转箭头@2x.png" alt="" />
         </div>
         <div class="InstructionSet">
           <img src="../assets/圆角矩形 2@2x.png" alt="" />
-          <img src="../assets/yes.png" alt="" class="yes" v-show="false" />
+          <img src="../assets/yes.png" alt="" class="yes" v-show="true" />
           <p>请仔细阅读 <span>《入网协议》</span> 服务条款</p>
           <img src="../assets/跳转箭头@2x.png" alt="" />
         </div>
       </div>
       <div class="sensorbox_init_osd">
         <p>合计:</p>
-        <span>￥900.00</span>
-        <div class="commit" @click="onClickJump">提交订单</div>
+        <span>￥{{ money }}</span>
+        <div class="commit" @click="onClickJump">立即购买</div>
       </div>
     </div>
   </div>
@@ -80,15 +119,102 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      money: 0,
+      username: "",
+      userid: "",
+      img_show1: true,
+      img_show2: true,
+      img_show3: true,
+      imgSrc1: require("../assets/one.png"),
+      imgSrc2: require("../assets/two.png"),
+      imgSrc3: require("../assets/three.png"),
+      card_front: "", //身份证反面
+      card_face: "", //人脸
+      card_back: "", //身份证正面
+    };
   },
   methods: {
-      onClickJump(){
-          this.$router.push('/confirm')
-      },
-      onClickGoto(){
-          this.$router.go(-1)
+    onClickJump() {
+      if (this.username.trim() != "") {
+        if (this.userid.trim().length == 18) {
+          // let val = {
+          //   card_back: this.card_back,
+          //   card_front: this.card_front,
+          //   card_face: this.card_face,
+          //   name: this.username,
+          //   cardnumber: this.userid,
+          // };
+          let arr = this.$store.state.createTheOrder;
+          arr.buyer[0].card_back = this.card_back;
+          arr.buyer[0].card_front = this.card_front;
+          arr.buyer[0].card_face = this.card_face;
+          arr.buyer[0].name = this.username;
+          arr.buyer[0].cardnumber = this.userid;
+          this.$store.commit("onCreateTheOrder", arr);
+          this.$post("/api/order/create", arr).then((r) => {
+            console.log(r);
+            if (r.code == 200) {
+              this.$router.push({
+                path: "/confirm",
+                query: { order_id: r.data.id },
+              });
+            } else {
+              alert(r.msg);
+            }
+          });
+        } else {
+          alert("身份证号必须是18位数");
+        }
+      } else {
+        alert("姓名不能为空");
       }
+    },
+    onClickGoto() {
+      this.$router.go(-1);
+    },
+    onchangeFile(index, id) {
+      var oFReader = new FileReader();
+      var file = document.getElementById(id).files[0];
+
+      oFReader.readAsDataURL(file);
+
+      oFReader.onloadend = (oFRevent) => {
+        var src = oFRevent.target.result;
+        if (index == 1) {
+          this.imgSrc1 = src;
+          this.img_show1 = false;
+        } else if (index == 2) {
+          this.imgSrc2 = src;
+          this.img_show2 = false;
+        } else if (index == 3) {
+          this.imgSrc3 = src;
+          this.img_show3 = false;
+        }
+      };
+      var formData = new FormData();
+
+      formData.append("file", file);
+
+      this.$axios.post("/api/upload/upload", formData).then((r) => {
+        if (r.error == 0) {
+          console.log(r);
+          if (index == 1) {
+            this.card_back = r.url; //身份证正面
+          } else if (index == 2) {
+            this.card_front = r.url; //身份证反面
+          } else if (index == 3) {
+            this.card_face = r.url; //人脸
+          }
+        } else {
+          alert("上传失败");
+        }
+      });
+    },
+  },
+  mounted() {
+    this.money = this.$route.query.money;
+    console.log(this.$store.state.createTheOrder);
   },
 };
 </script>
@@ -101,7 +227,8 @@ export default {
 }
 .drawBoundingBox {
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  padding-bottom: 20px;
 }
 .drawBoundingBox .summer {
   width: 100%;
@@ -110,8 +237,8 @@ export default {
   display: flex;
   align-items: center;
   position: fixed;
-    left: 0;
-    top: 0;
+  left: 0;
+  top: 0;
 }
 .drawBoundingBox .summer img {
   width: 10px;
@@ -127,9 +254,14 @@ export default {
 .drawBoundingBox .endcsname {
   width: 345px;
   height: 68px;
-  background-color: #fff;
+  background-color: rgba(250, 202, 207, 0.2);
   margin: 74px 15px 10px;
   display: flex;
+  color: #fe5858;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 13px;
 }
 .drawBoundingBox .endcsname img:first-child {
   width: 20px;
@@ -307,12 +439,14 @@ export default {
   border-bottom: none;
 }
 .drawBoundingBox .sensorbox_init_osd {
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 44px;
   background-color: #fff;
   display: flex;
   align-items: center;
-  position: relative;
 }
 .drawBoundingBox .sensorbox_init_osd p {
   font-size: 14px;
@@ -336,5 +470,13 @@ export default {
   position: absolute;
   right: 0;
   font-size: 14px;
+}
+.fileImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 </style>
