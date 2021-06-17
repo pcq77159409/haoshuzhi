@@ -129,7 +129,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .liu {
   width: 66px;
   height: 17px;
@@ -148,17 +148,22 @@ export default {
   margin-top: -29px;
 }
 
-.el-dialog--center .el-dialog__body {
-  text-align: initial;
-  padding: 50px 25px 30px;
+.A /deep/ .el-dialog {
+  border-radius: 6px;
 }
-.el-dialog__header {
+.A /deep/ .el-dialog--center .el-dialog__body {
+  padding: 30px 25px 0;
+}
+.A /deep/ .el-dialog__header {
   padding: 0;
 }
-.el-icon-close:before {
+.A /deep/ .el-dialog--center .el-dialog__footer{
+  padding-bottom: 0;
+}
+.A /deep/ .el-icon-close:before {
   content: none;
 }
-.el-dialog__headerbtn {
+.A /deep/ .el-dialog__headerbtn {
   background-color: white;
 }
 .phonel {

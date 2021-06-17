@@ -31,15 +31,11 @@
           </div>
           <p class="yidong">上海移动</p>
           <p class="spend">含话费￥230</p>
-          <p class="ordertime">
-            <span class="need"
-              >实付
-              <h6 class="pay">￥400</h6></span
-            >
-          </p>
-          <div class="money">
-            <p class="moneys">退款</p>
-          </div>
+          <p class="moneys">退款</p>
+          <span class="need"
+            >实付
+            <h6 class="pay">￥400.00</h6></span
+          >
         </div>
       </div>
     </div>
@@ -78,12 +74,17 @@
         </li>
       </ul>
     </div>
-    <div class="make">
-      <p @click="centerDialogVisible = true">拨打电话</p>
+     <div class="make">
+      <div class="bo">
+        <img src="../assets/dianhua.png" alt="" />
+        <p @click="centerDialogVisible=true">拨打电话</p>
+      </div>
       <div class="borders"></div>
-      <p>咨询客服</p>
+      <div class="bo">
+        <img src="../assets/kefu.png" alt="" />
+        <p>咨询客服</p>
+      </div>
     </div>
-
     <el-dialog :visible.sync="centerDialogVisible" width="295px" center>
       <span class="phones">拨打电话</span>
       <p class="phonel">030—79772486</p>
@@ -116,24 +117,28 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .phonels {
   margin-left: 42px;
   margin-bottom: 41px;
   margin-top: -29px;
 }
-
-.el-dialog--center .el-dialog__body {
-  text-align: initial;
-  padding: 50px 25px 30px;
+.A /deep/ .el-dialog {
+  border-radius: 6px;
 }
-.el-dialog__header {
+.A /deep/ .el-dialog--center .el-dialog__body {
+  padding: 30px 25px 0;
+}
+.A /deep/ .el-dialog__header {
   padding: 0;
 }
-.el-icon-close:before {
+.A /deep/ .el-dialog--center .el-dialog__footer{
+  padding-bottom: 0;
+}
+.A /deep/ .el-icon-close:before {
   content: none;
 }
-.el-dialog__headerbtn {
+.A /deep/ .el-dialog__headerbtn {
   background-color: white;
 }
 .phonel {
@@ -276,6 +281,7 @@ export default {
   width: 1px;
   height: 22px;
 }
+
 .make {
   width: 350px;
   height: 46px;
@@ -289,8 +295,17 @@ export default {
   margin-bottom: 15px;
   align-items: center;
 }
+.make .bo {
+  display: flex;
+  align-items: center;
+}
 .make p {
   font-size: 15px;
+}
+.make img {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
 }
 
 .rights {
@@ -348,7 +363,8 @@ export default {
 }
 .redmoney {
   color: #fe5858;
-  font-size: 13px;
+  font-size: 16px;
+  margin-right: 6px;
 }
 .heng {
   display: flex;
@@ -358,16 +374,19 @@ export default {
   margin-left: 5px;
 }
 .moneys {
+  width: 54px;
+  height: 17px;
   position: absolute;
   right: 11px;
-  bottom: 47px;
-  border: 1px solid #666666;
+  bottom: 50px;
+  border: 1px solid #999999;
   text-align: center;
   border-radius: 15px;
   color: #666666;
   font-weight: 600;
-  padding: 0 18px;
   font-size: 12px;
+  line-height: 17px;
+  padding: 2px 0;
 }
 .pay {
   margin: -25px 28px;
@@ -375,10 +394,11 @@ export default {
   color: #fe5858;
 }
 .need {
-  margin: 0 255px;
-  font-weight: bold;
+  display: block;
   font-size: 14px;
   color: #333333;
+  margin-top: 10px;
+  margin-left: 231px;
 }
 .ordertime {
   font-size: 12px;
@@ -411,14 +431,17 @@ export default {
 }
 
 .shoping {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 .shops {
   width: 15px;
   height: 15px;
   padding: 0px 2px;
+  margin-right: 4px;
 }
 .times {
   display: flex;

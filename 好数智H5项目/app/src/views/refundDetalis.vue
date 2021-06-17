@@ -298,7 +298,7 @@ export default {
 }
 
 .name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   color: #333333;
   width: 298px;
@@ -332,8 +332,8 @@ export default {
 }
 
 .back {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 16px;
   margin: 35px 15px;
 }
 .detalis {

@@ -52,12 +52,12 @@
         </div>
       </div>
     </div>
-    <div class="yes">
+    <!-- <div class="yes">
       <p>
         <img src="../assets/v@2x.png" alt="" class="v" />
         获得<span>160</span>点积分
       </p>
-    </div>
+    </div> -->
     <div class="no">
       <p class="information">订单信息</p>
       <ul class="table">
@@ -132,7 +132,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .signs {
   width: 100%;
   height: 100%;
@@ -232,7 +232,7 @@ export default {
 .make img {
   width: 15px;
   height: 15px;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .rights {
@@ -266,7 +266,7 @@ export default {
   border-radius: 5px;
   font-size: 13px;
 }
-.yes p {
+/* .yes p {
   line-height: 40px;
   display: flex;
   align-items: center;
@@ -281,7 +281,7 @@ export default {
   margin: -52px 13px;
   border-radius: 5px;
   font-size: 13px;
-}
+} */
 .redmoney {
   color: #fe5858;
   font-size: 16px;
@@ -324,18 +324,15 @@ export default {
 .spend {
   font-size: 12px;
   margin-top: 5px;
-  margin-left: 21px;
 }
 .yidong {
   font-size: 12px;
   margin-top: 5px;
-  margin-left: 21px;
 }
 .phonenumber {
   font-size: 16px;
   font-weight: bold;
   color: #333333;
-  margin-left: 21px;
 }
 .xian {
   width: 330px;
@@ -371,7 +368,7 @@ export default {
   width: 350px;
   height: 183px;
   background-color: white;
-  margin: 64px 13px;
+  margin: 64px 13px -54px;
   border-radius: 5px;
   position: relative;
 }

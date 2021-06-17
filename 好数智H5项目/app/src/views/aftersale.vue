@@ -38,7 +38,7 @@
           <div class="bottomA">
             <p @click="onclickCenel = true">删除记录</p>
           </div>
-          <div class="bottomB">
+          <div class="bottomB" @click="$router.push('/refundDetalis')">
             <p>查看详情</p>
           </div>
         </div>
@@ -182,12 +182,15 @@ export default {
   background-color: #f5f5f5;
   overflow-y: auto;
 }
-.el-dialog--center .el-dialog__footer {
+.ordersA /deep/ .el-dialog--center .el-dialog__footer {
   text-align: inherit;
   height: 1px;
 }
-.el-icon-close:before {
+.ordersA /deep/ .el-icon-close:before {
   content: "";
+}
+.ordersA /deep/ .el-dialog {
+  border-radius: 6px;
 }
 .buttom {
   display: flex;
@@ -287,10 +290,10 @@ export default {
 }
 
 .bottomA p {
-  font-size: 14px;
+  font-size: 12px;
 }
 .bottomB p {
-  font-size: 14px;
+  font-size: 12px;
 }
 .bottom {
   display: flex;
@@ -304,26 +307,29 @@ export default {
   margin-left: 19px;
   font-weight: bold;
   color: #333333;
+  font-size: 12px;
 }
 .ones {
   margin-left: 19px;
   font-weight: bold;
   color: #fe5858;
+  font-size: 12px;
 }
 .two {
   margin-right: 13px;
   color: #999999;
+  font-size: 12px;
 }
 .success {
   display: flex;
-  line-height: 50px;
   font-size: 14px;
   justify-content: space-evenly;
+  line-height: 30px;
 }
 .tuikuans {
   margin-top: 10px;
   width: 300px;
-  height: 50px;
+  height: 30px;
   background-color: #f2f2f2;
   margin-left: 15px;
   border-radius: 5px;

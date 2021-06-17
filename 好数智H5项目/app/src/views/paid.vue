@@ -50,12 +50,12 @@
         </div>
       </div>
     </div>
-    <div class="yes">
+    <!-- <div class="yes">
       <p>
         <img src="../assets/v@2x.png" alt="" class="v" />
         获得<span>160</span>点积分
       </p>
-    </div>
+    </div> -->
     <div class="no">
       <p class="information">订单信息</p>
       <ul class="table">
@@ -85,10 +85,16 @@
         </li>
       </ul>
     </div>
-    <div class="make">
-      <p @click="centerDialogVisible = true">拨打电话</p>
+     <div class="make">
+      <div class="bo">
+        <img src="../assets/dianhua.png" alt="" />
+        <p @click="centerDialogVisible=true">拨打电话</p>
+      </div>
       <div class="borders"></div>
-      <p>咨询客服</p>
+      <div class="bo">
+        <img src="../assets/kefu.png" alt="" />
+        <p>咨询客服</p>
+      </div>
     </div>
 
     <el-dialog :visible.sync="centerDialogVisible" width="295px" center>
@@ -138,19 +144,29 @@ export default {
 </script>
 
 <style scoped>
+
 .phonels {
   margin-left: 42px;
   margin-bottom: 41px;
   margin-top: -29px;
 }
-.chuan /deep/ .el-icon-close:before {
-  content: "";
+.A /deep/ .el-dialog {
+  border-radius: 6px;
 }
-.chuan /deep/ .el-dialog--center .el-dialog__body {
-  padding: 25px 25px 0;
+.A /deep/ .el-dialog--center .el-dialog__body {
+  padding: 30px 25px 0;
 }
-.chuan /deep/ .el-dialog__footer {
-  padding: 10px 20px 0px;
+.A /deep/ .el-dialog__header {
+  padding: 0;
+}
+.A /deep/ .el-dialog--center .el-dialog__footer{
+  padding-bottom: 0;
+}
+.A /deep/ .el-icon-close:before {
+  content: none;
+}
+.A /deep/ .el-dialog__headerbtn {
+  background-color: white;
 }
 .phonel {
   margin-left: 65px;
@@ -301,8 +317,17 @@ export default {
   margin-bottom: 15px;
   align-items: center;
 }
+.make .bo {
+  display: flex;
+  align-items: center;
+}
 .make p {
   font-size: 15px;
+}
+.make img {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
 }
 .rights {
   margin-left: 25px;
@@ -335,7 +360,7 @@ export default {
   border-radius: 5px;
   font-size: 13px;
 }
-.yes p {
+/* .yes p {
   line-height: 40px;
   display: flex;
   align-items: center;
@@ -350,7 +375,7 @@ export default {
   margin: -52px 13px;
   border-radius: 5px;
   font-size: 13px;
-}
+} */
 .redmoney {
   color: #fe5858;
   font-size: 13px;
@@ -379,10 +404,11 @@ export default {
   color: #fe5858;
 }
 .need {
-  margin: 0 255px;
-  font-weight: bold;
+  display: block;
   font-size: 14px;
   color: #333333;
+  margin-top: 10px;
+  margin-left: 231px;
 }
 .ordertime {
   font-size: 12px;
@@ -443,7 +469,7 @@ export default {
   width: 350px;
   height: 148px;
   background-color: white;
-  margin: 64px auto;
+  margin: 64px auto -54px;
   border-radius: 5px;
   position: relative;
 }

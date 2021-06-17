@@ -12,11 +12,7 @@
         </li>
         <li>
           <p>手机号码</p>
-<<<<<<< HEAD
           <input type="tel" placeholder="联系方式" v-model="way" maxlength="11"/>
-=======
-          <input type="number" placeholder="联系方式" v-model="way" maxlength="11"/>
->>>>>>> be2db7fe52df0ca1635ba4a2bd36c27157f490e5
         </li>
         <li>
           <p>所在地区</p>
@@ -51,6 +47,16 @@ export default {
   },
   methods: {
     onClickCreateAddress() {
+      console.log( {
+          user_id:this.$store.state.user_id,
+          mobile:this.way,
+          name:this.username,
+          province:'湖南省',
+          city:'邵阳市',
+          area:'双清区',
+          address:this.detailed,
+          is_default:false
+        });
       this.$post("/api/address/create", {
           user_id:this.$store.state.user_id,
           mobile:this.way,
