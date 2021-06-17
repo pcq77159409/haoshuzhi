@@ -445,7 +445,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .cap .shit {
@@ -454,6 +454,7 @@ a {
   border: 0.5pt solid #e5e5e5;
   border-radius: 10px;
   margin-bottom: 10px;
+  margin-left: 15px;
 }
 .cap .shit img {
   float: right;

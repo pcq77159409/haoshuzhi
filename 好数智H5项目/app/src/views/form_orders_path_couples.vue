@@ -11,22 +11,22 @@
         <p>正规三大运营商号码，配合国家安全，严厉打击电信诈骗，应运营商要求，必须实行实名制办理激活开通。敬请理解！平台客服会在1小时内电话为您一对一服务</p>
       </div>
       <div class="gooddata">
-        <p>13641961314</p>
+        <p>{{pathsorder[0][0].number}}</p>
         <span>上海</span>
         <span>移动</span>
       </div>
       <h4 class="sureing">请确认你的身份信息</h4>
       <div class="reali">
         <div class="multreal">
-          <p>真实姓名</p>
+          <p>真实姓名<span>*</span></p>
           <input type="text" placeholder="填写你的姓名" />
         </div>
         <div class="box_construct">
-          <p>身份证号</p>
-          <span>341616********6610</span>
+          <p>身份证号<span>*</span></p>
+          <input type="number">
         </div>
       </div>
-      <h4 class="sureing">请拍摄并上传你的身份证照片</h4>
+      <h4 class="sureing">请拍摄并上传你的身份证照片(非必填)</h4>
       <div class="box_header">
         <ul>
           <li>
@@ -50,22 +50,22 @@
     </div>
     <div class="drawBoundingBox">
       <div class="gooddata">
-        <p>13641961314</p>
+        <p>{{pathsorder[0][0].number}}</p>
         <span>上海</span>
         <span>移动</span>
       </div>
       <h4 class="sureing">请确认你的身份信息</h4>
       <div class="reali">
         <div class="multreal">
-          <p>真实姓名</p>
+          <p>真实姓名<span>*</span></p>
           <input type="text" placeholder="填写你的姓名" />
         </div>
         <div class="box_construct">
-          <p>身份证号</p>
-          <span>341616********6610</span>
+          <p>身份证号<span>*</span></p>
+          <input type="number">
         </div>
       </div>
-      <h4 class="sureing">请拍摄并上传你的身份证照片</h4>
+      <h4 class="sureing">请拍摄并上传你的身份证照片(非必填)</h4>
       <div class="box_header">
         <ul>
           <li>
@@ -90,13 +90,13 @@
         <h4>购号须知</h4>
         <div class="InstructionSet">
           <img src="../assets/圆角矩形 2@2x.png" alt="" />
-          <img src="../assets/yes.png" alt="" class="yes" v-show="false" />
+          <img src="../assets/yes.png" alt="" class="yes" v-show="true" />
           <p>请仔细阅读 <span>《办理须知》</span> 服务条款</p>
           <img src="../assets/跳转箭头@2x.png" alt="" />
         </div>
         <div class="InstructionSet">
           <img src="../assets/圆角矩形 2@2x.png" alt="" />
-          <img src="../assets/yes.png" alt="" class="yes" v-show="false" />
+          <img src="../assets/yes.png" alt="" class="yes" v-show="true" />
           <p>请仔细阅读 <span>《入网协议》</span> 服务条款</p>
           <img src="../assets/跳转箭头@2x.png" alt="" />
         </div>
@@ -112,13 +112,21 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      pathsorder:[]
+    };
   },
   methods: {
     onClickGoto() {
       this.$router.go(-1);
     },
   },
+  created(){
+    this.$get('/api/number/getNumberInfo',this.$route.query).then(val=>{
+      this.pathsorder=val.data
+      console.log(this.pathsorder);
+    })
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -214,6 +222,11 @@ export default {
   font-size: 14px;
   color: #333333;
   margin-right: 14px;
+}
+.drawBoundingBox .reali .multreal p span,
+.drawBoundingBox .reali .box_construct p span {
+  font-size: 14px;
+  color: #fe5858;
 }
 .drawBoundingBox .reali .multreal input {
   border: none;

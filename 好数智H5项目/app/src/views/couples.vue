@@ -27,11 +27,7 @@
     <div class="accurate">
       <ul class="phoneNumber">
         <li>
-          <input
-            type="number"
-            value="1"
-            class="number"
-          />
+          <input type="number" value="1" class="number" />
         </li>
         <li>
           <input
@@ -145,23 +141,18 @@
             v-show="active == 2"
           />
         </li>
-        <li @click="onClickBack">
-          <p>筛选</p>
-          <img src="../assets/filter.png" alt="" />
-        </li>
       </ul>
     </div>
     <!-- 下拉选择 结束-->
 
     <!--手机号 开始-->
-    <router-link to="/details_couplesfor">
-      <div class="class_box" v-for="(item, index) in love" :key="index">
+      <div class="class_box" v-for="(item, index) in love" :key="index" @click="onClickFarm(item)">
         <img src="../assets/矩形 47@2x.png" alt="" style="" />
         <div class="end">
           <h5 v-html="item[0].number_tag"></h5>
           <div class="commission">
             <p>{{ item[0].location }}</p>
-            <span>佣金￥200</span>
+            <span>佣金￥{{item[0].returned_commission}}</span>
           </div>
           <div class="contains">
             <p>含通话费{{ item[0].contain_charge }}</p>
@@ -170,7 +161,7 @@
         </div>
         <span class="line"></span>
         <div class="end">
-          <h5 v-html="item[0].number_tag"></h5>
+          <h5 v-html="item[1].number_tag"></h5>
           <div class="commission">
             <p>{{ item[1].location }}</p>
           </div>
@@ -180,31 +171,30 @@
           </div>
         </div>
       </div>
-    </router-link>
     <!--手机号 结束-->
 
     <!-- 归属地 开始-->
-    <div class="Belonging" v-show="flag == true">
+    <div class="Belonging" v-show="flag">
       <ul class="pro">
         <li
           v-for="(item, index) in proList"
           :key="index"
           :class="{ current: num == index }"
-          @click="onClickHide(index)"
+          @click="onClickHide(index, item)"
         >
-          <img :src="item.src" alt="" v-show="num == index" />
-          <p>{{ item.username }}</p>
+          <img src="../assets/right.png" alt="" v-show="num == index" />
+          <p>{{ item }}</p>
         </li>
       </ul>
       <ul class="city">
         <li
-          v-for="(item, index) in cityList"
+          v-for="(item, index) in cityList[nums]"
           :key="index"
-          :class="{ currents: wrap == index }"
-          @click="onClickHided(index)"
+          :class="{ currents: wrap == item }"
+          @click="onClickHided(item)"
         >
-          <img :src="item.src" alt="" v-show="wrap == index" />
-          <p>{{ item.username }}</p>
+          <img src="../assets/right.png" alt="" v-show="wrap == item" />
+          <p>{{ item }}</p>
         </li>
       </ul>
     </div>
@@ -213,21 +203,18 @@
     <!-- 运营商 开始-->
     <div class="opeateing" v-show="cut == true">
       <ul>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>中国移动</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>中国电信</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>中国联通</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>虚拟号码</p>
+        <li
+          v-for="(item, index) in chinese"
+          :key="index"
+          :class="{ currents: opList == item.operators_name }"
+          @click="onclickOpeateing(item.operators_name)"
+        >
+          <img
+            src="../assets/right.png"
+            alt=""
+            v-show="opList == item.operators_name"
+          />
+          <p>{{ item.operators_name }}</p>
         </li>
       </ul>
     </div>
@@ -262,134 +249,6 @@
       </ul>
     </div>
     <!-- 规律 结束-->
-
-    <!-- 搜索筛选 开始-->
-    <div class="Montmorillonite" v-show="back == true">
-      <div class="search_filter">
-        <!-- 返回按钮 -->
-        <div class="back" @click="onClickTo">
-          <img src="../assets/back.png" alt="" />
-          <p>筛选</p>
-        </div>
-        <!-- 返回按钮 -->
-
-        <!-- 办理 -->
-        <div class="handle">
-          <p>线上实名制办理</p>
-          <p>线下营业厅办理</p>
-        </div>
-        <!-- 办理 -->
-
-        <!-- 价格筛选 -->
-        <div class="price">
-          <h5>价格筛选</h5>
-          <ul>
-            <li>全部价格</li>
-            <li>价格从高到低</li>
-            <li>价格从低到高</li>
-            <li>0-500元</li>
-            <li>500-100元</li>
-            <li>1000-2000元</li>
-            <li>2000-5000元</li>
-            <li>5000-1万元</li>
-            <li>1万-2万元</li>
-            <li>2万已上价格</li>
-            <li><span>￥</span> <input type="number" /></li>
-            <li><span>￥</span> <input type="number" /></li>
-          </ul>
-          <p>到</p>
-        </div>
-        <!-- 价格筛选 -->
-
-        <!-- 话费筛选 -->
-        <div class="charge">
-          <h5>话费筛选</h5>
-          <ul>
-            <li>不限</li>
-            <li>无话费</li>
-            <li>含话费</li>
-            <li>含30元</li>
-            <li>含50元</li>
-            <li>含100元</li>
-            <li>含300元</li>
-            <li><span>￥</span> <input type="number" /></li>
-            <li><span>￥</span> <input type="number" /></li>
-          </ul>
-          <p>到</p>
-        </div>
-        <!-- 话费筛选 -->
-
-        <!-- 合约筛选 开始-->
-        <div class="contract">
-          <h5>合约筛选</h5>
-          <ul class="december">
-            <li>不限</li>
-            <li>无合约</li>
-            <li>12个月;30元...</li>
-          </ul>
-          <ul class="change">
-            <li>
-              <h3>选择合约时长</h3>
-              <h3>选择最低消费</h3>
-            </li>
-            <li>
-              <p>不限</p>
-              <p>不限</p>
-            </li>
-            <li>
-              <p>12月</p>
-              <p>30/月</p>
-            </li>
-            <li>
-              <p>24月</p>
-              <p>50/月</p>
-            </li>
-          </ul>
-          <span class="linings"></span>
-        </div>
-        <!-- 合约筛选 结束-->
-
-        <!-- 较多数字 开始-->
-        <div class="more_number">
-          <h5>较多数字</h5>
-          <ul>
-            <li>不限</li>
-            <li>无话费</li>
-            <li>含话费</li>
-            <li>含30元</li>
-            <li>含50元</li>
-            <li>含100元</li>
-            <li>含300元</li>
-            <li>含300元</li>
-          </ul>
-        </div>
-        <!-- 较多数字 结束-->
-
-        <!-- 不含数字 开始-->
-        <div class="more_number">
-          <h5>不含数字</h5>
-          <ul>
-            <li>不限</li>
-            <li>无话费</li>
-            <li>含话费</li>
-            <li>含30元</li>
-            <li>含50元</li>
-            <li>含100元</li>
-            <li>含300元</li>
-            <li>含300元</li>
-          </ul>
-        </div>
-        <!-- 不含数字 结束-->
-
-        <!-- 按钮 开始-->
-        <div class="sure">
-          <p>重置</p>
-          <span>确定</span>
-        </div>
-        <!-- 按钮 结束-->
-      </div>
-    </div>
-    <!-- 搜索筛选 结束-->
   </div>
 </template>
 <script>
@@ -397,36 +256,7 @@ export default {
   data() {
     return {
       active: null,
-      proList: [
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-      ],
+      proList: [],
       cityList: [
         {
           src: require("../assets/right.png"),
@@ -459,18 +289,40 @@ export default {
       ],
       parameter: {},
       love: [],
+      list: [],
+      chinese: [],
       num: null,
       wrap: null,
       flag: false,
       cut: false,
       regulars: false,
       back: false,
-      from:'',
-      operator:'',
-      type:''
+      from: "",
+      operator: "",
+      type: "",
+      nums: "",
+      opList: -1,
     };
   },
   methods: {
+    onclickOpeateing(index) {
+      let id = 0;
+      if (index == "中国移动") {
+        id = 1;
+      } else if (index == "中国联通") {
+        id = 2;
+      } else if (index == "中国电信") {
+        id = 3;
+      } else {
+        id = 4;
+      }
+      this.cut = false;
+      this.opList = index;
+      this.active = -1;
+      this.parameter.operator_id = id;
+      console.log(index);
+      this.onclickQuery();
+    },
     onClickGo() {
       this.$router.go(-1);
     },
@@ -489,11 +341,17 @@ export default {
         this.flag = false;
       }
     },
-    onClickHide(val) {
+    onClickHide(val, v) {
       this.num = val;
+      this.nums = v;
+      this.wrap = "";
     },
     onClickHided(val) {
       this.wrap = val;
+      this.flag = false;
+      this.active = -1;
+      this.parameter.from = val;
+      this.onclickQuery();
     },
     onClickOperating() {
       if (this.cut == false) {
@@ -512,24 +370,64 @@ export default {
         this.regulars = false;
       }
     },
-    onClickBack() {
-      if (this.back == false) {
-        this.back = true;
-        this.flag = false;
-        this.cut = false;
-        this.regulars = false;
-      } else {
-        this.back = false;
-      }
-    },
     onClickTo() {
       this.back = false;
     },
+    onclickQuery() {
+      let flag = false;
+      for (var k in this.parameter) {
+        if (this.parameter[k] != this.$route.query[k]) {
+          flag = true;
+        }
+      }
+      if (flag) {
+        this.$router.push({
+          path: "/couples",
+          query: this.parameter,
+        });
+        this.$axios
+          .post("/api/home_page/loveNumber", {
+            from: this.from,
+            operator: this.operator,
+            type: this.type,
+          })
+          .then((val) => {
+            this.list = val.data.data;
+          });
+      }
+    },
+    onClickFarm(id){
+      // this.$router.push('/details_couplesfor')
+      this.$router.push({
+        path:'/details_couplesfor',
+        query:{
+          "ids[0]":id[0].id,
+          "ids[1]":id[1].id
+        }
+      })
+    }
   },
   created() {
-    this.$axios.post("/api/home_page/loveNumber", {from:this.from,operator:this.operator,type:this.type}).then((val) => {
-      this.love = val.data.data;
-      console.log(val.data);
+    this.$axios
+      .post("/api/home_page/loveNumber", {
+        from: this.from,
+        operator: this.operator,
+        type: this.type,
+      })
+      .then((val) => {
+        this.love = val.data.data;
+      });
+  },
+  mounted() {
+    this.$axios.get("api/home_page/getLocation").then((val) => {
+      this.nums = Object.keys(val.data)[0];
+      for (var k in val.data) {
+        this.proList.push(k);
+      }
+      this.cityList = val.data;
+    });
+    this.$axios.get("/api/home_page/getOperator").then((val) => {
+      this.chinese = val.data;
     });
   },
 };
@@ -733,10 +631,6 @@ body {
   width: 6px;
   height: 4px;
 }
-.Mobile_phone .select_change ul li:last-child img {
-  width: 10px;
-  height: 9px;
-}
 .Mobile_phone .class_box {
   display: flex;
   width: 345px;
@@ -804,10 +698,10 @@ body {
 .Mobile_phone .Belonging,
 .Mobile_phone .regular {
   width: 100%;
-  height: 360px;
+  height: 376px;
   position: absolute;
   left: 0;
-  top: 293px;
+  top: 291px;
   display: flex;
 }
 .Mobile_phone .Belonging .pro {
@@ -850,11 +744,11 @@ body {
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 360px;
+  height: 376px;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 293px;
+  top: 291px;
   display: flex;
 }
 .Mobile_phone .opeateing ul {

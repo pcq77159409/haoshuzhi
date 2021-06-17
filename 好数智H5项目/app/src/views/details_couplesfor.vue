@@ -9,36 +9,47 @@
         <div class="address">
           <ul>
             <li class="number">
-              13133393741
-              <img src="../assets/222.png" alt="" @click="onClickNickname" />
+              {{ copules[0][0].number }}
+              <!-- <img src="../assets/222.png" alt="" @click="onClickNickname" /> -->
             </li>
             <li class="citys">
-              <p class="city">上海 <span>移动</span></p>
-              <p>￥400</p>
+              <p class="city">
+                {{ copules[0][0].location }}
+                <span>{{ copules[0][0].operator | operators() }}</span>
+              </p>
+              <p>￥{{ copules[0][0].sale_price }}</p>
             </li>
           </ul>
         </div>
         <div class="nums">
-          <p>
-            <span>提示:</span
-            >宽大的时的卡莎卡仕达话说到核实客户带来很多老客户带来喀什
-          </p>
+          <p><span>提示:</span>{{ copules[0][0].describe }}</p>
         </div>
       </div>
     </div>
     <div class="phone" @click="onClickBack">
-      <p>号码套餐 <span>移动花卡宝藏版29元套餐</span></p>
+      <p>
+        号码套餐
+        <span>{{
+          copules[0][0].numberpackage[0].storepackage.package_name
+        }}</span>
+      </p>
     </div>
     <div class="box">
       <ul>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          预存话费<span style="margin-left: 30px">￥500</span>
+          预存话费<span style="margin-left: 30px"
+            >￥{{ copules[0][0].prepaid_charge }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          花费(含)<span style="margin-left: 35px; color: #666666">￥800</span>
+          话费(含)<span style="margin-left: 35px; color: #666666"
+            >￥{{ copules[0][0].contain_charge }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          卡费<span style="margin-left: 55px">￥100</span>
+          卡费<span style="margin-left: 55px"
+            >￥{{ copules[0][0].sale_price }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           登记方式<span style="margin-left: 30px; color: #666666"
@@ -46,7 +57,9 @@
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          号码预约<span style="margin-left: 30px; color: #666666">￥500</span>
+          号码合约<span style="margin-left: 30px; color: #666666"
+            >{{ copules[0][0].contract }}元/月</span
+          >
         </li>
         <li style="color: #999999">
           温馨提示<span style="margin-left: 30px; color: #666666"
@@ -60,20 +73,20 @@
         <div class="address">
           <ul>
             <li class="number">
-              13133393741
-              <img src="../assets/222.png" alt="" @click="onClickNickname" />
+              {{ copules[1][0].number }}
+              <!-- <img src="../assets/222.png" alt="" @click="onClickNickname" /> -->
             </li>
             <li class="citys">
-              <p class="city">上海 <span>移动</span></p>
-              <p>￥400</p>
+              <p class="city">
+                {{ copules[1][0].location }}
+                <span>{{ copules[1][0].operator | operators() }}</span>
+              </p>
+              <p>￥{{ copules[1][0].sale_price }}</p>
             </li>
           </ul>
         </div>
         <div class="nums">
-          <p>
-            <span>提示:</span
-            >宽大的时的卡莎卡仕达话说到核实客户带来很多老客户带来喀什
-          </p>
+          <p><span>提示:</span>{{ copules[1][0].describe }}</p>
         </div>
       </div>
     </div>
@@ -83,13 +96,19 @@
     <div class="box">
       <ul>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          预存话费<span style="margin-left: 30px">￥500</span>
+          预存话费<span style="margin-left: 30px"
+            >￥{{ copules[1][0].prepaid_charge }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          花费(含)<span style="margin-left: 35px; color: #666666">￥800</span>
+          花费(含)<span style="margin-left: 35px; color: #666666"
+            >￥{{ copules[1][0].contain_charge }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          卡费<span style="margin-left: 55px">￥100</span>
+          卡费<span style="margin-left: 55px"
+            >￥{{ copules[1][0].sale_price }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           登记方式<span style="margin-left: 30px; color: #666666"
@@ -97,7 +116,9 @@
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          号码预约<span style="margin-left: 30px; color: #666666">￥500</span>
+          号码合约<span style="margin-left: 30px; color: #666666"
+            >{{ copules[1][0].contract }}元/月</span
+          >
         </li>
         <li style="color: #999999">
           温馨提示<span style="margin-left: 30px; color: #666666"
@@ -106,25 +127,48 @@
         </li>
       </ul>
     </div>
-    <div class="endcsname">
+    <!-- 没有收货地址 -->
+    <div
+      class="endcsname endcsname_sh"
+      v-show="shdzShow == false"
+      @click="$router.push('/goAddress')"
+    >
+      <img src="../assets/tjshdz.png" alt="" />
+      <p>添加收货地址</p>
+      <img src="../assets/跳转箭头@2x.png" alt="" />
+    </div>
+    <!-- 有默认的收货地址 -->
+    <div
+      class="endcsname"
+      v-show="shdzShow == true"
+      @click="$router.push('/goAddress')"
+    >
       <img src="../assets/ding.png" alt="" />
       <div class="mercifully">
         <div class="parameter">
-          <h3>好名字</h3>
-          <p>18812345689</p>
+          <h3>{{ shdz.name }}</h3>
+          <p>{{ shdz.mobile }}</p>
         </div>
         <div class="reklameadvice">
-          <p>收货地址: 上海嘉定区平城路118弄</p>
+          <p>
+            收货地址:
+            <span
+              >{{ shdz.province }} {{ shdz.city }} {{ shdz.area }}
+              <span v-show="shdz.address != null || shdz.address != 'null'">{{
+                shdz.address
+              }}</span></span
+            >
+          </p>
         </div>
       </div>
       <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
     <div class="bottom">
-      <p>合计:</p>
-      <span>￥400.00</span>
-      <router-link to="/form_orders_path_couples">
-        <div class="now">提交订单</div>
-      </router-link>
+      <div class="tan">
+        <p>合计:</p>
+        <span>￥{{ copules[0][0].sale_price }}</span>
+      </div>
+      <div class="now" @click="onClickFarm()">提交订单</div>
     </div>
     <div class="black" v-show="back">
       <div class="consumption">
@@ -136,17 +180,31 @@
           <img src="../assets/cards.png" alt="" />
           <div class="treasure">
             <span>已选:</span>
-            <p>移动花卡宝藏版19元套餐</p>
+            <p>
+              {{ copules[0][0].numberpackage[0].storepackage.package_name }}
+            </p>
           </div>
         </div>
         <div class="traffic">
           <h5>套餐</h5>
           <ul>
-            <li>18元小魔卡</li>
+            <li
+              v-for="(item, index) in copules[0][0].numberpackage"
+              :key="index"
+              @click="
+                onclickTaocanZX(
+                  item.storepackage.id,
+                  item.storepackage.package_name
+                )
+              "
+              :class="{ current: taocanXZ == item.storepackage.id }"
+            >
+              {{ item.storepackage.package_name }}
+            </li>
+            <!-- <li>19元移动花卡宝藏版</li>
             <li>19元移动花卡宝藏版</li>
-            <li>19元移动花卡宝藏版</li>
             <li>18元小魔卡</li>
-            <li>58元流量+语音畅享套餐</li>
+            <li>58元流量+语音畅享套餐</li> -->
           </ul>
         </div>
         <div class="unlimited">
@@ -154,29 +212,43 @@
           <ul>
             <li>
               <p>套餐月费</p>
-              <span>￥19.00</span>
+              <span
+                >￥{{
+                  copules[0][0].numberpackage[0].storepackage.month_charge
+                }}</span
+              >
             </li>
             <li>
               <p>通话时长</p>
-              <span>0.1元/分钟</span>
+              <span
+                >{{
+                  copules[0][0].numberpackage[0].storepackage.talk_time
+                }}分钟</span
+              >
             </li>
-            <li>
+            <!-- <li>
               <p>通话超出部分</p>
               <span>0.1元/分钟</span>
-            </li>
+            </li> -->
             <li>
               <p>套餐流量</p>
-              <span>1元/1G</span>
+              <span
+                >{{
+                  copules[0][0].numberpackage[0].storepackage.general_flow
+                }}G/月</span
+              >
             </li>
-            <li>
+            <!-- <li>
               <p>流量超出部分</p>
               <span>1元/1G</span>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="instructions">
           <h5>套餐说明</h5>
-          <p>套餐月费19/月,语音通话0.1元/分钟,流量1元/1G,流量超出部分1元/1G</p>
+          <p>
+            {{ copules[0][0].numberpackage[0].storepackage.package_describe }}
+          </p>
         </div>
         <div class="cancel">
           <p @click="onClickTo">取消</p>
@@ -202,6 +274,10 @@ export default {
       value: true,
       back: false,
       metric: false,
+      shdzShow: false,
+      shdzId: null,
+      copules: [],
+      taocanXZ: -1,
     };
   },
   methods: {
@@ -224,6 +300,74 @@ export default {
       } else {
         this.metric = false;
       }
+    },
+    onclickTaocanZX(id, name) {
+      this.taocanXZ = id;
+      this.taocan = name;
+      //获取套餐详情
+      this.$get("/api/order/packageDetail", { id: id }).then((r) => {
+        if (r.code == 200) {
+          console.log(this.copules[0][0].numberpackage.stroepackage);
+          this.copules[0][0].numberpackage.stroepackage = r.data;
+          console.log(this.copules[0][0].numberpackage.stroepackage);
+        } else if (r.code == 700) {
+          this.$router.push("/login");
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
+    onClickFarm() {
+      console.log(this.copules);
+      // this.$router.push('/details_couplesfor')
+      this.$router.push({
+        path: "/form_orders_path_couples",
+        query: this.$route.query,
+      });
+    },
+  },
+  created() {
+    //获取收货地址
+    this.$get("/api/address/getlist", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      if (r.code == 200) {
+        if (r.data.length != 0) {
+          this.shdzShow = true;
+          r.data.forEach((val) => {
+            if (val.is_default == 1) {
+              this.shdz = val;
+            } else {
+              this.shdz = r.data[0];
+            }
+          });
+          this.shdzId = this.shdz.id;
+        } else {
+          this.shdzShow = false;
+        }
+      } else {
+        alert(r.msg);
+      }
+    });
+  },
+  mounted() {
+    this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+      this.copules = val.data;
+    });
+  },
+  filters: {
+    operators(val) {
+      let str = "";
+      if (val == 1) {
+        str = "移动号码";
+      } else if (val == 2) {
+        str = "联通号码";
+      } else if (val == 3) {
+        str = "电信号码";
+      } else if (val == 4) {
+        str = "虚拟号码";
+      }
+      return str;
     },
   },
 };
@@ -249,6 +393,10 @@ li {
   background-color: #f8f8f8;
   overflow: auto;
 }
+.current {
+  color: #fff !important;
+  background-color: #ea5656 !important;
+}
 .box {
   width: 250pt;
   height: 180pt;
@@ -263,10 +411,10 @@ li {
   margin: auto 15px;
 }
 .endcsname {
-  width: 345px;
+  width: 334px;
   height: 68px;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10px auto;
   display: flex;
   border-radius: 4px;
 }
@@ -418,6 +566,7 @@ li {
   display: flex;
   align-items: center;
   margin-top: 38px;
+  justify-content: space-between;
 }
 .bottom p {
   font-size: 14px;
@@ -434,9 +583,12 @@ li {
   background-color: #ea5656;
   color: #fff;
   font-size: 14px;
-  margin-left: 158px;
   text-align: center;
   line-height: 44px;
+}
+.bottom .tan {
+  display: flex;
+  align-items: center;
 }
 .black {
   width: 100%;
@@ -453,6 +605,7 @@ li {
   margin-left: 45px;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 }
 .black .consumption .chargetion {
   width: 100%;
@@ -525,7 +678,6 @@ li {
 }
 .black .consumption .unlimited ul {
   width: 310px;
-  height: 214px;
   background-color: #f8f8f8;
   margin: 15px 10px 0;
   padding: 0 10px;
@@ -549,18 +701,11 @@ li {
   color: #666666;
   font-size: 13px;
 }
-.black .consumption .unlimited ul li:last-child p {
-  margin-right: 20px;
-}
-.black .consumption .unlimited ul li:nth-of-type(3) p {
-  margin-right: 20px;
-}
 .black .consumption .unlimited ul li:last-child {
   border-bottom: none;
 }
 .black .consumption .instructions p {
   width: 310px;
-  height: 63px;
   background-color: #f5f5f5;
   margin: 15px 10px 0;
   font-size: 13px;
@@ -570,6 +715,9 @@ li {
   line-height: 24px;
 }
 .black .consumption .cancel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 45px;
   display: flex;
@@ -635,6 +783,19 @@ li {
   width: 50%;
   height: 100%;
   color: #0443d1;
+  font-size: 14px;
+}
+.endcsname.endcsname_sh img:nth-of-type(1) {
+  width: 20px;
+  height: 29px;
+  margin: 20px 15px 0 20px;
+}
+.endcsname.endcsname_sh img:nth-of-type(2) {
+  margin: 25px 15px 0 20px;
+}
+.endcsname.endcsname_sh p {
+  flex: 1;
+  line-height: 68px;
   font-size: 14px;
 }
 </style>
