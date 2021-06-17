@@ -417,7 +417,7 @@ export default {
       if (r.code == 200) {
         this.detailsList = r.data[0][0];
         let numberpackage = r.data[0][0].numberpackage[0];
-
+        
         this.taocanXZ = numberpackage.storepackage.id;
         this.taocan = numberpackage.storepackage.package_name;
         console.log(this.detailsList);

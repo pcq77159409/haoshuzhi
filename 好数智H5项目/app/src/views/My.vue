@@ -45,19 +45,19 @@
           </div>
         </div>
         <ul class="finish">
-          <li @click="$router.push('/order')">
+          <li @click="$router.push({path:'/order',query:{name:'first'}})">
             <img src="../assets/pay.png" alt="" />
             <p>待支付</p>
           </li>
-          <li @click="$router.push('/order')">
+          <li @click="$router.push({path:'/order',query:{name:'third'}})">
             <img src="../assets/delivery.png" alt="" />
             <p>待发货</p>
           </li>
-          <li @click="$router.push('/order')">
+          <li @click="$router.push({path:'/order',query:{name:'fourth'}})">
             <img src="../assets/closed.png" alt="" />
             <p>待收货</p>
           </li>
-          <li @click="$router.push('/order')">
+          <li @click="$router.push({path:'/order',query:{name:'complete'}})">
             <img src="../assets/complete.png" alt="" />
             <p>已完成</p>
           </li>
