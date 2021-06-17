@@ -8,19 +8,64 @@
       <ul>
         <li>
           <p>收货人</p>
-          <input type="text" placeholder="收货人姓名" v-model="username"/>
+          <input type="text" placeholder="收货人姓名" v-model="username" />
         </li>
         <li>
           <p>手机号码</p>
-          <input type="tel" placeholder="联系方式" v-model="way" maxlength="11"/>
+          <input
+            type="tel"
+            placeholder="联系方式"
+            v-model="way"
+            maxlength="11"
+          />
         </li>
         <li>
-          <p>所在地区</p>
-          <input type="text" placeholder="省/市/区/街道"/>
+          <p>所在省份</p>
+          <!-- <input type="text" placeholder="省/市/区/街道" /> -->
+          <!-- <select id="province" name="province" required></select>
+          <select id="city" name="city" required></select>
+          <select id="area" name="area" required></select> -->
+          <el-select v-model="prov" style="width: 167px; margin-right: 25px">
+            <el-option
+              v-for="(option, index) in arr"
+              :value="option.name"
+              :key="index"
+            >
+              {{ option.name }}
+            </el-option>
+          </el-select>
+        </li>
+        <li>
+          <p>所在城市</p>
+          <el-select v-model="city" style="width: 167px; margin-right: 25px">
+            <el-option
+              v-for="(option, index) in cityArr"
+              :value="option.name"
+              :key="index"
+            >
+              {{ option.name }}
+            </el-option>
+          </el-select>
+        </li>
+        <li>
+          <p>所在区域</p>
+          <el-select v-model="district" v-if="district" style="width: 167px">
+            <el-option
+              v-for="(option, index) in districtArr"
+              :value="option.name"
+              :key="index"
+            >
+              {{ option.name }}
+            </el-option>
+          </el-select>
         </li>
         <li>
           <p>详细地址</p>
-          <input type="text" placeholder="请填写详细地址；例：1号楼101室" v-model="detailed"/>
+          <input
+            type="text"
+            placeholder="请填写详细地址；例：1号楼101室"
+            v-model="detailed"
+          />
         </li>
         <li>
           <p>设为默认地址</p>
@@ -36,50 +81,142 @@
   </div>
 </template>
 <script>
+import area from "../assets/js/area.js";
 export default {
+  name: "Cselect",
   data() {
     return {
       value: false,
-      username:'',
-      way:'',
-      detailed:''
+      username: "",
+      way: "",
+      detailed: "",
+      arr: area.arrAll,
+      prov: "省份",
+      city: "城市",
+      district: "区域",
+      cityArr: [],
+      districtArr: [],
     };
   },
+
+  beforeMount() {
+    this.updateCity();
+    this.updateDistrict();
+  },
+  watch: {
+    prov: function () {
+      this.updateCity();
+      this.updateDistrict();
+    },
+    city: function () {
+      this.updateDistrict();
+    },
+  },
   methods: {
+    updateCity: function () {
+      for (var i in this.arr) {
+        var obj = this.arr[i];
+        if (obj.name) {
+          if (obj.name == this.prov) {
+            this.cityArr = obj.sub;
+            break;
+          }
+        }
+      }
+      this.city = this.cityArr[1].name;
+    },
+    updateDistrict: function () {
+      for (var i in this.cityArr) {
+        var obj = this.cityArr[i];
+        if (obj.name == this.city) {
+          this.districtArr = obj.sub;
+          break;
+        }
+      }
+      if (
+        this.districtArr &&
+        this.districtArr.length > 0 &&
+        this.districtArr[1].name
+      ) {
+        this.district = this.districtArr[1].name;
+      } else {
+        this.district = "";
+      }
+    },
+    //===========================================
     onClickCreateAddress() {
-      console.log( {
-          user_id:this.$store.state.user_id,
-          mobile:this.way,
-          name:this.username,
-          province:'湖南省',
-          city:'邵阳市',
-          area:'双清区',
-          address:this.detailed,
-          is_default:false
-        });
-      this.$post("/api/address/create", {
-          user_id:this.$store.state.user_id,
-          mobile:this.way,
-          name:this.username,
-          province:'湖南省',
-          city:'邵阳市',
-          area:'双清区',
-          address:this.detailed,
-          is_default:false
-        })
-        .then((val) => {
+      // console.log(this.prov);
+      // console.log(this.city);
+      // console.log(this.district);
+
+      console.log(this.$route.query.id);
+      if (this.$route.query.id) {
+        //编辑
+        this.$post("/api/address/edit", {
+          id: this.$route.query.id,
+          user_id: this.$store.state.user_id,
+          mobile: this.way,
+          name: this.username,
+          province: this.prov,
+          city: this.city,
+          area: this.district,
+          address: this.detailed,
+          is_default: this.value,
+        }).then((val) => {
           console.log(val);
-          this.$router.push('/goAddress')
-          if(val.code!=200){
-            alert(val.msg)
+          this.$router.push("/goAddress");
+          if (val.code != 200) {
+            alert(val.msg);
           }
         });
+      } else {
+        //新增
+        this.$post("/api/address/create", {
+          user_id: this.$store.state.user_id,
+          mobile: this.way,
+          name: this.username,
+          province: this.prov,
+          city: this.city,
+          area: this.district,
+          address: this.detailed,
+          is_default: this.value,
+        }).then((val) => {
+          console.log(val);
+          this.$router.push("/goAddress");
+          if (val.code != 200) {
+            alert(val.msg);
+          }
+        });
+      }
     },
-   
+  },
+  mounted() {
+    console.log(this.$route.query.id);
+    if (this.$route.query.id) {
+      this.$get("/api/address/info", {
+        user_id: this.$store.state.user_id,
+        id: this.$route.query.id,
+      }).then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          this.username = r.data.name;
+          this.way = r.data.mobile;
+          this.detailed = r.data.address;
+          if (r.data.is_default == 1) {
+            this.value = true;
+          } else {
+            this.value = false;
+          }
+        }
+      });
+    }
   },
 };
 </script>
 <style lang="scss" scoped>
+.el-select{
+  width: 215px !important;
+}
 .new_add {
   width: 100%;
   height: 100%;
@@ -110,7 +247,7 @@ export default {
 }
 .new_add .huo {
   width: 345px;
-  height: 225px;
+  height: 315px;
   margin: 80px auto 0;
   background-color: #fff;
 }

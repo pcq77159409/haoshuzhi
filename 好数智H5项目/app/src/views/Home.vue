@@ -84,7 +84,7 @@
     </div>
     <div class="cap">
       <router-link
-        :to="{ path: '/details', query: { ids: value.id } }"
+        :to="{ path: '/details', query: { 'ids[]': value.id } }"
         v-for="(value, index) in dataList"
         :key="index"
       >

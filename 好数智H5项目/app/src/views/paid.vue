@@ -12,18 +12,36 @@
     <div class="total">
       <div class="delivered">
         <p class="one">待付款</p>
-        <p class="two">交易将在25分钟30秒后自动关闭</p>
+        <!-- <p class="two">交易将在25分钟30秒后自动关闭</p> -->
       </div>
       <div class="right">
         <img src="../assets/qq.png" alt="" />
       </div>
     </div>
-    <div class="address">
+    <div
+      class="endcsname"
+      v-show="shdzShow == true"
+      @click="$router.push('/goAddress')"
+    >
       <img src="../assets/ding.png" alt="" />
-      <div>
-        <p class="name">好名字 <span class="number">13133393741</span></p>
-        <p class="add">收货地址:上海嘉定区平城路118弄</p>
+      <div class="mercifully">
+        <div class="parameter">
+          <h3>{{ shdz.name }}</h3>
+          <p>{{ shdz.mobile }}</p>
+        </div>
+        <div class="reklameadvice">
+          <p>
+            收货地址:
+            <span
+              >{{ shdz.province }} {{ shdz.city }} {{ shdz.area }}
+              <span v-show="shdz.address != null || shdz.address != 'null'">{{
+                shdz.address
+              }}</span></span
+            >
+          </p>
+        </div>
       </div>
+      <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
     <div>
       <div class="orders">
@@ -39,13 +57,17 @@
         <div class="xian"></div>
         <div class="names">
           <div class="heng">
-            <p class="phonenumber">13133393741</p>
-            <p class="redmoney">￥400</p>
+            <p class="phonenumber">{{ dataInfo.orderdetail[0].phonenumber }}</p>
+            <p class="redmoney">￥{{ dataInfo.price }}</p>
           </div>
           <p class="yidong">上海移动</p>
           <div class="hhf">
-            <p class="spend">含话费￥230</p>
-            <p class="ordertime">需付<span class="pays">￥400</span></p>
+            <p class="spend">
+              含话费￥{{ dataInfo.orderdetail[0].numberinfo.contain_charge }}
+            </p>
+            <p class="ordertime">
+              需付<span class="pays">￥{{ dataInfo.price }}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -61,17 +83,17 @@
       <ul class="table">
         <li>
           订单编号:
-          <p class="rights">123456789098776</p>
+          <p class="rights">{{ dataInfo.number }}</p>
         </li>
-        <li>
+        <!-- <li>
           支付方式:
           <p class="rights">微信支付</p>
-        </li>
+        </li> -->
         <li>
           下单时间:
-          <p class="rights">2021.03.16 16:23:27</p>
+          <p class="rights">{{ dataInfo.updated_at }}</p>
         </li>
-        <li>
+        <!-- <li>
           发货时间:
           <p class="rights">2021.03.16 16:23:27</p>
         </li>
@@ -82,13 +104,13 @@
         <li>
           运单编号:
           <p class="rights">92929292</p>
-        </li>
+        </li> -->
       </ul>
     </div>
-     <div class="make">
+    <div class="make">
       <div class="bo">
         <img src="../assets/dianhua.png" alt="" />
-        <p @click="centerDialogVisible=true">拨打电话</p>
+        <p @click="centerDialogVisible = true">拨打电话</p>
       </div>
       <div class="borders"></div>
       <div class="bo">
@@ -111,7 +133,9 @@
     </el-dialog>
     <div class="delivery">
       <p @click="onclickCenel = true">取消订单</p>
-      <p>去支付</p>
+      <p @click="onclickFK(dataInfo.id, dataInfo.price, dataInfo.number)">
+        去支付
+      </p>
     </div>
     <div class="chuan">
       <el-dialog :visible.sync="onclickCenel" width="295px" center>
@@ -137,14 +161,169 @@ export default {
       flag: false,
       centerDialogVisible: false,
       onclickCenel: false,
+      shdz: [
+        {
+          id: 1,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358663",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: null,
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 2,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 3,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1614850523,
+          updated_at: null,
+        },
+        {
+          id: 5,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1615189184,
+          updated_at: 1615189184,
+        },
+      ],
+      shdzShow: false,
+      shdzId: null,
+      dataInfo: [
+        {
+          id: 2,
+          number: "SJ20210327202033070753171",
+          user_id: 6,
+          name: "Address",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: 1616847633,
+          updated_at: 1616847633,
+          delivery: "线上配送",
+          delivery_time: "就是现在",
+          price: "3.00",
+          finishtime: null,
+          pay_money: null,
+          status: 1,
+          pay_time: null,
+          orderdetail: [
+            {
+              id: 5,
+              order_id: 11,
+              goods_id: 1,
+              store_id: 1,
+              name: "",
+              phonenumber: 1,
+              card_back: "1112",
+              card_front: "1112",
+              card_face: "11112",
+              package_id: null,
+              package_name: null,
+              created_at: 1616849212,
+              updated_at: 1616849212,
+              cardnumber: null,
+              user_id: 0,
+            },
+            {
+              id: 6,
+              order_id: 11,
+              goods_id: 2,
+              store_id: null,
+              name: "",
+              phonenumber: 2,
+              card_back: "2",
+              card_front: "2",
+              card_face: "2",
+              package_id: null,
+              package_name: null,
+              created_at: 1616849212,
+              updated_at: 1616849212,
+              cardnumber: null,
+              user_id: 0,
+            },
+          ],
+        },
+      ],
     };
   },
-  methods: {},
+  methods: {
+    onclickFK(id, price, number) {
+      //去付款
+      sessionStorage.setItem("time", +new Date());
+      this.$router.push({
+        path: "/commerce_payment",
+        query: {
+          order_id: id,
+          price: price,
+          number: number,
+        },
+      });
+    },
+  },
+  mounted() {
+    this.$get("/api/order/info", {
+      user_id: this.$store.state.user_id,
+      order_id: this.$route.query.id,
+    }).then((r) => {
+      console.log(r);
+      this.dataInfo = r.data;
+    });
+
+    //获取收货地址
+    this.$get("/api/address/getlist", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      // console.log(r);
+      if (r.code == 200) {
+        if (r.data.length != 0) {
+          this.shdzShow = true;
+          r.data.forEach((val) => {
+            if (val.is_default == 1) {
+              this.shdz = val;
+            } else {
+              this.shdz = r.data[0];
+            }
+          });
+          this.shdzId = this.shdz.id;
+        } else {
+          this.shdzShow = false;
+        }
+      } else {
+        alert(r.msg);
+      }
+    });
+  },
 };
 </script>
 
 <style scoped>
-
 .phonels {
   margin-left: 42px;
   margin-bottom: 41px;
@@ -159,7 +338,7 @@ export default {
 .A /deep/ .el-dialog__header {
   padding: 0;
 }
-.A /deep/ .el-dialog--center .el-dialog__footer{
+.A /deep/ .el-dialog--center .el-dialog__footer {
   padding-bottom: 0;
 }
 .A /deep/ .el-icon-close:before {
@@ -266,6 +445,9 @@ export default {
 }
 
 .delivery {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 60px;
   background-color: white;
@@ -347,14 +529,14 @@ export default {
 }
 .table li {
   display: flex;
-  width: 200px;
+  /* width: 200px; */
   height: 30px;
   margin-left: 20px;
   margin-top: 9px;
 }
 .no {
   width: 350px;
-  height: 290px;
+  height: 125px;
   background-color: white;
   margin: 65px 13px;
   border-radius: 5px;
@@ -469,7 +651,7 @@ export default {
   width: 350px;
   height: 148px;
   background-color: white;
-  margin: 64px auto -54px;
+  margin: 10px auto -54px;
   border-radius: 5px;
   position: relative;
 }
@@ -571,5 +753,63 @@ export default {
   font-size: 14px;
   color: white;
   margin-left: 42px;
+}
+
+.endcsname {
+  position: relative;
+  width: 345px;
+  height: 68px;
+  background-color: #fff;
+  margin: -35px 15px 0px;
+  display: flex;
+  border-radius: 5px;
+}
+.endcsname img:first-child {
+  width: 20px;
+  height: 29px;
+  margin: 20px 0 0 20px;
+}
+.endcsname img:last-child {
+  width: 8px;
+  height: 14px;
+  margin: 29px 0 0 10px;
+}
+.endcsname .mercifully {
+  width: 80%;
+}
+.endcsname .mercifully .parameter {
+  display: flex;
+}
+.endcsname .mercifully .parameter h3 {
+  color: #333333;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 15px 0 0 12px;
+}
+.endcsname .mercifully .parameter p {
+  color: #666666;
+  font-size: 12px;
+  margin: 17px 0 0 14px;
+}
+.endcsname .mercifully .reklameadvice {
+  display: flex;
+}
+.endcsname .mercifully .reklameadvice p {
+  font-size: 12px;
+  color: #333333;
+  margin: 4px 0 0 12px;
+}
+.endcsname.endcsname_sh img:nth-of-type(1) {
+  width: 20px;
+  height: 29px;
+  margin: 20px 15px 0 20px;
+}
+.endcsname.endcsname_sh img:nth-of-type(2) {
+  margin: 25px 15px 0 20px;
+}
+.endcsname.endcsname_sh p {
+  flex: 1;
+  line-height: 68px;
+  font-size: 14px;
 }
 </style>

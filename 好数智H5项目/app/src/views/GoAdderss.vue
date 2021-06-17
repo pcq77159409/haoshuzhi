@@ -18,14 +18,20 @@
         <div class="boxs"></div>
         <div class="money">
           <div style="display: flex; align-items: center">
-            <input type="radio" style="margintop: 2px" />
+            <input
+              type="radio"
+              style="margintop: 2px"
+              name="default"
+              @click="onclickDefault(item)"
+              :checked="item.is_default == 1"
+            />
             <p style="fontsize: 8px; color: #333333; margin-left: 6px">
               默认地址
             </p>
           </div>
           <p style="fontsize: 8px; color: #333333; marginright: 20px">
             <img src="../assets/111.png" style="margin-right: 6px" />
-            <span style="margin-right: 20px" @click="onClickEditGoods"
+            <span style="margin-right: 20px" @click="onClickEditGoods(item.id)"
               >编辑</span
             ><img src="../assets/222.png" style="margin-right: 6px" />
             <span style="margin-right: 10px" @click="onClickDelete">删除</span>
@@ -48,17 +54,47 @@ export default {
     };
   },
   methods: {
+    onclickDefault(item) {
+      console.log(item);
+      this.$post("/api/address/edit", {
+        user_id: this.$store.state.user_id,
+        id: item.id,
+        mobile: item.mobile,
+        name: item.name,
+        province: item.province,
+        city: item.city,
+        area: item.area,
+        address: item.address,
+        is_default: 1,
+      }).then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          this.$get("/api/address/getlist", {
+            user_id: this.$store.state.user_id,
+          }).then((val) => {
+            this.editor = val.data;
+            console.log(this.editor);
+            val.data.forEach((val) => {
+              this.id = val.id;
+            });
+          });
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
     onClickIntroPara() {
       this.$router.go(-1);
     },
     onClickDelete() {
+      let user_id=this.$store.state.user_id;
       this.$post("/api/address/del", {
-        user_id: this.$store.state.user_id,
+        user_id: user_id,
         id: this.id,
       }).then((val) => {
         console.log(val);
         this.$get("/api/address/getlist", {
-          user_id: this.$store.state.user_id,
+          user_id: user_id,
         }).then((val) => {
           this.editor = val.data;
           val.data.forEach((val) => {
@@ -67,21 +103,8 @@ export default {
         });
       });
     },
-    onClickEditGoods() {
-      this.$post("/api/address/edit", {
-        user_id: this.$store.state.user_id,
-        id:this.id,
-        mobile: this.way,
-        name: this.username,
-        province: "湖南省",
-        city: "邵阳市",
-        area: "双清区",
-        address: this.detailed,
-        is_default: false,
-      }).then((val) => {
-        console.log(val);
-        this.$router.push("/newadd");
-      });
+    onClickEditGoods(id) {
+      this.$router.push({path:'/newadd',query:{id:id}});
     },
   },
   created() {
@@ -89,6 +112,7 @@ export default {
       user_id: this.$store.state.user_id,
     }).then((val) => {
       this.editor = val.data;
+      console.log(this.editor);
       val.data.forEach((val) => {
         this.id = val.id;
       });
@@ -113,6 +137,8 @@ html {
 }
 .total {
   width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
@@ -123,7 +149,7 @@ html {
   height: 34pt;
   background: #ea5656;
   border-radius: 20px;
-  margin: 240px auto 20px;
+  margin: 50px auto 20px;
 }
 .bottom p {
   line-height: 34pt;
