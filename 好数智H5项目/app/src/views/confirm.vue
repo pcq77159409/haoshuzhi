@@ -48,7 +48,8 @@
         <span>¥{{ orderRetails.price }}</span>
       </div>
       <p class="move_box">
-        上海移动 <span>含话费 ¥{{ prepaid_charge }}</span>
+        {{ detailsList.location }} {{ detailsList.operator | operators() }}
+        <span>含话费 ¥{{ prepaid_charge }}</span>
       </p>
       <div class="mobiles">
         <p>{{ item.package_name }}</p>
@@ -75,7 +76,11 @@
       </div>
       <div class="im_rest">
         <p>卖家留言</p>
-        <span>选填，给卖家留言备注(0/20)</span>
+        <input
+          type="text"
+          placeholder="选填，给卖家留言备注(0/20)"
+          maxlength="20"
+        />
       </div>
     </div>
     <ul class="thepreferential">
@@ -94,7 +99,7 @@
     </ul>
     <div class="sensorbox_init_osd">
       <p>合计:</p>
-      <span>￥900.00</span>
+      <span>￥{{ orderRetails.price }}</span>
       <div class="commit" @click="onClickJump">待支付</div>
     </div>
   </div>
@@ -133,6 +138,7 @@ export default {
       shdzShow: false,
       shdzId: null,
       orderRetails: [
+        //订单详情
         {
           id: 2,
           number: "SJ20210327202033070753171",
@@ -174,11 +180,97 @@ export default {
         },
       ],
       prepaid_charge: 0,
+      detailsList: {
+        //号码详情
+        id: 1,
+        number: "18755226962",
+        location: "蚌埠市", //归属地
+        operator: "1", //运营商：1中国移动 2中国电信 3中国联通
+        tag: null,
+        initial_charge: 150,
+        min_charge: 88, //低消
+        prepaid_charge: 50,
+        contain_charge: 0, //含话费
+        contract: "0", // 协议期，单位月
+        purchase_price: "50.00",
+        sale_price: "100.00", //卡费
+        package_group: "YD00001,YD00002",
+        status: 2,
+        handle_type: 1,
+        recommend: 0,
+        describe: "测试数据1",
+        store_id: 1,
+        store_phone: 2147483647,
+        owner: "cecil",
+        owner_phone: "18876548765",
+        create_time: 1618325669,
+        update_time: null,
+        returned_commission: 7.5,
+        numberpackage: [
+          //套餐
+          {
+            id: 188, //套餐ID
+            number: "18755226962",
+            package_id: "YD00001",
+            storepackage: {
+              id: 1,
+              store_id: 1,
+              type: 1,
+              package_id: "YD00001",
+              package_name: "19元小魔卡", //套餐名称
+              operator: 1,
+              month_charge: "20",
+              general_flow: "10",
+              directional_flow: "15",
+              talk_time: "100",
+              network_service: "5G套餐",
+              package_describe: "123和耨哈USVB",
+              head_image: null,
+              main_image: null,
+              detail_image: null,
+              location: "上海市",
+              status: 0,
+            },
+          },
+          {
+            id: 189,
+            number: "18755226962",
+            package_id: "YD00002",
+            storepackage: {
+              id: 2,
+              store_id: 1,
+              type: 1,
+              package_id: "YD00002",
+              package_name: "39元小魔卡",
+              operator: 1,
+              month_charge: "20",
+              general_flow: "10",
+              directional_flow: "15",
+              talk_time: "100",
+              network_service: "5G套餐",
+              package_describe: "123和耨哈USVB",
+              head_image: null,
+              main_image: null,
+              detail_image: null,
+              location: "上海市",
+              status: 1,
+            },
+          },
+        ],
+      },
     };
   },
   methods: {
     onClickJump() {
-      this.$router.push("/commerce_payment");
+      sessionStorage.setItem("time", +new Date());
+      this.$router.push({
+        path: "/commerce_payment",
+        query: {
+          order_id: this.$route.query.order_id,
+          price: this.orderRetails.price,
+          number:this.orderRetails.number
+        },
+      });
     },
   },
   mounted() {
@@ -191,10 +283,15 @@ export default {
       if (r.code == 200) {
         this.orderRetails = r.data;
         this.prepaid_charge = r.data.orderdetail[0].numberinfo.prepaid_charge;
-        this.$post("/api/number/getNumberInfo", {
-          ids: [r.data.orderdetail[0].numberinfo.id],
+        this.$get("/api/number/getNumberInfo", {
+          "ids[]": r.data.orderdetail[0].numberinfo.id,
         }).then((r) => {
           console.log(r);
+          if (r.code == 200) {
+            this.detailsList = r.data[0][0];
+          } else {
+            alert(r.msg);
+          }
         });
       } else {
         alert(r.msg);
@@ -224,6 +321,21 @@ export default {
         alert(r.msg);
       }
     });
+  },
+  filters: {
+    operators(val) {
+      let str = "";
+      if (val == 1) {
+        str = "移动号码";
+      } else if (val == 2) {
+        str = "联通号码";
+      } else if (val == 3) {
+        str = "电信号码";
+      } else if (val == 4) {
+        str = "虚拟号码";
+      }
+      return str;
+    },
   },
 };
 </script> 

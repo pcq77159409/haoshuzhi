@@ -9,7 +9,7 @@
       <p>订单支付成功</p>
       <span>订单支付成功后3天内将进行发货</span>
     </div>
-    <div class="watch" @click="$router.push('/deta')">查看订单</div>
+    <div class="watch" @click="onclickDeta">查看订单</div>
   </div>
 </template>
 <script>
@@ -17,7 +17,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    onclickDeta(){
+      this.$router.push({path:'/deta',query:{order_id:this.$route.query.order_id}});
+    }
+  },
 };
 </script> 
 <style lang="scss" scoped>

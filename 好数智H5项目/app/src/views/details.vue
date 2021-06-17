@@ -10,9 +10,10 @@
           <ul>
             <li class="number">{{ detailsList.number }}</li>
             <li class="citys">
-              <p class="city">{{ detailsList.location }} 
-                <!-- <span>移动</span> -->
-                </p>
+              <p class="city">
+                {{ detailsList.location }}
+                <span>{{detailsList.operator | operators()}}</span>
+              </p>
               <p>￥{{ detailsList.sale_price }}</p>
             </li>
           </ul>
@@ -240,7 +241,7 @@ export default {
       ],
       shdzShow: false,
       shdzId: null,
-      detailsList: {
+      detailsList: {//号码详情
         id: 1,
         number: "18755226962",
         location: "蚌埠市", //归属地
@@ -409,7 +410,7 @@ export default {
     },
   },
   created() {
-    console.log( this.$route.query);
+    console.log(this.$route.query);
     // 获取手机号信息
     this.$get("/api/number/getNumberInfo", this.$route.query).then((r) => {
       console.log(r);
@@ -452,6 +453,21 @@ export default {
     });
   },
   mounted() {},
+  filters: {
+    operators(val) {
+      let str = "";
+      if (val == 1) {
+        str = "移动号码";
+      } else if (val == 2) {
+        str = "联通号码";
+      } else if (val == 3) {
+        str = "电信号码";
+      } else if (val == 4) {
+        str = "虚拟号码";
+      }
+      return str;
+    },
+  },
 };
 </script>
 
