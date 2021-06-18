@@ -449,7 +449,9 @@ a {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  justify-content: flex-start;
+  justify-content: space-between;
+  padding:0 10px ;
+  box-sizing: border-box;
 }
 
 .cap .shit {
@@ -458,7 +460,7 @@ a {
   border: 0.5pt solid #e5e5e5;
   border-radius: 10px;
   margin-bottom: 10px;
-  margin-left: 15px;
+  // margin-left: 15px;
 }
 .cap .shit img {
   float: right;
@@ -482,7 +484,7 @@ a {
 }
 .like {
   width: 100%;
-  padding: 0 15px;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 .like .you {

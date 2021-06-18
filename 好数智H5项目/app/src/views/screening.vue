@@ -701,7 +701,7 @@ export default {
   },
   methods: {
     onClickGo() {
-      this.$router.push('/commons/home');
+      this.$router.push('/commons/home/m');
     },
     onClickShow(num) {
       if (this.active == num) {

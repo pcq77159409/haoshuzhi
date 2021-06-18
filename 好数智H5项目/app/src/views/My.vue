@@ -239,7 +239,7 @@ body {
   width: 353px;
   height: 180pt;
   background-color: #fff;
-  margin: 60px 11px 0 11px;
+  margin: 60px auto 0;
 }
 .ordering .mine {
   margin: 0 20px;

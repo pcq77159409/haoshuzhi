@@ -188,7 +188,7 @@
         </div>
         <div class="traffic">
           <h5>套餐</h5>
-          <ul>
+          <ul v-if="copules[0][0].numberpackage[0].storepackage != null">
             <li
               v-for="(item, index) in copules[0][0].numberpackage"
               :key="index"
@@ -263,10 +263,221 @@ export default {
       value: true,
       back: false,
       metric: false,
+      shdz: [
+        {
+          id: 1,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358663",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: null,
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 2,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 3,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1614850523,
+          updated_at: null,
+        },
+        {
+          id: 5,
+          uid: 6,
+          name: "姓名",
+          mobile: "18798989898",
+          province: "安徽省",
+          city: "合肥市",
+          area: "蜀山区",
+          address: "黄山路1号",
+          created_at: 1615189184,
+          updated_at: 1615189184,
+        },
+      ],
       shdzShow: false,
       shdzId: null,
-      copules: [],
-      taocanXZ: -1,
+      copules: [
+        [
+          {
+            //号码详情
+            id: 1,
+            number: "18755226962",
+            location: "蚌埠市", //归属地
+            operator: "1", //运营商：1中国移动 2中国电信 3中国联通
+            tag: null,
+            initial_charge: 150,
+            min_charge: 88, //低消
+            prepaid_charge: 50,
+            contain_charge: 0, //含话费
+            contract: "0", // 协议期，单位月
+            purchase_price: "50.00",
+            sale_price: "100.00", //卡费
+            package_group: "YD00001,YD00002",
+            status: 2,
+            handle_type: 1,
+            recommend: 0,
+            describe: "测试数据1",
+            store_id: 1,
+            store_phone: 2147483647,
+            owner: "cecil",
+            owner_phone: "18876548765",
+            create_time: 1618325669,
+            update_time: null,
+            returned_commission: 7.5,
+            numberpackage: [
+              //套餐
+              {
+                id: 188, //套餐ID
+                number: "18755226962",
+                package_id: "YD00001",
+                storepackage: {
+                  id: 1,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00001",
+                  package_name: "19元小魔卡", //套餐名称
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 0,
+                },
+              },
+              {
+                id: 189,
+                number: "18755226962",
+                package_id: "YD00002",
+                storepackage: {
+                  id: 2,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00002",
+                  package_name: "39元小魔卡",
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 1,
+                },
+              },
+            ],
+          },
+        ],
+        [
+          {
+            //号码详情
+            id: 1,
+            number: "18755226962",
+            location: "蚌埠市", //归属地
+            operator: "1", //运营商：1中国移动 2中国电信 3中国联通
+            tag: null,
+            initial_charge: 150,
+            min_charge: 88, //低消
+            prepaid_charge: 50,
+            contain_charge: 0, //含话费
+            contract: "0", // 协议期，单位月
+            purchase_price: "50.00",
+            sale_price: "100.00", //卡费
+            package_group: "YD00001,YD00002",
+            status: 2,
+            handle_type: 1,
+            recommend: 0,
+            describe: "测试数据1",
+            store_id: 1,
+            store_phone: 2147483647,
+            owner: "cecil",
+            owner_phone: "18876548765",
+            create_time: 1618325669,
+            update_time: null,
+            returned_commission: 7.5,
+            numberpackage: [
+              //套餐
+              {
+                id: 188, //套餐ID
+                number: "18755226962",
+                package_id: "YD00001",
+                storepackage: {
+                  id: 1,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00001",
+                  package_name: "19元小魔卡", //套餐名称
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 0,
+                },
+              },
+              {
+                id: 189,
+                number: "18755226962",
+                package_id: "YD00002",
+                storepackage: {
+                  id: 2,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00002",
+                  package_name: "39元小魔卡",
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 1,
+                },
+              },
+            ],
+          },
+        ],
+      ],
+      taocanXZ: '',
       pcq: {},
       tjb: {},
       price: null,
@@ -312,35 +523,34 @@ export default {
       });
     },
     onClickFarm() {
-      console.log(this.copules);
-      // this.$router.push('/details_couplesfor')
+      this.onCreateTheOrders();
       this.$router.push({
         path: "/form_orders_path_couples",
         query: this.$route.query,
       });
     },
-    // onCreateTheOrders() {
-    //   let obj = this.$store.state.createTheOrder;
-    //   obj.user_id = localStorage.getItem("user-id");
-    //   obj.delivery = "送货上门";
-    //   obj.delivery_time = "不限时间";
-    //   obj.address_id = this.shdzId;
-    //   obj.buyer = [
-    //     {
-    //       goods_id: this.pcq.id,
-    //       package_id: this.taocanXZ,
-    //       handle_type: 1,
-    //     },
-    //     {
-    //       goods_id: this.tjb.id,
-    //       package_id: this.taocanXZ,
-    //       handle_type: 1,
-    //     },
-    //   ];
-    //   this.$store.commit("onCreateTheOrder", obj);
-    // },
+    onCreateTheOrders() {
+      let obj = this.$store.state.createTheOrder;
+      obj.user_id = localStorage.getItem("user-id");
+      obj.delivery = "送货上门";
+      obj.delivery_time = "不限时间";
+      obj.address_id = this.shdzId;
+      obj.buyer = [
+        {
+          goods_id: this.copules[0][0].id,
+          package_id: this.taocanXZ,
+          handle_type: 1,
+        },
+        {
+          goods_id: this.copules[1][0].id,
+          package_id: this.taocanXZ,
+          handle_type: 1,
+        },
+      ];
+      console.log(obj);
+      this.$store.commit("onCreateTheOrder", obj);
+    },
   },
-
   created() {
     //获取收货地址
     this.$get("/api/address/getlist", {
@@ -367,9 +577,13 @@ export default {
   },
   mounted() {
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+      console.log(val);
       this.copules = val.data;
+      console.log(this.copules);
       this.price =
-        parseInt(this.copules[0][0].sale_price) + parseInt(this.copules[1][0].sale_price);
+        parseInt(this.copules[0][0].sale_price) +
+        parseInt(this.copules[1][0].sale_price);
+      console.log(this.price);
     });
   },
   filters: {

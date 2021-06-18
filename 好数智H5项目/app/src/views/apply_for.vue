@@ -25,7 +25,7 @@
         </li>
         <li>
           <p>销售渠道</p>
-          <input type="text" placeholder="简洁介绍销售渠道(0/100)" />
+          <textarea name="" id="" cols="30" rows="5" maxlength="100" placeholder="简洁介绍销售渠道"></textarea>
         </li>
         <li>
           <p>线上店铺</p>
@@ -120,6 +120,12 @@ input::-webkit-input-placeholder {
   font-size: 12px;
   color: #333333;
   font-weight: 600;
+}
+.apply_for .realty ul li textarea{
+  outline: none;
+  border: none;
+  margin-left: 16px;
+  margin-top: 1px;
 }
 .apply_for .realty ul li input {
   border: none;

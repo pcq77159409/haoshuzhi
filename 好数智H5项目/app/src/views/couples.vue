@@ -146,31 +146,36 @@
     <!-- 下拉选择 结束-->
 
     <!--手机号 开始-->
-      <div class="class_box" v-for="(item, index) in love" :key="index" @click="onClickFarm(item)">
-        <img src="../assets/矩形 47@2x.png" alt="" style="" />
-        <div class="end">
-          <h5 v-html="item[0].number_tag"></h5>
-          <div class="commission">
-            <p>{{ item[0].location }}</p>
-            <span>佣金￥{{item[0].returned_commission}}</span>
-          </div>
-          <div class="contains">
-            <p>含通话费{{ item[0].contain_charge }}</p>
-            <span>￥{{ item[0].sale_price }}</span>
-          </div>
+    <div
+      class="class_box"
+      v-for="(item, index) in love"
+      :key="index"
+      @click="onClickFarm(item)"
+    >
+      <img src="../assets/矩形 47@2x.png" alt="" style="" />
+      <div class="end">
+        <h5 v-html="item[0].number_tag"></h5>
+        <div class="commission">
+          <p>{{ item[0].location }}</p>
+          <span>佣金￥{{ item[0].returned_commission }}</span>
         </div>
-        <span class="line"></span>
-        <div class="end">
-          <h5 v-html="item[1].number_tag"></h5>
-          <div class="commission">
-            <p>{{ item[1].location }}</p>
-          </div>
-          <div class="contains">
-            <p>含通话费{{ item[1].contain_charge }}</p>
-            <span>￥{{ item[1].sale_price }}</span>
-          </div>
+        <div class="contains">
+          <p>含通话费{{ item[0].contain_charge }}</p>
+          <span>￥{{ item[0].sale_price }}</span>
         </div>
       </div>
+      <span class="line"></span>
+      <div class="end">
+        <h5 v-html="item[1].number_tag"></h5>
+        <div class="commission">
+          <p>{{ item[1].location }}</p>
+        </div>
+        <div class="contains">
+          <p>含通话费{{ item[1].contain_charge }}</p>
+          <span>￥{{ item[1].sale_price }}</span>
+        </div>
+      </div>
+    </div>
     <!--手机号 结束-->
 
     <!-- 归属地 开始-->
@@ -319,7 +324,7 @@ export default {
       this.cut = false;
       this.opList = index;
       this.active = -1;
-      this.parameter.operator_id = id;
+      this.parameter.operator = id;
       console.log(index);
       this.onclickQuery();
     },
@@ -385,36 +390,31 @@ export default {
           path: "/couples",
           query: this.parameter,
         });
+        console.log(this.$route.query);
         this.$axios
-          .post("/api/home_page/loveNumber", {
-            from: this.from,
-            operator: this.operator,
-            type: this.type,
-          })
+          .post("/api/home_page/loveNumber", this.$route.query)
           .then((val) => {
-            this.list = val.data.data;
+            console.log(val);
+            this.love = val.data.data;
           });
       }
     },
-    onClickFarm(id){
+    onClickFarm(id) {
       // this.$router.push('/details_couplesfor')
       this.$router.push({
-        path:'/details_couplesfor',
-        query:{
-          "ids[0]":id[0].id,
-          "ids[1]":id[1].id
-        }
-      })
-    }
+        path: "/details_couplesfor",
+        query: {
+          "ids[0]": id[0].id,
+          "ids[1]": id[1].id,
+        },
+      });
+    },
   },
   created() {
     this.$axios
-      .post("/api/home_page/loveNumber", {
-        from: this.from,
-        operator: this.operator,
-        type: this.type,
-      })
+      .post("/api/home_page/loveNumber", this.$route.query)
       .then((val) => {
+        console.log(val);
         this.love = val.data.data;
       });
   },
@@ -635,7 +635,7 @@ body {
   display: flex;
   width: 345px;
   height: 102px;
-  margin: 0 15px;
+  margin: 0 auto;
   border: 1px solid #e5e5e5;
   background-color: #fff;
   border-radius: 10px;

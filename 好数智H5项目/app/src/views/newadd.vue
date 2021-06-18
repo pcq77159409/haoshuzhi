@@ -213,10 +213,9 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-.el-select{
-  width: 215px !important;
-}
+<style scoped>
+
+
 .new_add {
   width: 100%;
   height: 100%;

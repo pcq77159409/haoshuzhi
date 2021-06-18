@@ -4,7 +4,7 @@
       <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
       <h4>支付订单</h4>
     </div>
-     <div
+    <div
       class="endcsname"
       v-show="shdzShow == true"
       @click="$router.push('/goAddress')"
@@ -36,21 +36,39 @@
         <img src="../assets/timeRight.png" alt="" />
       </div>
       <div class="number_box">
-        <p>{{arrcoup[0][0].number}}</p>
-        <span>¥{{arrcoup[0][0].sale_price}}</span>
+        <p>{{ arrcoup.orderdetail[0].phonenumber }}</p>
+        <span>¥{{ arrcoup.orderdetail[0].sale_price }}</span>
       </div>
-      <p class="move_box">{{arrcoup[0][0].location}} {{ arrcoup[0][0].operator | operators() }}<span>含话费 ¥{{arrcoup[0][0].contain_charge}}</span></p>
+      <p class="move_box">
+        {{ arrcoup.orderdetail[0].numberinfo.location }}
+        {{ arrcoup.orderdetail[0].numberinfo.operator | operators()
+        }}<span
+          >含话费 ¥{{ arrcoup.orderdetail[0].numberinfo.contain_charge }}</span
+        >
+      </p>
       <div class="mobiles">
-        <p>{{arrcoup[0][0].numberpackage[0].storepackage.package_name}}</p>
+        <p v-if="arrcoup.orderdetail[0].storepackage != null">
+          {{ arrcoup.orderdetail[0].storepackage.package_name }}
+        </p>
       </div>
       <div class="number_box">
-        <p>{{arrcoup[1][0].number}}</p>
-        <span>¥{{arrcoup[1][0].sale_price}}</span>
+        <p>{{ arrcoup.orderdetail[1].phonenumber }}</p>
+        <span>¥{{ arrcoup.orderdetail[1].sale_price }}</span>
       </div>
-      <p class="move_box">{{arrcoup[0][0].location}} {{ arrcoup[0][0].operator | operators() }} <span>含话费 ¥{{arrcoup[1][0].contain_charge}}</span></p>
+      <p class="move_box">
+        {{ arrcoup.orderdetail[1].numberinfo.location }}
+        {{ arrcoup.orderdetail[1].numberinfo.operator | operators() }}
+        <span
+          >含话费 ¥{{ arrcoup.orderdetail[1].numberinfo.contain_charge }}</span
+        >
+      </p>
       <div class="mobiles">
-        <p>{{arrcoup[1][0].numberpackage[0].storepackage.package_name}}</p>
-        <span>需付<i>¥{{price}}</i></span>
+        <p v-if="arrcoup.orderdetail[1].storepackage != null">
+          {{ arrcoup.orderdetail[1].storepackage.package_name }}
+        </p>
+        <span
+          >需付<i>¥{{ price }}</i></span
+        >
       </div>
     </div>
     <div class="rest_name">
@@ -94,7 +112,7 @@
     </ul>
     <div class="sensorbox_init_osd">
       <p>合计:</p>
-      <span>￥{{price}}</span>
+      <span>￥{{ arrcoup.price }}</span>
       <div class="commit" @click="onClickJump">待支付</div>
     </div>
   </div>
@@ -132,12 +150,126 @@ export default {
       ],
       shdzShow: false,
       shdzId: null,
-      arrcoup:[]
+      arrcoup: {
+        id: 2,
+        number: "SJ20210327202033070753171",
+        user_id: 6,
+        name: "Address",
+        mobile: "18895358662",
+        province: "浙江省",
+        city: "杭州市",
+        area: "滨江区",
+        address: "浦沿街道哈哈哈哈哈",
+        created_at: 1616847633,
+        updated_at: 1616847633,
+        delivery: "线上配送",
+        delivery_time: "就是现在",
+        price: "3.00",
+        finishtime: null,
+        pay_money: null,
+        status: 1,
+        pay_time: null,
+        orderdetail: [
+          {
+            id: 5,
+            order_id: 11,
+            goods_id: 1,
+            store_id: 1,
+            name: "",
+            phonenumber: 1,
+            card_back: "1112",
+            card_front: "1112",
+            card_face: "11112",
+            package_id: null,
+            package_name: null,
+            created_at: 1616849212,
+            updated_at: 1616849212,
+            cardnumber: null,
+            user_id: 0,
+            numberinfo: {
+              contain_charge: 0,
+              contract: "0",
+              create_time: 1623221092,
+              describe: "测试数据1",
+              handle_type: 1,
+              id: 6239,
+              initial_charge: 10000,
+              location: "上海市",
+              min_charge: 18,
+              number: "13801641319",
+              operator: "1",
+              owner: "cecil",
+              owner_phone: "18817744333",
+              package_group: "0",
+              prepaid_charge: 0,
+              purchase_price: "5000.00",
+              recommend: 0,
+              sale_price: "10000.00",
+              status: 1,
+              store_id: 1,
+              store_phone: 2147483647,
+              tag: null,
+              update_time: null,
+            },
+          },
+          {
+            id: 6,
+            order_id: 11,
+            goods_id: 2,
+            store_id: null,
+            name: "",
+            phonenumber: 2,
+            card_back: "2",
+            card_front: "2",
+            card_face: "2",
+            package_id: null,
+            package_name: null,
+            created_at: 1616849212,
+            updated_at: 1616849212,
+            cardnumber: null,
+            user_id: 0,
+            numberinfo: {
+              contain_charge: 0,
+              contract: "0",
+              create_time: 1623221092,
+              describe: "测试数据1",
+              handle_type: 1,
+              id: 6239,
+              initial_charge: 10000,
+              location: "上海市",
+              min_charge: 18,
+              number: "13801641319",
+              operator: "1",
+              owner: "cecil",
+              owner_phone: "18817744333",
+              package_group: "0",
+              prepaid_charge: 0,
+              purchase_price: "5000.00",
+              recommend: 0,
+              sale_price: "10000.00",
+              status: 1,
+              store_id: 1,
+              store_phone: 2147483647,
+              tag: null,
+              update_time: null,
+            },
+          },
+        ],
+      },
     };
   },
   methods: {
     onClickJump() {
-      this.$router.push("/commerce_payment");
+      // this.$router.push("/commerce_payment");
+      sessionStorage.setItem("time", +new Date());
+      this.$router.push({
+        path: "/commerce_payment",
+        query: {
+          order_id: this.arrcoup.id,
+          price: this.arrcoup.price,
+          number: this.arrcoup.number,
+        },
+      });
     },
   },
   mounted() {
@@ -164,13 +296,18 @@ export default {
         alert(r.msg);
       }
     });
-    this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+    this.$get("/api/order/info", {
+      order_id: this.$route.query.order_id,
+      user_id: this.$store.state.user_id,
+    }).then((val) => {
+      console.log(val);
       this.arrcoup = val.data;
-      console.log(this.arrcoup);
-      this.price = parseInt(this.arrcoup[0][0].sale_price) + parseInt(this.arrcoup[1][0].sale_price);
+      // this.price =
+      //   parseInt(this.arrcoup[0][0].sale_price) +
+      //   parseInt(this.arrcoup[1][0].sale_price);
     });
   },
-   filters: {
+  filters: {
     operators(val) {
       let str = "";
       if (val == 1) {
@@ -216,7 +353,7 @@ export default {
   width: 345px;
   height: 68px;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10px auto;
   display: flex;
   border-radius: 4px;
 }
@@ -259,7 +396,7 @@ export default {
   width: 345px;
   // height: 140px;
   background-color: #fff;
-  margin: 0 15px;
+  margin: 0 auto;
   border-radius: 4px;
   padding-bottom: 10px;
 }
@@ -344,7 +481,7 @@ export default {
   width: 345px;
   height: 178px;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10px auto;
 }
 .comfirm_box .rest_name .safeEmail {
   width: 325px;
@@ -409,7 +546,7 @@ export default {
 .comfirm_box .thepreferential {
   width: 345px;
   height: 133px;
-  margin: 10px 15px 15px;
+  margin: 10px auto 15px;
   background-color: #fff;
   border-radius: 4px;
 }

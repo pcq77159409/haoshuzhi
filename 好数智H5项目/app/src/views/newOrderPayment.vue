@@ -70,7 +70,7 @@
       </ul>
     </div>
      <h4>2021年2月</h4>
-    <div class="incomes">
+    <div class="incomes in">
       <ul>
         <li>
           <div class="shoy">
@@ -112,7 +112,7 @@
   height: 100%;
   background-color: #f8f8f8;
   padding-top: 64px;
-  overflow: hidden;
+  overflow: auto;
   box-sizing: border-box;
 }
 .new_box .jumplabel {
@@ -145,9 +145,8 @@
 }
 .new_box .incomes {
   width: 345px;
-  height: 400px;
   background-color: #fff;
-  margin: 0 15px;
+  margin: 0 auto;
 }
 .new_box .incomes ul {
   width: 100%;

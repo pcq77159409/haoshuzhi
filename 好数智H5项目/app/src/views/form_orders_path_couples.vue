@@ -171,13 +171,8 @@
       </div>
       <div class="sensorbox_init_osd">
         <p>合计:</p>
-        <span>￥900.00</span>
-        <div class="commit" @click="$router.push({
-          path:'/confirm_couples',
-          query:$route.query,
-        })">
-          立即购买
-        </div>
+        <span>￥{{price}}</span>
+        <div class="commit" @click="onClickJump">立即购买</div>
       </div>
     </div>
   </div>
@@ -186,7 +181,168 @@
 export default {
   data() {
     return {
-      pathsorder: [],
+      pathsorder: [
+        [
+          {
+            //号码详情
+            id: 1,
+            number: "18755226962",
+            location: "蚌埠市", //归属地
+            operator: "1", //运营商：1中国移动 2中国电信 3中国联通
+            tag: null,
+            initial_charge: 150,
+            min_charge: 88, //低消
+            prepaid_charge: 50,
+            contain_charge: 0, //含话费
+            contract: "0", // 协议期，单位月
+            purchase_price: "50.00",
+            sale_price: "100.00", //卡费
+            package_group: "YD00001,YD00002",
+            status: 2,
+            handle_type: 1,
+            recommend: 0,
+            describe: "测试数据1",
+            store_id: 1,
+            store_phone: 2147483647,
+            owner: "cecil",
+            owner_phone: "18876548765",
+            create_time: 1618325669,
+            update_time: null,
+            returned_commission: 7.5,
+            numberpackage: [
+              //套餐
+              {
+                id: 188, //套餐ID
+                number: "18755226962",
+                package_id: "YD00001",
+                storepackage: {
+                  id: 1,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00001",
+                  package_name: "19元小魔卡", //套餐名称
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 0,
+                },
+              },
+              {
+                id: 189,
+                number: "18755226962",
+                package_id: "YD00002",
+                storepackage: {
+                  id: 2,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00002",
+                  package_name: "39元小魔卡",
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 1,
+                },
+              },
+            ],
+          },
+        ],
+        [
+          {
+            //号码详情
+            id: 1,
+            number: "18755226962",
+            location: "蚌埠市", //归属地
+            operator: "1", //运营商：1中国移动 2中国电信 3中国联通
+            tag: null,
+            initial_charge: 150,
+            min_charge: 88, //低消
+            prepaid_charge: 50,
+            contain_charge: 0, //含话费
+            contract: "0", // 协议期，单位月
+            purchase_price: "50.00",
+            sale_price: "100.00", //卡费
+            package_group: "YD00001,YD00002",
+            status: 2,
+            handle_type: 1,
+            recommend: 0,
+            describe: "测试数据1",
+            store_id: 1,
+            store_phone: 2147483647,
+            owner: "cecil",
+            owner_phone: "18876548765",
+            create_time: 1618325669,
+            update_time: null,
+            returned_commission: 7.5,
+            numberpackage: [
+              //套餐
+              {
+                id: 188, //套餐ID
+                number: "18755226962",
+                package_id: "YD00001",
+                storepackage: {
+                  id: 1,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00001",
+                  package_name: "19元小魔卡", //套餐名称
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 0,
+                },
+              },
+              {
+                id: 189,
+                number: "18755226962",
+                package_id: "YD00002",
+                storepackage: {
+                  id: 2,
+                  store_id: 1,
+                  type: 1,
+                  package_id: "YD00002",
+                  package_name: "39元小魔卡",
+                  operator: 1,
+                  month_charge: "20",
+                  general_flow: "10",
+                  directional_flow: "15",
+                  talk_time: "100",
+                  network_service: "5G套餐",
+                  package_describe: "123和耨哈USVB",
+                  head_image: null,
+                  main_image: null,
+                  detail_image: null,
+                  location: "上海市",
+                  status: 1,
+                },
+              },
+            ],
+          },
+        ],
+      ],
       username: "",
       userid: "",
       usernames: "",
@@ -209,46 +365,41 @@ export default {
       imgSrc4: require("../assets/one.png"),
       imgSrc5: require("../assets/two.png"),
       imgSrc6: require("../assets/three.png"),
+      price: "",
     };
   },
   methods: {
     onClickGoto() {
       this.$router.go(-1);
     },
-    // onClickJump() {
-    //       // let val = {
-    //       //   card_back: this.card_back,
-    //       //   card_front: this.card_front,
-    //       //   card_face: this.card_face,
-    //       //   name: this.username,
-    //       //   cardnumber: this.userid,
-    //       // };
-    //       let arr = this.$store.state.createTheOrder;
-    //       console.log(arr);
-    //       arr.buyer[0].card_back = this.card_back;
-    //       arr.buyer[0].card_front = this.card_front;
-    //       arr.buyer[0].card_face = this.card_face;
-    //       arr.buyer[0].name = this.username;
-    //       arr.buyer[0].cardnumber = this.userid;
-    //       arr.buyer[1].card_back = this.card_backs;
-    //       arr.buyer[1].card_front = this.card_fronts;
-    //       arr.buyer[1].card_face = this.card_faces;
-    //       arr.buyer[1].name = this.usernames;
-    //       arr.buyer[1].cardnumber = this.userids;
-    //       // this.$store.commit("onCreateTheOrder", arr);
-    //       console.log(arr);
-    //       this.$post("/api/order/create", arr).then((r) => {
-    //         console.log(r);
-    //         if (r.code == 200) {
-    //           this.$router.push({
-    //             path: "/confirm_couples",
-    //             query: { order_id: r.data.id },
-    //           });
-    //         } else {
-    //           alert(r.msg);
-    //         }
-    //       });
-    // },
+    onClickJump() {
+      let arr = this.$store.state.createTheOrder;
+      console.log(arr);
+      arr.buyer[0].card_back = this.card_back;
+      arr.buyer[0].card_front = this.card_front;
+      arr.buyer[0].card_face = this.card_face;
+      arr.buyer[0].name = this.username;
+      arr.buyer[0].cardnumber = this.userid;
+      arr.buyer[1].card_back = this.card_backs;
+      arr.buyer[1].card_front = this.card_fronts;
+      arr.buyer[1].card_face = this.card_faces;
+      arr.buyer[1].name = this.usernames;
+      arr.buyer[1].cardnumber = this.userids;
+
+      console.log(arr);
+      this.$post("/api/order/create", arr).then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          console.log(r);
+          this.$router.push({
+            path: "/confirm_couples",
+            query: { order_id: r.data.id },
+          });
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
     onchangeFile(index, id) {
       var oFReader = new FileReader();
       var file = document.getElementById(id).files[0];
@@ -305,7 +456,11 @@ export default {
   },
   created() {
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+      console.log(val.data);
       this.pathsorder = val.data;
+      this.price =
+        parseInt(this.pathsorder[0][0].sale_price) +
+        parseInt(this.pathsorder[1][0].sale_price);
     });
   },
 };
@@ -362,7 +517,7 @@ export default {
 .drawBoundingBox .gooddata {
   width: 345px;
   height: 44px;
-  margin: 15px 15px 10px;
+  margin: 15px auto 10px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -394,7 +549,7 @@ export default {
   width: 345px;
   height: 83px;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10px auto;
   border-radius: 4px;
 }
 .drawBoundingBox .reali .multreal {
@@ -438,7 +593,7 @@ export default {
   width: 345px;
   height: 304px;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10px auto;
   padding: 15px 0;
   border-radius: 4px;
 }
@@ -479,7 +634,7 @@ export default {
   width: 345px;
   height: 133px;
   background-color: #fff;
-  margin: 10px 15px 47px;
+  margin: 10px auto 47px;
   border-radius: 4px;
 }
 .drawBoundingBox .instructionsare h4 {

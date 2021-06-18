@@ -5,7 +5,7 @@
         src="../assets/关闭按钮@2x.png"
         alt=""
         class="colse"
-        @click="$router.push('/commons/home')"
+        @click="$router.push('/commons/home/m')"
       />
       <img src="../assets/logo2x.png" alt="" class="logo" />
       <ul>

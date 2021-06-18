@@ -3,7 +3,7 @@
     <ul id="nav">
       <li
         :class="{ current: hover == 1 }"
-        @click="onclickTo('/commons/home', 1)"
+        @click="onclickTo('/commons/home/m', 1)"
       >
         <dl>
           <dt><i class="el-icon-house"></i></dt>
@@ -64,7 +64,7 @@ export default {
   },
   mounted() {
     console.log(this.$route.fullPath);
-    if (this.$route.fullPath == '/commons/home') {
+    if (this.$route.fullPath == '/commons/home/m') {
       this.hover=1;
     }else if (this.$route.fullPath == '/commons/about') {
       this.hover=2;

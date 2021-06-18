@@ -117,7 +117,7 @@ export default {
     width: 345px;
     height: 88px;
     background-color: #fff;
-    margin: 56px 15px 0;
+    margin: 56px auto 0;
 }
 .wallet_box  ul li {
     width: 325px;

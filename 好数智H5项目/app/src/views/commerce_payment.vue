@@ -60,14 +60,17 @@ export default {
   },
   methods: {
     onclickPayment() {
-      // this.$post('/api/order/pay',{
-      //   user_id:this.$store.state.user_id,
-      //   order_id:this.$route.query.order_id,
-      //   paytype:this.imgShow
-      // }).then((r)=>{
-      //   console.log(r);
-      // });
-      this.$router.push({path:'/Payload',query:{order_id:this.$route.query.order_id}});
+      this.$post('api/order/mobielpay',{
+        user_id:this.$store.state.user_id,
+        order_id:this.$route.query.order_id,
+        paytype:this.imgShow
+      }).then((r)=>{
+        console.log(r);
+        if (r.code==200) {
+          window.location.href= r.data;
+        }
+      });
+      // this.$router.push({path:'/Payload',query:{order_id:this.$route.query.order_id}});
     },
   },
   mounted() {
@@ -202,7 +205,7 @@ export default {
 .ace_jump_search .debugformat {
   width: 353px;
   height: 109px;
-  margin: 45px 11px 227px;
+  margin: 45px auto 227px;
   background-color: #fff;
   border-radius: 4px;
 }
