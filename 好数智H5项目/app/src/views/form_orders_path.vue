@@ -122,7 +122,7 @@ export default {
     return {
       money: 0,
       username: "",
-      userid: "",
+      userid:'',
       img_show1: true,
       img_show2: true,
       img_show3: true,
@@ -136,8 +136,6 @@ export default {
   },
   methods: {
     onClickJump() {
-      if (this.username.trim() != "") {
-        if (this.userid.trim().length == 18) {
           // let val = {
           //   card_back: this.card_back,
           //   card_front: this.card_front,
@@ -146,6 +144,7 @@ export default {
           //   cardnumber: this.userid,
           // };
           let arr = this.$store.state.createTheOrder;
+          console.log(arr);
           arr.buyer[0].card_back = this.card_back;
           arr.buyer[0].card_front = this.card_front;
           arr.buyer[0].card_face = this.card_face;
@@ -163,12 +162,6 @@ export default {
               alert(r.msg);
             }
           });
-        } else {
-          alert("身份证号必须是18位数");
-        }
-      } else {
-        alert("姓名不能为空");
-      }
     },
     onClickGoto() {
       this.$router.go(-1);

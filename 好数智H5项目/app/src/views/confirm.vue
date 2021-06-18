@@ -274,6 +274,13 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit('onCreateTheOrder',{
+            user_id: '',
+            delivery: '',
+            delivery_time: '',
+            address_id: '',
+            buyer: []
+        })
     //订单详情
     this.$get("/api/order/info", {
       user_id: this.$store.state.user_id,
@@ -549,7 +556,7 @@ export default {
 .comfirm_box .thepreferential {
   width: 345px;
   height: 133px;
-  margin: 10px 15px 15px;
+  margin: 10px 15px 58px;
   background-color: #fff;
   border-radius: 4px;
 }

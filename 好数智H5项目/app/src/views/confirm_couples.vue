@@ -1,18 +1,30 @@
 <template>
   <div class="comfirm_box">
     <div class="jumplabel">
-      <img src="../assets/left.png" alt="" @click="$router.go(-1)"/>
+      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
       <h4>支付订单</h4>
     </div>
-    <div class="endcsname">
+     <div
+      class="endcsname"
+      v-show="shdzShow == true"
+      @click="$router.push('/goAddress')"
+    >
       <img src="../assets/ding.png" alt="" />
       <div class="mercifully">
         <div class="parameter">
-          <h3>好名字</h3>
-          <p>18812345689</p>
+          <h3>{{ shdz.name }}</h3>
+          <p>{{ shdz.mobile }}</p>
         </div>
         <div class="reklameadvice">
-          <p>收货地址: 上海嘉定区平城路118弄</p>
+          <p>
+            收货地址:
+            <span
+              >{{ shdz.province }} {{ shdz.city }} {{ shdz.area }}
+              <span v-show="shdz.address != null || shdz.address != 'null'">{{
+                shdz.address
+              }}</span></span
+            >
+          </p>
         </div>
       </div>
       <img src="../assets/跳转箭头@2x.png" alt="" />
@@ -24,21 +36,21 @@
         <img src="../assets/timeRight.png" alt="" />
       </div>
       <div class="number_box">
-        <p>13658948888</p>
-        <span>¥400.00</span>
+        <p>{{arrcoup[0][0].number}}</p>
+        <span>¥{{arrcoup[0][0].sale_price}}</span>
       </div>
-      <p class="move_box">上海移动 <span>含话费 ¥320</span></p>
+      <p class="move_box">{{arrcoup[0][0].location}} {{ arrcoup[0][0].operator | operators() }}<span>含话费 ¥{{arrcoup[0][0].contain_charge}}</span></p>
       <div class="mobiles">
-        <p>移动花卡宝藏版19元套餐</p>
+        <p>{{arrcoup[0][0].numberpackage[0].storepackage.package_name}}</p>
       </div>
-       <div class="number_box">
-        <p>13658948888</p>
-        <span>¥400.00</span>
+      <div class="number_box">
+        <p>{{arrcoup[1][0].number}}</p>
+        <span>¥{{arrcoup[1][0].sale_price}}</span>
       </div>
-      <p class="move_box">上海移动 <span>含话费 ¥320</span></p>
+      <p class="move_box">{{arrcoup[0][0].location}} {{ arrcoup[0][0].operator | operators() }} <span>含话费 ¥{{arrcoup[1][0].contain_charge}}</span></p>
       <div class="mobiles">
-        <p>移动花卡宝藏版19元套餐</p>
-        <span>需付<i>¥400.00</i></span>
+        <p>{{arrcoup[1][0].numberpackage[0].storepackage.package_name}}</p>
+        <span>需付<i>¥{{price}}</i></span>
       </div>
     </div>
     <div class="rest_name">
@@ -59,7 +71,11 @@
       </div>
       <div class="im_rest">
         <p>卖家留言</p>
-        <span>选填，给卖家留言备注(0/20)</span>
+        <input
+          type="tel"
+          placeholder="选填，给卖家留言备注(0/20)"
+          maxlength="20"
+        />
       </div>
     </div>
     <ul class="thepreferential">
@@ -78,7 +94,7 @@
     </ul>
     <div class="sensorbox_init_osd">
       <p>合计:</p>
-      <span>￥900.00</span>
+      <span>￥{{price}}</span>
       <div class="commit" @click="onClickJump">待支付</div>
     </div>
   </div>
@@ -88,12 +104,86 @@ export default {
   data() {
     return {
       value: false,
+      shdz: [
+        {
+          id: 1,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358663",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: null,
+          created_at: null,
+          updated_at: null,
+        },
+        {
+          id: 2,
+          uid: 6,
+          name: "测试",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: null,
+          updated_at: null,
+        },
+      ],
+      shdzShow: false,
+      shdzId: null,
+      arrcoup:[]
     };
   },
   methods: {
-    onClickJump(){
-          this.$router.push('/commerce_payment')
-      },
+    onClickJump() {
+      this.$router.push("/commerce_payment");
+    },
+  },
+  mounted() {
+    //获取收货地址
+    this.$get("/api/address/getlist", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      // console.log(r);
+      if (r.code == 200) {
+        if (r.data.length != 0) {
+          this.shdzShow = true;
+          r.data.forEach((val) => {
+            if (val.is_default == 1) {
+              this.shdz = val;
+            } else {
+              this.shdz = r.data[0];
+            }
+          });
+          this.shdzId = this.shdz.id;
+        } else {
+          this.shdzShow = false;
+        }
+      } else {
+        alert(r.msg);
+      }
+    });
+    this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+      this.arrcoup = val.data;
+      console.log(this.arrcoup);
+      this.price = parseInt(this.arrcoup[0][0].sale_price) + parseInt(this.arrcoup[1][0].sale_price);
+    });
+  },
+   filters: {
+    operators(val) {
+      let str = "";
+      if (val == 1) {
+        str = "移动号码";
+      } else if (val == 2) {
+        str = "联通号码";
+      } else if (val == 3) {
+        str = "电信号码";
+      } else if (val == 4) {
+        str = "虚拟号码";
+      }
+      return str;
+    },
   },
 };
 </script> 
@@ -229,7 +319,7 @@ export default {
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 10px;
 }
-.comfirm_box .store .mobiles:last-child{
+.comfirm_box .store .mobiles:last-child {
   border: none;
   padding: 0;
 }
@@ -311,7 +401,8 @@ export default {
   color: #333333;
   margin-right: 22px;
 }
-.comfirm_box .rest_name .im_rest span {
+.comfirm_box .rest_name .im_rest input {
+  width: 255px;
   color: #999999;
   font-size: 12px;
 }

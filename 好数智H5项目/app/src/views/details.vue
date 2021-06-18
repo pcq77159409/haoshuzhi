@@ -2,7 +2,7 @@
   <div class="liji">
     <div class="service">
       <img src="../assets/left.png" alt="" @click="onBack" />
-      <p>购买号码</p>
+      <p>号码详情</p>
     </div>
     <div class="total">
       <div class="totals">
@@ -106,7 +106,7 @@
       <p>合计:</p>
       <span>￥{{ detailsList.sale_price }}</span>
       <!-- <router-link to="/form_orders_path"> -->
-      <div class="now" @click="onclickPurchase">立即购买</div>
+      <div class="now" @click="onclickPurchase">提交订单</div>
       <!-- </router-link> -->
     </div>
     <div class="black" v-show="back">
@@ -635,7 +635,7 @@ li {
   height: 44px;
   background-color: #ea5656;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   line-height: 44px;
 }

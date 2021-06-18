@@ -12,16 +12,7 @@ export default new Vuex.Store({
             delivery: '',
             delivery_time: '',
             address_id: '',
-            buyer: [{
-                card_back: '',
-                card_front: '',
-                card_face: '',
-                name: '',
-                cardnumber: '',
-                handle_type: '',
-                goods_id: '',
-                package_id: '',
-            }]
+            buyer: []
         }
     },
     mutations: {

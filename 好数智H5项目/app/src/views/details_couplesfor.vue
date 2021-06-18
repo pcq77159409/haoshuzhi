@@ -29,9 +29,7 @@
     <div class="phone" @click="onClickBack">
       <p>
         号码套餐
-        <span>{{
-          copules[0][0].numberpackage[0].storepackage.package_name
-        }}</span>
+        <span>{{ pcq.package_name }}</span>
       </p>
     </div>
     <div class="box">
@@ -91,7 +89,10 @@
       </div>
     </div>
     <div class="phone" @click="onClickBack">
-      <p>号码套餐 <span>移动花卡宝藏版29元套餐</span></p>
+      <p>
+        号码套餐
+        <span>{{ tjb.package_name }}</span>
+      </p>
     </div>
     <div class="box">
       <ul>
@@ -166,7 +167,7 @@
     <div class="bottom">
       <div class="tan">
         <p>合计:</p>
-        <span>￥{{ copules[0][0].sale_price }}</span>
+        <span>￥{{ price }}</span>
       </div>
       <div class="now" @click="onClickFarm()">提交订单</div>
     </div>
@@ -181,7 +182,7 @@
           <div class="treasure">
             <span>已选:</span>
             <p>
-              {{ copules[0][0].numberpackage[0].storepackage.package_name }}
+              {{ pcq.package_name }}
             </p>
           </div>
         </div>
@@ -212,19 +213,11 @@
           <ul>
             <li>
               <p>套餐月费</p>
-              <span
-                >￥{{
-                  copules[0][0].numberpackage[0].storepackage.month_charge
-                }}</span
-              >
+              <span>￥{{ pcq.month_charge }}</span>
             </li>
             <li>
               <p>通话时长</p>
-              <span
-                >{{
-                  copules[0][0].numberpackage[0].storepackage.talk_time
-                }}分钟</span
-              >
+              <span>{{ pcq.talk_time }}分钟</span>
             </li>
             <!-- <li>
               <p>通话超出部分</p>
@@ -232,11 +225,7 @@
             </li> -->
             <li>
               <p>套餐流量</p>
-              <span
-                >{{
-                  copules[0][0].numberpackage[0].storepackage.general_flow
-                }}G/月</span
-              >
+              <span>{{ pcq.general_flow }}G/月</span>
             </li>
             <!-- <li>
               <p>流量超出部分</p>
@@ -247,7 +236,7 @@
         <div class="instructions">
           <h5>套餐说明</h5>
           <p>
-            {{ copules[0][0].numberpackage[0].storepackage.package_describe }}
+            {{ pcq.package_describe }}
           </p>
         </div>
         <div class="cancel">
@@ -278,6 +267,9 @@ export default {
       shdzId: null,
       copules: [],
       taocanXZ: -1,
+      pcq: {},
+      tjb: {},
+      price: null,
     };
   },
   methods: {
@@ -307,9 +299,11 @@ export default {
       //获取套餐详情
       this.$get("/api/order/packageDetail", { id: id }).then((r) => {
         if (r.code == 200) {
-          console.log(this.copules[0][0].numberpackage.stroepackage);
-          this.copules[0][0].numberpackage.stroepackage = r.data;
-          console.log(this.copules[0][0].numberpackage.stroepackage);
+          this.pcq = this.copules[0][0].numberpackage[0].stroepackage;
+          this.tjb = this.copules[1][0].numberpackage[0].stroepackage;
+          this.pcq = r.data;
+          this.tjb = r.data;
+          console.log(this.pcq);
         } else if (r.code == 700) {
           this.$router.push("/login");
         } else {
@@ -325,7 +319,28 @@ export default {
         query: this.$route.query,
       });
     },
+    // onCreateTheOrders() {
+    //   let obj = this.$store.state.createTheOrder;
+    //   obj.user_id = localStorage.getItem("user-id");
+    //   obj.delivery = "送货上门";
+    //   obj.delivery_time = "不限时间";
+    //   obj.address_id = this.shdzId;
+    //   obj.buyer = [
+    //     {
+    //       goods_id: this.pcq.id,
+    //       package_id: this.taocanXZ,
+    //       handle_type: 1,
+    //     },
+    //     {
+    //       goods_id: this.tjb.id,
+    //       package_id: this.taocanXZ,
+    //       handle_type: 1,
+    //     },
+    //   ];
+    //   this.$store.commit("onCreateTheOrder", obj);
+    // },
   },
+
   created() {
     //获取收货地址
     this.$get("/api/address/getlist", {
@@ -353,6 +368,8 @@ export default {
   mounted() {
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
       this.copules = val.data;
+      this.price =
+        parseInt(this.copules[0][0].sale_price) + parseInt(this.copules[1][0].sale_price);
     });
   },
   filters: {

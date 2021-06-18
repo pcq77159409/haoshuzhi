@@ -8,10 +8,12 @@
       </div>
       <!-- 头部 结束-->
       <div class="formal">
-        <p>正规三大运营商号码，配合国家安全，严厉打击电信诈骗，应运营商要求，必须实行实名制办理激活开通。敬请理解！平台客服会在1小时内电话为您一对一服务</p>
+        <p>
+          正规三大运营商号码，配合国家安全，严厉打击电信诈骗，应运营商要求，必须实行实名制办理激活开通。敬请理解！平台客服会在1小时内电话为您一对一服务
+        </p>
       </div>
       <div class="gooddata">
-        <p>{{pathsorder[0][0].number}}</p>
+        <p>{{ pathsorder[0][0].number }}</p>
         <span>上海</span>
         <span>移动</span>
       </div>
@@ -19,30 +21,63 @@
       <div class="reali">
         <div class="multreal">
           <p>真实姓名<span>*</span></p>
-          <input type="text" placeholder="填写你的姓名" />
+          <input type="text" placeholder="填写你的姓名" v-model="username" />
         </div>
         <div class="box_construct">
           <p>身份证号<span>*</span></p>
-          <input type="number">
+          <input type="tel" maxlength="18" v-model="userid" />
         </div>
       </div>
       <h4 class="sureing">请拍摄并上传你的身份证照片(非必填)</h4>
       <div class="box_header">
         <ul>
           <li>
-            <img src="../assets/one.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc1" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show1"
+            />
             <p>请上传身份证正面</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file1"
+              @change="onchangeFile(1, 'file1')"
+            />
           </li>
           <li>
-            <img src="../assets/two.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc2" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show2"
+            />
             <p>请上传身份证反面</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file2"
+              @change="onchangeFile(2, 'file2')"
+            />
           </li>
           <li>
-            <img src="../assets/three.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc3" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show3"
+            />
             <p>请上传个人自拍照</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file3"
+              @change="onchangeFile(3, 'file3')"
+            />
           </li>
         </ul>
         <img src="../assets/hh.png" alt="" class="sureings" />
@@ -50,7 +85,7 @@
     </div>
     <div class="drawBoundingBox">
       <div class="gooddata">
-        <p>{{pathsorder[0][0].number}}</p>
+        <p>{{ pathsorder[0][0].number }}</p>
         <span>上海</span>
         <span>移动</span>
       </div>
@@ -58,30 +93,63 @@
       <div class="reali">
         <div class="multreal">
           <p>真实姓名<span>*</span></p>
-          <input type="text" placeholder="填写你的姓名" />
+          <input type="text" placeholder="填写你的姓名" v-model="usernames" />
         </div>
         <div class="box_construct">
           <p>身份证号<span>*</span></p>
-          <input type="number">
+          <input type="tel" maxlength="18" v-model="userids" />
         </div>
       </div>
       <h4 class="sureing">请拍摄并上传你的身份证照片(非必填)</h4>
       <div class="box_header">
         <ul>
           <li>
-            <img src="../assets/one.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc4" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show4"
+            />
             <p>请上传身份证正面</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file4"
+              @change="onchangeFile(4, 'file4')"
+            />
           </li>
           <li>
-            <img src="../assets/two.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc5" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show5"
+            />
             <p>请上传身份证反面</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file5"
+              @change="onchangeFile(5, 'file5')"
+            />
           </li>
           <li>
-            <img src="../assets/three.png" alt="" />
-            <img src="../assets/ppp.png" alt="" class="ppp" />
+            <img :src="imgSrc6" alt="" />
+            <img
+              src="../assets/ppp.png"
+              alt=""
+              class="ppp"
+              v-show="img_show6"
+            />
             <p>请上传个人自拍照</p>
+            <input
+              type="file"
+              class="fileImg"
+              id="file6"
+              @change="onchangeFile(6, 'file6')"
+            />
           </li>
         </ul>
         <img src="../assets/hh.png" alt="" class="sureings" />
@@ -104,7 +172,12 @@
       <div class="sensorbox_init_osd">
         <p>合计:</p>
         <span>￥900.00</span>
-        <div class="commit" @click="$router.push('/confirm_couples')">立即购买</div>
+        <div class="commit" @click="$router.push({
+          path:'/confirm_couples',
+          query:$route.query,
+        })">
+          立即购买
+        </div>
       </div>
     </div>
   </div>
@@ -113,20 +186,128 @@
 export default {
   data() {
     return {
-      pathsorder:[]
+      pathsorder: [],
+      username: "",
+      userid: "",
+      usernames: "",
+      userids: "",
+      card_front: "", //身份证反面
+      card_face: "", //人脸
+      card_back: "", //身份证正面
+      card_fronts: "", //身份证反面
+      card_faces: "", //人脸
+      card_backs: "", //身份证正面
+      img_show1: true,
+      img_show2: true,
+      img_show3: true,
+      img_show4: true,
+      img_show5: true,
+      img_show6: true,
+      imgSrc1: require("../assets/one.png"),
+      imgSrc2: require("../assets/two.png"),
+      imgSrc3: require("../assets/three.png"),
+      imgSrc4: require("../assets/one.png"),
+      imgSrc5: require("../assets/two.png"),
+      imgSrc6: require("../assets/three.png"),
     };
   },
   methods: {
     onClickGoto() {
       this.$router.go(-1);
     },
+    // onClickJump() {
+    //       // let val = {
+    //       //   card_back: this.card_back,
+    //       //   card_front: this.card_front,
+    //       //   card_face: this.card_face,
+    //       //   name: this.username,
+    //       //   cardnumber: this.userid,
+    //       // };
+    //       let arr = this.$store.state.createTheOrder;
+    //       console.log(arr);
+    //       arr.buyer[0].card_back = this.card_back;
+    //       arr.buyer[0].card_front = this.card_front;
+    //       arr.buyer[0].card_face = this.card_face;
+    //       arr.buyer[0].name = this.username;
+    //       arr.buyer[0].cardnumber = this.userid;
+    //       arr.buyer[1].card_back = this.card_backs;
+    //       arr.buyer[1].card_front = this.card_fronts;
+    //       arr.buyer[1].card_face = this.card_faces;
+    //       arr.buyer[1].name = this.usernames;
+    //       arr.buyer[1].cardnumber = this.userids;
+    //       // this.$store.commit("onCreateTheOrder", arr);
+    //       console.log(arr);
+    //       this.$post("/api/order/create", arr).then((r) => {
+    //         console.log(r);
+    //         if (r.code == 200) {
+    //           this.$router.push({
+    //             path: "/confirm_couples",
+    //             query: { order_id: r.data.id },
+    //           });
+    //         } else {
+    //           alert(r.msg);
+    //         }
+    //       });
+    // },
+    onchangeFile(index, id) {
+      var oFReader = new FileReader();
+      var file = document.getElementById(id).files[0];
+
+      oFReader.readAsDataURL(file);
+
+      oFReader.onloadend = (oFRevent) => {
+        var src = oFRevent.target.result;
+        if (index == 1) {
+          this.imgSrc1 = src;
+          this.img_show1 = false;
+        } else if (index == 2) {
+          this.imgSrc2 = src;
+          this.img_show2 = false;
+        } else if (index == 3) {
+          this.imgSrc3 = src;
+          this.img_show3 = false;
+        } else if (index == 4) {
+          this.imgSrc4 = src;
+          this.img_show4 = false;
+        } else if (index == 5) {
+          this.imgSrc5 = src;
+          this.img_show5 = false;
+        } else if (index == 6) {
+          this.imgSrc6 = src;
+          this.img_show6 = false;
+        }
+      };
+      var formData = new FormData();
+
+      formData.append("file", file);
+
+      this.$axios.post("/api/upload/upload", formData).then((r) => {
+        if (r.error == 0) {
+          console.log(r);
+          if (index == 1) {
+            this.card_back = r.url; //身份证正面
+          } else if (index == 2) {
+            this.card_front = r.url; //身份证反面
+          } else if (index == 3) {
+            this.card_face = r.url; //人脸
+          } else if (index == 4) {
+            this.card_backs = r.url; //身份证正面
+          } else if (index == 5) {
+            this.card_fronts = r.url; //身份证反面
+          } else if (index == 6) {
+            this.card_faces = r.url; //人脸
+          }
+        } else {
+          alert("上传失败");
+        }
+      });
+    },
   },
-  created(){
-    this.$get('/api/number/getNumberInfo',this.$route.query).then(val=>{
-      this.pathsorder=val.data
-      console.log(this.pathsorder);
-    })
-  }
+  created() {
+    this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+      this.pathsorder = val.data;
+    });
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -135,6 +316,14 @@ export default {
   height: 100%;
   background-color: #f8f8f8;
   overflow: auto;
+}
+.fileImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 .drawBoundingBox {
   width: 100%;
@@ -162,10 +351,9 @@ export default {
   width: 345px;
   height: 68px;
   margin: 18px auto 0;
-  background-color: rgb(248,235,235);
+  background-color: rgb(248, 235, 235);
   padding: 10px 10px 14px;
   box-sizing: border-box;
-  
 }
 .drawBoundingBox .formal p {
   font-size: 12px;
