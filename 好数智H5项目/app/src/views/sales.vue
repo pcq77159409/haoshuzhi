@@ -42,6 +42,9 @@ export default {
       this.$router.push("/refunds");
     },
   },
+  mounted(){
+    this.$
+  }
 };
 </script>
 

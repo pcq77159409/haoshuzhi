@@ -18,30 +18,20 @@
         <img src="../assets/qq.png" alt="" />
       </div>
     </div>
-    <div
-      class="endcsname"
-      v-show="shdzShow == true"
-      @click="$router.push('/goAddress')"
-    >
+    <div class="address">
       <img src="../assets/ding.png" alt="" />
-      <div class="mercifully">
-        <div class="parameter">
-          <h3>{{ shdz.name }}</h3>
-          <p>{{ shdz.mobile }}</p>
-        </div>
-        <div class="reklameadvice">
-          <p>
-            收货地址:
-            <span
-              >{{ shdz.province }} {{ shdz.city }} {{ shdz.area }}
-              <span v-show="shdz.address != null || shdz.address != 'null'">{{
-                shdz.address
-              }}</span></span
-            >
-          </p>
-        </div>
+      <div>
+        <p class="name">
+          {{ dataInfo.name }} <span class="number">{{ dataInfo.mobile }}</span>
+        </p>
+        <p class="add">
+          收货地址:{{ dataInfo.province }}{{ dataInfo.city }}{{ dataInfo.area
+          }}<span
+            v-show="dataInfo.address != null || dataInfo.address != 'null'"
+            >{{ dataInfo.address }}</span
+          >
+        </p>
       </div>
-      <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
     <div>
       <div class="orders">
@@ -57,13 +47,13 @@
         <div class="xian"></div>
         <div class="names">
           <div class="heng">
-            <p class="phonenumber">{{ dataInfo.orderdetail[0].phonenumber }}</p>
+            <p class="phonenumber">{{ orderdetail.phonenumber }}</p>
             <p class="redmoney">￥{{ dataInfo.price }}</p>
           </div>
           <p class="yidong">上海移动</p>
           <div class="hhf">
             <p class="spend">
-              含话费￥{{ dataInfo.orderdetail[0].numberinfo.contain_charge }}
+              含话费￥{{ orderdetail.numberinfo.contain_charge }}
             </p>
             <p class="ordertime">
               需付<span class="pays">￥{{ dataInfo.price }}</span>
@@ -161,58 +151,48 @@ export default {
       flag: false,
       centerDialogVisible: false,
       onclickCenel: false,
-      shdz: [
-        {
-          id: 1,
-          uid: 6,
-          name: "测试",
-          mobile: "18895358663",
-          province: "浙江省",
-          city: "杭州市",
-          area: "滨江区",
-          address: null,
-          created_at: null,
-          updated_at: null,
+      orderdetail: {
+        id: 5,
+        order_id: 11,
+        goods_id: 1,
+        store_id: 1,
+        name: "",
+        phonenumber: 1,
+        card_back: "1112",
+        card_front: "1112",
+        card_face: "11112",
+        package_id: null,
+        package_name: null,
+        created_at: 1616849212,
+        updated_at: 1616849212,
+        cardnumber: null,
+        user_id: 0,
+        numberinfo: {
+          contain_charge: 0,
+          contract: "0",
+          create_time: 1618325669,
+          describe: "测试数据7",
+          handle_type: 1,
+          id: 7,
+          initial_charge: 150,
+          location: "上海市",
+          min_charge: 38,
+          number: "13554888999",
+          operator: "1",
+          owner: "cecil",
+          owner_phone: "18876548765",
+          package_group: "YD00002",
+          prepaid_charge: 50,
+          purchase_price: "20.00",
+          recommend: 1,
+          sale_price: "100.00",
+          status: 1,
+          store_id: 1,
+          store_phone: 2147483647,
+          tag: null,
+          update_time: null,
         },
-        {
-          id: 2,
-          uid: 6,
-          name: "测试",
-          mobile: "18895358662",
-          province: "浙江省",
-          city: "杭州市",
-          area: "滨江区",
-          address: "浦沿街道哈哈哈哈哈",
-          created_at: null,
-          updated_at: null,
-        },
-        {
-          id: 3,
-          uid: 6,
-          name: "姓名",
-          mobile: "18798989898",
-          province: "安徽省",
-          city: "合肥市",
-          area: "蜀山区",
-          address: "黄山路1号",
-          created_at: 1614850523,
-          updated_at: null,
-        },
-        {
-          id: 5,
-          uid: 6,
-          name: "姓名",
-          mobile: "18798989898",
-          province: "安徽省",
-          city: "合肥市",
-          area: "蜀山区",
-          address: "黄山路1号",
-          created_at: 1615189184,
-          updated_at: 1615189184,
-        },
-      ],
-      shdzShow: false,
-      shdzId: null,
+      },
       dataInfo: [
         {
           id: 2,
@@ -251,23 +231,6 @@ export default {
               cardnumber: null,
               user_id: 0,
             },
-            {
-              id: 6,
-              order_id: 11,
-              goods_id: 2,
-              store_id: null,
-              name: "",
-              phonenumber: 2,
-              card_back: "2",
-              card_front: "2",
-              card_face: "2",
-              package_id: null,
-              package_name: null,
-              created_at: 1616849212,
-              updated_at: 1616849212,
-              cardnumber: null,
-              user_id: 0,
-            },
           ],
         },
       ],
@@ -294,30 +257,7 @@ export default {
     }).then((r) => {
       console.log(r);
       this.dataInfo = r.data;
-    });
-
-    //获取收货地址
-    this.$get("/api/address/getlist", {
-      user_id: localStorage.getItem("user-id"),
-    }).then((r) => {
-      // console.log(r);
-      if (r.code == 200) {
-        if (r.data.length != 0) {
-          this.shdzShow = true;
-          r.data.forEach((val) => {
-            if (val.is_default == 1) {
-              this.shdz = val;
-            } else {
-              this.shdz = r.data[0];
-            }
-          });
-          this.shdzId = this.shdz.id;
-        } else {
-          this.shdzShow = false;
-        }
-      } else {
-        alert(r.msg);
-      }
+      this.orderdetail = r.data.orderdetail[0];
     });
   },
 };
@@ -651,7 +591,7 @@ export default {
   width: 350px;
   height: 148px;
   background-color: white;
-  margin: 10px auto -54px;
+  margin: 35px auto -54px;
   border-radius: 5px;
   position: relative;
 }
@@ -671,7 +611,7 @@ export default {
 .add {
   font-size: 13px;
   color: #333333;
-  width: 200px;
+  /* width: 200px; */
   margin: 0 15px;
 }
 .A {
@@ -679,6 +619,8 @@ export default {
   height: 100%;
   position: relative;
   background-color: #f5f5f5;
+  padding-bottom:50px ;
+  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -724,7 +666,7 @@ export default {
   margin: 0 29px;
 }
 .address {
-  position: absolute;
+  position: relative;
   margin: -27px 13px;
   width: 350px;
   height: 80px;
@@ -753,63 +695,5 @@ export default {
   font-size: 14px;
   color: white;
   margin-left: 42px;
-}
-
-.endcsname {
-  position: relative;
-  width: 345px;
-  height: 68px;
-  background-color: #fff;
-  margin: -35px 15px 0px;
-  display: flex;
-  border-radius: 5px;
-}
-.endcsname img:first-child {
-  width: 20px;
-  height: 29px;
-  margin: 20px 0 0 20px;
-}
-.endcsname img:last-child {
-  width: 8px;
-  height: 14px;
-  margin: 29px 0 0 10px;
-}
-.endcsname .mercifully {
-  width: 80%;
-}
-.endcsname .mercifully .parameter {
-  display: flex;
-}
-.endcsname .mercifully .parameter h3 {
-  color: #333333;
-  font-size: 15px;
-  font-weight: 500;
-  margin: 15px 0 0 12px;
-}
-.endcsname .mercifully .parameter p {
-  color: #666666;
-  font-size: 12px;
-  margin: 17px 0 0 14px;
-}
-.endcsname .mercifully .reklameadvice {
-  display: flex;
-}
-.endcsname .mercifully .reklameadvice p {
-  font-size: 12px;
-  color: #333333;
-  margin: 4px 0 0 12px;
-}
-.endcsname.endcsname_sh img:nth-of-type(1) {
-  width: 20px;
-  height: 29px;
-  margin: 20px 15px 0 20px;
-}
-.endcsname.endcsname_sh img:nth-of-type(2) {
-  margin: 25px 15px 0 20px;
-}
-.endcsname.endcsname_sh p {
-  flex: 1;
-  line-height: 68px;
-  font-size: 14px;
 }
 </style>

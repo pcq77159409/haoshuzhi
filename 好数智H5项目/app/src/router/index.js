@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        redirect: '/commons/home'
+        redirect: '/commons/home/m'
     },
     {
         path: '/comcmons',
@@ -29,7 +29,13 @@ const routes = [{
             path: '/commons/home',
             name: 'Home',
             component: () =>
-                import ('../views/Home.vue')
+                import ('../views/Home.vue'),
+            children: [{
+                path: '/commons/home/m',
+                name: 'm',
+                component: () =>
+                    import ('../views/m.vue')
+            }]
         }, {
             path: '/commons/service',
             name: 'Service',

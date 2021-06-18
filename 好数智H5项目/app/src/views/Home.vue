@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home">    
     <div class="head">
       <div @click="citys" class="locations">
         <img src="../assets/123.png" alt="" />
@@ -17,7 +17,8 @@
       <img src="../assets/搜索@2x.png" alt="" class="search" />
     </div>
     <div class="heads">
-      <img src="../assets/banner@2x.png" alt="" />
+      <!-- <img src="../assets/banner@2x.png" alt="" /> -->
+      <router-view></router-view>
     </div>
 
     <div class="header">
@@ -90,7 +91,7 @@
       >
         <div class="shit">
           <img src="../assets/te.png" alt="" />
-          <div class="number">{{ value.number }}</div>
+          <div class="number" v-html="value.red_number"></div>
           <div class="money">
             <p>{{ value.location }}</p>
             <p class="dolor">佣金￥{{ value.returned_commission }}</p>
@@ -290,6 +291,7 @@ a {
   height: 100%;
   overflow: auto;
   position: relative;
+  background-color: #fff;
 }
 .haed {
   width: 100%;
@@ -337,6 +339,8 @@ a {
   width: 340px;
   height: 120px;
   margin: -100px auto 0;
+  border-radius: 5px;
+  overflow: hidden;
 }
 .heads img {
   width: 100%;
@@ -536,6 +540,9 @@ a {
 }
 .lina {
   padding-bottom: 68px;
+}
+.header{
+  margin-top: 10px;
 }
 </style>
 

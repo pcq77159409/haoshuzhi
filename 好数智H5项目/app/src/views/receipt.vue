@@ -1,13 +1,18 @@
 <template>
   <div class="A">
     <div class="imgs">
-      <img src="../assets/left.png" alt="" class="back" @click="$router.go(-1)"/>
+      <img
+        src="../assets/left.png"
+        alt=""
+        class="back"
+        @click="$router.go(-1)"
+      />
       <p class="detalis">订单详情</p>
     </div>
     <div class="total">
       <div class="delivered">
         <p class="one">待收货</p>
-        <p class="two">还剩2天23时自动确认收货</p>
+        <!-- <p class="two">还剩2天23时自动确认收货</p> -->
       </div>
       <div class="right">
         <img src="../assets/cars.png" alt="" />
@@ -18,7 +23,10 @@
       <div>
         <p class="name">运输中</p>
         <p class="add">您的快递已到达上海嘉定区嘉定北</p>
-        <div class="liu" @click="onlogistics">查看物流</div>
+        <div class="liu" @click="onclickCKWL(dataInfo.express_number)">
+          查看物流
+        </div>
+        <!-- <div class="liu" @click="onlogistics">查看物流</div> -->
       </div>
     </div>
     <div>
@@ -35,35 +43,37 @@
         <div class="xian"></div>
         <div class="names">
           <div class="heng">
-            <p class="phonenumber">13133393741</p>
-            <p class="redmoney">￥400</p>
+            <p class="phonenumber">{{ orderdetail.phonenumber }}</p>
+            <p class="redmoney">￥{{ dataInfo.price }}</p>
           </div>
           <p class="yidong">上海移动</p>
-          <p class="spend">含话费￥230</p>
+          <p class="spend">
+            含话费￥{{ orderdetail.numberinfo.contain_charge }}
+          </p>
           <p class="ordertime">
             <span class="need"
               >实付
-              <h6 class="pay">￥400</h6></span
+              <h6 class="pay">￥{{ dataInfo.price }}</h6></span
             >
           </p>
           <div class="money">
-            <p class="moneys">退款</p>
+            <p class="moneys" @click="onclickTuiK(dataInfo.id)">退款</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="yes">
+    <!-- <div class="yes">
       <p>
         <img src="../assets/v@2x.png" alt="" class="v" />
         获得<span>160</span>点积分
       </p>
-    </div>
+    </div> -->
     <div class="no">
       <p class="information">订单信息</p>
       <ul class="table">
         <li>
           订单编号:
-          <p class="rights">123456789098776</p>
+          <p class="rights">{{ dataInfo.number }}</p>
         </li>
         <li>
           支付方式:
@@ -71,19 +81,19 @@
         </li>
         <li>
           下单时间:
-          <p class="rights">2021.03.16 16:23:27</p>
+          <p class="rights">{{ dataInfo.pay_time }}</p>
         </li>
         <li>
           发货时间:
-          <p class="rights">2021.03.16 16:23:27</p>
+          <p class="rights">{{ dataInfo.delivery_time }}</p>
         </li>
         <li>
           快递方式:
-          <p class="rights">顺丰速运</p>
+          <p class="rights">{{dataInfo.delivery}}</p>
         </li>
         <li>
           运单编号:
-          <p class="rights">92929292</p>
+          <p class="rights">{{dataInfo.express_number}}</p>
         </li>
       </ul>
     </div>
@@ -107,7 +117,7 @@
     </el-dialog>
     <div class="delivery">
       <div class="del">
-        <p>确认收货</p>
+        <p @click="onclickQDSH(dataInfo.id)">确认收货</p>
       </div>
     </div>
   </div>
@@ -119,12 +129,137 @@ export default {
       flag: false,
       centerDialogVisible: false,
       onclickCenel: false,
+      orderdetail: {
+        id: 5,
+        order_id: 11,
+        goods_id: 1,
+        store_id: 1,
+        name: "",
+        phonenumber: 1,
+        card_back: "1112",
+        card_front: "1112",
+        card_face: "11112",
+        package_id: null,
+        package_name: null,
+        created_at: 1616849212,
+        updated_at: 1616849212,
+        cardnumber: null,
+        user_id: 0,
+        numberinfo: {
+          contain_charge: 0,
+          contract: "0",
+          create_time: 1618325669,
+          describe: "测试数据7",
+          handle_type: 1,
+          id: 7,
+          initial_charge: 150,
+          location: "上海市",
+          min_charge: 38,
+          number: "13554888999",
+          operator: "1",
+          owner: "cecil",
+          owner_phone: "18876548765",
+          package_group: "YD00002",
+          prepaid_charge: 50,
+          purchase_price: "20.00",
+          recommend: 1,
+          sale_price: "100.00",
+          status: 1,
+          store_id: 1,
+          store_phone: 2147483647,
+          tag: null,
+          update_time: null,
+        },
+      },
+      dataInfo: [
+        {
+          id: 2,
+          number: "SJ20210327202033070753171",
+          user_id: 6,
+          name: "Address",
+          mobile: "18895358662",
+          province: "浙江省",
+          city: "杭州市",
+          area: "滨江区",
+          address: "浦沿街道哈哈哈哈哈",
+          created_at: 1616847633,
+          updated_at: 1616847633,
+          delivery: "线上配送",
+          delivery_time: "就是现在",
+          price: "3.00",
+          finishtime: null,
+          pay_money: null,
+          status: 1,
+          pay_time: null,
+          orderdetail: [
+            {
+              id: 5,
+              order_id: 11,
+              goods_id: 1,
+              store_id: 1,
+              name: "",
+              phonenumber: 1,
+              card_back: "1112",
+              card_front: "1112",
+              card_face: "11112",
+              package_id: null,
+              package_name: null,
+              created_at: 1616849212,
+              updated_at: 1616849212,
+              cardnumber: null,
+              user_id: 0,
+            },
+          ],
+        },
+      ],
     };
   },
   methods: {
     onlogistics() {
       this.$router.push("/logistics");
     },
+    onclickTuiK(id) {
+      //退款
+      this.$post("/api/order/orderrefund", {
+        order_id: id,
+        user_id: this.$store.state.user_id,
+      }).then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          alert("申请成功,等待商家退款");
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
+    onclickCKWL(id) {
+      //查看物流
+      window.location.href = "https://m.kuaidi100.com/result.jsp?nu=" + id;
+    },
+    onclickQDSH(id) {
+      console.log(id);
+      //完成订单
+      this.$post("/api/order/orderfinish", {
+        order_id: id,
+        user_id: this.$store.state.user_id,
+      }).then((r) => {
+        if (r.code == 200) {
+          this.$router.push({ path: "/completed", query: { id: id } });
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
+  },
+  mounted() {
+    this.$get("/api/order/info", {
+      user_id: this.$store.state.user_id,
+      order_id: this.$route.query.id,
+    }).then((r) => {
+      console.log(r);
+      this.dataInfo = r.data;
+      this.orderdetail = r.data.orderdetail[0];
+    });
   },
 };
 </script>
@@ -157,7 +292,7 @@ export default {
 .A /deep/ .el-dialog__header {
   padding: 0;
 }
-.A /deep/ .el-dialog--center .el-dialog__footer{
+.A /deep/ .el-dialog--center .el-dialog__footer {
   padding-bottom: 0;
 }
 .A /deep/ .el-icon-close:before {
@@ -293,7 +428,9 @@ export default {
   height: 40px;
 }
 .delivery {
-  position: absolute;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 60px;
   background-color: white;
@@ -338,7 +475,7 @@ export default {
 }
 .table li {
   display: flex;
-  width: 200px;
+  /* width: 200px; */
   height: 30px;
   margin-left: 20px;
   margin-top: 9px;
@@ -347,7 +484,7 @@ export default {
   width: 350px;
   height: 290px;
   background-color: white;
-  margin: 65px 13px;
+  margin: 15px 13px 65px;
   border-radius: 5px;
   font-size: 13px;
 }
@@ -396,20 +533,23 @@ export default {
   font-size: 12px;
 }
 .pay {
-  margin: -25px 28px;
+  margin: -25px 0px -25px 28px;
   font-size: 16px;
   color: #fe5858;
 }
 .need {
-  margin: 0 255px;
+  /* margin: 0 255px; */
+  /* display: block; */
   font-weight: bold;
   font-size: 14px;
   color: #333333;
 }
 .ordertime {
+  width: 100%;
   font-size: 12px;
   display: flex;
   margin-top: 5px;
+  justify-content: flex-end;
 }
 .spend {
   font-size: 12px;
@@ -458,7 +598,7 @@ export default {
   width: 350px;
   height: 183px;
   background-color: white;
-  margin: 64px 13px;
+  margin: 64px 13px 14px;
   border-radius: 5px;
   position: relative;
 }
@@ -472,9 +612,11 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: #f5f5f5;
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 50px;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
 }
 .imgs {
   width: 100%;
@@ -542,7 +684,7 @@ export default {
 .add {
   font-size: 13px;
   color: #333333;
-  width: 200px;
+  /* width: 200px; */
   margin: 0 15px;
 }
 .one {

@@ -9,6 +9,13 @@ import axios from "axios";
 axios.defaults.baseURL = '/index.php';
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;
+
+import 'swiper/dist/css/swiper.css';
+
+import Swiper from 'swiper';
+// Vue.use(Swiper)
+Swiper;
+
 Vue.use(Swipe);
 Vue.use(SwipeItem);
 

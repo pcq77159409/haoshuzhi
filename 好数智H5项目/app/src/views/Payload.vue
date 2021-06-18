@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     onclickDeta(){
-      this.$router.push({path:'/deta',query:{order_id:this.$route.query.order_id}});
+      this.$router.push({path:'/deta',query:{id:this.$route.query.order_id}});
     }
   },
 };
