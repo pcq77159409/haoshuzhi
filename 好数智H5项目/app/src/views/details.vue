@@ -12,7 +12,7 @@
             <li class="citys">
               <p class="city">
                 {{ detailsList.location }}
-                <span>{{detailsList.operator | operators()}}</span>
+                <span>{{ detailsList.operator | operators() }}</span>
               </p>
               <p>￥{{ detailsList.sale_price }}</p>
             </li>
@@ -23,13 +23,15 @@
         </div>
       </div>
     </div>
-    <div
-      class="phone"
-      @click="onClickBack(detailsList.numberpackage[0].storepackage.id)"
-    >
+    <div class="phone">
       <p>
         号码套餐
-        <span>{{ taocan }}</span>
+        <span v-if="detailsList.numberpackage[0].storepackage != null">
+          <span
+            @click="onClickBack(detailsList.numberpackage[0].storepackage.id)"
+            >{{ taocan }}</span
+          >
+        </span>
       </p>
     </div>
     <div class="box">
@@ -124,7 +126,7 @@
         </div>
         <div class="traffic">
           <h5>套餐</h5>
-          <ul>
+          <ul v-if="detailsList.numberpackage[0].storepackage != null">
             <li
               v-for="(item, index) in detailsList.numberpackage"
               :key="index"
@@ -241,7 +243,8 @@ export default {
       ],
       shdzShow: false,
       shdzId: null,
-      detailsList: {//号码详情
+      detailsList: {
+        //号码详情
         id: 1,
         number: "18755226962",
         location: "蚌埠市", //归属地
@@ -417,9 +420,10 @@ export default {
       if (r.code == 200) {
         this.detailsList = r.data[0][0];
         let numberpackage = r.data[0][0].numberpackage[0];
-        
-        this.taocanXZ = numberpackage.storepackage.id;
-        this.taocan = numberpackage.storepackage.package_name;
+        if (numberpackage.storepackage != null) {
+          this.taocanXZ = numberpackage.storepackage.id;
+          this.taocan = numberpackage.storepackage.package_name;
+        }
         console.log(this.detailsList);
       } else if (r.code == 700) {
         this.$router.push("/login");

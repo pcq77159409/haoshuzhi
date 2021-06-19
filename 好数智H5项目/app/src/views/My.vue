@@ -9,8 +9,8 @@
         <div class="user_name">
           <img src="../assets/Head_portrait.png" alt="" class="Head_portrait" />
           <div class="id">
-            <p>好名字</p>
-            <p>ID:123456</p>
+            <p>{{ user.username }}</p>
+            <p>ID:{{ user.id }}</p>
           </div>
         </div>
         <div @click="onClickOpen">
@@ -45,19 +45,29 @@
           </div>
         </div>
         <ul class="finish">
-          <li @click="$router.push({path:'/order',query:{name:'first'}})">
+          <li
+            @click="$router.push({ path: '/order', query: { name: 'first' } })"
+          >
             <img src="../assets/pay.png" alt="" />
             <p>待支付</p>
           </li>
-          <li @click="$router.push({path:'/order',query:{name:'third'}})">
+          <li
+            @click="$router.push({ path: '/order', query: { name: 'third' } })"
+          >
             <img src="../assets/delivery.png" alt="" />
             <p>待发货</p>
           </li>
-          <li @click="$router.push({path:'/order',query:{name:'fourth'}})">
+          <li
+            @click="$router.push({ path: '/order', query: { name: 'fourth' } })"
+          >
             <img src="../assets/closed.png" alt="" />
             <p>待收货</p>
           </li>
-          <li @click="$router.push({path:'/order',query:{name:'complete'}})">
+          <li
+            @click="
+              $router.push({ path: '/order', query: { name: 'complete' } })
+            "
+          >
             <img src="../assets/complete.png" alt="" />
             <p>已完成</p>
           </li>
@@ -66,15 +76,17 @@
             <p>退款/售后</p>
           </li>
         </ul>
-        <div class="wait">
+        <div class="wait" v-if="unapid.id">
           <div class="payment_box">
             <img src="../assets/card.png" alt="" />
             <div>
-              <p>手机靓号:13566668866</p>
+              <p>手机靓号:{{ unapid.orderdetail[0].phonenumber }}</p>
               <p>等待付款</p>
             </div>
           </div>
-          <span>立即支付</span>
+          <span @click="onclickFK(unapid.id, unapid.price, unapid.number)"
+            >立即支付</span
+          >
         </div>
       </div>
       <div class="road">
@@ -115,6 +127,38 @@ export default {
   data() {
     return {
       flag: false,
+      user: [],
+      unapid: {
+        address: "asgag",
+        area: "沙坪坝区",
+        city: "重庆市",
+        code_url: "",
+        com: "",
+        created_at: "2021-06-07 10:49:21",
+        delivery: "送货上门",
+        delivery_time: "不限时间",
+        express_number: null,
+        finishtime: "1970-01-01 08:00:00",
+        id: 92,
+        info: null,
+        mobile: "15197911446",
+        name: "65872",
+        number: "SJ20210607104921578341391",
+        orderdetail: [
+          {
+            phonenumber: "13554888999",
+          },
+        ],
+        pay_money: null,
+        pay_time: "1970-01-01 08:00:00",
+        paytype: 0,
+        price: "150.00",
+        province: "重庆市",
+        remarks: null,
+        status: 1,
+        updated_at: "2021-06-07 10:49:21",
+        user_id: 21,
+      },
     };
   },
   methods: {
@@ -127,7 +171,42 @@ export default {
     onClickClose() {
       this.flag = false;
     },
-    
+    onclickFK(id, price, number) {
+      //去付款
+      sessionStorage.setItem("time", +new Date());
+      this.$router.push({
+        path: "/commerce_payment",
+        query: {
+          order_id: id,
+          price: price,
+          number: number,
+        },
+      });
+    },
+  },
+  mounted() {
+    this.$get("/api/user/getinfo", { user_id: this.$store.state.user_id }).then(
+      (r) => {
+        console.log(r);
+        if (r.code == 200) {
+          this.user = r.data;
+        }
+      }
+    );
+
+    this.$get("/api/order/getlist", {
+      user_id: this.$store.state.user_id,
+      status: 1,
+    }).then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        if (r.data.length == 0) {
+          this.unapid = {};
+        } else {
+          this.unapid = r.data.data[0];
+        }
+      }
+    });
   },
 };
 </script>
@@ -237,7 +316,7 @@ body {
 .ordering {
   border-radius: 5px;
   width: 353px;
-  height: 180pt;
+  // height: 180pt;
   background-color: #fff;
   margin: 60px auto 0;
 }

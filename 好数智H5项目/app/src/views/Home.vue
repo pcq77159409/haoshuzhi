@@ -1,5 +1,5 @@
 <template>
-  <div class="home">    
+  <div class="home">
     <div class="head">
       <div @click="citys" class="locations">
         <img src="../assets/123.png" alt="" />
@@ -165,59 +165,21 @@
       </div>
     </div>
     <div class="cap lina">
-      <router-link to="/screen">
+      <router-link
+        :to="{ path: '/details', query: { 'ids[]': item.id } }"
+        v-for="(item, index) in dataTj"
+        :key="index"
+      >
         <div class="shit">
           <img src="../assets/te.png" alt="" />
-          <div class="number">13133393741</div>
+          <div class="number">{{ item.number }}</div>
           <div class="money">
-            <p>上海移动</p>
-            <p class="dolor">佣金￥200</p>
+            <p>{{ item.from }}</p>
+            <!-- <p class="dolor">佣金￥200</p> -->
           </div>
           <div class="money">
-            <p class="han">含话费￥260</p>
-            <p class="twietion">￥260</p>
-          </div>
-        </div>
-      </router-link>
-      <router-link to="/screen">
-        <div class="shit">
-          <img src="../assets/te.png" alt="" />
-          <div class="number">13133393741</div>
-          <div class="money">
-            <p>上海移动</p>
-            <p class="dolor">佣金￥200</p>
-          </div>
-          <div class="money">
-            <p class="han">含话费￥260</p>
-            <p class="twietion">￥260</p>
-          </div>
-        </div>
-      </router-link>
-      <router-link to="/screen">
-        <div class="shit">
-          <img src="../assets/te.png" alt="" />
-          <div class="number">13133393741</div>
-          <div class="money">
-            <p>上海移动</p>
-            <p class="dolor">佣金￥200</p>
-          </div>
-          <div class="money">
-            <p class="han">含话费￥260</p>
-            <p class="twietion">￥260</p>
-          </div>
-        </div>
-      </router-link>
-      <router-link to="/screen">
-        <div class="shit">
-          <img src="../assets/te.png" alt="" />
-          <div class="number">13133393741</div>
-          <div class="money">
-            <p>上海移动</p>
-            <p class="dolor">佣金￥200</p>
-          </div>
-          <div class="money">
-            <p class="han">含话费￥260</p>
-            <p class="twietion">￥260</p>
+            <!-- <p class="han">含话费￥260</p> -->
+            <p class="twietion">￥{{ item.sale_price }}</p>
           </div>
         </div>
       </router-link>
@@ -234,6 +196,7 @@ export default {
     return {
       dataList: [],
       search: "",
+      dataTj: [],
     };
   },
   methods: {
@@ -251,13 +214,18 @@ export default {
     },
   },
   created() {
-    this.$axios.post("/api/home_page/getNumbers", { operator_id: 1, from: "上海" }).then((val) => {
+    this.$axios
+      .post("/api/home_page/getNumbers", { operator_id: 1, from: "上海" })
+      .then((val) => {
         console.log(val.data);
         this.dataList = val.data;
       });
-      this.$axios.get('/api/number/getHotNumber').then(val=>{
-        console.log(val);
-      })
+    this.$get("/api/number/getHotNumber").then((val) => {
+      console.log(val);
+      if (val.code == 200) {
+        this.dataTj = val.data;
+      }
+    });
   },
 };
 </script>
@@ -450,7 +418,7 @@ a {
   flex-wrap: wrap;
   margin-top: 10px;
   justify-content: space-between;
-  padding:0 10px ;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
@@ -543,7 +511,7 @@ a {
 .lina {
   padding-bottom: 68px;
 }
-.header{
+.header {
   margin-top: 10px;
 }
 </style>
