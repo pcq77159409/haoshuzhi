@@ -317,6 +317,7 @@ body {
   border-radius: 5px;
   width: 353px;
   // height: 180pt;
+  padding-bottom: 10px;
   background-color: #fff;
   margin: 60px auto 0;
 }
