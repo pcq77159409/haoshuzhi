@@ -1,12 +1,18 @@
 <template>
   <div class="about">
     <div class="header">
-      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
       <p>类别</p>
     </div>
     <div class="move">
       <ul class="pag">
-        <li @click="onClickTab(0)">
+        <li
+          v-for="(item, index) in arrList"
+          :key="index"
+          @click="onClickTab(index, item.id)"
+        >
+          <p :class="flag == index ? 'current' : ''">{{ item.name }}</p>
+        </li>
+        <!-- <li @click="onClickTab(0)">
           <p :class="flag == 0 ? 'current' : ''">中国移动</p>
         </li>
         <li @click="onClickTab(1)">
@@ -17,95 +23,101 @@
         </li>
         <li @click="onClickTab(3)">
           <p :class="flag == 3 ? 'current' : ''">虚拟号码</p>
-        </li>
+        </li> -->
       </ul>
-      <div class="sex" v-show="active == 0">
+      <div class="sex">
         <div class="roughly">
           <span></span>
           <h5>号段</h5>
           <span></span>
         </div>
-        <ul class="digital">
-          <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
+        <ul class="digital" v-if="arrs.length != 0">
+          <li
+            v-for="(val, index) in arrs"
+            :key="index"
+            @click="
+              $router.push({ path: '/screen', query: { haoduan: val.name } })
+            "
+          >
+            {{ val.name }}
+          </li>
         </ul>
         <div class="roughly">
           <span></span>
           <h5>套餐</h5>
           <span></span>
         </div>
-        <ul class="card">
+        <ul class="card" v-if="arrTao.length != 0">
+          <li v-for="(item, index) in arrTao" :key="index">
+            {{ item.name }}
+          </li>
+          <!-- <li>39元小魔卡</li>
           <li>39元小魔卡</li>
           <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-        </ul>
-      </div>
-      <div class="sex" v-show="active == 1">
-        <div class="roughly">
-          <span></span>
-          <h5>号段</h5>
-          <span></span>
-        </div>
-        <ul class="digital">
-         <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
-        </ul>
-        <div class="roughly">
-          <span></span>
-          <h5>套餐</h5>
-          <span></span>
-        </div>
-        <ul class="card">
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-        </ul>
-      </div>
-      <div class="sex" v-show="active == 2">
-        <div class="roughly">
-          <span></span>
-          <h5>号段</h5>
-          <span></span>
-        </div>
-        <ul class="digital">
-          <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
-        </ul>
-        <div class="roughly">
-          <span></span>
-          <h5>套餐</h5>
-          <span></span>
-        </div>
-        <ul class="card">
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-        </ul>
-      </div>
-      <div class="sex" v-show="active == 3">
-        <div class="roughly">
-          <span></span>
-          <h5>号段</h5>
-          <span></span>
-        </div>
-        <ul class="digital">
-         <li v-for="(val,index) in arrs" :key="index" @click="$router.push('/screen')">{{ val }}</li>
-        </ul>
-        <div class="roughly">
-          <span></span>
-          <h5>套餐</h5>
-          <span></span>
-        </div>
-        <ul class="card">
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
-          <li>39元小魔卡</li>
+          <li>39元小魔卡</li> -->
         </ul>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      flag: 0,
+      arrs: [
+        {
+          id: 5,
+          name: "134", //三级分类名称
+          link: "", //如果二级分类类型为4链接，此字段有值
+        },
+      ],
+      arrList: [
+        {
+          id: 98,
+          name: "移动号码",
+          icon: "",
+          type: 0,
+          image:
+            "http://www.shuzhi.com/public/uploads/20210526/f9e37418a836787f26af32bf1c516fa4.png",
+        },
+      ],
+      arrTao: [],
+    };
+  },
+  methods: {
+    onClickTab(v, id) {
+      this.flag = v;
+      this.$get("/api/home_page/getChildCategory", { id: id }).then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          if (r.data.length == 0) {
+            this.arrs = r.data;
+            this.arrTao = r.data;
+          } else {
+            this.arrs = r.data[0].child;
+            this.arrTao = r.data[1].child;
+          }
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
+  },
+  mounted() {
+    this.$axios.get("/api/home_page/getCategory").then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        this.arrList = r.data;
+        this.onClickTab(0, r.data[0].id);
+      } else {
+        alert(r);
+      }
+    });
+  },
+};
+</script>
 <style lang="scss" scoped>
 .digital :hover {
   color: red;
@@ -194,16 +206,19 @@ body {
   height: 1px;
   background-color: #eeecec;
 }
-.digital{
-    display: flex;
-    flex-wrap: wrap;
-    height: 190px;
-    justify-content: space-evenly;
-    margin-top: 24px;
-    overflow: auto;
+.digital {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  // height: 190px;
+  // justify-content: space-evenly;
+  margin-top: 24px;
+  overflow: auto;
+  // padding-right: 4%;
+  box-sizing: border-box;
 }
 .digital li {
-  width: 52px;
+  width: 20%;
   height: 28px;
   border: 1px solid #999999;
   color: #666666;
@@ -213,15 +228,17 @@ body {
   line-height: 28px;
   margin-bottom: 20px;
   font-size: 11pt;
+  margin-left: 4%;
+  box-sizing: border-box;
 }
 .card {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
   margin-top: 24px;
 }
 .card li {
-  width: 118px;
+  width: 44%;
   height: 28px;
   border: 1px solid #999999;
   color: #666666;
@@ -231,68 +248,9 @@ body {
   line-height: 28px;
   margin-bottom: 15pt;
   font-size: 11pt;
+  margin-left: 4%;
+  box-sizing: border-box;
 }
 </style>
 
-<script>
-export default {
-  data() {
-    return {
-      flag: 0,
-      active: 0,
-      arrs:[
-        "134",
-        "136",
-        "137",
-        "138",
-        "139",
-        "147",
-        "150",
-        "151",
-        "152",
-        "157",
-        "158",
-        "159",
-        "178",
-        "172",
-        "182",
-        "183",
-        "184",
-        "187",
-        "188",
-        "198",
-        "130",
-        "131",
-        "132",
-        "145",
-        "155",
-        "156",
-        "166",
-        "171",
-        "175",
-        "176",
-        "185",
-        "186",
-        "133",
-        "149",
-        "153",
-        "173",
-        "177",
-        "180",
-        "181",
-        "189",
-        "199",
-        "191",
-        "162",
-        "165",
-      ],
-    };
-  },
-  methods: {
-    onClickTab(v) {
-      this.flag = v;
-      this.active = v;
-    },
-  },
-};
-</script>
+

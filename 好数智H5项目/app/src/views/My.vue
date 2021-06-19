@@ -199,7 +199,7 @@ body {
   width: 353px;
   height: 100pt;
   background-color: #fff;
-  margin: 0 11px;
+  // margin: 0 11px;
   position: absolute;
   top: 181px;
   border-radius: 5px;
