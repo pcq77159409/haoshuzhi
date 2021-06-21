@@ -122,7 +122,7 @@ export default {
     return {
       money: 0,
       username: "",
-      userid:'',
+      userid: "",
       img_show1: true,
       img_show2: true,
       img_show3: true,
@@ -136,32 +136,21 @@ export default {
   },
   methods: {
     onClickJump() {
-          // let val = {
-          //   card_back: this.card_back,
-          //   card_front: this.card_front,
-          //   card_face: this.card_face,
-          //   name: this.username,
-          //   cardnumber: this.userid,
-          // };
-          let arr = this.$store.state.createTheOrder;
-          console.log(arr);
-          arr.buyer[0].card_back = this.card_back;
-          arr.buyer[0].card_front = this.card_front;
-          arr.buyer[0].card_face = this.card_face;
-          arr.buyer[0].name = this.username;
-          arr.buyer[0].cardnumber = this.userid;
-          this.$store.commit("onCreateTheOrder", arr);
-          this.$post("/api/order/create", arr).then((r) => {
-            console.log(r);
-            if (r.code == 200) {
-              this.$router.push({
-                path: "/confirm",
-                query: { order_id: r.data.id },
-              });
-            } else {
-              alert(r.msg);
-            }
-          });
+      let arr = {
+        user_id: this.$store.state.user_id,
+        order_id: this.$route.query.order_id,
+        cards: [{}],
+      };
+      console.log(arr);
+      arr.cards[0].card_back = this.card_back;
+      arr.cards[0].card_front = this.card_front;
+      arr.cards[0].card_face = this.card_face;
+      arr.cards[0].name = this.username;
+      arr.cards[0].cardnumber = this.userid;
+      arr.cards[0].goods_id = this.$route.query.goods_id
+      this.$post("api/order/updateusercode", arr).then((val) => {
+        console.log(val);
+      });
     },
     onClickGoto() {
       this.$router.go(-1);

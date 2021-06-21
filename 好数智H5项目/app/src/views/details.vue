@@ -341,6 +341,7 @@ export default {
         status: 0,
         from: "上海移动", //归属地
       },
+      order_id: null,
     };
   },
   methods: {
@@ -398,25 +399,31 @@ export default {
           handle_type: 1,
         },
       ];
+      this.$post("/api/order/create", obj).then((val) => {
+        console.log(val);
+        this.order_id = val.data.id;
+        if (this.shdzShow) {
+          this.$router.push({
+            path: "/form_orders_path",
+            query: {
+              money: this.detailsList.sale_price,
+              order_id: this.order_id,
+              goods_id: this.detailsList.id,
+            },
+          });
+        } else {
+          alert("请填写收货地址");
+        }
+      });
       this.$store.commit("onCreateTheOrder", obj);
     },
     onclickPurchase() {
-      if (this.shdzShow) {
-        this.onCreateTheOrders();
-        this.$router.push({
-          path: "/form_orders_path",
-          query: { money: this.detailsList.sale_price },
-        });
-      } else {
-        alert("请填写收货地址");
-      }
+      this.onCreateTheOrders();
     },
   },
   created() {
-    console.log(this.$route.query);
     // 获取手机号信息
     this.$get("/api/number/getNumberInfo", this.$route.query).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.detailsList = r.data[0][0];
         let numberpackage = r.data[0][0].numberpackage[0];
@@ -424,7 +431,6 @@ export default {
           this.taocanXZ = numberpackage.storepackage.id;
           this.taocan = numberpackage.storepackage.package_name;
         }
-        console.log(this.detailsList);
       } else if (r.code == 700) {
         this.$router.push("/login");
       } else {
@@ -436,7 +442,6 @@ export default {
     this.$get("/api/address/getlist", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         if (r.data.length != 0) {
           this.shdzShow = true;

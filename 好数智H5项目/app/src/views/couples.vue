@@ -394,7 +394,6 @@ export default {
         this.$axios
           .post("/api/home_page/loveNumber", this.$route.query)
           .then((val) => {
-            console.log(val);
             this.love = val.data.data;
           });
       }

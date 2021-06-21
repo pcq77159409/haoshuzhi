@@ -373,31 +373,26 @@ export default {
       this.$router.go(-1);
     },
     onClickJump() {
-      let arr = this.$store.state.createTheOrder;
+      let arr = {
+        user_id: this.$store.state.user_id,
+        order_id: this.$route.query.order_id,
+        cards: [{},{}],
+      };
       console.log(arr);
-      arr.buyer[0].card_back = this.card_back;
-      arr.buyer[0].card_front = this.card_front;
-      arr.buyer[0].card_face = this.card_face;
-      arr.buyer[0].name = this.username;
-      arr.buyer[0].cardnumber = this.userid;
-      arr.buyer[1].card_back = this.card_backs;
-      arr.buyer[1].card_front = this.card_fronts;
-      arr.buyer[1].card_face = this.card_faces;
-      arr.buyer[1].name = this.usernames;
-      arr.buyer[1].cardnumber = this.userids;
-
-      console.log(arr);
-      this.$post("/api/order/create", arr).then((r) => {
-        console.log(r);
-        if (r.code == 200) {
-          console.log(r);
-          this.$router.push({
-            path: "/confirm_couples",
-            query: { order_id: r.data.id },
-          });
-        } else {
-          alert(r.msg);
-        }
+      arr.cards[0].card_back = this.card_back;
+      arr.cards[0].goods_id=this.$route.query.goods_id1
+      arr.cards[0].card_front = this.card_front;
+      arr.cards[0].card_face = this.card_face;
+      arr.cards[0].name = this.username;
+      arr.cards[0].cardnumber = this.userid;
+      arr.cards[1].goods_id=this.$route.query.goods_id2
+      arr.cards[1].card_back = this.card_backs;
+      arr.cards[1].card_front = this.card_fronts;
+      arr.cards[1].card_face = this.card_faces;
+      arr.cards[1].name = this.usernames;
+      arr.cards[1].cardnumber = this.userids;
+       this.$post("api/order/updateusercode", arr).then((val) => {
+        console.log(val);
       });
     },
     onchangeFile(index, id) {
@@ -456,7 +451,6 @@ export default {
   },
   created() {
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
-      console.log(val.data);
       this.pathsorder = val.data;
       this.price =
         parseInt(this.pathsorder[0][0].sale_price) +

@@ -477,10 +477,11 @@ export default {
           },
         ],
       ],
-      taocanXZ: '',
+      taocanXZ: "",
       pcq: {},
       tjb: {},
       price: null,
+      order_id: null,
     };
   },
   methods: {
@@ -522,13 +523,6 @@ export default {
         }
       });
     },
-    onClickFarm() {
-      this.onCreateTheOrders();
-      this.$router.push({
-        path: "/form_orders_path_couples",
-        query: this.$route.query,
-      });
-    },
     onCreateTheOrders() {
       let obj = this.$store.state.createTheOrder;
       obj.user_id = localStorage.getItem("user-id");
@@ -547,8 +541,22 @@ export default {
           handle_type: 1,
         },
       ];
-      console.log(obj);
+      this.$post("/api/order/create", obj).then((val) => {
+        this.order_id = val.data.id;
+        console.log(this.order_id);
+        let order=this.$route.query;
+        order.order_id=this.order_id;
+        order.goods_id1=obj.buyer[0].goods_id;
+        order.goods_id2=obj.buyer[1].goods_id;
+        this.$router.push({
+          path: "/form_orders_path_couples",
+          query: order,
+        });
+      });
       this.$store.commit("onCreateTheOrder", obj);
+    },
+    onClickFarm() {
+      this.onCreateTheOrders();
     },
   },
   created() {
@@ -577,13 +585,10 @@ export default {
   },
   mounted() {
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
-      console.log(val);
       this.copules = val.data;
-      console.log(this.copules);
       this.price =
         parseInt(this.copules[0][0].sale_price) +
         parseInt(this.copules[1][0].sale_price);
-      console.log(this.price);
     });
   },
   filters: {

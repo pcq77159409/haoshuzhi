@@ -61,6 +61,7 @@ export default {
             localStorage.setItem("user-id", val.data.id);
             this.$store.commit('onToken',localStorage.getItem('token'));
             this.$store.commit('onUesrId',localStorage.getItem('user-id'));
+            this.$router.push('/commons/home/m')
           }else{
             alert(val.msg);
           }
