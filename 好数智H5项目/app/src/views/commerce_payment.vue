@@ -269,9 +269,12 @@ export default {
   margin-left: 200px;
 }
 .ace_jump_search .offset {
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
   width: 345px;
   height: 44px;
-  margin: 0 15px;
   background-color: #ea5656;
   border-radius: 25px;
   text-align: center;
