@@ -55,10 +55,12 @@ export default {
 .swiper-container {
   width: 100%;
   height: 100%;
+  border-radius: 6px;
 }
 .m-box img{
   width: 100%;
   height: 100%;
+  border-radius: 6px;
 }
 .swiper-slide {
   text-align: center;

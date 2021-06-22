@@ -1133,7 +1133,7 @@ a {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .Mobile_phone .reds {
   width: 100%;
@@ -1318,9 +1318,10 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  overflow-y: hidden;
+  overflow-y: auto;
   padding: 0 10px;
   box-sizing: border-box;
+  height: 52%;
 }
 .Mobile_phone .start {
   width: 167px;
@@ -1378,7 +1379,7 @@ a {
   height: 365px;
   position: absolute;
   left: 0;
-  top: 302px;
+  top: 301px;
   display: flex;
 }
 .Mobile_phone .Belonging .pro {
@@ -1419,11 +1420,11 @@ a {
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 90px;
+  height: 365px;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 303px;
+  top: 301px;
   display: flex;
 }
 .Mobile_phone .opeateing ul {

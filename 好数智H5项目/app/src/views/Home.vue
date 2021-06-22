@@ -5,7 +5,7 @@
         <img src="../assets/123.png" alt="" />
         <p>上海</p>
       </div>
-      <p>好数智</p>
+      <p class="haoshu">好数智</p>
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
       <input
         type="text"
@@ -267,8 +267,16 @@ a {
 }
 .head p {
   position: absolute;
-  left: 42%;
+  left: 50%;
   top: 25px;
+  color: white;
+  font-size: 17px;
+}
+.head .haoshu {
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%);
   color: white;
   font-size: 17px;
 }
@@ -282,8 +290,9 @@ a {
   font-size: 12px;
   color: #999999;
   position: absolute;
-  left: 55pt;
+  left: 50%;
   top: 46pt;
+  transform: translateX(-50%);
   border: 1px solid white;
   border-radius: 20px;
   text-indent: 55px;
@@ -316,10 +325,11 @@ a {
 }
 .head .search {
   position: absolute;
-  left: 105px;
+  left: 50%;
   top: 69px;
   width: 10pt;
   height: 10pt;
+  margin-left: -90px;
 }
 
 .one {

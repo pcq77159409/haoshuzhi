@@ -146,7 +146,8 @@
     <!-- 下拉选择 结束-->
 
     <!--手机号 开始-->
-    <div
+    <div class="start_pinoes">
+        <div
       class="class_box"
       v-for="(item, index) in love"
       :key="index"
@@ -175,6 +176,7 @@
           <span>￥{{ item[1].sale_price }}</span>
         </div>
       </div>
+    </div>
     </div>
     <!--手机号 结束-->
 
@@ -466,6 +468,10 @@ body {
   width: 100%;
   height: 122px;
   background-color: #fe5858;
+}
+.Mobile_phone .start_pinoes {
+  overflow: auto;
+  height: 52%;
 }
 .Mobile_phone .reds .moveing {
   display: flex;

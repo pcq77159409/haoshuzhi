@@ -115,7 +115,6 @@
           <img src="../assets/filter.png" alt="" />
         </li>
       </ul>
-
       <!-- 归属地 开始-->
       <div class="Belonging" v-show="flag">
         <ul class="pro">
@@ -963,7 +962,7 @@ export default {
       if (flag) {
         console.log(this.parameter);
         this.$router.push({
-          path: "/screen",
+          path: "/commons/home_trill/m",
           query: this.parameter,
         });
         console.log(this.parameter);
@@ -1105,10 +1104,12 @@ a {
   width: 352px;
   height: 134px;
   margin: -121px auto;
+  border-radius: 6px;
 }
 .Mobile_phone .banner_box img {
   width: 100%;
   height: 100%;
+  border-radius: 6px;
 }
 .Mobile_phone .accurate .input_bg {
   width: 328px;
@@ -1288,9 +1289,11 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  overflow-y: hidden;
+  overflow-y: auto;
   padding: 0 15px;
   box-sizing: border-box;
+  height: 68%;
+  margin-bottom: 60px;
 }
 .Mobile_phone .start {
   width: 167px;

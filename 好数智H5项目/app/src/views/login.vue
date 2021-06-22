@@ -61,7 +61,10 @@ export default {
             localStorage.setItem("user-id", val.data.id);
             this.$store.commit('onToken',localStorage.getItem('token'));
             this.$store.commit('onUesrId',localStorage.getItem('user-id'));
+            alert('登陆成功')
+            setTimeout(()=>{
             this.$router.push('/commons/home/m')
+            },2000)
           }else{
             alert(val.msg);
           }
