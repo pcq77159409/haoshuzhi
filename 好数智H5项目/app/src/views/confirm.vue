@@ -4,7 +4,7 @@
       <img
         src="../assets/left.png"
         alt=""
-        @click="$router.push('/commons/home/m')"
+        @click="$router.go(-1)"
       />
       <h4>支付订单</h4>
     </div>

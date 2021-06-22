@@ -394,15 +394,7 @@ export default {
       this.$post("api/order/updateusercode", arr).then((val) => {
         console.log(val);
         if (val.code == 200) {
-          sessionStorage.setItem("time", +new Date());
-          this.$router.push({
-            path: "/commerce_payment",
-            query: {
-              order_id: val.data.id,
-              price: val.data.price,
-              number: val.data.number,
-            },
-          });
+          this.$router.push({path:'/confirm',query:this.$route.query});
         }
       });
     },

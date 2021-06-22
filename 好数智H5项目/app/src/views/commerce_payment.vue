@@ -162,7 +162,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100px;
-  // display: none;
+  display: none;
 }
 #alipaysubmit {
   width: 100%;
