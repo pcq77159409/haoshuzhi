@@ -40,7 +40,7 @@
         <div class="mine">
           <h3>我的订单</h3>
           <div class="all">
-            <span>查看全部</span>
+            <span @click="$router.push({ path: '/order', query: { name: 'second' } })">查看全部</span>
             <img src="../assets/形状 20@2x.png" alt="" />
           </div>
         </div>
