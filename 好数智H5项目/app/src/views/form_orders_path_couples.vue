@@ -171,7 +171,7 @@
       </div>
       <div class="sensorbox_init_osd">
         <p>合计:</p>
-        <span>￥{{price}}</span>
+        <span>￥{{ price }}</span>
         <div class="commit" @click="onClickJump">立即购买</div>
       </div>
     </div>
@@ -376,23 +376,34 @@ export default {
       let arr = {
         user_id: this.$store.state.user_id,
         order_id: this.$route.query.order_id,
-        cards: [{},{}],
+        cards: [{}, {}],
       };
       console.log(arr);
       arr.cards[0].card_back = this.card_back;
-      arr.cards[0].goods_id=this.$route.query.goods_id1
+      arr.cards[0].goods_id = this.$route.query.goods_id1;
       arr.cards[0].card_front = this.card_front;
       arr.cards[0].card_face = this.card_face;
       arr.cards[0].name = this.username;
       arr.cards[0].cardnumber = this.userid;
-      arr.cards[1].goods_id=this.$route.query.goods_id2
+      arr.cards[1].goods_id = this.$route.query.goods_id2;
       arr.cards[1].card_back = this.card_backs;
       arr.cards[1].card_front = this.card_fronts;
       arr.cards[1].card_face = this.card_faces;
       arr.cards[1].name = this.usernames;
       arr.cards[1].cardnumber = this.userids;
-       this.$post("api/order/updateusercode", arr).then((val) => {
+      this.$post("api/order/updateusercode", arr).then((val) => {
         console.log(val);
+        if (val.code == 200) {
+          sessionStorage.setItem("time", +new Date());
+          this.$router.push({
+            path: "/commerce_payment",
+            query: {
+              order_id: val.data.id,
+              price: val.data.price,
+              number: val.data.number,
+            },
+          });
+        }
       });
     },
     onchangeFile(index, id) {

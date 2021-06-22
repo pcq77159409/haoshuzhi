@@ -141,15 +141,27 @@ export default {
         order_id: this.$route.query.order_id,
         cards: [{}],
       };
+
       console.log(arr);
       arr.cards[0].card_back = this.card_back;
       arr.cards[0].card_front = this.card_front;
       arr.cards[0].card_face = this.card_face;
       arr.cards[0].name = this.username;
       arr.cards[0].cardnumber = this.userid;
-      arr.cards[0].goods_id = this.$route.query.goods_id
+      arr.cards[0].goods_id = this.$route.query.goods_id;
       this.$post("api/order/updateusercode", arr).then((val) => {
         console.log(val);
+        if (val.code == 200) {
+          sessionStorage.setItem("time", +new Date());
+          this.$router.push({
+            path: "/commerce_payment",
+            query: {
+              order_id: val.data.id,
+              price: val.data.price,
+              number: val.data.number,
+            },
+          });
+        }
       });
     },
     onClickGoto() {

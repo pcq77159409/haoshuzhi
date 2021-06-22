@@ -42,6 +42,7 @@
     </div>
     <!-- <router-link to="/Payload"> -->
     <div class="offset" @click="onclickPayment">确认支付</div>
+    <div ref="box" class="box"></div>
     <!-- </router-link> -->
   </div>
 </template>
@@ -60,14 +61,20 @@ export default {
   },
   methods: {
     onclickPayment() {
-      this.$post('api/order/mobielpay',{
-        user_id:this.$store.state.user_id,
-        order_id:this.$route.query.order_id,
-        paytype:this.imgShow
-      }).then((r)=>{
+      this.$post("api/order/mobielpay", {
+        user_id: this.$store.state.user_id,
+        order_id: this.$route.query.order_id,
+        paytype: this.imgShow,
+      }).then((r) => {
         console.log(r);
-        if (r.code==200) {
-          window.location.href= r.data;
+        if (r.code == 200) {
+          console.log(this.imgShow);
+          if (this.imgShow == 3) {
+            this.$refs.box.innerHTML = r.data;
+            document.querySelector('.box input[type="submit"]').click();
+          } else if (this.imgShow == 2) {
+            window.location.href = r.data;
+          }
         }
       });
       // this.$router.push({path:'/Payload',query:{order_id:this.$route.query.order_id}});
@@ -149,11 +156,24 @@ export default {
 };
 </script> 
 <style lang="scss" scoped>
+.box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  // display: none;
+}
+#alipaysubmit {
+  width: 100%;
+  height: 100%;
+}
 .ace_jump_search {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
 }
+
 .ace_jump_search .jumplabel {
   width: 100%;
   height: 64px;

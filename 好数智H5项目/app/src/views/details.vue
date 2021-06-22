@@ -407,7 +407,7 @@ export default {
             path: "/form_orders_path",
             query: {
               money: this.detailsList.sale_price,
-              order_id: this.order_id,
+              order_id:  val.data.id,
               goods_id: this.detailsList.id,
             },
           });
