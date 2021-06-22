@@ -26,7 +26,9 @@
             oninput="if(value.length>6)value=value.slice(0,6)"
             v-model="code"
           />
-          <p @click="onClickJump">验证码</p>
+          <button @click="onClickJump" :disabled="codeDisabled" ref="yan">
+            验证码
+          </button>
         </li>
       </ul>
       <div class="login" @click="onClicLogin">登录</div>
@@ -39,12 +41,39 @@ export default {
     return {
       mobile: "",
       code: "",
+      // 是否禁用按钮
+      codeDisabled: false,
+      // 倒计时秒数
+      countdown: 60,
+      // 定时器
+      timer: null,
     };
   },
   methods: {
     onClickJump() {
       this.$axios.get("/api/user/getcode?mobile=" + this.mobile).then((val) => {
         console.log(val);
+        if (val.code == 200) {
+          this.$refs.yan.innerText = this.countdown;
+          if (!this.timer) {
+            this.timer = setInterval(() => {
+              if (this.countdown > 0 && this.countdown <= 60) {
+                this.countdown--;
+                this.$refs.yan.innerText = this.countdown;
+                this.codeDisabled = true;
+                if (this.countdown !== 0) {
+                  this.codeMsg = "重新发送(" + this.countdown + ")";
+                } else {
+                  clearInterval(this.timer);
+                  this.$refs.yan.innerText = "验证码";
+                  this.countdown = 60;
+                  this.timer = null;
+                  this.codeDisabled = false;
+                }
+              }
+            }, 1000);
+          }
+        }
       });
     },
     onClicLogin() {
@@ -59,13 +88,13 @@ export default {
           if (val.code == 200) {
             localStorage.setItem("token", val.data.token);
             localStorage.setItem("user-id", val.data.id);
-            this.$store.commit('onToken',localStorage.getItem('token'));
-            this.$store.commit('onUesrId',localStorage.getItem('user-id'));
-            alert('登陆成功')
-            setTimeout(()=>{
-            this.$router.push('/commons/home/m')
-            },2000)
-          }else{
+            this.$store.commit("onToken", localStorage.getItem("token"));
+            this.$store.commit("onUesrId", localStorage.getItem("user-id"));
+            alert("登陆成功");
+            setTimeout(() => {
+              this.$router.push("/commons/home/m");
+            }, 2000);
+          } else {
             alert(val.msg);
           }
         });
@@ -130,12 +159,14 @@ export default {
   width: 122px;
   margin-bottom: 5px;
 }
-.login-box .white_box ul li p {
+.login-box .white_box ul li button {
   font-size: 12px;
   color: #fe5858;
   border: 1px dashed #fe5858;
   text-align: center;
-  padding: 1px 8px;
+  background: transparent;
+  width: 50px;
+  height: 24px;
 }
 .login-box .white_box .login {
   width: 214px;
