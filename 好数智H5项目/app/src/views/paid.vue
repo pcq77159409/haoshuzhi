@@ -639,7 +639,7 @@ export default {
   width: 10/@vw;
   height: 16/@vw;
   position: absolute;
-  left: 15px;
+  left: 15/@vw;
   pointer-events: auto;
 }
 .detalis {
@@ -649,7 +649,7 @@ export default {
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
   text-align: center;
-  line-height: 30px;
+  line-height: 30/@vw;
 }
 .total {
   display: flex;

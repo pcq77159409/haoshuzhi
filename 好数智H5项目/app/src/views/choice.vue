@@ -772,7 +772,7 @@ html {
   height: 16/@vw;
   pointer-events: auto;
   position: absolute;
-  left: 15px;
+  left: 15/@vw;
 }
 .choice_box .package_box h4 {
   margin: 0 auto;

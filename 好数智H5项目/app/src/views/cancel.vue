@@ -103,7 +103,7 @@
   width: 10 / @vw;
   height: 16 / @vw;
   position: absolute;
-  left: 15px;
+  left: 15/@vw;
   pointer-events: auto;
 }
 .close {

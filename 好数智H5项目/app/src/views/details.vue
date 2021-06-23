@@ -539,6 +539,7 @@ li {
 }
 .phone p span {
   margin-left: 15 / @vw;
+  font-size: 12px;
 }
 .service {
   position: fixed;
