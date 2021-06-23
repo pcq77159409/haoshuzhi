@@ -72,14 +72,14 @@ export default {
 }
 .yes p {
   text-align: center;
-  line-height: 54/@vw;
+  line-height: 44/@vw;
   color: white;
   font-size: 16/@vw;
 }
 .yes {
   margin-top: 212/@vw;
   width: 340/@vw;
-  height: 54/@vw;
+  height: 44/@vw;
   background-color: #fe5858;
   border-radius: 30/@vw;
   margin-left: 17/@vw;
@@ -146,14 +146,18 @@ export default {
   width: 100%;
   height: 64/@vw;
   background-color: #fe5858;
+  display: flex;
+  align-items: center;
 }
 .back {
-  width: 16/@vw;
+  width: 10/@vw;
   height: 16/@vw;
-  margin: 22/@vw 12/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .aftersales {
-  margin: -45/@vw 155/@vw;
+  margin: 0 auto;
   color: white;
   font-size: 16/@vw;
 }

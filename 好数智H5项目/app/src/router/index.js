@@ -87,11 +87,6 @@ const routes = [{
         component: () =>
             import ('../views/couples.vue')
     }, {
-        path: '/default_page',
-        name: 'default_page',
-        component: () =>
-            import ('../views/default_page.vue')
-    }, {
         path: '/details',
         name: 'details',
         component: () =>

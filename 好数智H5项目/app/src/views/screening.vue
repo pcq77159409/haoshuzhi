@@ -1145,16 +1145,19 @@ a {
 }
 .Mobile_phone .reds .moveing {
   display: flex;
+  align-items: center;
 }
 .Mobile_phone .reds .moveing img {
   width: 10/@vw;
   height: 16/@vw;
-  margin: 35/@vw 0 0 15/@vw;
+  position: absolute;
+  left: 15/@vw;
   pointer-events: auto;
+  margin-top: 14px;
 }
 .Mobile_phone .reds .moveing h3 {
   color: #ffffff;
-  margin: 30/@vw auto 0;
+  margin: 20/@vw auto 0;
   font-size: 18/@vw;
   font-weight: 500;
 }

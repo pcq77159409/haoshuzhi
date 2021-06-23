@@ -1102,7 +1102,7 @@ a {
 .Mobile_phone .reds .moveing h3 {
   color: #ffffff;
   margin: 30/@vw auto 0;
-  font-size: 18/@vw;
+  font-size: 16/@vw;
   font-weight: 500;
 }
 .Mobile_phone .banner_box {

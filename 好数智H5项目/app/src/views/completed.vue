@@ -109,13 +109,11 @@
       </span>
     </el-dialog>
     <div class="delivery">
-      <div class="del">
         <p
           @click="$router.push({ path: '/sales', query: { id: dataInfo.id } })"
         >
           申请售后
         </p>
-      </div>
     </div>
   </div>
 </template>
@@ -379,10 +377,7 @@ export default {
   padding: 6/@vw 17/@vw;
   font-size: 15/@vw;
 }
-.del p {
-  position: absolute;
-  right: 11/@vw;
-  bottom: 13/@vw;
+.delivery p {
   border: 1/@vw solid #fe5858;
   text-align: center;
   border-radius: 25/@vw;
@@ -391,15 +386,13 @@ export default {
   width: 112/@vw;
   height: 30/@vw;
   line-height: 30/@vw;
+  margin-right: 15/@vw;
 }
-.del {
-  width: 100/@vw;
-  height: 40/@vw;
-}
+
 .delivery {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   width: 100%;
   height: 60/@vw;
   background-color: white;
@@ -418,13 +411,12 @@ export default {
   width: 350/@vw;
   height: 46/@vw;
   background-color: white;
-  margin: -52/@vw 13/@vw;
   border-radius: 5/@vw;
   display: flex;
   color: #666666;
   justify-content: space-evenly;
   line-height: 46/@vw;
-  margin-bottom: 15/@vw;
+  margin: 0 auto 15/@vw;
   align-items: center;
 }
 .make .bo {
@@ -619,39 +611,41 @@ export default {
 }
 .imgs {
   width: 100%;
-  height: 85/@vw;
   background-color: #fe5858;
   display: flex;
-  position: relative;
   align-items: center;
+  position: relative;
+  padding: 20/@vw 0 37/@vw 0; 
 }
 
 .back {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .detalis {
-  width: 100/@vw;
-  height: 30/@vw;
   margin: 0 auto;
   color: white;
-  font-size: 18/@vw;
+  font-size: 16/@vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
+  text-align: center;
+  line-height: 30px;
 }
 .total {
   display: flex;
+  padding-bottom: 17/@vw;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #fe5858;
 }
 .delivered {
   width: 255/@vw;
-  height: 95/@vw;
-  background-color: #fe5858;
 }
 .right {
   width: 120/@vw;
-  height: 95/@vw;
-  background-color: #fe5858;
 }
 .right img {
   width: 60/@vw;
@@ -671,7 +665,6 @@ export default {
   width: 100/@vw;
   height: 35/@vw;
   font-size: 20/@vw;
-  font-weight: bold;
   color: white;
   margin-left: 68/@vw;
   margin-top: 10/@vw;

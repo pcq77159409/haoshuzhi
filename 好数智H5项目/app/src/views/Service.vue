@@ -22,11 +22,11 @@
 @import "../assets/css/base.less";
 .service{
     width: 100%;
-    height: 65/@vw;
-    background: #FF5757;
+    height: 64/@vw;
+    background: #ea5656;
 }
 .service p{
-    font-size: 16/@vw*1.3;
+    font-size: 16/@vw;
     color: white;
     font-family: PingFang-SC-Medium;
     font-weight: Medium;

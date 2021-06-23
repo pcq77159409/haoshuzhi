@@ -17,12 +17,12 @@
     <div class="Servicetype">
       <p class="type">选择服务类型</p>
       <div class="my" @click="onTui">
-        <img src="../assets/money.png" alt="" class="m" />
+        <img src="../assets/tk.png" alt="" class="m" />
         <p class="tuikuan">我要退款(无需退货)</p>
         <img src="../assets/形状 20@2x.png" alt="" class="right" />
       </div>
       <div class="mys" @click="onTuis">
-        <img src="../assets/tui.png" alt="" class="t" />
+        <img src="../assets/tui1.png" alt="" class="t" />
         <p class="tuihuo">我要退货退款</p>
         <img src="../assets/形状 20@2x.png" alt="" class="rights" />
       </div>
@@ -104,14 +104,18 @@ export default {
   width: 100%;
   height: 64/@vw;
   background-color: #fe5858;
+  display: flex;
+  align-items: center;
 }
 .back {
   width: 10/@vw;
   height: 16/@vw;
-  margin: 22/@vw 12/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .aftersales {
-  margin: -45/@vw 155/@vw;
+  margin: 0 auto;
   color: white;
   font-size: 16/@vw;
 }

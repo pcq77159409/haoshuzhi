@@ -36,17 +36,21 @@ export default {
 .header{
     width: 100%;
     height: 64/@vw;
-    background-color: #fe5858;
+    background-color: #ea5656;
+    display: flex;
+    align-items: center;
 }
 .back{
-    width: 16/@vw;
+    width: 10/@vw;
     height: 16/@vw;
-    margin: 26/@vw 12/@vw;
+    position: absolute;
+    left: 15/@vw;
+    pointer-events: auto;
 }
 .Feedback{
     font-size: 16/@vw;
     color: white;
-    margin: -50/@vw 154/@vw;
+    margin:0 auto;
 }
 .one{
     width: 340/@vw;

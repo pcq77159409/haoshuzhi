@@ -131,7 +131,7 @@ html {
   overflow: hidden;
 }
 .totals {
-  width: 250/@vw*1.3;
+  width: 345/@vw;
   height: 100/@vw*1.3;
   margin-bottom: 10/@vw;
   border-radius: 4/@vw;
@@ -188,12 +188,14 @@ html {
 .names img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .names p {
-  font-size: 18/@vw;
+  font-size: 16/@vw;
   color: white;
-  margin-left: 132/@vw;
+  margin: 0 auto;
 }
 
 .money {

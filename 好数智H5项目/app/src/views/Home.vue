@@ -5,7 +5,7 @@
         <img src="../assets/123.png" alt="" />
         <p>上海</p>
       </div>
-      <p class="haoshu">好数智</p>
+      <!-- <p class="haoshu">好数智</p> -->
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
       <input
         type="text"
@@ -275,14 +275,14 @@ a {
   color: white;
   font-size: 17/@vw;
 }
-.head .haoshu {
-  position: absolute;
-  left: 50%;
-  top: 25/@vw;
-  transform: translateX(-50%);
-  color: white;
-  font-size: 17/@vw;
-}
+// .head .haoshu {
+//   position: absolute;
+//   left: 50%;
+//   top: 25/@vw;
+//   transform: translateX(-50%);
+//   color: white;
+//   font-size: 17/@vw;
+// }
 .head .bg_img {
   width: 100%;
   height: 200/@vw;
@@ -293,8 +293,8 @@ a {
   font-size: 12/@vw;
   color: #999999;
   position: absolute;
-  left: 50%;
-  top: 46/@vw*1.3;
+  left: 55%;
+  top: 25/@vw;
   transform: translateX(-50%);
   border: 1/@vw solid white;
   border-radius: 20/@vw;
@@ -302,15 +302,13 @@ a {
   background-color: #fff;
 }
 .head .locations img {
-  width: 15/@vw;
-  height: 15/@vw;
+  width: 11/@vw;
+  height: 14/@vw;
   position: absolute;
   left: 15/@vw*1.3;
-  top: 23/@vw*1.3;
+  top: 24/@vw*1.3;
 }
 .head .locations p {
-  width: 105/@vw;
-  height: 50/@vw;
   position: absolute;
   left: 30/@vw*1.3;
   top: 21/@vw*1.3;
@@ -329,8 +327,8 @@ a {
 }
 .head .search {
   position: absolute;
-  left: 50%;
-  top: 69/@vw;
+  left: 55%;
+  top: 33/@vw;
   width: 10/@vw*1.3;
   height: 10/@vw*1.3;
   margin-left: -90/@vw;

@@ -52,10 +52,16 @@
       </div>
     </div>
 
-    <div class="make">
-      <p>拨打电话</p>
+     <div class="make">
+      <div class="bo">
+        <img src="../assets/dianhua.png" alt="" />
+        <p @click="centerDialogVisible = true">拨打电话</p>
+      </div>
       <div class="borders"></div>
-      <p>咨询客服</p>
+      <div class="bo">
+        <img src="../assets/kefu.png" alt="" />
+        <p>咨询客服</p>
+      </div>
     </div>
     <div class="delivery">
       <div class="del">
@@ -140,7 +146,7 @@ export default {
   border-radius: 15/@vw;
   color: #999999;
   padding: 6/@vw 17/@vw;
-  font-size: 15/@vw;
+  font-size: 12/@vw;
   color: #fe5858;
   border: 1/@vw solid #fe5858;
 }
@@ -153,7 +159,7 @@ export default {
   border-radius: 15/@vw;
   color: #999999;
   padding: 6/@vw 17/@vw;
-  font-size: 15/@vw;
+  font-size: 12/@vw;
   margin-right: 114/@vw;
 }
 .dels {
@@ -183,17 +189,28 @@ export default {
 }
 .make {
   width: 350/@vw;
-  height: 60/@vw;
+  height: 46/@vw;
   background-color: white;
   margin: -52/@vw 13/@vw;
   border-radius: 5/@vw;
-  font-size: 13/@vw;
   display: flex;
   color: #666666;
-  font-size: 15/@vw;
   justify-content: space-evenly;
-  line-height: 60/@vw;
+  line-height: 46/@vw;
   margin-bottom: 15/@vw;
+  align-items: center;
+}
+.make .bo {
+  display: flex;
+  align-items: center;
+}
+.make p {
+  font-size: 15/@vw;
+}
+.make img {
+  width: 15/@vw;
+  height: 15/@vw;
+  margin-right: 10/@vw;
 }
 
 .rights {
@@ -331,25 +348,28 @@ export default {
 }
 .imgs {
   width: 100%;
-  height: 85/@vw;
   background-color: #fe5858;
   display: flex;
+  align-items: center;
   position: relative;
+  padding: 20/@vw 0 37/@vw 0; 
 }
 
 .back {
   width: 10/@vw;
   height: 16/@vw;
-  margin: 35/@vw 15/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .detalis {
-  width: 100/@vw;
-  height: 30/@vw;
-  margin: 32/@vw 109/@vw;
+  margin: 0 auto;
   color: white;
   font-size: 16/@vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
+  text-align: center;
+  line-height: 30px;
 }
 .total {
   display: flex;
@@ -381,8 +401,7 @@ export default {
 .one {
   width: 130/@vw;
   height: 35/@vw;
-  font-size: 20/@vw;
-  font-weight: bold;
+  font-size: 18/@vw;
   color: white;
   margin-left: 40/@vw;
 }

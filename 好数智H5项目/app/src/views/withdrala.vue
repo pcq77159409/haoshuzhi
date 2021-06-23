@@ -58,18 +58,19 @@
   height: 64/@vw;
   background-color: #fe5858;
   display: flex;
-
   align-items: center;
 }
 .banck {
   width: 10/@vw;
   height: 16/@vw;
-  margin: 0 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .com {
   font-size: 16/@vw;
   color: #ffffff;
-  margin: 0 120/@vw;
+  margin: 0 auto;
 }
 .one {
   width: 345/@vw;

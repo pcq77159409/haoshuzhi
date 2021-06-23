@@ -59,7 +59,8 @@
 .withdrala_box .jumplabel img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15/@vw;
 }
 .withdrala_box .jumplabel h4 {
   font-size: 16/@vw;

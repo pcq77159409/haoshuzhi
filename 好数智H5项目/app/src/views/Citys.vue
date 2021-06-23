@@ -83,108 +83,112 @@ body {
     margin: 0;
 }
 .inputCity {
-  width: 331px;
-  border-radius: 25px;
-  height: 40px;
-  margin: 10px 20px;
+  width: 331/@vw;
+  border-radius: 25/@vw;
+  height: 40/@vw;
+  margin: 10/@vw 20/@vw;
   background: #ededed;
-  border: 1px solid #ededed;
-  text-indent: 135px;
-  font-size: 13px;
+  border: 1/@vw solid #ededed;
+  text-indent: 135/@vw;
+  font-size: 13/@vw;
+  color: #999999;
 }
 .hotCitys {
-  font-size: 11px;
+  font-size: 11/@vw;
   font-weight: bold;
-  margin: 10px 15px;
+  margin: 10/@vw 15/@vw;
 }
 .hotcity {
   width: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-left: 10px;
+  margin-left: 10/@vw;
 }
 .num {
   width: 100%;
 }
 
 .nums {
-  width: 20px;
+  width: 20/@vw;
   position: fixed;
   right: 0;
-  top: 170px;
+  top: 170/@vw;
 }
 .nums :hover {
   color: #fe5858;
 }
 .numss {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 
 .citys {
   width: 100%;
-  height: 65px;
+  height: 65/@vw;
   background: #fe5858;
   display: flex;
   align-items: center;
 }
 .citys p {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: white;
   text-align: center;
-  line-height: 64px;
-  margin-left: 132px;
+  line-height: 64/@vw;
+  margin: 0 auto;
 }
 .citys img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .headers p {
-  font-size: 11px;
+  font-size: 11/@vw;
   font-weight: bold;
-  margin: 10px 15px;
+  margin: 10/@vw 15/@vw;
 }
 
 .city {
-  width: 100px;
-  height: 32px;
-  border: 1px solid #fe5858;
+  width: 100/@vw;
+  height: 32/@vw;
+  border: 1/@vw solid #fe5858;
   text-align: center;
-  line-height: 32px;
-  border-radius: 5px;
-  margin-left: 15px;
+  line-height: 32/@vw;
+  border-radius: 5/@vw;
+  margin-left: 15/@vw;
+  color: #666666;
 }
 .search {
   position: absolute;
-  left: 135px;
-  top: 89px;
+  left: 135/@vw;
+  top: 89/@vw;
   width: 10/@vw*1.3;
   height: 10/@vw*1.3;
 }
 .hots {
-  width: 100px;
-  height: 32px;
-  border-radius: 5px;
-  border: 0.1px solid #999999;
+  width: 100/@vw;
+  height: 32/@vw;
+  border-radius: 5/@vw;
+  border: 1/@vw solid #999999;
 }
-.hots :hover {
-  border: 1px solid #fe5858;
+.hots:hover {
+  border-color: #fe5858;
   color: #fe5858;
-  margin-top: -1px;
 }
 .AA {
   text-align: center;
-  line-height: 32px;
-  border-radius: 5px;
+  line-height: 32/@vw;
+  border-radius: 5/@vw;
+  color: #666666;
 }
 .money {
-  margin-top: 8px;
+  margin-top: 8/@vw;
   width: 95%;
   display: flex;
-  font-size: 12px;
+  font-size: 12/@vw;
   justify-content: space-between;
-  margin-left: 10px;
+  margin-left: 10/@vw;
 }
 </style>

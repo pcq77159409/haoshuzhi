@@ -41,6 +41,7 @@ export default {
   width: 10/@vw;
   height: 16/@vw;
   margin-left: 15/@vw;
+  pointer-events: auto;
 }
 .pay_box .jumplabel h4 {
   font-size: 16/@vw;

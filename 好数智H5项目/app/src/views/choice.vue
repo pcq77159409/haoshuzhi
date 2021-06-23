@@ -770,10 +770,12 @@ html {
 .choice_box .package_box img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  pointer-events: auto;
+  position: absolute;
+  left: 15px;
 }
 .choice_box .package_box h4 {
-  margin-left: 132/@vw;
+  margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }

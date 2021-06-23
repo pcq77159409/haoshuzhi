@@ -84,6 +84,7 @@ export default {
 }
 .integral_box .integral_bg .preferential {
   display: flex;
+  align-items: center;
 }
 .integral_box .integral_bg .preferential img {
   width: 10/@vw;

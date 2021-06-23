@@ -313,7 +313,7 @@ export default {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60/@vw;
+  height: 55/@vw;
   background-color: white;
   display: flex;
   align-items: center;
@@ -512,26 +512,28 @@ export default {
 }
 .imgs {
   width: 100%;
-  height: 85/@vw;
   background-color: #fe5858;
   display: flex;
-  position: relative;
   align-items: center;
+  position: relative;
+  padding: 20/@vw 0 37/@vw 0; 
 }
 
 .back {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .detalis {
-  width: 100/@vw;
-  height: 30/@vw;
   margin: 0 auto;
   color: white;
-  font-size: 18/@vw;
+  font-size: 16/@vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
+  text-align: center;
+  line-height: 30px;
 }
 .total {
   display: flex;

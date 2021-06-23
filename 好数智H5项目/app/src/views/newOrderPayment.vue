@@ -131,7 +131,9 @@
 .new_box .jumplabel img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .new_box .jumplabel h4 {
   font-size: 16/@vw;

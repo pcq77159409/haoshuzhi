@@ -543,7 +543,7 @@ export default {
       ];
       this.$post("/api/order/create", obj).then((val) => {
         this.order_id = val.data.id;
-        console.log(this.order_id);
+        console.log(val.data.id);
         let order=this.$route.query;
         order.order_id=this.order_id;
         order.goods_id1=obj.buyer[0].goods_id;
@@ -584,6 +584,7 @@ export default {
     });
   },
   mounted() {
+        console.log(this.price);
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
       this.copules = val.data;
       this.price =
@@ -648,7 +649,7 @@ li {
   margin: auto 15/@vw;
 }
 .endcsname {
-  width: 334/@vw;
+  width: 325/@vw;
   height: 68/@vw;
   background-color: #fff;
   margin: 10/@vw auto;
@@ -783,7 +784,7 @@ li {
   height: 65/@vw;
   background: url("../assets/plpur.png");
   background-size: 312/@vw 65/@vw;
-  margin: 10/@vw 10/@vw 0;
+  margin: 10/@vw auto 0;
 }
 .nums p {
   font-size: 12/@vw;

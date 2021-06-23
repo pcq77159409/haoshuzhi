@@ -73,10 +73,13 @@ export default {
 .item_content .package_box img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .item_content .package_box h4 {
-  margin-left: 132/@vw;
+  margin: 0 auto;
+  font-size: 15/@vw;
   color: #fff;
   font-weight: 500;
 }
@@ -144,7 +147,7 @@ export default {
   width: 320/@vw;
   display: flex;
   margin-left: 16/@vw;
-  margin-top: 6/@vw;
+  margin-top: 12/@vw;
   justify-content: space-between;
 }
 .item_content .champion p {

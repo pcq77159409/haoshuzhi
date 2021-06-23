@@ -86,11 +86,13 @@ input::-webkit-input-placeholder {
 .apply_for .jumplabel img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .apply_for .jumplabel h4 {
   font-size: 16/@vw;
-  margin-left: 132/@vw;
+  margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
@@ -128,6 +130,7 @@ input::-webkit-input-placeholder {
   border: none;
   margin-left: 16/@vw;
   margin-top: 1/@vw;
+  font-size: 12/@vw;
 }
 .apply_for .realty ul li input {
   border: none;

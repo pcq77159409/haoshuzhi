@@ -157,12 +157,12 @@ export default {
 
 <style lang="less" scoped>
 @import "../assets/css/base.less";
-.my_commission .huts .bg .el-step__head.is-finish {
+.my_commission .huts .bg /deep/ .el-step__head.is-finish {
   color: #ffffff !important;
   border-color: #FE5858 !important;
   border: none;
 }
-.my_commission .huts .bg .el-step__title.is-finish{
+.my_commission .huts .bg /deep/  .el-step__title.is-finish{
   color: #fe5858 !important;
   font-size: 12/@vw;
   background-color: rgba(255,237,237,.5);
@@ -171,22 +171,22 @@ export default {
   margin-top: 7/@vw;
   margin-right: 6/@vw;
 }
-.my_commission .huts .bg .aaa .el-step__title.is-finish{
+.my_commission .huts .bg .aaa /deep/  .el-step__title.is-finish{
   background-color: transparent !important;
 }
-.my_commission .huts .bg .el-step__icon.is-text {
+.my_commission .huts .bg /deep/  .el-step__icon.is-text {
   background-color: #fff;
   border: 1/@vw dotted #ff9797;
 }
-.my_commission .huts .bg .el-step__icon-inner {
+.my_commission .huts .bg /deep/  .el-step__icon-inner {
   color: #ff9797;
   font-weight: 600;
   font-size: 12/@vw;
 }
-.el-step__title.is-wait {
+.my_commission /deep/  .el-step__title.is-wait {
   font-size: 12/@vw;
 }
-.el-step__title.is-process {
+.my_commission /deep/  .el-step__title.is-process {
   color: #c0c4cc;
   font-size: 12/@vw;
   font-weight: 500;
@@ -216,7 +216,9 @@ export default {
 .my_commission .jumplabel img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .my_commission .jumplabel h4 {
   font-size: 16/@vw;

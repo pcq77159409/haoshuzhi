@@ -69,7 +69,10 @@ export default {
 .wallet_box .plassets .mine_bag img {
   width: 10/@vw;
   height: 16/@vw;
-  margin: 31/@vw 0 0 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
+  margin-top: 30/@vw;
 }
 .wallet_box .plassets .mine_bag h4 {
   font-size: 16/@vw;

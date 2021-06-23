@@ -240,10 +240,12 @@ export default {
 .new_add .jumplabel img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .new_add .jumplabel h4 {
-  font-size: 16/@vw;
+  font-size: 15/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;

@@ -488,15 +488,20 @@ export default {
   background-color: #ea5656;
   display: flex;
   align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 .drawBoundingBox .summer img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 16/@vw;
+  position: absolute;
+  left: 15/@vw;
+  pointer-events: auto;
 }
 .drawBoundingBox .summer h4 {
   font-size: 16/@vw;
-  margin-left: 132/@vw;
+  margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }

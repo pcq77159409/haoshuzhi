@@ -350,14 +350,18 @@ export default {
   z-index: 2;
   position: fixed;
   top: 0;
+  display: flex;
+  align-items: center;
 }
 .back {
   width: 10/@vw;
   height: 16/@vw;
-  margin: 23/@vw 12/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .sales {
-  margin: -46/@vw 152/@vw;
+  margin: 0 auto;
   font-size: 16/@vw;
   color: white;
 }

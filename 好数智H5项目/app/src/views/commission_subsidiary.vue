@@ -138,13 +138,16 @@ export default {
 .subsudiary .jumplabel img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .subsudiary .jumplabel h4 {
   font-size: 16/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
+  margin: 0 auto;
 }
 .subsudiary h4 {
     font-size: 14/@vw;

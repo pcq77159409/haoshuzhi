@@ -1,12 +1,8 @@
 <template>
-  <div>
+  <div class="yyyyy">
     <div class="order">
       <div style="display: flex" class="jian">
-        <img
-          src="../assets/left.png"
-          alt=""
-          @click="$router.push('/commons/my')"
-        />
+        <img src="../assets/left.png" alt="" @click="$router.push('/commons/my')"/>
         <p>全部订单</p>
       </div>
     </div>
@@ -372,18 +368,18 @@ export default {
 
 <style lang="less" scoped>
 @import "../assets/css/base.less";
-.tabr /deep/ .el-tabs__nav{
-  display: flex;
-  justify-content: space-around;
+.yyyyy {
   width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
 }
-.tabr .el-tabs__nav-wrap::after {
+.yyyyy /deep/ .tabr .el-tabs__nav-wrap::after {
   background-color: transparent;
 }
-.tabr .el-tabs__nav-scroll {
+.yyyyy /deep/ .tabr .el-tabs__nav-scroll {
   background-color: transparent;
 }
-.tabr .el-tabs__nav {
+.yyyyy /deep/ .tabr .el-tabs__nav {
   background-color: transparent;
 }
 body,
@@ -392,13 +388,20 @@ html {
 }
 .jian {
   display: flex;
+  align-items: center;
+  height: 100%;
 }
 .jian img {
   height: 16/@vw;
   width: 10/@vw;
-  margin: 25/@vw 17/@vw;
+  position: absolute;
+  left: 15/@vw;
 }
-
+.jian p {
+  font-size: 15px;
+  color: #fff;
+  margin: 0 auto;
+}
 .payment {
   position: absolute;
   right: 0/@vw;
@@ -426,9 +429,6 @@ html {
   font-size: 12/@vw;
   display: flex;
   margin: 5/@vw 0;
-}
-.el-tabs__nav-scroll {
-  background-color: white;
 }
 .spend {
   font-size: 12/@vw;
@@ -482,26 +482,13 @@ html {
   padding: 0 8/@vw;
   font-size: 12/@vw;
 }
-.el-tabs__nav {
-  margin: 0 10/@vw;
-}
-.el-tabs__nav :hover {
+.yyyyy /deep/ .el-tabs__nav :hover {
   color: #ff5757;
 }
-.el-tabs__item.is-active {
+.yyyyy /deep/ .el-tabs__item.is-active {
   color: #ff5757;
 }
-.el-tabs__active {
-  background-color: white;
-}
-.el-tabs__nav {
-  background-color: white;
-}
-.el-tabs__nav-wrap::after {
-  background-color: white;
-}
-
-.el-tabs__active-bar {
+.yyyyy /deep/ .el-tabs__active-bar {
   background-color: #ff5757;
 }
 .named {
@@ -513,13 +500,8 @@ html {
 
 .order {
   width: 100%;
-  height: 65/@vw;
+  height: 64/@vw;
   background: #ff5757;
-}
-.order p {
-  color: white;
-  font-size: 16/@vw;
-  margin: 20/@vw 103/@vw;
 }
 
 .ordersed {

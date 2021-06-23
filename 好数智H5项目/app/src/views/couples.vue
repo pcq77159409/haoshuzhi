@@ -480,7 +480,9 @@ body {
 .Mobile_phone .reds .moveing img {
   width: 10/@vw;
   height: 16/@vw;
-  margin: 35/@vw 0 0 15/@vw;
+  position: absolute;
+  left: 15/@vw;
+  top: 35/@vw;
   pointer-events: auto;
 }
 .Mobile_phone .reds .moveing h3 {

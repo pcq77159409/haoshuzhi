@@ -185,11 +185,13 @@ export default {
 .ace_jump_search .jumplabel img {
   width: 10/@vw;
   height: 16/@vw;
-  margin-left: 15/@vw;
+  position: absolute;
+  left: 15px;
+  pointer-events: auto;
 }
 .ace_jump_search .jumplabel h4 {
   font-size: 16/@vw;
-  margin-left: 132/@vw;
+  margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }

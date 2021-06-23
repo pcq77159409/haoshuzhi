@@ -46,6 +46,7 @@
 }
 .deposit .integral_bg .preferential {
   display: flex;
+  align-items: center;
 }
 .deposit .integral_bg .preferential img {
   width: 10/@vw;

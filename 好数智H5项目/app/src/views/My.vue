@@ -40,7 +40,12 @@
         <div class="mine">
           <h3>我的订单</h3>
           <div class="all">
-            <span @click="$router.push({ path: '/order', query: { name: 'second' } })">查看全部</span>
+            <span
+              @click="
+                $router.push({ path: '/order', query: { name: 'second' } })
+              "
+              >查看全部</span
+            >
             <img src="../assets/形状 20@2x.png" alt="" />
           </div>
         </div>
@@ -229,32 +234,34 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #f5f5f5;
-  padding-bottom: 100/@vw;
+  padding-bottom: 100 / @vw;
+  box-sizing: border-box;
+  overflow: auto;
 }
 .box {
   width: 100%;
-  height: 266/@vw;
+  height: 266 / @vw;
 }
 .box .bg {
   width: 100%;
-  height: 266/@vw;
+  height: 266 / @vw;
   margin: 0 auto;
 }
 .box p {
   position: absolute;
   left: 45%;
-  top: 35/@vw;
+  top: 35 / @vw;
   color: #ffffff;
   font-weight: 500;
 }
 .good {
   position: absolute;
-  left: 30/@vw;
-  top: 76/@vw;
+  left: 30 / @vw;
+  top: 76 / @vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300/@vw;
+  width: 300 / @vw;
 }
 .good .user_name {
   display: flex;
@@ -262,40 +269,40 @@ body {
   align-items: center;
 }
 .Head_portrait {
-  width: 59/@vw*1.3;
-  height: 59/@vw*1.3;
-  margin-right: 20/@vw;
+  width: 59 / @vw*1.3;
+  height: 59 / @vw*1.3;
+  margin-right: 20 / @vw;
 }
 .id p {
   color: #ffffff;
-  margin-top: 15/@vw;
-  margin-bottom: 10/@vw;
+  margin-top: 15 / @vw;
+  margin-bottom: 10 / @vw;
 }
 .sign {
-  width: 32/@vw;
-  height: 28/@vw;
+  width: 32 / @vw;
+  height: 28 / @vw;
 }
 .account {
-  width: 353/@vw;
-  height: 100/@vw*1.3;
+  width: 353 / @vw;
+  height: 100 / @vw*1.3;
   background-color: #fff;
   // margin: 0 11/@vw;
   position: absolute;
-  top: 181/@vw;
-  border-radius: 5/@vw;
+  top: 181 / @vw;
+  border-radius: 5 / @vw;
 }
 .account h3 {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: bold;
   color: #333333;
   font-family: PingFang-SC-Medium;
-  margin: 12/@vw 0 12/@vw 19/@vw;
+  margin: 12 / @vw 0 12 / @vw 19 / @vw;
 }
 .account ul {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  border-top: 2/@vw solid #f8f8f8;
+  border-top: 2 / @vw solid #f8f8f8;
   align-items: center;
 }
 .account ul li {
@@ -303,55 +310,55 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10/@vw*1.3;
+  margin-top: 10 / @vw*1.3;
 }
 .account ul li img {
-  width: 22/@vw*1.3;
-  height: 22/@vw*1.3;
+  width: 22 / @vw*1.3;
+  height: 22 / @vw*1.3;
 }
 .account ul li p {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   color: #666666;
-  margin-top: 4/@vw;
+  margin-top: 4 / @vw;
 }
 .ordering {
-  border-radius: 5/@vw;
-  width: 353/@vw;
+  border-radius: 5 / @vw;
+  width: 353 / @vw;
   // height: 180/@vw*1.3;
-  padding-bottom: 10/@vw;
+  padding-bottom: 10 / @vw;
   background-color: #fff;
-  margin: 60/@vw auto 0;
+  margin: 60 / @vw auto 0;
 }
 .ordering .mine {
-  margin: 0 20/@vw;
+  margin: 0 20 / @vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .ordering .mine h3 {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: bold;
   color: #333333;
   font-family: PingFang-SC-Medium;
-  margin: 12/@vw 0;
+  margin: 12 / @vw 0;
 }
 .ordering .mine .all img {
-  width: 6/@vw*1.3;
-  height: 8/@vw*1.3;
-  margin-left: 10/@vw;
+  width: 6 / @vw*1.3;
+  height: 8 / @vw*1.3;
+  margin-left: 10 / @vw;
 }
 .ordering .mine .all span {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #999999;
 }
 .ordering .finish {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  border-top: 2/@vw solid #f8f8f8;
+  border-top: 2 / @vw solid #f8f8f8;
 }
 .ordering .finish li {
-  margin-top: 20/@vw;
+  margin-top: 20 / @vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -359,53 +366,53 @@ body {
   vertical-align: bottom;
 }
 .ordering .finish li p {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   color: #666666;
 }
 .ordering .finish li img {
-  margin-bottom: 10/@vw;
+  margin-bottom: 10 / @vw;
 }
 .ordering .finish li:nth-of-type(1) p {
-  margin-bottom: 10/@vw;
+  margin-bottom: 10 / @vw;
 }
 .ordering .finish li:nth-of-type(1) img {
-  width: 25/@vw*1.3;
-  height: 23/@vw*1.3;
+  width: 25 / @vw*1.3;
+  height: 23 / @vw*1.3;
 }
 .ordering .finish li:nth-of-type(2) img {
-  width: 19/@vw*1.3;
-  height: 16/@vw*1.3;
+  width: 19 / @vw*1.3;
+  height: 16 / @vw*1.3;
 }
 .ordering .finish li:nth-of-type(3) img {
-  width: 19/@vw*1.3;
-  height: 16/@vw*1.3;
+  width: 19 / @vw*1.3;
+  height: 16 / @vw*1.3;
 }
 .ordering .finish li:nth-of-type(4) img {
-  width: 14/@vw*1.3;
-  height: 16/@vw*1.3;
+  width: 14 / @vw*1.3;
+  height: 16 / @vw*1.3;
 }
 
 .ordering .finish li:nth-of-type(5) img {
-  width: 18/@vw*1.3;
-  height: 16/@vw*1.3;
+  width: 18 / @vw*1.3;
+  height: 16 / @vw*1.3;
 }
 .ordering .wait {
-  width: 316/@vw;
-  height: 53/@vw*1.3;
+  width: 316 / @vw;
+  height: 53 / @vw*1.3;
   background-color: #f8f8f8;
-  margin: 12/@vw auto 0;
+  margin: 12 / @vw auto 0;
   display: flex;
   justify-content: space-between;
-  border-radius: 5/@vw;
+  border-radius: 5 / @vw;
 }
 .ordering .wait span {
   display: inline-block;
   color: #ff5757;
-  font-size: 12/@vw;
-  width: 72/@vw;
-  margin: 46/@vw 6/@vw 6/@vw 0;
-  border: 1/@vw solid #ff5757;
-  border-radius: 8/@vw;
+  font-size: 12 / @vw;
+  width: 72 / @vw;
+  margin: 46 / @vw 6 / @vw 6 / @vw 0;
+  border: 1 / @vw solid #ff5757;
+  border-radius: 8 / @vw;
   text-align: center;
 }
 .ordering .wait .payment_box {
@@ -414,24 +421,24 @@ body {
 }
 .ordering .wait .payment_box P:first-child {
   color: #333333;
-  font-size: 12/@vw;
-  margin: 10/@vw 0;
+  font-size: 12 / @vw;
+  margin: 10 / @vw 0;
 }
 .ordering .wait .payment_box P:last-child {
   color: #ff5757;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .ordering .wait .payment_box img {
-  width: 44/@vw*1.3;
-  height: 44/@vw*1.3;
-  margin: 0 10/@vw;
+  width: 44 / @vw*1.3;
+  height: 44 / @vw*1.3;
+  margin: 0 10 / @vw;
 }
 .road {
-  border-radius: 5/@vw;
-  width: 354/@vw;
-  height: 64/@vw*1.3;
+  border-radius: 5 / @vw;
+  width: 354 / @vw;
+  height: 64 / @vw*1.3;
   background-color: #fff;
-  margin: 10/@vw auto 8/@vw;
+  margin: 10 / @vw auto 8 / @vw;
   //   display: flex;
   //   justify-content: center;
 }
@@ -449,13 +456,13 @@ body {
   align-items: center;
 }
 .road ul li img {
-  width: 25/@vw*1.3;
-  height: 25/@vw*1.3;
+  width: 25 / @vw*1.3;
+  height: 25 / @vw*1.3;
 }
 .road ul li p {
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
   color: #666;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .signs {
   width: 100%;
@@ -469,43 +476,43 @@ body {
   align-items: center;
 }
 .signs .white {
-  width: 247/@vw;
-  height: 215/@vw;
+  width: 247 / @vw;
+  height: 215 / @vw;
   background-color: #fff;
-  border-radius: 10/@vw;
+  border-radius: 10 / @vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .signs .white img {
-  width: 82/@vw;
-  height: 58/@vw;
-  margin-top: 28/@vw;
-  margin-bottom: 12/@vw;
+  width: 82 / @vw;
+  height: 58 / @vw;
+  margin-top: 28 / @vw;
+  margin-bottom: 12 / @vw;
 }
 .signs .white h4 {
-  font-size: 12/@vw*1.3;
+  font-size: 12 / @vw*1.3;
   color: #333333;
   font-weight: bold;
-  margin-bottom: 11/@vw;
+  margin-bottom: 11 / @vw;
 }
 .signs .white p {
   color: #666666;
-  font-size: 12/@vw;
-  margin-bottom: 20/@vw;
+  font-size: 12 / @vw;
+  margin-bottom: 20 / @vw;
 }
 .signs .white span {
   color: #ff5757;
-  margin: 0 6/@vw;
+  margin: 0 6 / @vw;
 }
 .signs .white .know {
-  width: 178/@vw;
-  height: 35/@vw;
+  width: 178 / @vw;
+  height: 35 / @vw;
   background: url("../assets/red.png") no-repeat;
-  background-size: 178/@vw 35/@vw;
+  background-size: 178 / @vw 35 / @vw;
   text-align: center;
-  line-height: 35/@vw;
+  line-height: 35 / @vw;
   color: #ffffff;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
 }
 </style>
