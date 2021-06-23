@@ -57,7 +57,7 @@ export default {
     onclickDefault(item) {
       console.log(item);
       this.$post("/api/address/edit", {
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
         id: item.id,
         mobile: item.mobile,
         name: item.name,
@@ -70,7 +70,7 @@ export default {
         console.log(r);
         if (r.code == 200) {
           this.$get("/api/address/getlist", {
-            user_id: this.$store.state.user_id,
+            user_id: localStorage.getItem('user-id'),
           }).then((val) => {
             this.editor = val.data;
             console.log(this.editor);
@@ -87,7 +87,7 @@ export default {
       this.$router.go(-1);
     },
     onClickDelete() {
-      let user_id=this.$store.state.user_id;
+      let user_id=localStorage.getItem('user-id');
       this.$post("/api/address/del", {
         user_id: user_id,
         id: this.id,
@@ -109,7 +109,7 @@ export default {
   },
   created() {
     this.$get("/api/address/getlist", {
-      user_id: this.$store.state.user_id,
+      user_id: localStorage.getItem('user-id'),
     }).then((val) => {
       this.editor = val.data;
       console.log(this.editor);

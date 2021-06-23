@@ -224,7 +224,7 @@ export default {
     onclickTuiK(id) {
       this.$post("/api/order/orderrefund", {
         order_id: id,
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
       }).then((r) => {
         if (r.code == 20) {
           alert("申请成功,等待商家退款");
@@ -237,7 +237,7 @@ export default {
   mounted() {
     console.log(this.$route.query.id);
     this.$get("/api/order/info", {
-      user_id: this.$store.state.user_id,
+      user_id: localStorage.getItem('user-id'),
       order_id: this.$route.query.id,
     }).then((r) => {
       console.log(r);

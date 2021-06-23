@@ -88,8 +88,6 @@ export default {
           if (val.code == 200) {
             localStorage.setItem("token", val.data.token);
             localStorage.setItem("user-id", val.data.id);
-            this.$store.commit("onToken", localStorage.getItem("token"));
-            this.$store.commit("onUesrId", localStorage.getItem("user-id"));
             alert("登陆成功");
             setTimeout(() => {
               this.$router.push("/commons/home/m");

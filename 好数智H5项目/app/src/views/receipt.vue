@@ -228,7 +228,7 @@ export default {
       //退款
       this.$post("/api/order/orderrefund", {
         order_id: id,
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
       }).then((r) => {
         console.log(r);
         if (r.code == 200) {
@@ -247,7 +247,7 @@ export default {
       //完成订单
       this.$post("/api/order/orderfinish", {
         order_id: id,
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
       }).then((r) => {
         if (r.code == 200) {
           this.$router.push({ path: "/completed", query: { id: id } });
@@ -259,7 +259,7 @@ export default {
   },
   mounted() {
     this.$get("/api/order/info", {
-      user_id: this.$store.state.user_id,
+      user_id:localStorage.getItem('user-id'),
       order_id: this.$route.query.id,
     }).then((r) => {
       console.log(r);

@@ -298,7 +298,7 @@ export default {
     });
     this.$get("/api/order/info", {
       order_id: this.$route.query.order_id,
-      user_id: this.$store.state.user_id,
+      user_id: localStorage.getItem('user-id'),
     }).then((val) => {
       console.log(val);
       this.arrcoup = val.data;

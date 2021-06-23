@@ -279,7 +279,7 @@ export default {
     });
     //订单详情
     this.$get("/api/order/info", {
-      user_id: this.$store.state.user_id,
+      user_id: localStorage.getItem('user-id'),
       order_id: this.$route.query.order_id,
     }).then((r) => {
       console.log(r.data);

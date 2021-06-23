@@ -154,7 +154,7 @@ export default {
         //编辑
         this.$post("/api/address/edit", {
           id: this.$route.query.id,
-          user_id: this.$store.state.user_id,
+          user_id: localStorage.getItem('user-id'),
           mobile: this.way,
           name: this.username,
           province: this.prov,
@@ -172,7 +172,7 @@ export default {
       } else {
         //新增
         this.$post("/api/address/create", {
-          user_id: this.$store.state.user_id,
+          user_id: localStorage.getItem('user-id'),
           mobile: this.way,
           name: this.username,
           province: this.prov,
@@ -194,7 +194,7 @@ export default {
     console.log(this.$route.query.id);
     if (this.$route.query.id) {
       this.$get("/api/address/info", {
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
         id: this.$route.query.id,
       }).then((r) => {
         console.log(r);

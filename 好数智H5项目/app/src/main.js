@@ -34,12 +34,32 @@ Vue.prototype.$get = function(url, val) {
     return axios.get(url, {
         params: val,
         headers: {
-            token: this.$store.state.token,
-            user_id: this.$store.state.user_id,
+            token: localStorage.getItem('token'),
+            user_id: localStorage.getItem('user-id'),
+            uuid: localStorage.getItem('uuidstatus')
         }
     }).then((r) => {
+        console.log(r);
         if (r.code == 700 || r.code == 600) {
-            this.$router.push('/login');
+            Vue.$router.push('/login');
+        } else if (r.code == 601) {
+            console.log(601);
+
+            axios.post('api/user/uuidlogin', '', {
+                headers: {
+                    token: localStorage.getItem('token'),
+                    user_id: localStorage.getItem('user-id'),
+                    uuid: localStorage.getItem('uuidstatus')
+                }
+            }).then((r) => {
+                console.log(r);
+                if (r.code == 200) {
+                    localStorage.setItem('user-id', r.data.id);
+                    localStorage.setItem('token', r.data.token);
+                    Vue.$store.commit('onToken', localStorage.getItem('token'));
+                    Vue.$store.commit('onUesrId', localStorage.getItem('user-id'));
+                }
+            })
         } else {
             return r;
         }
@@ -48,12 +68,31 @@ Vue.prototype.$get = function(url, val) {
 Vue.prototype.$post = function(url, val) {
     return axios.post(url, val, {
         headers: {
-            token: this.$store.state.token,
-            user_id: this.$store.state.user_id,
+            token: localStorage.getItem('token'),
+            user_id: localStorage.getItem('user-id'),
+            uuid: localStorage.getItem('uuidstatus')
         }
     }).then((r) => {
+        console.log(r);
         if (r.code == 700 || r.code == 600) {
-            this.$router.push('/login');
+            Vue.$router.push('/login');
+        } else if (r.code == 601) {
+            console.log(601);
+            axios.post('api/user/uuidlogin', '', {
+                headers: {
+                    token: localStorage.getItem('token'),
+                    user_id: localStorage.getItem('user-id'),
+                    uuid: localStorage.getItem('uuidstatus')
+                }
+            }).then((r) => {
+                console.log(r);
+                if (r.code == 200) {
+                    localStorage.setItem('user-id', r.data.id);
+                    localStorage.setItem('token', r.data.token);
+                    Vue.$store.commit('onToken', localStorage.getItem('token'));
+                    Vue.$store.commit('onUesrId', localStorage.getItem('user-id'));
+                }
+            })
         } else {
             return r;
         }
@@ -64,9 +103,21 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
-
 new Vue({
     router,
     store,
     render: h => h(App)
 }).$mount('#app')
+
+if (localStorage.getItem('user-id') == null && localStorage.getItem('token') == null) {
+    localStorage.setItem('user-id', '');
+    localStorage.setItem('token', '');
+}
+
+const uuid = require('uuid')
+if (localStorage.getItem('uuidstatus') == null) {
+    localStorage.setItem('uuidstatus', uuid.v1());
+}
+console.log(localStorage.getItem('user-id'));
+console.log(localStorage.getItem('token'));
+console.log(localStorage.getItem('uuidstatus'));

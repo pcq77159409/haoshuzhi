@@ -190,7 +190,7 @@ export default {
     },
   },
   mounted() {
-    this.$get("/api/user/getinfo", { user_id: this.$store.state.user_id }).then(
+    this.$get("/api/user/getinfo", { user_id: localStorage.getItem('user-id') }).then(
       (r) => {
         console.log(r);
         if (r.code == 200) {
@@ -200,7 +200,7 @@ export default {
     );
 
     this.$get("/api/order/getlist", {
-      user_id: this.$store.state.user_id,
+      user_id: localStorage.getItem('user-id'),
       status: 1,
     }).then((r) => {
       console.log(r);

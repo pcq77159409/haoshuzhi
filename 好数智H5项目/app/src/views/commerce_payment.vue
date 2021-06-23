@@ -62,7 +62,7 @@ export default {
   methods: {
     onclickPayment() {
       this.$post("api/order/mobielpay", {
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
         order_id: this.$route.query.order_id,
         paytype: this.imgShow,
       }).then((r) => {
@@ -139,7 +139,7 @@ export default {
     this.number = this.$route.query.number;
 
     this.$get("/api/balance_log/balance", {
-      user_id: this.$store.state.user_id,
+      user_id: localStorage.getItem('user-id'),
     }).then((r) => {
       console.log(r);
       if (r.code == 200) {

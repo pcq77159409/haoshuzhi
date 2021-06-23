@@ -137,7 +137,7 @@ export default {
   methods: {
     onClickJump() {
       let arr = {
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
         order_id: this.$route.query.order_id,
         cards: [{}],
       };

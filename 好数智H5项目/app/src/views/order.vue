@@ -322,7 +322,7 @@ export default {
     },
     getlist(status) {
       this.$get("/api/order/getlist", {
-        user_id: this.$store.state.user_id,
+        user_id: localStorage.getItem('user-id'),
         status: status,
       }).then((r) => {
         console.log(r);
