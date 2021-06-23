@@ -118,14 +118,16 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
+
 .digital :hover {
   color: red;
-  border: 1px solid #fe5858;
+  border: 1/@vw solid #fe5858;
 }
 .card :hover {
   color: red;
-  border: 1px solid #fe5858;
+  border: 1/@vw solid #fe5858;
 }
 html,
 body {
@@ -133,7 +135,7 @@ body {
   height: 100%;
 }
 .current {
-  border-left: 2px solid #fe5858;
+  border-left: 2/@vw solid #fe5858;
   color: #fe5858 !important;
 }
 .about {
@@ -144,22 +146,22 @@ body {
 }
 .header {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background: #fe5858;
   display: flex;
   align-items: center;
 }
 .header p {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: white;
-  line-height: 64px;
+  line-height: 64/@vw;
   text-align: center;
   margin: 0 auto;
 }
 .header img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .move {
   width: 100%;
@@ -178,56 +180,56 @@ body {
 }
 .move .pag li {
   width: 100%;
-  height: 50pt;
+  height: 50/@vw*1.3;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .move .pag li p {
   width: 100%;
-  height: 25pt;
+  height: 25/@vw*1.3;
   color: #666666;
-  font-size: 12pt;
-  line-height: 25pt;
+  font-size: 12/@vw*1.3;
+  line-height: 25/@vw*1.3;
 }
 .roughly {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 24px;
-  height: 18px;
+  margin-top: 24/@vw;
+  height: 18/@vw;
 }
 .roughly h5 {
   color: #666;
   font-weight: 500;
 }
 .roughly span {
-  width: 86px;
-  height: 1px;
+  width: 86/@vw;
+  height: 1/@vw;
   background-color: #eeecec;
 }
 .digital {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  // height: 190px;
+  // height: 190/@vw;
   // justify-content: space-evenly;
-  margin-top: 24px;
+  margin-top: 24/@vw;
   overflow: auto;
   // padding-right: 4%;
   box-sizing: border-box;
 }
 .digital li {
   width: 20%;
-  height: 28px;
-  border: 1px solid #999999;
+  height: 28/@vw;
+  border: 1/@vw solid #999999;
   color: #666666;
   font-weight: 500;
-  border-radius: 20px;
+  border-radius: 20/@vw;
   text-align: center;
-  line-height: 28px;
-  margin-bottom: 20px;
-  font-size: 11pt;
+  line-height: 28/@vw;
+  margin-bottom: 20/@vw;
+  font-size: 11/@vw*1.3;
   margin-left: 4%;
   box-sizing: border-box;
 }
@@ -235,19 +237,19 @@ body {
   display: flex;
   flex-wrap: wrap;
   // justify-content: space-evenly;
-  margin-top: 24px;
+  margin-top: 24/@vw;
 }
 .card li {
   width: 44%;
-  height: 28px;
-  border: 1px solid #999999;
+  height: 28/@vw;
+  border: 1/@vw solid #999999;
   color: #666666;
   font-weight: 500;
-  border-radius: 20px;
+  border-radius: 20/@vw;
   text-align: center;
-  line-height: 28px;
-  margin-bottom: 15pt;
-  font-size: 11pt;
+  line-height: 28/@vw;
+  margin-bottom: 15/@vw*1.3;
+  font-size: 11/@vw*1.3;
   margin-left: 4%;
   box-sizing: border-box;
 }

@@ -17,10 +17,12 @@
     </div>
 </template>
 
-<style scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .service{
     width: 100%;
-    height: 65px;
+    height: 65/@vw;
     background: #FF5757;
 }
 .service p{
@@ -28,36 +30,36 @@
     color: white;
     font-family: PingFang-SC-Medium;
     font-weight: Medium;
-    line-height: 65px;
+    line-height: 65/@vw;
     text-align: center;
 
 }
 .Collection{
     width: 100%;
-    height: 300px;
+    height: 300/@vw;
 }
 .Collection img{
     width: 180pt;
     height: 115pt;
-    margin-top: 50px;
+    margin-top: 50/@vw;
 }
 .Collection p{
-    font-size: 13px;
-    margin-top: 10px;
+    font-size: 13/@vw;
+    margin-top: 10/@vw;
     color: #999999;
 }
 .gos{
     width: 100%;
-    height: 30px;
+    height: 30/@vw;
   
 }
 .go {
-    width:280px ;
-    height: 30px;
+    width:280/@vw ;
+    height: 30/@vw;
     background: #FF5757;
-    border-radius: 15px;
+    border-radius: 15/@vw;
     text-align: center;
-    line-height: 30px;
+    line-height: 30/@vw;
     margin: 0 auto;
     color: white;
 }

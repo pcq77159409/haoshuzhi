@@ -25,7 +25,7 @@
           <!-- <select id="province" name="province" required></select>
           <select id="city" name="city" required></select>
           <select id="area" name="area" required></select> -->
-          <el-select v-model="prov" style="width: 167px; margin-right: 25px">
+          <el-select v-model="prov" style="width: 44.5333vw; margin-right: 6.666vw">
             <el-option
               v-for="(option, index) in arr"
               :value="option.name"
@@ -37,7 +37,7 @@
         </li>
         <li>
           <p>所在城市</p>
-          <el-select v-model="city" style="width: 167px; margin-right: 25px">
+          <el-select v-model="city" style="width: 44.5333vw; margin-right: 6.666vw">
             <el-option
               v-for="(option, index) in cityArr"
               :value="option.name"
@@ -49,7 +49,7 @@
         </li>
         <li>
           <p>所在区域</p>
-          <el-select v-model="district" v-if="district" style="width: 167px">
+          <el-select v-model="district" v-if="district" style="width: 44.5333vw">
             <el-option
               v-for="(option, index) in districtArr"
               :value="option.name"
@@ -213,9 +213,13 @@ export default {
   },
 };
 </script>
-<style scoped>
 
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 
+.new_add  /deep/ .el-select-dropdown__item{
+  padding: 0 20/@vw;
+}
 .new_add {
   width: 100%;
   height: 100%;
@@ -224,7 +228,7 @@ export default {
 }
 .new_add .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -234,20 +238,20 @@ export default {
   z-index: 2;
 }
 .new_add .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .new_add .jumplabel h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .new_add .huo {
-  width: 345px;
-  height: 315px;
-  margin: 80px auto 0;
+  width: 345/@vw;
+  height: 315/@vw;
+  margin: 80/@vw auto 0;
   background-color: #fff;
 }
 .new_add .huo ul {
@@ -255,40 +259,40 @@ export default {
   height: 100%;
 }
 .new_add .huo ul li {
-  width: 325px;
-  height: 44px;
-  border-bottom: 1px solid #eeeeee;
+  width: 325/@vw;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #eeeeee;
   display: flex;
   align-items: center;
   margin: 0 auto;
 }
 .new_add .huo ul li input {
-  width: 246px;
+  width: 246/@vw;
   color: #999;
   background-color: transparent;
 }
 .new_add .huo ul li p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: rgb(70, 63, 63);
-  margin-right: 30px;
+  margin-right: 30/@vw;
   font-weight: 600;
 }
 .new_add .huo ul li:first-child p {
-  margin-right: 40px;
+  margin-right: 40/@vw;
 }
 .new_add .huo ul li:last-child {
   justify-content: space-between;
   border: none;
 }
 .new_add .save {
-  width: 345px;
-  height: 44px;
-  margin: 90px auto;
+  width: 345/@vw;
+  height: 44/@vw;
+  margin: 90/@vw auto;
   background-color: #ea5656;
-  border-radius: 25px;
+  border-radius: 25/@vw;
   color: #fff;
-  font-size: 15px;
+  font-size: 15/@vw;
   text-align: center;
-  line-height: 44px;
+  line-height: 44/@vw;
 }
 </style>

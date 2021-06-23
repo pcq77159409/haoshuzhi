@@ -106,18 +106,20 @@
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .new_box {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
-  padding-top: 64px;
+  padding-top: 64/@vw;
   overflow: auto;
   box-sizing: border-box;
 }
 .new_box .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -127,24 +129,24 @@
   z-index: 2;
 }
 .new_box .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .new_box .jumplabel h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .new_box h4 {
-  margin: 10px 0 10px 15px;
-  font-size: 14px;
+  margin: 10/@vw 0 10/@vw 15/@vw;
+  font-size: 14/@vw;
   color: #666666;
   font-weight: 500;
 }
 .new_box .incomes {
-  width: 345px;
+  width: 345/@vw;
   background-color: #fff;
   margin: 0 auto;
 }
@@ -153,10 +155,10 @@
   height: 100%;
 }
 .new_box .incomes ul li {
-  width: 325px;
-  height: 66px;
-  border-bottom: 1px solid #f2f2f2;
-  margin: 0 10px;
+  width: 325/@vw;
+  height: 66/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
+  margin: 0 10/@vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -170,20 +172,20 @@
   justify-content: space-between;
 }
 .new_box .incomes ul li .danq {
-  margin-top: 6px;
+  margin-top: 6/@vw;
 }
 .new_box .incomes ul li .shoy p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
 }
 .new_box .incomes ul li .shoy span {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #f62c2c;
   font-weight: 600;
 }
 .new_box .incomes ul li .danq p,
 .new_box .incomes ul li .danq span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .new_box .incomes ul li .yi span {

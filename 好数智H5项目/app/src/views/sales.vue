@@ -48,123 +48,125 @@ export default {
 };
 </script>
 
-<style scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .hui {
   width: 100%;
   height: 100%;
   background-color: #f5f5f5;
 }
 .tuikuan {
-  font-size: 12px;
+  font-size: 12/@vw;
   font-weight: bold;
-  margin-right: 165px;
-  margin-top: 3px;
+  margin-right: 165/@vw;
+  margin-top: 3/@vw;
 }
 .tuihuo {
-  font-size: 12px;
+  font-size: 12/@vw;
   font-weight: bold;
-  margin-right: 198px;
-  margin-top: 3px;
+  margin-right: 198/@vw;
+  margin-top: 3/@vw;
 }
 .m {
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
+  width: 20/@vw;
+  height: 20/@vw;
+  margin-left: 10/@vw;
 }
 .t {
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
+  width: 20/@vw;
+  height: 20/@vw;
+  margin-left: 10/@vw;
 }
 .right {
-  width: 10px;
-  height: 10px;
-  margin-top: 7px;
-  margin-right: 10px;
+  width: 10/@vw;
+  height: 10/@vw;
+  margin-top: 7/@vw;
+  margin-right: 10/@vw;
 }
 .rights {
-  width: 10px;
-  height: 10px;
-  margin-top: 7px;
-  margin-right: 10px;
+  width: 10/@vw;
+  height: 10/@vw;
+  margin-top: 7/@vw;
+  margin-right: 10/@vw;
 }
 .mys {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 20/@vw;
 }
 .my {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .sales {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #fe5858;
 }
 .back {
-  width: 10px;
-  height: 16px;
-  margin: 22px 12px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 22/@vw 12/@vw;
 }
 .aftersales {
-  margin: -45px 155px;
+  margin: -45/@vw 155/@vw;
   color: white;
-  font-size: 16px;
+  font-size: 16/@vw;
 }
 .one {
-  width: 340px;
-  height: 120px;
+  width: 340/@vw;
+  height: 120/@vw;
   background-color: white;
-  margin: 10px 17px;
-  border-radius: 5px;
+  margin: 10/@vw 17/@vw;
+  border-radius: 5/@vw;
 }
 .tui {
-  font-size: 13px;
+  font-size: 13/@vw;
   font-weight: bold;
-  margin: 0 10px;
-  padding: 10px 0;
+  margin: 0 10/@vw;
+  padding: 10/@vw 0;
 }
 .two {
-  width: 320px;
-  height: 74px;
+  width: 320/@vw;
+  height: 74/@vw;
   background-color: #f8f8f8;
-  margin: 0 10px;
-  border-radius: 5px;
+  margin: 0 10/@vw;
+  border-radius: 5/@vw;
 }
 .number {
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: bold;
-  margin: 0 10px;
-  padding: 10px 0;
+  margin: 0 10/@vw;
+  padding: 10/@vw 0;
 }
 .three {
   display: flex;
   justify-content: space-between;
 }
 .money {
-  font-size: 12px;
-  margin-left: 10px;
+  font-size: 12/@vw;
+  margin-left: 10/@vw;
 }
 .total {
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 .moneys {
   color: #fe5858;
-  margin-right: 10px;
+  margin-right: 10/@vw;
 }
 .Servicetype {
-  width: 340px;
-  height: 120px;
+  width: 340/@vw;
+  height: 120/@vw;
   background-color: white;
-  margin: 10px 17px;
-  border-radius: 5px;
+  margin: 10/@vw 17/@vw;
+  border-radius: 5/@vw;
 }
 .type {
-  font-size: 13px;
+  font-size: 13/@vw;
   font-weight: bold;
-  margin: 0 10px;
-  padding: 10px 0;
+  margin: 0 10/@vw;
+  padding: 10/@vw 0;
 }
 </style>

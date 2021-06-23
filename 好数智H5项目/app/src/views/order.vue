@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="tabr">
-      <el-tabs v-model="activenamed" @tab-click="handleClick">
+      <el-tabs v-model="activenamed" @tab-click="handleClick" :stretch="true">
         <!-- 全部订单 -->
         <el-tab-pane label="全部" name="second">
           <div
@@ -370,7 +370,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
+.tabr /deep/ .el-tabs__nav{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
 .tabr .el-tabs__nav-wrap::after {
   background-color: transparent;
 }
@@ -388,96 +394,96 @@ html {
   display: flex;
 }
 .jian img {
-  height: 16px;
-  width: 10px;
-  margin: 25px 17px;
+  height: 16/@vw;
+  width: 10/@vw;
+  margin: 25/@vw 17/@vw;
 }
 
 .payment {
   position: absolute;
-  right: 0px;
-  bottom: 0px;
-  border: 1px solid #fe5858;
+  right: 0/@vw;
+  bottom: 0/@vw;
+  border: 1/@vw solid #fe5858;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 15/@vw;
   color: #fe5858;
   font-weight: 600;
-  padding: 0 18px;
-  font-size: 12px;
+  padding: 0 18/@vw;
+  font-size: 12/@vw;
 }
 .pay {
-  margin: -25px 40px;
-  font-size: 14px;
+  margin: -25/@vw 40/@vw;
+  font-size: 14/@vw;
   color: #ff5757;
 }
 .needsed {
-  margin: 0 5px;
+  margin: 0 5/@vw;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
 }
 .ordertimed {
-  font-size: 12px;
+  font-size: 12/@vw;
   display: flex;
-  margin: 5px 0;
+  margin: 5/@vw 0;
 }
 .el-tabs__nav-scroll {
   background-color: white;
 }
 .spend {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .yidong {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .phonenumber {
-  font-size: 16px;
+  font-size: 16/@vw;
   font-weight: bold;
   color: #333333;
 }
 .shops {
-  width: 15px;
-  height: 15px;
-  padding: 0px 2px;
+  width: 15/@vw;
+  height: 15/@vw;
+  padding: 0/@vw 2/@vw;
 }
 .shoping {
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .this {
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 .paid {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #fe5858;
-  margin-top: 12px;
+  margin-top: 12/@vw;
 }
 .endtime {
-  margin-left: 15px;
+  margin-left: 15/@vw;
 }
 .xian {
-  width: 330px;
-  height: 1px;
+  width: 330/@vw;
+  height: 1/@vw;
   background-color: #f2f2f2;
-  margin: 10px auto;
+  margin: 10/@vw auto;
 }
 .moneyeds {
   position: absolute;
-  right: 0px;
-  bottom: 0px;
-  border: 1px solid #333333;
+  right: 0/@vw;
+  bottom: 0/@vw;
+  border: 1/@vw solid #333333;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 15/@vw;
   color: #333333;
   font-weight: 600;
-  padding: 0 8px;
-  font-size: 12px;
+  padding: 0 8/@vw;
+  font-size: 12/@vw;
 }
 .el-tabs__nav {
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .el-tabs__nav :hover {
   color: #ff5757;
@@ -499,36 +505,36 @@ html {
   background-color: #ff5757;
 }
 .named {
-  margin: 0 10px;
-  line-height: 25px;
+  margin: 0 10/@vw;
+  line-height: 25/@vw;
   color: #666666;
   position: relative;
 }
 
 .order {
   width: 100%;
-  height: 65px;
+  height: 65/@vw;
   background: #ff5757;
 }
 .order p {
   color: white;
-  font-size: 16px;
-  margin: 20px 103px;
+  font-size: 16/@vw;
+  margin: 20/@vw 103/@vw;
 }
 
 .ordersed {
-  width: 350px;
-  height: 210px;
+  width: 350/@vw;
+  height: 210/@vw;
   background-color: white;
-  margin: auto 11px;
-  border-radius: 5px;
+  margin: auto 11/@vw;
+  border-radius: 5/@vw;
 }
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .tabr {
-  padding-bottom: 20px;
+  padding-bottom: 20/@vw;
 }
 </style>

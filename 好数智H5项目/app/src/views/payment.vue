@@ -41,17 +41,18 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .payment_box {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
-//   padding-top: 10px;
+//   padding-top: 10/@vw;
 //   overflow: hidden;
 }
 .payment_box .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -60,108 +61,108 @@ export default {
 //   top: 0;
 }
 .payment_box .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .payment_box .jumplabel h4 {
-  font-size: 16px;
-  margin-left: 132px;
+  font-size: 16/@vw;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
 .payment_box .top_up {
-  width: 345px;
-  height: 165px;
+  width: 345/@vw;
+  height: 165/@vw;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10/@vw 15/@vw;
 }
 .payment_box .top_up .deposit {
-  width: 325px;
-  height: 103px;
-  margin: 0 10px;
-  border-bottom: 1px solid#ebebeb;
+  width: 325/@vw;
+  height: 103/@vw;
+  margin: 0 10/@vw;
+  border-bottom: 1/@vw solid#ebebeb;
   text-align: center;
 }
 .payment_box .top_up .deposit p {
-  padding-top: 30px;
-  font-size: 12px;
+  padding-top: 30/@vw;
+  font-size: 12/@vw;
   color: #999999;
 }
 .payment_box .top_up .deposit span {
   display: inline-block;
-  font-size: 22px;
+  font-size: 22/@vw;
   color: #999999;
-  padding-top: 10px;
+  padding-top: 10/@vw;
 }
 .payment_box .top_up .need {
-  width: 325px;
-  height: 62px;
+  width: 325/@vw;
+  height: 62/@vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .payment_box .top_up .need p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
 }
 .payment_box .top_up .need span {
   color: #333333;
-  font-size: 18px;
+  font-size: 18/@vw;
   font-weight: 600;
 }
 .payment_box .recommend {
-    width: 345px;
-    height: 87px;
+    width: 345/@vw;
+    height: 87/@vw;
     background-color: #fff;
-    margin: 0 15px;
+    margin: 0 15/@vw;
 }
 .payment_box .recommend h5{
-    padding: 16px 0 0 11px;
+    padding: 16/@vw 0 0 11/@vw;
     box-sizing: border-box;
 }
 .payment_box .recommend .wechat_pay {
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 20/@vw;
 }
 .payment_box .recommend .wechat_pay img:first-child {
-    width: 23px;
-    height: 20px;
-    margin: 0 10px;
+    width: 23/@vw;
+    height: 20/@vw;
+    margin: 0 10/@vw;
 }
 .payment_box .recommend .wechat_pay p{
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #333333;
 }
 .payment_box .recommend .wechat_pay img:nth-of-type(2) {
-    width: 21px;
-    height: 10px;
-    margin-left: 10px;
+    width: 21/@vw;
+    height: 10/@vw;
+    margin-left: 10/@vw;
 }
 .payment_box .recommend .wechat_pay img:last-child {
-    width: 12px;
-    height: 12px;
-    margin-left: 200px;
+    width: 12/@vw;
+    height: 12/@vw;
+    margin-left: 200/@vw;
 }
 .payment_box .text {
-    margin: 15px 0 0 15px;
+    margin: 15/@vw 0 0 15/@vw;
 }
 .payment_box .text p{
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #999999;
-    margin-bottom: 6px;
+    margin-bottom: 6/@vw;
 }
 .payment_box .que {
-    width: 345px;
-    height: 44px;
+    width: 345/@vw;
+    height: 44/@vw;
     color: #fff;
-    font-size: 16px;
+    font-size: 16/@vw;
     text-align: center;
-    line-height: 44px;
-    margin: 50px 15px 0;
+    line-height: 44/@vw;
+    margin: 50/@vw 15/@vw 0;
     background-color: #ea5656;
-    border-radius: 25px;
+    border-radius: 25/@vw;
 }
 </style>

@@ -37,32 +37,32 @@
     <div class="box">
       <ul>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          预存话费<span style="margin-left: 30px"
+          预存话费<span style="margin-left: 8vw"
             >￥{{ detailsList.contain_charge }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          话费(含)<span style="margin-left: 35px; color: #666666"
+          话费(含)<span style="margin-left: 9.333vw; color: #666666"
             >￥{{ detailsList.contain_charge }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          卡费<span style="margin-left: 55px"
+          卡费<span style="margin-left: 14.666vw"
             >￥{{ detailsList.sale_price }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          登记方式<span style="margin-left: 30px; color: #666666"
+          登记方式<span style="margin-left: 8vw; color: #666666"
             >线上实名制办理</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          号码合约<span style="margin-left: 30px; color: #666666"
+          号码合约<span style="margin-left: 8vw; color: #666666"
             >{{ detailsList.contract }}/月</span
           >
         </li>
         <li style="color: #999999">
-          温馨提示<span style="margin-left: 30px; color: #666666"
+          温馨提示<span style="margin-left: 8vw; color: #666666"
             >收到号码后请尽快修改密码</span
           >
         </li>
@@ -424,6 +424,7 @@ export default {
   created() {
     // 获取手机号信息
     this.$get("/api/number/getNumberInfo", this.$route.query).then((r) => {
+      console.log(r);
       if (r.code == 200) {
         this.detailsList = r.data[0][0];
         let numberpackage = r.data[0][0].numberpackage[0];
@@ -480,7 +481,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 * {
   padding: 0;
   margin: 0;
@@ -498,7 +500,7 @@ li {
 .liji {
   width: 100%;
   /* height: 100%; */
-  padding: 65px 0 60px;
+  padding: 65/@vw 0 60/@vw;
   background-color: #f8f8f8;
 }
 .liji .current {
@@ -506,113 +508,113 @@ li {
   background-color: #ea5656 !important;
 }
 .box {
-  width: 250pt;
-  height: 180pt;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  width: 250/@vw*1.3;
+  height: 180/@vw*1.3;
+  margin-bottom: 10/@vw;
+  border-radius: 4/@vw;
   background-color: #fff;
-  margin: 10px auto;
+  margin: 10/@vw auto;
 }
 .box ul li {
-  line-height: 40px;
-  font-size: 13px;
-  margin: auto 15px;
+  line-height: 40/@vw;
+  font-size: 13/@vw;
+  margin: auto 15/@vw;
 }
 .phone {
-  width: 250pt;
-  height: 40pt;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  width: 250/@vw*1.3;
+  height: 40/@vw*1.3;
+  margin-bottom: 10/@vw;
+  border-radius: 4/@vw;
   background-color: #fff;
-  margin: 10px auto;
-  line-height: 40pt;
+  margin: 10/@vw auto;
+  line-height: 40/@vw*1.3;
 }
 .phone p {
-  margin: auto 15px;
+  margin: auto 15/@vw;
   color: #333333;
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: bold;
 }
 .phone p span {
-  margin-left: 15px;
+  margin-left: 15/@vw;
 }
 .service {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 65px;
+  height: 65/@vw;
   background: #ea5656;
   display: flex;
   align-items: center;
 }
 .service p {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: white;
   font-family: PingFang-SC-Medium;
   font-weight: Medium;
-  line-height: 65px;
+  line-height: 65/@vw;
   text-align: center;
-  margin-left: 132px;
+  margin-left: 132/@vw;
 }
 .service img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 
 .totals {
-  width: 250pt;
-  height: 140pt;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  width: 250/@vw*1.3;
+  height: 140/@vw*1.3;
+  margin-bottom: 10/@vw;
+  border-radius: 4/@vw;
   background-color: #fff;
 }
 .total {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   justify-content: space-evenly;
 }
 .number {
-  font-size: 18px;
+  font-size: 18/@vw;
   font-weight: 600;
-  margin: 21px 0 0 10px;
+  margin: 21/@vw 0 0 10/@vw;
 }
 .city {
-  font-size: 13px;
-  margin-left: 10px;
+  font-size: 13/@vw;
+  margin-left: 10/@vw;
 }
 .city span {
-  margin-left: 10px;
+  margin-left: 10/@vw;
 }
 .citys {
   display: flex;
   justify-content: space-between;
-  margin: 10px auto;
+  margin: 10/@vw auto;
 }
 .citys p:last-child {
-  margin-right: 10px;
-  font-size: 16px;
+  margin-right: 10/@vw;
+  font-size: 16/@vw;
   color: #ff5858;
   font-weight: 600;
 }
 .nums {
-  width: 312px;
-  height: 65px;
+  width: 312/@vw;
+  height: 65/@vw;
   background: url("../assets/plpur.png");
-  background-size: 312px 65px;
-  margin: 0 10px;
+  background-size: 312/@vw 65/@vw;
+  margin: 0 10/@vw;
 }
 .nums p {
-  font-size: 12px;
-  margin: 10px 10px;
-  padding-top: 10px;
+  font-size: 12/@vw;
+  margin: 10/@vw 10/@vw;
+  padding-top: 10/@vw;
   color: #666666;
 }
 .nums span {
-  margin-right: 10px;
+  margin-right: 10/@vw;
   font-weight: 600;
   color: #ff0000;
 }
@@ -621,32 +623,32 @@ li {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 44px;
+  height: 44/@vw;
   background-color: #fff;
   display: flex;
   align-items: center;
-  margin-top: 38px;
+  margin-top: 38/@vw;
 }
 .bottom p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #2c2c2c;
-  margin: 0 8px 0 14px;
+  margin: 0 8/@vw 0 14/@vw;
 }
 .bottom span {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #dc0101;
 }
 .bottom .now {
   position: absolute;
   right: 0;
   top: 0;
-  width: 105px;
-  height: 44px;
+  width: 105/@vw;
+  height: 44/@vw;
   background-color: #ea5656;
   color: #fff;
-  font-size: 14px;
+  font-size: 14/@vw;
   text-align: center;
-  line-height: 44px;
+  line-height: 44/@vw;
 }
 .black {
   width: 100%;
@@ -658,51 +660,51 @@ li {
 }
 .black .consumption {
   position: relative;
-  width: 330px;
+  width: 330/@vw;
   height: 100%;
   background-color: #fff;
-  margin-left: 45px;
+  margin-left: 45/@vw;
   overflow-x: hidden;
   overflow-y: auto;
 }
 .black .consumption .chargetion {
   width: 100%;
-  height: 34px;
+  height: 34/@vw;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #d2d2d2;
+  border-bottom: 1/@vw solid #d2d2d2;
 }
 .black .consumption .chargetion img {
-  width: 7px;
-  height: 13px;
-  margin: 0 10px;
+  width: 7/@vw;
+  height: 13/@vw;
+  margin: 0 10/@vw;
 }
 .black .consumption .chargetion p {
   color: #333333;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .black .consumption .already {
   width: 100%;
-  height: 76px;
+  height: 76/@vw;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #d2d2d2;
+  border-bottom: 1/@vw solid #d2d2d2;
 }
 .black .consumption .already img {
-  width: 50px;
-  height: 50px;
-  margin: 0 10px;
+  width: 50/@vw;
+  height: 50/@vw;
+  margin: 0 10/@vw;
 }
 .black .consumption .already .treasure span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin-bottom: 6px;
+  margin-bottom: 6/@vw;
   display: inline-block;
 }
 .black .consumption .already .treasure p {
   color: #333333;
-  font-size: 13px;
-  margin-bottom: 4px;
+  font-size: 13/@vw;
+  margin-bottom: 4/@vw;
 }
 .black .consumption .traffic {
   width: 100%;
@@ -711,12 +713,12 @@ li {
 .black .consumption .unlimited h5,
 .black .consumption .instructions h5 {
   color: #666666;
-  font-size: 12px;
-  margin: 16px 0 0 10px;
+  font-size: 12/@vw;
+  margin: 16/@vw 0 0 10/@vw;
 }
 .black .consumption .traffic ul {
-  width: 253px;
-  margin: 15px 0 0 8px;
+  width: 253/@vw;
+  margin: 15/@vw 0 0 8/@vw;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -724,104 +726,104 @@ li {
 }
 .black .consumption .traffic ul li {
   background-color: #f7f7f7;
-  padding: 8px 15px;
+  padding: 8/@vw 15/@vw;
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin: 0 10px 10px 0;
-  border-radius: 4px;
+  margin: 0 10/@vw 10/@vw 0;
+  border-radius: 4/@vw;
 }
 .black .consumption .unlimited {
   width: 100%;
 }
 .black .consumption .unlimited ul {
-  width: 310px;
-  /* height: 214px; */
+  width: 310/@vw;
+  /* height: 214/@vw; */
   background-color: #f8f8f8;
-  margin: 15px 10px 0;
-  padding: 0 10px;
+  margin: 15/@vw 10/@vw 0;
+  padding: 0 10/@vw;
   box-sizing: border-box;
 }
 .black .consumption .unlimited ul li {
   display: flex;
-  border-bottom: 1px solid #d2d2d2;
-  height: 42px;
+  border-bottom: 1/@vw solid #d2d2d2;
+  height: 42/@vw;
   align-items: center;
 }
 .black .consumption .unlimited ul li p {
   color: #666666;
-  font-size: 13px;
-  margin-right: 44px;
+  font-size: 13/@vw;
+  margin-right: 44/@vw;
 }
 .black .consumption .unlimited ul li:first-child span {
   color: #ff0000;
 }
 .black .consumption .unlimited ul li span {
   color: #666666;
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 /* .black .consumption .unlimited ul li:last-child p {
-  margin-right: 20px;
+  margin-right: 20/@vw;
 } */
 /* .black .consumption .unlimited ul li:nth-of-type(3) p {
-  margin-right: 20px;
+  margin-right: 20/@vw;
 } */
 .black .consumption .unlimited ul li:last-child {
   border-bottom: none;
 }
 .black .consumption .instructions p {
-  width: 310px;
-  /* height: 63px; */
+  width: 310/@vw;
+  /* height: 63/@vw; */
   background-color: #f5f5f5;
-  margin: 15px 10px 0;
-  font-size: 13px;
+  margin: 15/@vw 10/@vw 0;
+  font-size: 13/@vw;
   color: #666666;
-  padding: 8px 15px 8px 10px;
+  padding: 8/@vw 15/@vw 8/@vw 10/@vw;
   box-sizing: border-box;
-  line-height: 24px;
+  line-height: 24/@vw;
 }
 .black .consumption .cancel {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 45px;
+  height: 45/@vw;
   display: flex;
   text-align: center;
-  line-height: 45px;
-  margin-top: 21px;
+  line-height: 45/@vw;
+  margin-top: 21/@vw;
 }
 .black .consumption .cancel p {
   width: 50%;
   height: 100%;
   background-color: #f5f5f5;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #666666;
 }
 .black .consumption .cancel span {
   width: 50%;
   height: 100%;
   background-color: #ea5656;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #fff;
 }
 
 .endcsname {
-  width: 345px;
-  height: 68px;
+  width: 345/@vw;
+  height: 68/@vw;
   background-color: #fff;
-  margin: 10px 15px 0px;
+  margin: 10/@vw 15/@vw 0/@vw;
   display: flex;
 }
 .endcsname img:first-child {
-  width: 20px;
-  height: 29px;
-  margin: 20px 0 0 20px;
+  width: 20/@vw;
+  height: 29/@vw;
+  margin: 20/@vw 0 0 20/@vw;
 }
 .endcsname img:last-child {
-  width: 8px;
-  height: 14px;
-  margin: 29px 0 0 10px;
+  width: 8/@vw;
+  height: 14/@vw;
+  margin: 29/@vw 0 0 10/@vw;
 }
 .endcsname .mercifully {
   width: 80%;
@@ -831,34 +833,34 @@ li {
 }
 .endcsname .mercifully .parameter h3 {
   color: #333333;
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: 500;
-  margin: 15px 0 0 12px;
+  margin: 15/@vw 0 0 12/@vw;
 }
 .endcsname .mercifully .parameter p {
   color: #666666;
-  font-size: 12px;
-  margin: 17px 0 0 14px;
+  font-size: 12/@vw;
+  margin: 17/@vw 0 0 14/@vw;
 }
 .endcsname .mercifully .reklameadvice {
   display: flex;
 }
 .endcsname .mercifully .reklameadvice p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin: 4px 0 0 12px;
+  margin: 4/@vw 0 0 12/@vw;
 }
 .endcsname.endcsname_sh img:nth-of-type(1) {
-  width: 20px;
-  height: 29px;
-  margin: 20px 15px 0 20px;
+  width: 20/@vw;
+  height: 29/@vw;
+  margin: 20/@vw 15/@vw 0 20/@vw;
 }
 .endcsname.endcsname_sh img:nth-of-type(2) {
-  margin: 25px 15px 0 20px;
+  margin: 25/@vw 15/@vw 0 20/@vw;
 }
 .endcsname.endcsname_sh p {
   flex: 1;
-  line-height: 68px;
-  font-size: 14px;
+  line-height: 68/@vw;
+  font-size: 14/@vw;
 }
 </style>

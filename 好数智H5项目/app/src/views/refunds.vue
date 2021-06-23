@@ -43,7 +43,8 @@
     </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .hui {
     width: 100%;
     height: 100%;
@@ -51,164 +52,164 @@
 }
 .yes p{
         text-align: center;
-    line-height: 54px;
+    line-height: 54/@vw;
     color: white;
-    font-size: 16px;
+    font-size: 16/@vw;
 
 }
 .yes{
-   margin-top: 212px;
-    width: 340px;
-    height: 54px;
+   margin-top: 212/@vw;
+    width: 340/@vw;
+    height: 54/@vw;
     background-color: #fe5858;
-    border-radius: 30px;
-    margin-left: 17px;
+    border-radius: 30/@vw;
+    margin-left: 17/@vw;
 }
 .huowu{
-           font-size: 12px;
+           font-size: 12/@vw;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 10/@vw;
 }
 .say{
-      font-size: 12px;
+      font-size: 12/@vw;
     color: #999999;
-    margin-left: 10px;
+    margin-left: 10/@vw;
 }
 .yingye{
-        font-size: 12px;
-    margin-left: 10px;
-    margin-top: -6px;
+        font-size: 12/@vw;
+    margin-left: 10/@vw;
+    margin-top: -6/@vw;
 }
 .three{
-    margin-top: 6px;
+    margin-top: 6/@vw;
 }
 .tuikuan{
-        font-size: 12px;
+        font-size: 12/@vw;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 10/@vw;
 
 }
 .tuihuo{
-        font-size: 12px;
+        font-size: 12/@vw;
     font-weight: bold;
-     margin-left: 10px;
+     margin-left: 10/@vw;
     
 }
 .m{
-      width: 10px;
-    height: 10px;
-    margin-left: -249px;
-    margin-top: 3px;
+      width: 10/@vw;
+    height: 10/@vw;
+    margin-left: -249/@vw;
+    margin-top: 3/@vw;
 }
 .h{
-         width: 10px;
-    height: 10px;
-    margin-left: -249px;
-    margin-top: 3px;
+         width: 10/@vw;
+    height: 10/@vw;
+    margin-left: -249/@vw;
+    margin-top: 3/@vw;
 }
 .t{
-      width: 10px;
-    height: 10px;
-    margin-left: -214px;
-    margin-top: 3px;
+      width: 10/@vw;
+    height: 10/@vw;
+    margin-left: -214/@vw;
+    margin-top: 3/@vw;
 }
 .right{
-        width: 10px;
-    height: 10px;
-          margin-top: 7px;
-    margin-right: 10px;
+        width: 10/@vw;
+    height: 10/@vw;
+          margin-top: 7/@vw;
+    margin-right: 10/@vw;
 }
 .rights{
-        width: 10px;
-    height: 10px;
- margin-top: -3px;
-    margin-right: 45px;
+        width: 10/@vw;
+    height: 10/@vw;
+ margin-top: -3/@vw;
+    margin-right: 45/@vw;
     color: #fe5858;
 }
 .mys{
     display: flex;
     justify-content:space-between;
-   margin-top: 20px;
+   margin-top: 20/@vw;
 }
 .my{
     display: flex;
     justify-content:space-between;
-         margin-top: 20px;
+         margin-top: 20/@vw;
 }
 .myA{
      display: flex;
     justify-content:space-between;
-        margin-top: 10px;
+        margin-top: 10/@vw;
     
 }
 .sales{
     width: 100%;
-    height: 64px;
+    height: 64/@vw;
     background-color: #fe5858;
 }
 .back{
-        width: 16px;
-    height: 16px;
-    margin: 22px 12px;
+        width: 16/@vw;
+    height: 16/@vw;
+    margin: 22/@vw 12/@vw;
 }
 .aftersales{
-        margin: -45px 155px;
+        margin: -45/@vw 155/@vw;
     color: white;
-    font-size: 16px;
+    font-size: 16/@vw;
 }
 .one{
-    width: 340px;
-    height: 130px;
+    width: 340/@vw;
+    height: 130/@vw;
     background-color: white;
-    margin: 10px 17px;
-    border-radius: 5px;
+    margin: 10/@vw 17/@vw;
+    border-radius: 5/@vw;
 }
 .tui{
-    font-size: 13px;
+    font-size: 13/@vw;
     font-weight: bold;
-    margin: 0 10px;
-    padding: 10px 0;
+    margin: 0 10/@vw;
+    padding: 10/@vw 0;
 }
 .two{
-    width: 320px;
-    height: 80px;
+    width: 320/@vw;
+    height: 80/@vw;
     background-color: #F8F8F8;
-    margin: 0 10px;
-    border-radius: 5px;
+    margin: 0 10/@vw;
+    border-radius: 5/@vw;
 }
 .number{
-    font-size: 14px;
+    font-size: 14/@vw;
     font-weight: bold;
-    margin: 0 10px;
-    padding: 10px 0;
+    margin: 0 10/@vw;
+    padding: 10/@vw 0;
 }
 .three{
     display: flex;
     justify-content:space-between;
 }
 .money{
-    font-size: 12px;
-    margin-left: 10px;
+    font-size: 12/@vw;
+    margin-left: 10/@vw;
 }
 .total{
-    font-size: 13px;
+    font-size: 13/@vw;
 
 }
 .moneys{
     color: #fe5858;
-    margin-right: 10px;
+    margin-right: 10/@vw;
 }
 .Servicetype{
-      width: 340px;
-    height: 164px;
+      width: 340/@vw;
+    height: 164/@vw;
     background-color: white;
-    margin: 10px 17px;
-    border-radius: 5px;
+    margin: 10/@vw 17/@vw;
+    border-radius: 5/@vw;
 }
 .type{
-  font-size: 13px;
+  font-size: 13/@vw;
     font-weight: bold;
-    margin: 0 10px;
-    padding: 10px 0;
+    margin: 0 10/@vw;
+    padding: 10/@vw 0;
 }
 </style>

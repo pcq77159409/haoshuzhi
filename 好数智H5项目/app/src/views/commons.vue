@@ -78,7 +78,9 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
+
 * {
   margin: 0;
   padding: 0;
@@ -101,7 +103,7 @@ html {
 }
 #nav {
   width: 100%;
-  height: 50px;
+  height: 50/@vw;
   bottom: 0;
   background: white;
   display: flex;
@@ -110,7 +112,7 @@ html {
 
   z-index: 100;
   position: fixed;
-  box-shadow: 2px 2px 8px #ccc;
+  box-shadow: 2/@vw 2/@vw 8/@vw #ccc;
   .current dt {
     color: red;
   }
@@ -118,13 +120,13 @@ html {
     color: red;
   }
   dl dt {
-    font-size: 18px;
-    margin-left: 2px;
-    margin-top: 5px;
+    font-size: 18/@vw;
+    margin-left: 2/@vw;
+    margin-top: 5/@vw;
   }
 
   dl dd {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #666666;
   }
 

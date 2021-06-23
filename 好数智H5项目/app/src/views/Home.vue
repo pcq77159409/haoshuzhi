@@ -151,11 +151,7 @@
     <!-- 靓号推荐 -->
     <div class="footer">
       <div class="five">
-        <img
-          src="../assets/形状 8@2x.png"
-          alt=""
-          style="width: 16pt; height: 15.5pt; margintop: 5px"
-        />
+        <img src="../assets/形状 8@2x.png" alt="" class="ff-img" />
         <p>靓号推荐</p>
       </div>
       <div class="six">
@@ -230,11 +226,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
+
 body,
 html {
   width: 100%;
   height: 100%;
+}
+.ff-img {
+  width: 16/@vw*1.3;
+  height: 15.5/@vw*1.3;
+  margin-top: 5/@vw;
 }
 a {
   text-decoration: none;
@@ -242,17 +245,17 @@ a {
 }
 .number {
   color: #333333;
-  font-size: 19px;
-  margin-top: 15px;
-  margin-left: 10px;
+  font-size: 19/@vw;
+  margin-top: 15/@vw;
+  margin-left: 10/@vw;
 }
 .money {
-  margin-top: 8px;
+  margin-top: 8/@vw;
   width: 95%;
   display: flex;
-  font-size: 12px;
+  font-size: 12/@vw;
   justify-content: space-between;
-  margin-left: 10px;
+  margin-left: 10/@vw;
 }
 .home {
   width: 100%;
@@ -263,60 +266,61 @@ a {
 }
 .haed {
   width: 100%;
-  height: 300px;
+  height: 300/@vw;
 }
 .head p {
   position: absolute;
   left: 50%;
-  top: 25px;
+  top: 25/@vw;
   color: white;
-  font-size: 17px;
+  font-size: 17/@vw;
 }
 .head .haoshu {
   position: absolute;
   left: 50%;
-  top: 25px;
+  top: 25/@vw;
   transform: translateX(-50%);
   color: white;
-  font-size: 17px;
+  font-size: 17/@vw;
 }
 .head .bg_img {
   width: 100%;
-  height: 200px;
+  height: 200/@vw;
 }
 .head input {
-  width: 227px;
-  height: 28px;
-  font-size: 12px;
+  width: 227/@vw;
+  height: 28/@vw;
+  font-size: 12/@vw;
   color: #999999;
   position: absolute;
   left: 50%;
-  top: 46pt;
+  top: 46/@vw*1.3;
   transform: translateX(-50%);
-  border: 1px solid white;
-  border-radius: 20px;
-  text-indent: 55px;
+  border: 1/@vw solid white;
+  border-radius: 20/@vw;
+  text-indent: 55/@vw;
+  background-color: #fff;
 }
 .head .locations img {
-  width: 15px;
-  height: 15px;
+  width: 15/@vw;
+  height: 15/@vw;
   position: absolute;
-  left: 15pt;
-  top: 23pt;
+  left: 15/@vw*1.3;
+  top: 23/@vw*1.3;
 }
 .head .locations p {
-  width: 105px;
-  height: 50px;
+  width: 105/@vw;
+  height: 50/@vw;
   position: absolute;
-  left: 30pt;
-  top: 21pt;
-  font-size: 16px;
+  left: 30/@vw*1.3;
+  top: 21/@vw*1.3;
+  font-size: 16/@vw;
 }
 .heads {
-  width: 340px;
-  height: 120px;
-  margin: -100px auto 0;
-  border-radius: 5px;
+  width: 340/@vw;
+  height: 120/@vw;
+  margin: -100/@vw auto 0;
+  border-radius: 5/@vw;
   overflow: hidden;
 }
 .heads img {
@@ -326,57 +330,57 @@ a {
 .head .search {
   position: absolute;
   left: 50%;
-  top: 69px;
-  width: 10pt;
-  height: 10pt;
-  margin-left: -90px;
+  top: 69/@vw;
+  width: 10/@vw*1.3;
+  height: 10/@vw*1.3;
+  margin-left: -90/@vw;
 }
 
 .one {
   display: flex;
   justify-content: space-around;
   width: 95%;
-  height: 90px;
-  margin-top: 10px;
+  height: 90/@vw;
+  margin-top: 10/@vw;
   text-align: center;
   margin: 0 auto;
 }
 .one dl dt img {
-  width: 45pt;
-  height: 45pt;
+  width: 45/@vw*1.3;
+  height: 45/@vw*1.3;
 }
 
 .one dl dd {
-  margin-left: 2px;
+  margin-left: 2/@vw;
   color: #333333;
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 .two {
   display: flex;
   justify-content: space-around;
   width: 95%;
-  height: 90px;
+  height: 90/@vw;
   margin: 0 auto;
 }
 .two dl dt img {
-  width: 45pt;
-  height: 45pt;
+  width: 45/@vw*1.3;
+  height: 45/@vw*1.3;
 }
 
 .two dl dd {
-  margin-left: 2px;
+  margin-left: 2/@vw;
   color: #333333;
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 .three {
   width: 100%;
-  height: 90px;
+  height: 90/@vw;
   position: relative;
   background: white;
 }
 .three img {
-  width: 354px;
-  height: 83px;
+  width: 354/@vw;
+  height: 83/@vw;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -390,139 +394,139 @@ a {
 }
 .footer {
   width: 90%;
-  height: 30px;
+  height: 30/@vw;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  line-height: 30px;
+  line-height: 30/@vw;
 }
 .footer .five img {
-  width: 14pt;
-  height: 15.5pt;
-  margin-top: 5px;
+  width: 14/@vw*1.3;
+  height: 15.5/@vw*1.3;
+  margin-top: 5/@vw;
 }
 .five {
   display: flex;
 }
 .five p {
-  font-size: 11pt;
+  font-size: 11/@vw*1.3;
   color: #333333;
   font-weight: bold;
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 
 .six p {
-  font-size: 11px;
+  font-size: 11/@vw;
   color: #666666;
-  margin-left: -46px;
+  margin-left: -46/@vw;
 }
 .six img {
-  width: 10px;
-  height: 10px;
-  margin-left: 5px;
+  width: 10/@vw;
+  height: 10/@vw;
+  margin-left: 5/@vw;
 }
 
 .cap {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 15/@vw;
   box-sizing: border-box;
 }
 
 .cap .shit {
-  width: 125pt;
-  height: 75pt;
-  border: 0.5pt solid #e5e5e5;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  // margin-left: 15px;
+  width: 125/@vw*1.3;
+  height: 75/@vw*1.3;
+  border: 0.5/@vw*1.3 solid #e5e5e5;
+  border-radius: 10/@vw;
+  margin-bottom: 10/@vw;
+  // margin-left: 15/@vw;
 }
 .cap .shit img {
   float: right;
-  width: 30px;
-  height: 18px;
+  width: 30/@vw;
+  height: 18/@vw;
 }
 .cap .shit .dolor {
-  margin-right: 10px;
+  margin-right: 10/@vw;
   color: #dd1414;
 }
 .cap .shit .han {
-  font-size: 8px;
+  font-size: 8/@vw;
   color: #dd1414;
-  margin-top: 4px;
+  margin-top: 4/@vw;
 }
 .cap .shit .twietion {
-  font-size: 16px;
+  font-size: 16/@vw;
   font-weight: bold;
   color: #dc0101;
-  margin-right: 10px;
+  margin-right: 10/@vw;
 }
 .like {
   width: 100%;
-  padding: 0 10px;
+  padding: 0 10/@vw;
   box-sizing: border-box;
 }
 .like .you {
-  width: 94px;
-  margin: 3px 0 15px -2px;
+  width: 94/@vw;
+  margin: 3/@vw 0 15/@vw -2/@vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .like .shun {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 .like .shun li {
-  width: 164px;
-  height: 72px;
+  width: 164/@vw;
+  height: 72/@vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-  padding: 9px 0px 12px 0;
+  border: 1/@vw solid #e5e5e5;
+  margin-bottom: 10/@vw;
+  padding: 9/@vw 0/@vw 12/@vw 0;
 }
 .like .shun li img {
-  width: 38pt;
-  height: 51pt;
+  width: 38/@vw*1.3;
+  height: 51/@vw*1.3;
 }
 .like .shun li .yes {
-  margin-right: 28px;
+  margin-right: 28/@vw;
 }
 .like .shun li .lian {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #010101;
   font-weight: 600;
-  margin-bottom: 7px;
+  margin-bottom: 7/@vw;
 }
 .like .shun li .of {
-  font-size: 8pt;
+  font-size: 8/@vw*1.3;
   color: #666666;
   font-weight: 600;
 }
 .like .you img {
-  width: 14pt;
-  height: 14pt;
+  width: 14/@vw*1.3;
+  height: 14/@vw*1.3;
 }
 .like .you span {
   display: inline-block;
   color: #333333;
-  margin-left: 6px;
+  margin-left: 6/@vw;
   font-weight: bold;
-  font-size: 11pt;
+  font-size: 11/@vw*1.3;
 }
 .lina {
-  padding-bottom: 68px;
+  padding-bottom: 68/@vw;
 }
 .header {
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 </style>
 

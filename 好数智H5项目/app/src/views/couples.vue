@@ -433,7 +433,8 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 * {
   padding: 0;
   margin: 0;
@@ -466,7 +467,7 @@ body {
 
 .Mobile_phone .reds {
   width: 100%;
-  height: 122px;
+  height: 122/@vw;
   background-color: #fe5858;
 }
 .Mobile_phone .start_pinoes {
@@ -477,23 +478,23 @@ body {
   display: flex;
 }
 .Mobile_phone .reds .moveing img {
-  width: 10px;
-  height: 16px;
-  margin: 35px 0 0 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 35/@vw 0 0 15/@vw;
   pointer-events: auto;
 }
 .Mobile_phone .reds .moveing h3 {
   color: #ffffff;
-  margin: 30px auto 0;
-  font-size: 18px;
+  margin: 30/@vw auto 0;
+  font-size: 18/@vw;
   font-weight: 500;
 }
 .Mobile_phone .reds .input_bg {
-  width: 345px;
-  height: 28px;
+  width: 345/@vw;
+  height: 28/@vw;
   background: url("../assets/input_bg.png") no-repeat;
-  background-size: 345px 28px;
-  margin: 22px auto 0;
+  background-size: 345/@vw 28/@vw;
+  margin: 22/@vw auto 0;
   display: flex;
 }
 .Mobile_phone .reds .input_bg .tail {
@@ -503,20 +504,20 @@ body {
   align-items: center;
 }
 .Mobile_phone .reds .input_bg .tail img {
-  width: 12px;
-  height: 12px;
-  margin: 0 10px 0 15px;
+  width: 12/@vw;
+  height: 12/@vw;
+  margin: 0 10/@vw 0 15/@vw;
   vertical-align: middle;
 }
 .Mobile_phone .reds .input_bg .tail p {
-  font-size: 10pt;
+  font-size: 10/@vw*1.3;
   color: #666666;
-  margin-right: 10px;
-  margin-bottom: 1px;
+  margin-right: 10/@vw;
+  margin-bottom: 1/@vw;
 }
 .Mobile_phone .reds .input_bg .tail span {
-  width: 1px;
-  height: 12px;
+  width: 1/@vw;
+  height: 12/@vw;
   background-color: #e0e0e0;
 }
 .Mobile_phone .reds .input_bg .searchs {
@@ -530,41 +531,41 @@ body {
   width: 80%;
 }
 .Mobile_phone .reds .input_bg .searchs .want img {
-  width: 10pt;
-  height: 10pt;
-  margin: 0 10px 0 4px;
+  width: 10/@vw*1.3;
+  height: 10/@vw*1.3;
+  margin: 0 10/@vw 0 4/@vw;
 }
 .Mobile_phone .reds .input_bg .searchs .want input {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
 }
 .Mobile_phone .reds .input_bg .searchs h4 {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #ffffff;
   font-weight: 500;
-  margin-right: 11px;
-  line-height: 28px;
+  margin-right: 11/@vw;
+  line-height: 28/@vw;
 }
 .Mobile_phone .accurate {
   width: 100%;
 }
 .Mobile_phone .accurate .phoneNumber {
   display: flex;
-  margin: 20px 18px 0;
+  margin: 20/@vw 18/@vw 0;
   justify-content: space-evenly;
 }
 .Mobile_phone .accurate .phoneNumber li {
-  width: 22px;
-  height: 26px;
+  width: 22/@vw;
+  height: 26/@vw;
   text-align: center;
-  border-radius: 3px;
-  font-size: 14px;
+  border-radius: 3/@vw;
+  font-size: 14/@vw;
 }
 // .Mobile_phone .accurate .phoneNumber li:hover {
 //   border-color: #dc0101;
 // }
 .Mobile_phone .accurate .phoneNumber li input:focus {
-  border: 1px solid #dc0101;
+  border: 1/@vw solid #dc0101;
 }
 .Mobile_phone .accurate .phoneNumber li:first-child input {
   color: #333333;
@@ -575,25 +576,25 @@ body {
   text-align: center;
   color: #dc0101;
   outline: none;
-  border: 1px solid #cacaca;
+  border: 1/@vw solid #cacaca;
 }
 .Mobile_phone .accurate p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #fe5858;
-  margin: 10px 0 0 21px;
+  margin: 10/@vw 0 0 21/@vw;
 }
 .Mobile_phone .accurate .reset {
-  margin: 16px 48px 0;
+  margin: 16/@vw 48/@vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .accurate .reset li {
-  width: 130px;
-  height: 26px;
+  width: 130/@vw;
+  height: 26/@vw;
   text-align: center;
-  line-height: 26px;
-  border-radius: 20px;
-  font-size: 10pt;
+  line-height: 26/@vw;
+  border-radius: 20/@vw;
+  font-size: 10/@vw*1.3;
 }
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;
@@ -605,17 +606,17 @@ body {
 }
 .Mobile_phone .select_change {
   width: 100%;
-  height: 33px;
+  height: 33/@vw;
   background-color: #fff;
-  margin-top: 20px;
-  border: 1px solid #e5e5e5;
+  margin-top: 20/@vw;
+  border: 1/@vw solid #e5e5e5;
 }
 .Mobile_phone .select_change ul {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  line-height: 33px;
+  line-height: 33/@vw;
 }
 .Mobile_phone .select_change ul li {
   display: flex;
@@ -624,78 +625,78 @@ body {
 }
 .Mobile_phone .select_change ul li .red_triangle {
   position: absolute;
-  right: -4px;
+  right: -4/@vw;
   top: 44%;
 }
 .Mobile_phone .select_change ul li p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #666666;
-  margin-right: 9px;
+  margin-right: 9/@vw;
 }
 .Mobile_phone .select_change ul li img {
-  width: 6px;
-  height: 4px;
+  width: 6/@vw;
+  height: 4/@vw;
 }
 .Mobile_phone .class_box {
   display: flex;
-  width: 345px;
-  height: 102px;
+  width: 345/@vw;
+  height: 102/@vw;
   margin: 0 auto;
-  border: 1px solid #e5e5e5;
+  border: 1/@vw solid #e5e5e5;
   background-color: #fff;
-  border-radius: 10px;
-  margin-top: 10px;
+  border-radius: 10/@vw;
+  margin-top: 10/@vw;
   position: relative;
 }
 .Mobile_phone .class_box img {
   position: absolute;
   right: 0;
   top: 0;
-  width: 30px;
-  height: 18px;
+  width: 30/@vw;
+  height: 18/@vw;
 }
 .Mobile_phone .class_box .line {
   display: inline-block;
-  width: 2px;
-  height: 52pt;
+  width: 2/@vw;
+  height: 52/@vw*1.3;
   background-color: #f2f2f2;
-  margin: 16px 7px 0 7px;
+  margin: 16/@vw 7/@vw 0 7/@vw;
 }
 .Mobile_phone .end {
-  width: 167px;
-  height: 102px;
+  width: 167/@vw;
+  height: 102/@vw;
   position: relative;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .Mobile_phone .end h5 {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #333333;
   font-weight: bold;
-  margin: 4px 0 0 10px;
+  margin: 4/@vw 0 0 10/@vw;
 }
 .Mobile_phone .end .commission {
-  margin: 10px 10px 0;
+  margin: 10/@vw 10/@vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .end .commission p {
   color: #666666;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .Mobile_phone .end .commission span,
 .Mobile_phone .end .contains p {
   color: #dd1414;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .Mobile_phone .end .contains {
-  margin: 10px 10px 0;
+  margin: 10/@vw 10/@vw 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .Mobile_phone .end .contains span {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #dc0101;
   font-weight: bold;
 }
@@ -703,10 +704,10 @@ body {
 .Mobile_phone .Belonging,
 .Mobile_phone .regular {
   width: 100%;
-  height: 376px;
+  height: 376/@vw;
   position: absolute;
   left: 0;
-  top: 291px;
+  top: 291/@vw;
   display: flex;
 }
 .Mobile_phone .Belonging .pro {
@@ -718,24 +719,24 @@ body {
 .Mobile_phone .Belonging .pro li,
 .Mobile_phone .Belonging .city li {
   width: 100%;
-  height: 45px;
-  border-bottom: 1px solid #ececec;
+  height: 45/@vw;
+  border-bottom: 1/@vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .Belonging .pro li p {
   color: #333333;
-  font-size: 10pt;
-  margin-left: 35px;
+  font-size: 10/@vw*1.3;
+  margin-left: 35/@vw;
 }
 
 .Mobile_phone .Belonging .pro li img,
 .Mobile_phone .Belonging .city li img {
   position: absolute;
-  left: 15px;
-  width: 10pt;
-  height: 7pt;
+  left: 15/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
 }
 .Mobile_phone .Belonging .city {
   width: 60%;
@@ -744,45 +745,45 @@ body {
 }
 .Mobile_phone .Belonging .city li p {
   color: #333333;
-  font-size: 10pt;
-  margin-left: 48px;
+  font-size: 10/@vw*1.3;
+  margin-left: 48/@vw;
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 376px;
+  height: 376/@vw;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 291px;
+  top: 291/@vw;
   display: flex;
 }
 .Mobile_phone .opeateing ul {
   width: 100%;
-  height: 88px;
+  height: 88/@vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 .Mobile_phone .opeateing ul li {
-  width: 187px;
-  height: 43px;
+  width: 187/@vw;
+  height: 43/@vw;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1/@vw solid #ececec;
   position: relative;
 }
 .Mobile_phone .opeateing ul li img {
   position: absolute;
-  left: 40px;
-  width: 10pt;
-  height: 7pt;
+  left: 40/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
   display: none;
 }
 .Mobile_phone .opeateing ul li p {
   color: #333333;
-  font-size: 12px;
-  margin-left: 63px;
+  font-size: 12/@vw;
+  margin-left: 63/@vw;
   text-align: center;
 }
 .Mobile_phone .opeateing ul li:hover,
@@ -804,23 +805,23 @@ body {
 }
 .Mobile_phone .regular ul li {
   width: 100%;
-  height: 44px;
-  border-bottom: 1px solid #ececec;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .regular ul li img {
   position: absolute;
-  left: 15px;
-  width: 10pt;
-  height: 7pt;
+  left: 15/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
   display: none;
 }
 .Mobile_phone .regular ul li p {
   color: #333333;
-  font-size: 12px;
-  margin-left: 40px;
+  font-size: 12/@vw;
+  margin-left: 40/@vw;
 }
 .Mobile_phone .Montmorillonite {
   width: 100%;
@@ -831,59 +832,59 @@ body {
   top: 0;
 }
 .Mobile_phone .Montmorillonite .search_filter {
-  width: 330px;
+  width: 330/@vw;
   height: 100%;
   background-color: #fff;
-  margin-left: 45px;
+  margin-left: 45/@vw;
   overflow-y: auto;
 }
 .Mobile_phone .Montmorillonite .search_filter .back {
   width: 100%;
-  height: 40px;
-  border-bottom: 1px solid #f2f2f2;
+  height: 40/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   align-items: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .back img {
-  width: 6px;
-  height: 11px;
-  margin-left: 11px;
+  width: 6/@vw;
+  height: 11/@vw;
+  margin-left: 11/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .back p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle {
-  width: 286px;
-  height: 55px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 55/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle p {
-  width: 115px;
-  height: 25px;
+  width: 115/@vw;
+  height: 25/@vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25px;
+  line-height: 25/@vw;
   color: #999999;
 }
 .Mobile_phone .Montmorillonite .search_filter .price {
-  width: 286px;
-  height: 200px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 200/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .price p {
   position: absolute;
-  left: 184px;
-  top: 157px;
-  font-size: 12px;
+  left: 184/@vw;
+  top: 157/@vw;
+  font-size: 12/@vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .price h5,
@@ -891,9 +892,9 @@ body {
 .Mobile_phone .Montmorillonite .search_filter .contract h5,
 .Mobile_phone .Montmorillonite .search_filter .more_number h5 {
   color: #666666;
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: 500;
-  margin: 14px 0;
+  margin: 14/@vw 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul,
 .Mobile_phone .Montmorillonite .search_filter .charge ul,
@@ -907,20 +908,20 @@ body {
 .Mobile_phone .Montmorillonite .search_filter .charge ul li,
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
   position: relative;
-  width: 89px;
-  height: 25px;
+  width: 89/@vw;
+  height: 25/@vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  font-size: 12px;
+  line-height: 25/@vw;
+  margin-bottom: 15/@vw;
+  border-radius: 4/@vw;
+  font-size: 12/@vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li span,
 .Mobile_phone .Montmorillonite .search_filter .charge span {
   position: absolute;
-  left: 10px;
+  left: 10/@vw;
   top: 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li input,
@@ -928,7 +929,7 @@ body {
   border: none;
   outline: none;
   background: none;
-  text-indent: 30px;
+  text-indent: 30/@vw;
   width: 100%;
   height: 100%;
 }
@@ -938,12 +939,12 @@ body {
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:last-child,
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:last-child {
-  width: 85px;
-  margin-left: 8px;
+  width: 85/@vw;
+  margin-left: 8/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:nth-of-type(11),
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:nth-of-type(11) {
-  width: 85px;
+  width: 85/@vw;
 }
 .Mobile_phone
   .Montmorillonite
@@ -959,107 +960,107 @@ body {
   color: #ffffff;
 }
 .Mobile_phone .Montmorillonite .search_filter .charge {
-  width: 286px;
-  height: 160px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 160/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .charge p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
   position: absolute;
-  left: 186px;
-  top: 117px;
+  left: 186/@vw;
+  top: 117/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract {
-  width: 286px;
-  height: 195px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 195/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .linings {
-  width: 1px;
-  height: 104px;
+  width: 1/@vw;
+  height: 104/@vw;
   background-color: #f2f2f2;
   position: absolute;
   left: 50%;
-  top: 74px;
+  top: 74/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december {
   width: 100%;
-  height: 25px;
+  height: 25/@vw;
   display: flex;
   justify-content: space-around;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december li {
-  width: 89px;
-  height: 25px;
+  width: 89/@vw;
+  height: 25/@vw;
   background-color: #f8f8f8;
   text-align: center;
-  border-radius: 4px;
-  font-size: 12px;
-  line-height: 25px;
+  border-radius: 4/@vw;
+  font-size: 12/@vw;
+  line-height: 25/@vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change {
   width: 100%;
-  height: 100px;
-  margin-top: 15px;
+  height: 100/@vw;
+  margin-top: 15/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li {
   width: 100%;
-  height: 25px;
+  height: 25/@vw;
   display: flex;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1/@vw solid #f2f2f2;
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li:first-child {
-  border-top: 1px solid #f2f2f2;
+  border-top: 1/@vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li h3 {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number {
-  width: 286px;
-  height: 160px;
-  margin: 0 22px;
+  width: 286/@vw;
+  height: 160/@vw;
+  margin: 0 22/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-child {
-  margin-right: 98px;
+  margin-right: 98/@vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure {
   width: 100%;
-  height: 44px;
+  height: 44/@vw;
   display: flex;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure p {
   width: 50%;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 44px;
-  font-size: 16px;
+  line-height: 44/@vw;
+  font-size: 16/@vw;
   color: #666666;
-  border-bottom: 1px solid #f2f2f2;
-  border-top: 1px solid #f2f2f2;
+  border-bottom: 1/@vw solid #f2f2f2;
+  border-top: 1/@vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure span {
   width: 50%;
   background-color: #fe5858;
   text-align: center;
-  line-height: 44px;
-  font-size: 16px;
+  line-height: 44/@vw;
+  font-size: 16/@vw;
   color: #ffffff;
 }
 </style>

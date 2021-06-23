@@ -147,7 +147,7 @@
             <p>查看详情</p>
           </div>
         </div>
-        <el-dialog :visible.sync="onclickCenel" width="295px" center>
+        <el-dialog :visible.sync="onclickCenel"  center>
           <span class="cencl"> </span>
           <p class="phonels">请问您是否确认取消此订单？</p>
 
@@ -175,7 +175,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .hui {
   width: 100%;
   height: 100%;
@@ -184,28 +185,28 @@ export default {
 }
 .ordersA /deep/ .el-dialog--center .el-dialog__footer {
   text-align: inherit;
-  height: 1px;
+  height: 1/@vw;
 }
 .ordersA /deep/ .el-icon-close:before {
   content: "";
 }
 .ordersA /deep/ .el-dialog {
-  border-radius: 6px;
+  border-radius: 6/@vw;
 }
 .buttom {
   display: flex;
   justify-content: space-around;
-  margin: -31px 10px;
+  margin: -31/@vw 10/@vw;
 }
 .phonels {
-  margin-left: 42px;
-  margin-bottom: 41px;
-  margin-top: -29px;
+  margin-left: 42/@vw;
+  margin-bottom: 41/@vw;
+  margin-top: -29/@vw;
 }
 
 .el-dialog--center .el-dialog__body {
   text-align: initial;
-  padding: 50px 25px 30px;
+  padding: 50/@vw 25/@vw 30/@vw;
 }
 .el-dialog__header {
   padding: 0;
@@ -217,126 +218,126 @@ export default {
   background-color: white;
 }
 .phonel {
-  margin-left: 65px;
-  margin-bottom: 15px;
-  margin-top: 10px;
+  margin-left: 65/@vw;
+  margin-bottom: 15/@vw;
+  margin-top: 10/@vw;
 }
 .el-dialog__wrapper {
   position: fixed;
-  top: 132px;
-  right: 0px;
-  bottom: -1px;
+  top: 132/@vw;
+  right: 0/@vw;
+  bottom: -1/@vw;
   left: 0;
   overflow: auto;
   margin: 0;
 }
 .cencl {
-  margin-left: 43px;
+  margin-left: 43/@vw;
   color: #333333;
   font-weight: bold;
 }
 .phones {
-  margin-left: 95px;
+  margin-left: 95/@vw;
   color: #333333;
   font-weight: bold;
 }
 .el-dialog--center .el-dialog__footer {
-  height: 51px;
-  margin-top: -30px;
+  height: 51/@vw;
+  margin-top: -30/@vw;
 }
 .xia {
-  width: 295px;
-  height: 1px;
+  width: 295/@vw;
+  height: 1/@vw;
   background-color: #f5f5f5;
-  margin-left: -25px;
+  margin-left: -25/@vw;
 }
 .que {
-  font-size: 15px;
-  margin-top: 9px;
+  font-size: 15/@vw;
+  margin-top: 9/@vw;
   color: #0443d1;
 }
 .cancal {
-  font-size: 15px;
-  margin-top: 9px;
+  font-size: 15/@vw;
+  margin-top: 9/@vw;
   color: #0443d1;
 }
 .el-dialog--center {
   text-align: center;
-  border-radius: 10px;
+  border-radius: 10/@vw;
 }
 .rightss {
-  width: 1px;
-  height: 61px;
+  width: 1/@vw;
+  height: 61/@vw;
   background-color: #f5f5f5;
-  margin-top: -10px;
+  margin-top: -10/@vw;
 }
 .bottomA {
-  width: 100px;
-  height: 30px;
-  border: 1px solid #e3e3e3;
+  width: 100/@vw;
+  height: 30/@vw;
+  border: 1/@vw solid #e3e3e3;
   text-align: center;
-  line-height: 30px;
-  border-radius: 20px;
+  line-height: 30/@vw;
+  border-radius: 20/@vw;
   color: #999999;
 }
 .bottomB {
-  width: 100px;
-  height: 30px;
-  border: 1px solid #fe5858;
+  width: 100/@vw;
+  height: 30/@vw;
+  border: 1/@vw solid #fe5858;
   text-align: center;
-  line-height: 30px;
-  border-radius: 20px;
+  line-height: 30/@vw;
+  border-radius: 20/@vw;
   color: #fe5858;
 }
 
 .bottomA p {
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .bottomB p {
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .bottom {
   display: flex;
-  margin-top: 17px;
+  margin-top: 17/@vw;
   justify-content: space-around;
 }
 .success span {
   color: #fe5858;
 }
 .one {
-  margin-left: 19px;
+  margin-left: 19/@vw;
   font-weight: bold;
   color: #333333;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .ones {
-  margin-left: 19px;
+  margin-left: 19/@vw;
   font-weight: bold;
   color: #fe5858;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .two {
-  margin-right: 13px;
+  margin-right: 13/@vw;
   color: #999999;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .success {
   display: flex;
-  font-size: 14px;
+  font-size: 14/@vw;
   justify-content: space-evenly;
-  line-height: 30px;
+  line-height: 30/@vw;
 }
 .tuikuans {
-  margin-top: 10px;
-  width: 300px;
-  height: 30px;
+  margin-top: 10/@vw;
+  width: 300/@vw;
+  height: 30/@vw;
   background-color: #f2f2f2;
-  margin-left: 15px;
-  border-radius: 5px;
+  margin-left: 15/@vw;
+  border-radius: 5/@vw;
 }
 .money {
   color: #fe5858;
-  margin: 3px 0;
+  margin: 3/@vw 0;
 }
 .to {
   display: flex;
@@ -344,106 +345,106 @@ export default {
 }
 .header {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background: #fe5858;
   z-index: 2;
   position: fixed;
   top: 0;
 }
 .back {
-  width: 10px;
-  height: 16px;
-  margin: 23px 12px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 23/@vw 12/@vw;
 }
 .sales {
-  margin: -46px 152px;
-  font-size: 16px;
+  margin: -46/@vw 152/@vw;
+  font-size: 16/@vw;
   color: white;
 }
 
 .spend {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .yidong {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .phonenumber {
-  font-size: 16px;
+  font-size: 16/@vw;
   font-weight: bold;
   color: #333333;
 }
 .shops {
-  width: 15px;
-  height: 15px;
-  padding: 0px 2px;
-  margin-right: 4px;
+  width: 15/@vw;
+  height: 15/@vw;
+  padding: 0/@vw 2/@vw;
+  margin-right: 4/@vw;
 }
 .shoping {
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   display: flex;
   align-items: center;
 }
 .this {
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 .paid {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #fe5858;
-  margin-top: 12px;
+  margin-top: 12/@vw;
 }
 .endtime {
-  margin-left: 15px;
+  margin-left: 15/@vw;
 }
 .xian {
-  width: 330px;
-  height: 1px;
+  width: 330/@vw;
+  height: 1/@vw;
   background-color: #f2f2f2;
-  margin: 10px auto;
+  margin: 10/@vw auto;
 }
 
 .name {
-  margin: 0 10px;
-  line-height: 25px;
+  margin: 0 10/@vw;
+  line-height: 25/@vw;
   color: #666666;
   position: relative;
 }
 
 .order {
   width: 100%;
-  height: 65px;
+  height: 65/@vw;
   background: #ff5757;
 }
 .order p {
   color: white;
-  font-size: 16px;
-  margin: 20px 103px;
+  font-size: 16/@vw;
+  margin: 20/@vw 103/@vw;
 }
 
 .orders {
-  width: 350px;
-  height: 260px;
+  width: 350/@vw;
+  height: 260/@vw;
   background-color: white;
-  margin-top: 80px;
-  margin-left: 14px;
-  border-radius: 5px;
+  margin-top: 80/@vw;
+  margin-left: 14/@vw;
+  border-radius: 5/@vw;
 }
 .ordersA {
-  width: 350px;
-  height: 260px;
+  width: 350/@vw;
+  height: 260/@vw;
   background-color: white;
-  margin: 15px 11px;
-  border-radius: 5px;
+  margin: 15/@vw 11/@vw;
+  border-radius: 5/@vw;
 }
 .orders:first-child {
-  margin-top: 80px;
+  margin-top: 80/@vw;
 }
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 </style>

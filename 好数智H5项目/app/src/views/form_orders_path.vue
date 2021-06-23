@@ -204,7 +204,8 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .cont_box {
   width: 100%;
   height: 100%;
@@ -214,11 +215,11 @@ export default {
 .drawBoundingBox {
   width: 100%;
   // height: 100%;
-  padding-bottom: 20px;
+  padding-bottom: 20/@vw;
 }
 .drawBoundingBox .summer {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -227,37 +228,37 @@ export default {
   top: 0;
 }
 .drawBoundingBox .summer img {
-  width: 10px;
-  height: 16px;
-  margin-left: 16px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 16/@vw;
 }
 .drawBoundingBox .summer h4 {
-  font-size: 16px;
-  margin-left: 132px;
+  font-size: 16/@vw;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
 .drawBoundingBox .endcsname {
-  width: 345px;
-  height: 68px;
+  width: 345/@vw;
+  height: 68/@vw;
   background-color: rgba(250, 202, 207, 0.2);
-  margin: 74px 15px 10px;
+  margin: 74/@vw 15/@vw 10/@vw;
   display: flex;
   color: #fe5858;
-  padding: 10px;
+  padding: 10/@vw;
   box-sizing: border-box;
-  border-radius: 5px;
-  font-size: 13px;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
 }
 .drawBoundingBox .endcsname img:first-child {
-  width: 20px;
-  height: 29px;
-  margin: 20px 0 0 20px;
+  width: 20/@vw;
+  height: 29/@vw;
+  margin: 20/@vw 0 0 20/@vw;
 }
 .drawBoundingBox .endcsname img:last-child {
-  width: 8px;
-  height: 14px;
-  margin: 29px 0 0 10px;
+  width: 8/@vw;
+  height: 14/@vw;
+  margin: 29/@vw 0 0 10/@vw;
 }
 .drawBoundingBox .endcsname .mercifully {
   width: 80%;
@@ -267,159 +268,159 @@ export default {
 }
 .drawBoundingBox .endcsname .mercifully .parameter h3 {
   color: #333333;
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: 500;
-  margin: 15px 0 0 12px;
+  margin: 15/@vw 0 0 12/@vw;
 }
 .drawBoundingBox .endcsname .mercifully .parameter p {
   color: #666666;
-  font-size: 12px;
-  margin: 17px 0 0 14px;
+  font-size: 12/@vw;
+  margin: 17/@vw 0 0 14/@vw;
 }
 .drawBoundingBox .endcsname .mercifully .reklameadvice {
   display: flex;
 }
 .drawBoundingBox .endcsname .mercifully .reklameadvice p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin: 4px 0 0 12px;
+  margin: 4/@vw 0 0 12/@vw;
 }
 .drawBoundingBox .sureing {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
   font-weight: 500;
-  margin-left: 15px;
+  margin-left: 15/@vw;
 }
 .drawBoundingBox .sureings img {
-  width: 256px;
-  height: 9px;
-  margin-left: 15px;
+  width: 256/@vw;
+  height: 9/@vw;
+  margin-left: 15/@vw;
 }
 .drawBoundingBox .reali {
-  width: 345px;
-  height: 83px;
+  width: 345/@vw;
+  height: 83/@vw;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10/@vw 15/@vw;
 }
 .drawBoundingBox .reali .multreal {
   display: flex;
   align-items: center;
-  width: 325px;
-  margin: 0 10px;
-  border-bottom: 1px solid #d2d2d2;
+  width: 325/@vw;
+  margin: 0 10/@vw;
+  border-bottom: 1/@vw solid #d2d2d2;
   height: 50%;
 }
 .drawBoundingBox .reali .multreal p,
 .drawBoundingBox .reali .box_construct p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
-  margin-right: 14px;
+  margin-right: 14/@vw;
 }
 .drawBoundingBox .reali .multreal input {
   border: none;
   outline: none;
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin-top: 1px;
+  margin-top: 1/@vw;
 }
 .drawBoundingBox .reali .box_construct {
   display: flex;
   align-items: center;
-  width: 325px;
+  width: 325/@vw;
   height: 50%;
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .drawBoundingBox .reali .box_construct span {
   color: #333333;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .drawBoundingBox .box_header {
-  width: 345px;
-  height: 285px;
+  width: 345/@vw;
+  height: 285/@vw;
   background-color: #fff;
-  margin: 10px 15px;
-  padding: 15px 0;
+  margin: 10/@vw 15/@vw;
+  padding: 15/@vw 0;
 }
 .drawBoundingBox .box_header ul {
   display: flex;
-  width: 325px;
-  height: 285px;
-  margin: 0 10px;
+  width: 325/@vw;
+  height: 285/@vw;
+  margin: 0 10/@vw;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
 .drawBoundingBox .box_header ul li {
-  width: 152px;
-  height: 127px;
+  width: 152/@vw;
+  height: 127/@vw;
   position: relative;
 }
 .drawBoundingBox .box_header ul li:first-child {
-  margin: 0 21px 21px 0;
+  margin: 0 21/@vw 21/@vw 0;
 }
 .drawBoundingBox .box_header ul li img:first-child {
   width: 100%;
-  height: 97px;
+  height: 97/@vw;
 }
 .drawBoundingBox .box_header ul li .ppp {
-  width: 47px;
-  height: 47px;
+  width: 47/@vw;
+  height: 47/@vw;
   position: absolute;
-  left: 53px;
-  top: 25px;
+  left: 53/@vw;
+  top: 25/@vw;
 }
 .drawBoundingBox .box_header ul li p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .drawBoundingBox .instructionsare {
-  width: 345px;
-  height: 133px;
+  width: 345/@vw;
+  height: 133/@vw;
   background-color: #fff;
-  margin: 10px 15px 47px;
+  margin: 10/@vw 15/@vw 47/@vw;
 }
 .drawBoundingBox .instructionsare h4 {
-  width: 325px;
-  height: 44px;
-  margin: 0 10px;
-  border-bottom: 1px solid #eaeaea;
-  line-height: 44px;
-  font-size: 14px;
+  width: 325/@vw;
+  height: 44/@vw;
+  margin: 0 10/@vw;
+  border-bottom: 1/@vw solid #eaeaea;
+  line-height: 44/@vw;
+  font-size: 14/@vw;
   color: #333333;
 }
 .drawBoundingBox .InstructionSet {
-  width: 325px;
-  height: 44px;
-  margin: 0 10px;
-  border-bottom: 1px solid #eaeaea;
+  width: 325/@vw;
+  height: 44/@vw;
+  margin: 0 10/@vw;
+  border-bottom: 1/@vw solid #eaeaea;
   display: flex;
   align-items: center;
   position: relative;
 }
 .drawBoundingBox .InstructionSet img:first-child {
-  width: 11px;
-  height: 11px;
-  margin-left: 6px;
+  width: 11/@vw;
+  height: 11/@vw;
+  margin-left: 6/@vw;
 }
 .drawBoundingBox .InstructionSet img:last-child {
-  width: 6px;
-  height: 10px;
-  margin-left: 90px;
+  width: 6/@vw;
+  height: 10/@vw;
+  margin-left: 90/@vw;
 }
 .drawBoundingBox .InstructionSet p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin-left: 14px;
+  margin-left: 14/@vw;
 }
 .drawBoundingBox .InstructionSet p span {
   color: #fe5858;
 }
 .drawBoundingBox .InstructionSet .yes {
-  width: 11px;
-  height: 11px;
+  width: 11/@vw;
+  height: 11/@vw;
   position: absolute;
-  left: 6px;
+  left: 6/@vw;
 }
 .drawBoundingBox .InstructionSet:last-child {
   border-bottom: none;
@@ -429,33 +430,33 @@ export default {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 44px;
+  height: 44/@vw;
   background-color: #fff;
   display: flex;
   align-items: center;
 }
 .drawBoundingBox .sensorbox_init_osd p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #2c2c2c;
   font-weight: 600;
-  margin-left: 14px;
+  margin-left: 14/@vw;
 }
 .drawBoundingBox .sensorbox_init_osd span {
   color: #fe5858;
-  font-size: 14px;
-  margin-left: 4px;
+  font-size: 14/@vw;
+  margin-left: 4/@vw;
   font-weight: 600;
 }
 .drawBoundingBox .sensorbox_init_osd .commit {
-  width: 105px;
+  width: 105/@vw;
   height: 100%;
   background-color: #fe5858;
   color: #fff;
   text-align: center;
-  line-height: 44px;
+  line-height: 44/@vw;
   position: absolute;
   right: 0;
-  font-size: 14px;
+  font-size: 14/@vw;
 }
 .fileImg {
   position: absolute;

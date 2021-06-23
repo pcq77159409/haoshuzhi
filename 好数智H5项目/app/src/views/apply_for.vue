@@ -61,7 +61,9 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
+
 input::-webkit-input-placeholder {
   color: #999999;
 }
@@ -69,11 +71,11 @@ input::-webkit-input-placeholder {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
-  padding: 10px 0 67px 0;
+  padding: 10/@vw 0 67/@vw 0;
 }
 .apply_for .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -82,105 +84,105 @@ input::-webkit-input-placeholder {
   top: 0;
 }
 .apply_for .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .apply_for .jumplabel h4 {
-  font-size: 16px;
-  margin-left: 132px;
+  font-size: 16/@vw;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
 .apply_for .realty {
-  width: 345px;
-  height: 438px;
+  width: 345/@vw;
+  height: 438/@vw;
   background-color: #fff;
-  margin: 66px auto;
+  margin: 66/@vw auto;
 }
 .apply_for .realty ul {
-  width: 325px;
-  height: 335px;
-  margin: 0 10px;
+  width: 325/@vw;
+  height: 335/@vw;
+  margin: 0 10/@vw;
 }
 .apply_for .realty ul li {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 47px;
-  border-bottom: 1px solid #f2f2f2;
+  height: 47/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
 }
 .apply_for .realty ul li:nth-child(5) {
-  height: 95px;
+  height: 95/@vw;
   align-items: flex-start;
-  padding-top: 18px;
+  padding-top: 18/@vw;
   box-sizing: border-box;
 }
 .apply_for .realty ul li p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
   font-weight: 600;
 }
 .apply_for .realty ul li textarea{
   outline: none;
   border: none;
-  margin-left: 16px;
-  margin-top: 1px;
+  margin-left: 16/@vw;
+  margin-top: 1/@vw;
 }
 .apply_for .realty ul li input {
   border: none;
   outline: none;
-  margin: 2px 0 0 15px;
-  font-size: 12px;
+  margin: 2/@vw 0 0 15/@vw;
+  font-size: 12/@vw;
 }
 .apply_for .realty ul li img {
-  width: 6px;
-  height: 11px;
-  margin-left: 102px;
+  width: 6/@vw;
+  height: 11/@vw;
+  margin-left: 102/@vw;
 }
 .apply_for .realty .submit {
-  width: 345px;
-  height: 64px;
+  width: 345/@vw;
+  height: 64/@vw;
   background: url("../assets/矩形 9@2x.png") no-repeat;
-  background-size: 345px 64px;
+  background-size: 345/@vw 64/@vw;
   text-align: center;
-  line-height: 64px;
-  margin-top: 18px;
+  line-height: 64/@vw;
+  margin-top: 18/@vw;
   color: #ffffff;
 }
 .apply_for .realty .powers {
-  width: 345px;
-  height: 160px;
+  width: 345/@vw;
+  height: 160/@vw;
   background-color: #fff;
-  margin-top: 30px;
+  margin-top: 30/@vw;
 }
 .apply_for .realty .powers h4 {
-  width: 325px;
-  height: 38px;
-  margin: 0 10px;
+  width: 325/@vw;
+  height: 38/@vw;
+  margin: 0 10/@vw;
   text-align: center;
-  border-bottom: 1px solid #f2f2f2;
-  line-height: 38px;
+  border-bottom: 1/@vw solid #f2f2f2;
+  line-height: 38/@vw;
   color: #333333;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .apply_for .realty .powers .Become {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 10/@vw;
 }
 .apply_for .realty .powers .Become img {
-  width: 15pt;
-  height: 15pt;
-  margin: 10px 0 0 10px;
+  width: 15/@vw*1.3;
+  height: 15/@vw*1.3;
+  margin: 10/@vw 0 0 10/@vw;
 }
 .apply_for .realty .powers .Become p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
-  margin: 10px 0 0 10px;
+  margin: 10/@vw 0 0 10/@vw;
 }
 .apply_for .realty .powers .Become span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  margin: 10px 0 0 10px;
+  margin: 10/@vw 0 0 10/@vw;
 }
 </style>

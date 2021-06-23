@@ -46,7 +46,9 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .purchase_box {
   width: 100%;
   height: 100%;
@@ -58,7 +60,7 @@ export default {
 }
 .purchase_box .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -67,31 +69,31 @@ export default {
   top: 0;
 }
 .purchase_box .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .purchase_box .jumplabel h4 {
-  font-size: 16px;
-  margin-left: 132px;
+  font-size: 16/@vw;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
 .purchase_box .process {
-  width: 345px;
-  height: 704px;
-  margin: 80px 15px 20px;
+  width: 345/@vw;
+  height: 704/@vw;
+  margin: 80/@vw 15/@vw 20/@vw;
   background-color: #fff;
 }
 .purchase_box .process .network h3 {
-  padding: 15px 0 10px 12px;
-  font-size: 14px;
+  padding: 15/@vw 0 10/@vw 12/@vw;
+  font-size: 14/@vw;
   color: #333333;
 }
 .purchase_box .process .network p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  line-height: 30px;
-  margin-left: 12px;
+  line-height: 30/@vw;
+  margin-left: 12/@vw;
 }
 </style>

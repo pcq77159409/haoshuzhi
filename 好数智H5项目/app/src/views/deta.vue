@@ -248,7 +248,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .signs {
   width: 100%;
   height: 100%;
@@ -260,10 +261,10 @@ export default {
   align-items: center;
 }
 .signs .white {
-  width: 247px;
-  height: 64px;
+  width: 247/@vw;
+  height: 64/@vw;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 10/@vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -272,72 +273,72 @@ export default {
   width: 100%;
   height: 100%;
 
-  margin-bottom: 12px;
-  border-radius: 7px;
+  margin-bottom: 12/@vw;
+  border-radius: 7/@vw;
 }
 
 .signs .white p {
   color: white;
-  font-size: 16px;
-  margin-top: -55px;
+  font-size: 16/@vw;
+  margin-top: -55/@vw;
 }
 
 .el-dialog {
   margin-top: 45vh;
-  width: 233px;
+  width: 233/@vw;
 }
 .el-dialog--center {
   text-align: center;
-  height: 70px;
+  height: 70/@vw;
   background: #666666;
   margin-top: 45vh;
 }
 .del p {
-  border: 1px solid #f5f5f5;
+  border: 1/@vw solid #f5f5f5;
   text-align: center;
-  border-radius: 25px;
+  border-radius: 25/@vw;
   color: #999999;
-  font-size: 14px;
-  width: 112px;
-  height: 32px;
-  line-height: 32px;
-  margin-left: 250px;
+  font-size: 14/@vw;
+  width: 112/@vw;
+  height: 32/@vw;
+  line-height: 32/@vw;
+  margin-left: 250/@vw;
 }
 .del {
-  width: 100px;
-  height: 40px;
+  width: 100/@vw;
+  height: 40/@vw;
 }
 .delivery {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 60/@vw;
   background-color: white;
   display: flex;
   align-items: center;
 }
 .v {
-  width: 20px;
-  height: 20px;
-  margin: 0 7px 0 12px;
+  width: 20/@vw;
+  height: 20/@vw;
+  margin: 0 7/@vw 0 12/@vw;
 }
 .borders {
-  border-right: 1px solid #ccc;
-  width: 1px;
-  height: 22px;
+  border-right: 1/@vw solid #ccc;
+  width: 1/@vw;
+  height: 22/@vw;
 }
 .make {
-  width: 350px;
-  height: 46px;
+  width: 350/@vw;
+  height: 46/@vw;
   background-color: white;
-  margin: -52px 13px;
-  border-radius: 5px;
+  margin: -52/@vw 13/@vw;
+  border-radius: 5/@vw;
   display: flex;
   color: #666666;
   justify-content: space-evenly;
-  line-height: 46px;
-  margin-bottom: 15px;
+  line-height: 46/@vw;
+  margin-bottom: 15/@vw;
   align-items: center;
 }
 .make .bo {
@@ -345,47 +346,47 @@ export default {
   align-items: center;
 }
 .make p {
-  font-size: 15px;
+  font-size: 15/@vw;
 }
 .make img {
-  width: 15px;
-  height: 15px;
-  margin-right: 10px;
+  width: 15/@vw;
+  height: 15/@vw;
+  margin-right: 10/@vw;
 }
 
 .rights {
-  margin-left: 25px;
+  margin-left: 25/@vw;
 }
 .information {
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: bold;
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 200px;
-  height: 30px;
-  line-height: 40px;
+  margin-left: 20/@vw;
+  margin-top: 20/@vw;
+  width: 200/@vw;
+  height: 30/@vw;
+  line-height: 40/@vw;
 }
 .table {
-  font-size: 12px;
-  line-height: 40px;
+  font-size: 12/@vw;
+  line-height: 40/@vw;
 }
 .table li {
   display: flex;
-  /* width: 200px; */
-  height: 30px;
-  margin-left: 20px;
-  margin-top: 9px;
+  /* width: 200/@vw; */
+  height: 30/@vw;
+  margin-left: 20/@vw;
+  margin-top: 9/@vw;
 }
 .no {
-  width: 350px;
-  height: 120px;
+  width: 350/@vw;
+  height: 120/@vw;
   background-color: white;
-  margin: 65px 13px;
-  border-radius: 5px;
-  font-size: 13px;
+  margin: 65/@vw 13/@vw;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
 }
 /* .yes p {
-  line-height: 40px;
+  line-height: 40/@vw;
   display: flex;
   align-items: center;
 }
@@ -393,108 +394,108 @@ export default {
   color: #fe5858;
 }
 .yes {
-  width: 350px;
-  height: 40px;
+  width: 350/@vw;
+  height: 40/@vw;
   background-color: white;
-  margin: -52px 13px;
-  border-radius: 5px;
-  font-size: 13px;
+  margin: -52/@vw 13/@vw;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
 } */
 .redmoney {
   color: #fe5858;
-  font-size: 16px;
-  margin-right: 6px;
+  font-size: 16/@vw;
+  margin-right: 6/@vw;
 }
 .heng {
   display: flex;
   justify-content: space-between;
 }
 .this {
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 .moneys {
-  width: 54px;
-  height: 17px;
+  width: 54/@vw;
+  height: 17/@vw;
   position: absolute;
-  right: 11px;
-  bottom: 50px;
-  border: 1px solid #999999;
+  right: 11/@vw;
+  bottom: 50/@vw;
+  border: 1/@vw solid #999999;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 15/@vw;
   color: #666666;
   font-weight: 600;
-  font-size: 12px;
-  line-height: 17px;
-  padding: 2px 0;
+  font-size: 12/@vw;
+  line-height: 17/@vw;
+  padding: 2/@vw 0;
 }
 .pay {
-  margin: -25px 0px;
-  font-size: 16px;
+  margin: -25/@vw 0/@vw;
+  font-size: 16/@vw;
   color: #fe5858;
 }
 .need {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
-  margin-top: 10px;
-  /* margin-left: 231px; */
+  margin-top: 10/@vw;
+  /* margin-left: 231/@vw; */
 }
 .spend {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .yidong {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .phonenumber {
-  font-size: 16px;
+  font-size: 16/@vw;
   font-weight: bold;
   color: #333333;
 }
 .xian {
-  width: 330px;
-  height: 1px;
+  width: 330/@vw;
+  height: 1/@vw;
   background-color: #f2f2f2;
-  margin: 10px auto;
+  margin: 10/@vw auto;
 }
 .names {
-  margin: 0 10px;
-  line-height: 25px;
+  margin: 0 10/@vw;
+  line-height: 25/@vw;
   color: #666666;
 }
 
 .shoping {
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   display: flex;
   align-items: center;
 }
 .shops {
-  width: 15px;
-  height: 15px;
-  padding: 0px 2px;
-  margin-right: 4px;
+  width: 15/@vw;
+  height: 15/@vw;
+  padding: 0/@vw 2/@vw;
+  margin-right: 4/@vw;
 }
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .orders {
-  width: 350px;
-  height: 183px;
+  width: 350/@vw;
+  height: 183/@vw;
   background-color: white;
-  margin: 64px 13px -54px;
-  border-radius: 5px;
+  margin: 64/@vw 13/@vw -54/@vw;
+  border-radius: 5/@vw;
   position: relative;
 }
 
 .number {
-  font-size: 13px;
+  font-size: 13/@vw;
   font-weight: 500;
   color: #333333;
 }
@@ -505,13 +506,13 @@ export default {
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-bottom: 50px;
+  padding-bottom: 50/@vw;
   background-color: #f5f5f5;
   box-sizing: border-box;
 }
 .imgs {
   width: 100%;
-  height: 85px;
+  height: 85/@vw;
   background-color: #fe5858;
   display: flex;
   position: relative;
@@ -519,16 +520,16 @@ export default {
 }
 
 .back {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .detalis {
-  width: 100px;
-  height: 30px;
+  width: 100/@vw;
+  height: 30/@vw;
   margin: 0 auto;
   color: white;
-  font-size: 18px;
+  font-size: 18/@vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
 }
@@ -536,78 +537,78 @@ export default {
   display: flex;
 }
 .delivered {
-  width: 255px;
-  height: 95px;
+  width: 255/@vw;
+  height: 95/@vw;
   background-color: #fe5858;
 }
 .right {
-  width: 120px;
-  height: 95px;
+  width: 120/@vw;
+  height: 95/@vw;
   background-color: #fe5858;
 }
 .right img {
-  width: 60px;
-  height: 52px;
-  margin: 0 29px;
+  width: 60/@vw;
+  height: 52/@vw;
+  margin: 0 29/@vw;
 }
 .address {
   position: absolute;
-  margin: -27px 13px;
-  width: 350px;
-  height: 80px;
+  margin: -27/@vw 13/@vw;
+  width: 350/@vw;
+  height: 80/@vw;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 5/@vw;
   display: flex;
   align-items: center;
 }
 .address img {
-  width: 20px;
-  height: 30px;
-  margin-left: 20px;
-  margin-top: 8px;
+  width: 20/@vw;
+  height: 30/@vw;
+  margin-left: 20/@vw;
+  margin-top: 8/@vw;
 }
 .name {
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: bold;
   color: #333333;
-  width: 200px;
-  margin: 6px 15px;
+  width: 200/@vw;
+  margin: 6/@vw 15/@vw;
 }
 .add {
-  font-size: 13px;
+  font-size: 13/@vw;
   color: #333333;
-  /* width: 200px; */
-  margin: 0 15px;
+  /* width: 200/@vw; */
+  margin: 0 15/@vw;
 }
 .address {
   position: absolute;
-  margin: -27px 13px;
-  width: 350px;
-  height: 80px;
+  margin: -27/@vw 13/@vw;
+  width: 350/@vw;
+  height: 80/@vw;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 5/@vw;
   display: flex;
   align-items: center;
 }
 .address img {
-  width: 20px;
-  height: 30px;
-  margin-left: 20px;
-  margin-top: 8px;
+  width: 20/@vw;
+  height: 30/@vw;
+  margin-left: 20/@vw;
+  margin-top: 8/@vw;
 }
 .one {
-  width: 100px;
-  height: 35px;
-  font-size: 22px;
+  width: 100/@vw;
+  height: 35/@vw;
+  font-size: 22/@vw;
   color: white;
-  margin-left: 40px;
+  margin-left: 40/@vw;
 }
 .two {
-  width: 220px;
-  height: 30px;
-  font-size: 12px;
+  width: 220/@vw;
+  height: 30/@vw;
+  font-size: 12/@vw;
   color: white;
-  margin-left: 42px;
-  letter-spacing: 2px;
+  margin-left: 42/@vw;
+  letter-spacing: 2/@vw;
 }
 </style>

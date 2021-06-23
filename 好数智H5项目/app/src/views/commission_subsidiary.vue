@@ -115,17 +115,18 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .subsudiary {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
-  padding-top: 74px;
+  padding-top: 74/@vw;
   overflow: auto;
 }
 .subsudiary .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -135,80 +136,80 @@ export default {
   z-index: 2;
 }
 .subsudiary .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .subsudiary .jumplabel h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .subsudiary h4 {
-    font-size: 14px;
+    font-size: 14/@vw;
     color: #999999;
-    margin: 0 0 10px 15px;
+    margin: 0 0 10/@vw 15/@vw;
     font-weight: 500;
 }
 .subsudiary .date {
-    width: 345px;
-    height: 400px;
+    width: 345/@vw;
+    height: 400/@vw;
     background-color: #fff;
-    margin: 0 15px 10px;
+    margin: 0 15/@vw 10/@vw;
 }
 .subsudiary .dateing {
-    height: 273px;
+    height: 273/@vw;
 }
 
 .subsudiary .date .under{
-    width: 325px;
-    height: 40px;
-    margin: 0 10px;
+    width: 325/@vw;
+    height: 40/@vw;
+    margin: 0 10/@vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1/@vw solid #f2f2f2;
 }
 .subsudiary .date .under p{
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #333333;
 }
 .subsudiary .date ul {
-    width: 325px;
-    height: 363px;
-    margin: 0 10px;
+    width: 325/@vw;
+    height: 363/@vw;
+    margin: 0 10/@vw;
 }
 .subsudiary .date ul li {
     width: 100%;
-    height: 56px;
+    height: 56/@vw;
     display: flex;
     align-items: center;
 }
 .subsudiary .date ul li:first-child{
-    margin-top: 10px;
+    margin-top: 10/@vw;
 }
 .subsudiary .date ul li .people {
     display: flex;
     align-items: center;
 }
 .subsudiary .date ul li .people img {
-    width: 35px;
-    height: 35px;
+    width: 35/@vw;
+    height: 35/@vw;
 }
 .subsudiary .date ul li .people p {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #666666;
-    margin-left: 8px;
+    margin-left: 8/@vw;
 }
 .subsudiary .date ul li span {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #ea5656;
-    margin-left: 76px;
+    margin-left: 76/@vw;
 }
 .subsudiary .date ul li i {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #666666;
-    margin-left: 68px;
+    margin-left: 68/@vw;
 }
 </style>

@@ -50,21 +50,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .m-box,
 .swiper-container {
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  border-radius: 6/@vw;
 }
 .m-box img{
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  border-radius: 6/@vw;
 }
 .swiper-slide {
   text-align: center;
-  font-size: 18px;
+  font-size: 18/@vw;
   background: #fff;
 
   /* Center slide text vertically */
@@ -84,14 +85,14 @@ export default {
 .swiper-container {
   --swiper-theme-color: #ff6600; /* 设置Swiper风格 */
   --swiper-navigation-color: #00ff33; /* 单独设置按钮颜色 */
-  --swiper-navigation-size: 30px; /* 设置按钮大小 */
+  --swiper-navigation-size: 30/@vw; /* 设置按钮大小 */
 }
 .m-box /deep/ .swiper-pagination .swiper-pagination-bullet-active{
   background-color: #fff !important;
 }
 .m-box /deep/ .swiper-pagination-bullet{
   background: transparent;
-  border: 1px solid #fff;
+  border: 1/@vw solid #fff;
   box-sizing: border-box;
   opacity: 1;
 }

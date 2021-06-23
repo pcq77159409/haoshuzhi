@@ -83,7 +83,9 @@
     </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
+
 .hui{
     width: 100%;
     height: 100%;
@@ -91,27 +93,27 @@
 }
 .header{
     width: 100%;
-    height: 64px;
+    height: 64/@vw;
     background-color: #fe5858;
     display: flex;
     align-items: center;
     }
 
     .back{
-        width: 10px;
-        height: 16px;
-        margin: 0 15px;
+        width: 10/@vw;
+        height: 16/@vw;
+        margin: 0 15/@vw;
     }
     .close{
         color: #ffffff;
-        font-size: 16px;
-        margin: 0 120px;
+        font-size: 16/@vw;
+        margin: 0 120/@vw;
     }
     .banner{
-        width: 345px;
-        height: 180px;
+        width: 345/@vw;
+        height: 180/@vw;
     position: relative;
-        margin: 15px 15px;
+        margin: 15/@vw 15/@vw;
     }
     .banner img{
         width: 100%;
@@ -119,9 +121,9 @@
     }
     .jing{
         color: #333333;
-        font-size: 13px;
+        font-size: 13/@vw;
         font-weight: bold;
-        margin: 0 15px;
+        margin: 0 15/@vw;
     }
 a {
   text-decoration: none;
@@ -130,69 +132,69 @@ a {
 }
 .number {
   color: #333333;
-  font-size: 19px;
-  margin-top: 15px;
-  margin-left: 10px;
+  font-size: 19/@vw;
+  margin-top: 15/@vw;
+  margin-left: 10/@vw;
 }
 .money {
-  margin-top: 8px;
+  margin-top: 8/@vw;
   width: 95%;
   display: flex;
-  font-size: 12px;
+  font-size: 12/@vw;
   justify-content: space-between;
-  margin-left: 10px;
+  margin-left: 10/@vw;
 }
 
 .banners img{
     position: absolute;
-    margin: -154px 124px;
-    width: 20px;
-    height: 20px;
+    margin: -154/@vw 124/@vw;
+    width: 20/@vw;
+    height: 20/@vw;
 }
 .banners .closes{
-margin: -155px 150px;
+margin: -155/@vw 150/@vw;
     position: absolute;
-    width: 100px;
-    font-size: 16px;
+    width: 100/@vw;
+    font-size: 16/@vw;
     color: #ffffff;
     font-family: PingFang-SC-Heavy;
 }
 .banners .wen{
-      margin: -120px 92px;
+      margin: -120/@vw 92/@vw;
     position: absolute;
-    width: 157px;
-    font-size: 12px;
+    width: 157/@vw;
+    font-size: 12/@vw;
     color: #ffffff;
-    letter-spacing: 1px;
+    letter-spacing: 1/@vw;
 }
 .A{
-        margin: -81px 70px;
+        margin: -81/@vw 70/@vw;
     position: absolute;
-    width: 157px;
-    font-size: 12px;
+    width: 157/@vw;
+    font-size: 12/@vw;
     color: #FE5858;
-    letter-spacing: 1px;
-    width: 80px;
-    height: 30px;
+    letter-spacing: 1/@vw;
+    width: 80/@vw;
+    height: 30/@vw;
     background: #ffffff;
-    line-height: 30px;
+    line-height: 30/@vw;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 20/@vw;
 
 }
 .B{
-        margin: -81px 197px;
+        margin: -81/@vw 197/@vw;
     position: absolute;
-    width: 157px;
-    font-size: 12px;
+    width: 157/@vw;
+    font-size: 12/@vw;
     color: #fe5858;
-    letter-spacing: 1px;
-    width: 80px;
-    height: 30px;
+    letter-spacing: 1/@vw;
+    width: 80/@vw;
+    height: 30/@vw;
     background: #ffffff;
     text-align: center;
-    line-height: 30px;
-    border-radius: 20px;
+    line-height: 30/@vw;
+    border-radius: 20/@vw;
 }
 
 
@@ -203,38 +205,38 @@ margin: -155px 150px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   justify-content: space-evenly;
   background: #f5f5f5;
 }
 
 .cap .shit {
-  width: 125pt;
-  height: 75pt;
-  border: 0.5pt solid #e5e5e5;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  width: 125/@vw*1.3;
+  height: 75/@vw*1.3;
+  border: 0.5/@vw*1.3 solid #e5e5e5;
+  border-radius: 10/@vw;
+  margin-bottom: 10/@vw;
   background-color: #ffffff;
 }
 .cap .shit img {
   float: right;
-  width: 30px;
-  height: 18px;
+  width: 30/@vw;
+  height: 18/@vw;
 }
 .cap .shit .dolor {
-  margin-right: 10px;
+  margin-right: 10/@vw;
   color: #dd1414;
 }
 .cap .shit .han {
-  font-size: 8px;
+  font-size: 8/@vw;
   color: #dd1414;
-  margin-top: 4px;
+  margin-top: 4/@vw;
 }
 .cap .shit .twietion {
-  font-size: 17px;
+  font-size: 17/@vw;
   font-weight: bold;
   color: #dc0101;
-  margin-right: 10px;
+  margin-right: 10/@vw;
 }
 
 

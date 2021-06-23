@@ -69,19 +69,20 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .money_road {
   width: 100%;
   height: 100%;
   background-color: #fd2352;
   background-size: 100% 100%;
-  padding-top: 64px;
+  padding-top: 64/@vw;
   box-sizing: border-box;
   overflow: auto;
 }
 .money_road .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -91,62 +92,62 @@ export default {
   z-index: 2;
 }
 .money_road .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .money_road .jumplabel h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .money_road .the_layer {
   width: 100%;
-  height: 454px;
+  height: 454/@vw;
   background: url("../assets/图层 0@2x.png") no-repeat;
-  background-size: 100% 454px;
+  background-size: 100% 454/@vw;
 }
 .money_road .qrcode {
-  width: 330px;
-  height: 195px;
+  width: 330/@vw;
+  height: 195/@vw;
   background: url("../assets/组 27@2x.png") no-repeat;
-  background-size: 330px 195px;
-  margin: -118px auto 0;
+  background-size: 330/@vw 195/@vw;
+  margin: -118/@vw auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .money_road .qrcode img:first-child {
-  width: 116px;
-  height: 113px;
-  margin-top: 8px;
+  width: 116/@vw;
+  height: 113/@vw;
+  margin-top: 8/@vw;
 }
 .money_road .qrcode img {
-  width: 137px;
-  height: 27px;
+  width: 137/@vw;
+  height: 27/@vw;
 }
 .money_road .qrcode p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  margin-top: 8px;
+  margin-top: 8/@vw;
 }
 .money_road .two_box {
-  width: 330px;
-  height: 166px;
-  margin: 10px auto;
+  width: 330/@vw;
+  height: 166/@vw;
+  margin: 10/@vw auto;
   background: url("../assets/组 27@2x (1).png") no-repeat;
-  background-size: 330px 166px;
+  background-size: 330/@vw 166/@vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .money_road .two_box .pink_box {
-  width: 195px;
-  height: 73px;
+  width: 195/@vw;
+  height: 73/@vw;
   background: url("../assets/pink.png") no-repeat;
-  background-size: 195px 73px;
-  margin-top: 27px;
+  background-size: 195/@vw 73/@vw;
+  margin-top: 27/@vw;
   display: flex;
 }
 .money_road .two_box .pink_box .zero {
@@ -157,59 +158,59 @@ export default {
   align-items: center;
 }
 .money_road .two_box .pink_box del {
-  width: 1px;
-  height: 50px;
+  width: 1/@vw;
+  height: 50/@vw;
   background-color: #fa95d3;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .money_road .two_box .pink_box .zero p {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #ea5656;
-  margin-top: 6px;
+  margin-top: 6/@vw;
 }
 .money_road .two_box .pink_box .zero p i {
-  font-size: 30px;
+  font-size: 30/@vw;
 }
 .money_road .two_box .pink_box .zero span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .money_road .two_box .jin {
-  width: 137px;
-  height: 27px;
-  margin-top: 13px;
+  width: 137/@vw;
+  height: 27/@vw;
+  margin-top: 13/@vw;
 }
 .money_road .three_box {
-  width: 330px;
-  height: 233px;
+  width: 330/@vw;
+  height: 233/@vw;
   background: url("../assets/组 27@2x (2).png") no-repeat;
-  background-size: 330px 233px;
-  margin: 0 auto 20px;
+  background-size: 330/@vw 233/@vw;
+  margin: 0 auto 20/@vw;
   display: flex;
   flex-direction: column;
 }
 .money_road .three_box .qing {
   align-items: flex-start;
   display: flex;
-  padding: 10px 0 0 31px;
+  padding: 10/@vw 0 0 31/@vw;
 }
 .money_road .three_box .qing:first-child {
-  padding: 60px 0 0 31px;
+  padding: 60/@vw 0 0 31/@vw;
 }
 .money_road .three_box .qing p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin-right: 30px;
+  margin-right: 30/@vw;
 }
 .money_road .three_box .qing span {
   color: #ea5656;
   font-weight: 600;
-  margin-right: 10px;
+  margin-right: 10/@vw;
 }
 .money_road .three_box .rule {
-  width: 113px;
-  height: 16px;
-  margin: 30px auto 0;
+  width: 113/@vw;
+  height: 16/@vw;
+  margin: 30/@vw auto 0;
 }
 .money_road .mongolia {
   width: 100%;
@@ -226,10 +227,10 @@ export default {
 .money_road .mongolia .stratum {
   position: absolute;
   z-index: 44;
-  width: 254px;
-  height: 384px;
+  width: 254/@vw;
+  height: 384/@vw;
   background: url("../assets/百万靓号“大放送”@2x.png") no-repeat;
-  background-size: 254px 384px;
+  background-size: 254/@vw 384/@vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -237,22 +238,22 @@ export default {
   // margin: 0 auto;
 }
 .money_road .mongolia .stratum img {
-  width: 177px;
-  height: 40px;
-  margin-top: 30px;
+  width: 177/@vw;
+  height: 40/@vw;
+  margin-top: 30/@vw;
 }
 .money_road .mongolia .stratum .long {
-  width: 152px;
-  height: 180px;
+  width: 152/@vw;
+  height: 180/@vw;
   background: url("../assets/红包@2x.png") no-repeat;
-  background-size: 152px 180px;
+  background-size: 152/@vw 180/@vw;
   display: flex;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 60/@vw;
 }
 .money_road .mongolia .stratum .long img {
-  width: 93px;
-  height: 91px;
-  margin-top: 10px;
+  width: 93/@vw;
+  height: 91/@vw;
+  margin-top: 10/@vw;
 }
 </style>

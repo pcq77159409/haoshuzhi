@@ -31,7 +31,8 @@
     </ul>
   </div>
 </template>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .deposit {
   width: 100%;
   height: 100%;
@@ -39,82 +40,82 @@
 }
 .deposit .integral_bg {
   width: 100%;
-  height: 332px;
+  height: 332/@vw;
   background: url("../assets/integral_bg.png") no-repeat;
-  background-size: 100% 332px;
+  background-size: 100% 332/@vw;
 }
 .deposit .integral_bg .preferential {
   display: flex;
 }
 .deposit .integral_bg .preferential img {
-  width: 10px;
-  height: 16px;
-  margin: 25px 0 0 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 25/@vw 0 0 15/@vw;
 }
 .deposit .integral_bg .preferential h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #ffffff;
   font-weight: 500;
-  margin-left: 132px;
-  margin-top: 25px;
+  margin-left: 132/@vw;
+  margin-top: 25/@vw;
 }
 .deposit .integral_bg .signing {
-  width: 128px;
-  height: 121px;
-  margin: 76px auto 0;
+  width: 128/@vw;
+  height: 121/@vw;
+  margin: 76/@vw auto 0;
   text-align: center;
 }
 .deposit .integral_bg .signing p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 10/@vw;
 }
 .deposit .integral_bg .signing h2 {
-  font-size: 40px;
+  font-size: 40/@vw;
   color: #fff;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 10/@vw;
 }
 .deposit .integral_bg .signing span {
   display: inline-block;
-  width: 128px;
-  height: 38px;
+  width: 128/@vw;
+  height: 38/@vw;
   background: url("../assets/圆角矩形 5@2x.png") no-repeat;
-  background-size: 128px 38px;
+  background-size: 128/@vw 38/@vw;
   text-align: center;
-  line-height: 34px;
+  line-height: 34/@vw;
   color: #ea5656;
-  font-size: 14px;
+  font-size: 14/@vw;
 }
 .deposit ul {
-  width: 345px;
-  height: 180px;
+  width: 345/@vw;
+  height: 180/@vw;
   background-color: #fff;
-  margin: 10px 15px 0;
-  border-radius: 4px;
+  margin: 10/@vw 15/@vw 0;
+  border-radius: 4/@vw;
 }
 .deposit ul li {
-  width: 325px;
-  height: 44px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 325/@vw;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .deposit ul li:last-child {
   border-bottom: none;
 }
 .deposit ul li p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #666666;
 }
 .deposit ul li span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .deposit ul li img {
-  width: 5px;
-  height: 10px;
+  width: 5/@vw;
+  height: 10/@vw;
 }
 </style>

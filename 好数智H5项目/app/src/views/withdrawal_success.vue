@@ -34,18 +34,20 @@
     <div class="finish">完成</div>
   </div>
 </template>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .withdrala_box {
   width: 100%;
   height: 100%;
   background-color: #fff;
-  padding-top: 64px;
+  padding-top: 64/@vw;
   box-sizing: border-box;
 }
 
 .withdrala_box .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -55,84 +57,84 @@
   z-index: 2;
 }
 .withdrala_box .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .withdrala_box .jumplabel h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .withdrala_box .successly {
-  width: 72px;
-  margin: 29px auto 0;
+  width: 72/@vw;
+  margin: 29/@vw auto 0;
 }
 .withdrala_box .successly img {
-  width: 67px;
-  height: 67px;
+  width: 67/@vw;
+  height: 67/@vw;
 }
 .withdrala_box .successly h4 {
   color: #333333;
-  font-size: 18px;
+  font-size: 18/@vw;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .withdrala_box .arrive_account {
   width: 100%;
-  height: 45px;
-  border-top: 1px solid #f2f2f2;
-  border-bottom: 1px solid #f2f2f2;
+  height: 45/@vw;
+  border-top: 1/@vw solid #f2f2f2;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 28px;
+  margin-top: 28/@vw;
 }
 .withdrala_box .arrive_account p {
-  margin-left: 15px;
-  font-size: 12px;
+  margin-left: 15/@vw;
+  font-size: 12/@vw;
   color: #333333;
 }
 .withdrala_box .arrive_account span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  margin-right: 15px;
+  margin-right: 15/@vw;
 }
 .withdrala_box .staus {
   width: 100%;
-  height: 128px;
-  border-bottom: 1px solid #f2f2f2;
+  height: 128/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   position: relative;
 }
 .withdrala_box .staus h5 {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin: 15px 0 0 15px;
+  margin: 15/@vw 0 0 15/@vw;
   font-weight: 500;
 }
 .withdrala_box .staus i {
   display: inline-block;
-  width: 1px;
-  height: 60px;
+  width: 1/@vw;
+  height: 60/@vw;
   background-color: #ea5656;
   position: absolute;
-  left: 20.5px;
-  top: 36px;
+  left: 20.5/@vw;
+  top: 36/@vw;
 }
 .withdrala_box .staus .commit_m {
-  width: 68px;
-  height: 75px;
+  width: 68/@vw;
+  height: 75/@vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 15px 0 0 15px;
+  margin: 15/@vw 0 0 15/@vw;
 }
 .withdrala_box .staus .commit_m span {
   display: inline-block;
   border-radius: 50%;
-  width: 12px;
-  height: 12px;
+  width: 12/@vw;
+  height: 12/@vw;
   background-color: #ea5656;
 }
 .withdrala_box .staus .commit_m .please {
@@ -141,32 +143,32 @@
   justify-content: space-between;
 }
 .withdrala_box .staus .commit_m .please p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
 }
 .withdrala_box .staus .commit_m .please:nth-of-type(2) p {
   color: #333333;
 }
 .withdrala_box .longtime {
-  margin-left: 15px;
+  margin-left: 15/@vw;
 }
 .withdrala_box .longtime p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  margin-top: 15px;
+  margin-top: 15/@vw;
 }
 .withdrala_box .longtime span {
-  margin-left: 6px;
+  margin-left: 6/@vw;
 }
 .withdrala_box .finish {
-  width: 345px;
-  height: 44px;
+  width: 345/@vw;
+  height: 44/@vw;
   background-color: #ea5656;
   color: #ffffff;
-  font-size: 15px;
-  line-height: 44px;
+  font-size: 15/@vw;
+  line-height: 44/@vw;
   text-align: center;
-  border-radius: 25px;
-  margin: 80px auto 0;
+  border-radius: 25/@vw;
+  margin: 80/@vw auto 0;
 }
 </style>

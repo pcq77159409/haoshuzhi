@@ -45,7 +45,9 @@
 </template>
 
 
-<style scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .a {
   width: 100%;
   height: 100%;
@@ -53,147 +55,147 @@
 }
 .header {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #fe5858;
   display: flex;
 
   align-items: center;
 }
 .banck {
-  width: 10px;
-  height: 16px;
-  margin: 0 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 0 15/@vw;
 }
 .com {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #ffffff;
-  margin: 0 120px;
+  margin: 0 120/@vw;
 }
 .one {
-  width: 345px;
-  height: 160px;
+  width: 345/@vw;
+  height: 160/@vw;
   background-color: #ffffff;
-  margin: 15px 15px;
-  border-radius: 5px;
+  margin: 15/@vw 15/@vw;
+  border-radius: 5/@vw;
 }
 .coms {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
-  margin-left: 10px;
-  padding: 20px 10px;
+  margin-left: 10/@vw;
+  padding: 20/@vw 10/@vw;
 }
 .di {
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .money {
-  margin: -5px 18px;
-  font-size: 25px;
+  margin: -5/@vw 18/@vw;
+  font-size: 25/@vw;
   font-weight: bold;
 }
 .inputs {
-  width: 262px;
-  height: 40px;
+  width: 262/@vw;
+  height: 40/@vw;
   border: none;
   outline: none;
-  font-size: 22px;
+  font-size: 22/@vw;
   color: #fe5858;
   font-weight: bold;
 }
 .xian {
-  width: 300px;
-  height: 1px;
+  width: 300/@vw;
+  height: 1/@vw;
   background-color: #f8f8f8;
-  margin: 10px 22px;
+  margin: 10/@vw 22/@vw;
 }
 .two {
   display: flex;
   justify-content: space-around;
-  padding: 5px 0;
+  padding: 5/@vw 0;
 }
 .comss {
-  margin-left: -30px;
+  margin-left: -30/@vw;
   color: #999999;
-  font-size: 14px;
+  font-size: 14/@vw;
 }
 .ord {
-  margin-right: -30px;
-  font-size: 14px;
+  margin-right: -30/@vw;
+  font-size: 14/@vw;
   color: #1f98ff;
 }
 .gong {
-  font-size: 12px;
-  margin: 0 20px;
+  font-size: 12/@vw;
+  margin: 0 20/@vw;
   color: #999999;
 }
 .three {
-  width: 345px;
-  height: 228px;
+  width: 345/@vw;
+  height: 228/@vw;
   background-color: #ffffff;
-  margin: 10px auto;
-  border-radius: 5px;
+  margin: 10/@vw auto;
+  border-radius: 5/@vw;
 }
 .three i {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #999999;
-    line-height: 44px;
-    margin-left: 15px;
+    line-height: 44/@vw;
+    margin-left: 15/@vw;
 }
 .zhi {
   display: flex;
-  width: 325px;
-  height: 44px;
-  border-bottom: 1px solid #f2f2f2;
-  margin: 0 10px;
+  width: 325/@vw;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
+  margin: 0 10/@vw;
   align-items: center;
   justify-content: space-between;
 }
 .zhi p {
   color: #333333;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .zhi img {
-  width: 11px;
-  height: 6px;
+  width: 11/@vw;
+  height: 6/@vw;
 }
 .inputss {
-  width: 262px;
-  height: 40px;
+  width: 262/@vw;
+  height: 40/@vw;
   border: none;
   outline: none;
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  text-indent: 20px;
-  margin-top: 1px;
+  text-indent: 20/@vw;
+  margin-top: 1/@vw;
 }
 .four {
-  width: 325px;
-  height: 44px;
-  margin: 0 10px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 325/@vw;
+  height: 44/@vw;
+  margin: 0 10/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   align-items: center;
 }
 .four p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
 }
 .inps {
-  width: 230px;
-  height: 40px;
+  width: 230/@vw;
+  height: 40/@vw;
   border: none;
   outline: none;
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  text-indent: 20px;
+  text-indent: 20/@vw;
 }
 .mone {
-  margin-right: 20px;
-  width: 90px;
+  margin-right: 20/@vw;
+  width: 90/@vw;
 }
 .inp {
-  font-size: 12px;
-  margin-top: 1px;
-  width: 100px;
+  font-size: 12/@vw;
+  margin-top: 1/@vw;
+  width: 100/@vw;
   color:#999999;
 }
 input::-webkit-input-placeholder,  
@@ -202,35 +204,35 @@ textarea::-webkit-input-placeholder {
     color: #999999;
 }
 .fours .fa {
-  margin-left: 54px;
-  width: 70px;
-  height: 19px;
-  border: 1px solid #fe5858;
+  margin-left: 54/@vw;
+  width: 70/@vw;
+  height: 19/@vw;
+  border: 1/@vw solid #fe5858;
   text-align: center;
-  line-height: 19px;
+  line-height: 19/@vw;
   color: #fe5858;
 }
 .fours {
-  width: 325px;
-  height: 44px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 325/@vw;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .fours p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
 }
 .sures {
-    width: 345px;
-    height: 44px;
+    width: 345/@vw;
+    height: 44/@vw;
     background-color: #ea5656;
     color: #ffffff;
-    font-size: 15px;
-    line-height: 44px;
+    font-size: 15/@vw;
+    line-height: 44/@vw;
     text-align: center;
-    border-radius: 25px;
-    margin-top: 80px;
+    border-radius: 25/@vw;
+    margin-top: 80/@vw;
 }
 </style>

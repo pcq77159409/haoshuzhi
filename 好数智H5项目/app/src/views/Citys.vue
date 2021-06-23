@@ -69,7 +69,8 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 * {
   padding: 0;
   margin: 0;

@@ -295,7 +295,8 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .current {
   background-color: #ececec;
 }
@@ -321,30 +322,30 @@ body {
 }
 .Mobile_phone .reds {
   width: 100%;
-  height: 122px;
+  height: 122/@vw;
   background-color: #fe5858;
 }
 .Mobile_phone .reds .moveing {
   display: flex;
 }
 .Mobile_phone .reds .moveing img {
-  width: 10px;
-  height: 16px;
-  margin: 35px 0 0 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 35/@vw 0 0 15/@vw;
   pointer-events: auto;
 }
 .Mobile_phone .reds .moveing h3 {
   color: #ffffff;
-  margin: 30px auto 0;
-  font-size: 18px;
+  margin: 30/@vw auto 0;
+  font-size: 18/@vw;
   font-weight: 500;
 }
 .Mobile_phone .reds .input_bg {
-  width: 345px;
-  height: 28px;
+  width: 345/@vw;
+  height: 28/@vw;
   background: url("../assets/input_bg.png") no-repeat;
-  background-size: 345px 28px;
-  margin: 22px auto 0;
+  background-size: 345/@vw 28/@vw;
+  margin: 22/@vw auto 0;
   display: flex;
 }
 .Mobile_phone .reds .input_bg .tail {
@@ -354,20 +355,20 @@ body {
   align-items: center;
 }
 .Mobile_phone .reds .input_bg .tail img {
-  width: 12px;
-  height: 12px;
-  margin: 0 10px 0 15px;
+  width: 12/@vw;
+  height: 12/@vw;
+  margin: 0 10/@vw 0 15/@vw;
   vertical-align: middle;
 }
 .Mobile_phone .reds .input_bg .tail p {
-  font-size: 10pt;
+  font-size: 10/@vw*1.3;
   color: #666666;
-  margin-right: 10px;
-  margin-bottom: 1px;
+  margin-right: 10/@vw;
+  margin-bottom: 1/@vw;
 }
 .Mobile_phone .reds .input_bg .tail span {
-  width: 1px;
-  height: 12px;
+  width: 1/@vw;
+  height: 12/@vw;
   background-color: #e0e0e0;
 }
 .Mobile_phone .reds .input_bg .searchs {
@@ -381,39 +382,39 @@ body {
   width: 80%;
 }
 .Mobile_phone .reds .input_bg .searchs .want img {
-  width: 10pt;
-  height: 10pt;
-  margin: 0 10px 0 4px;
+  width: 10/@vw*1.3;
+  height: 10/@vw*1.3;
+  margin: 0 10/@vw 0 4/@vw;
 }
 .Mobile_phone .reds .input_bg .searchs .want p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
 }
 .Mobile_phone .reds .input_bg .searchs h4 {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #ffffff;
   font-weight: 500;
-  margin-right: 11px;
-  line-height: 28px;
+  margin-right: 11/@vw;
+  line-height: 28/@vw;
 }
 .Mobile_phone .accurate {
   width: 100%;
 }
 .Mobile_phone .accurate .phoneNumber {
   display: flex;
-  margin: 20px 18px 0;
+  margin: 20/@vw 18/@vw 0;
   justify-content: space-evenly;
 }
 .Mobile_phone .accurate .phoneNumber li {
-  width: 22px;
-  height: 26px;
-  border: 1px solid #cacaca;
+  width: 22/@vw;
+  height: 26/@vw;
+  border: 1/@vw solid #cacaca;
   text-align: center;
-  border-radius: 3px;
-  font-size: 14px;
+  border-radius: 3/@vw;
+  font-size: 14/@vw;
 }
 .Mobile_phone .accurate .phoneNumber li:hover {
-  border: 1px solid #dc0101;
+  border: 1/@vw solid #dc0101;
 }
 .Mobile_phone .accurate .phoneNumber li:first-child input {
   color: #333333;
@@ -427,22 +428,22 @@ body {
   outline: none;
 }
 .Mobile_phone .accurate p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #fe5858;
-  margin: 10px 0 0 21px;
+  margin: 10/@vw 0 0 21/@vw;
 }
 .Mobile_phone .accurate .reset {
-  margin: 16px 48px 0;
+  margin: 16/@vw 48/@vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .accurate .reset li {
-  width: 130px;
-  height: 26px;
+  width: 130/@vw;
+  height: 26/@vw;
   text-align: center;
-  line-height: 26px;
-  border-radius: 20px;
-  font-size: 10pt;
+  line-height: 26/@vw;
+  border-radius: 20/@vw;
+  font-size: 10/@vw*1.3;
 }
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;
@@ -454,17 +455,17 @@ body {
 }
 .Mobile_phone .select_change {
   width: 100%;
-  height: 33px;
+  height: 33/@vw;
   background-color: #fff;
-  margin-top: 20px;
-  border: 1px solid #e5e5e5;
+  margin-top: 20/@vw;
+  border: 1/@vw solid #e5e5e5;
 }
 .Mobile_phone .select_change ul {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  line-height: 33px;
+  line-height: 33/@vw;
 }
 .Mobile_phone .select_change ul li {
   display: flex;
@@ -473,21 +474,21 @@ body {
 }
 .Mobile_phone .select_change ul li .red_triangle {
   position: absolute;
-  right: -4px;
+  right: -4/@vw;
   top: 44%;
 }
 .Mobile_phone .select_change ul li p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #666666;
-  margin-right: 9px;
+  margin-right: 9/@vw;
 }
 .Mobile_phone .select_change ul li img {
-  width: 6px;
-  height: 4px;
+  width: 6/@vw;
+  height: 4/@vw;
 }
 .Mobile_phone .select_change ul li:last-child img {
-  width: 10px;
-  height: 9px;
+  width: 10/@vw;
+  height: 9/@vw;
 }
 .Mobile_phone .class_name {
   display: flex;
@@ -495,49 +496,49 @@ body {
   justify-content: space-around;
 }
 .Mobile_phone .start {
-  width: 167px;
-  height: 102px;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
+  width: 167/@vw;
+  height: 102/@vw;
+  border: 1/@vw solid #e5e5e5;
+  border-radius: 10/@vw;
   position: relative;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .Mobile_phone .start img {
   position: absolute;
   right: 0;
   top: 0;
-  width: 30px;
-  height: 18px;
+  width: 30/@vw;
+  height: 18/@vw;
 }
 .Mobile_phone .start h5 {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #333333;
   font-weight: bold;
-  margin: 12px 0 0 10px;
+  margin: 12/@vw 0 0 10/@vw;
 }
 .Mobile_phone .start .commission {
-  margin: 10px 10px 0;
+  margin: 10/@vw 10/@vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .start .commission p {
   color: #666666;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .Mobile_phone .start .commission span,
 .Mobile_phone .start .contains p {
   color: #dd1414;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .Mobile_phone .start .contains {
-  margin: 10px 10px 0;
+  margin: 10/@vw 10/@vw 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .Mobile_phone .start .contains span {
-  font-size: 12pt;
+  font-size: 12/@vw*1.3;
   color: #dc0101;
   font-weight: bold;
 }
@@ -545,10 +546,10 @@ body {
 .Mobile_phone .Belonging,
 .Mobile_phone .regular {
   width: 100%;
-  height: 360px;
+  height: 360/@vw;
   position: absolute;
   left: 0;
-  top: 293px;
+  top: 293/@vw;
   display: flex;
 }
 .Mobile_phone .Belonging .pro {
@@ -560,24 +561,24 @@ body {
 .Mobile_phone .Belonging .pro li,
 .Mobile_phone .Belonging .city li {
   width: 100%;
-  height: 45px;
-  border-bottom: 1px solid #ececec;
+  height: 45/@vw;
+  border-bottom: 1/@vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .Belonging .pro li p {
   color: #333333;
-  font-size: 10pt;
-  margin-left: 35px;
+  font-size: 10/@vw*1.3;
+  margin-left: 35/@vw;
 }
 
 .Mobile_phone .Belonging .pro li img,
 .Mobile_phone .Belonging .city li img {
   position: absolute;
-  left: 15px;
-  width: 10pt;
-  height: 7pt;
+  left: 15/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
 }
 .Mobile_phone .Belonging .city {
   width: 60%;
@@ -586,45 +587,45 @@ body {
 }
 .Mobile_phone .Belonging .city li p {
   color: #333333;
-  font-size: 10pt;
-  margin-left: 48px;
+  font-size: 10/@vw*1.3;
+  margin-left: 48/@vw;
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 360px;
+  height: 360/@vw;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 293px;
+  top: 293/@vw;
   display: flex;
 }
 .Mobile_phone .opeateing ul {
   width: 100%;
-  height: 88px;
+  height: 88/@vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 .Mobile_phone .opeateing ul li {
-  width: 187px;
-  height: 43px;
+  width: 187/@vw;
+  height: 43/@vw;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1/@vw solid #ececec;
   position: relative;
 }
 .Mobile_phone .opeateing ul li img {
   position: absolute;
-  left: 40px;
-  width: 10pt;
-  height: 7pt;
+  left: 40/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
   display: none;
 }
 .Mobile_phone .opeateing ul li p {
   color: #333333;
-  font-size: 12px;
-  margin-left: 63px;
+  font-size: 12/@vw;
+  margin-left: 63/@vw;
   text-align: center;
 }
 .Mobile_phone .opeateing ul li:hover,
@@ -646,36 +647,36 @@ body {
 }
 .Mobile_phone .regular ul li {
   width: 100%;
-  height: 44px;
-  border-bottom: 1px solid #ececec;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .regular ul li img {
   position: absolute;
-  left: 15px;
-  width: 10pt;
-  height: 7pt;
+  left: 15/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
   display: none;
 }
 .Mobile_phone .regular ul li p {
   color: #333333;
-  font-size: 12px;
-  margin-left: 40px;
+  font-size: 12/@vw;
+  margin-left: 40/@vw;
 }
 .Mobile_phone .available {
-  width: 137px;
-  margin: 46px auto;
+  width: 137/@vw;
+  margin: 46/@vw auto;
   text-align: center;
 }
 .Mobile_phone .available img {
   width: 100%;
-  height: 100px;
+  height: 100/@vw;
 }
 .Mobile_phone .available p{
     color: #999999;
-    font-size: 12px;
-    margin-top: 17px;
+    font-size: 12/@vw;
+    margin-top: 17/@vw;
 }
 </style>

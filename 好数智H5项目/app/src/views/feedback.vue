@@ -26,7 +26,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .hui{
     width: 100%;
     height: 100%;
@@ -34,53 +35,53 @@ export default {
 }
 .header{
     width: 100%;
-    height: 64px;
+    height: 64/@vw;
     background-color: #fe5858;
 }
 .back{
-    width: 16px;
-    height: 16px;
-    margin: 26px 12px;
+    width: 16/@vw;
+    height: 16/@vw;
+    margin: 26/@vw 12/@vw;
 }
 .Feedback{
-    font-size: 16px;
+    font-size: 16/@vw;
     color: white;
-    margin: -50px 154px;
+    margin: -50/@vw 154/@vw;
 }
 .one{
-    width: 340px;
-    height: 180px;
+    width: 340/@vw;
+    height: 180/@vw;
     background-color: white;
-    border-radius: 5px;
-    margin: 15px 17px;
+    border-radius: 5/@vw;
+    margin: 15/@vw 17/@vw;
 }
 .borders{
-        width: 336px;
-    height: 77px;
+        width: 336/@vw;
+    height: 77/@vw;
     border: none;
     outline: none;
-    text-indent: 5px;
+    text-indent: 5/@vw;
 }
 .number{
         float: right;
-    margin-right: 10px;
+    margin-right: 10/@vw;
     color: #666666;
-    font-size: 14px;
+    font-size: 14/@vw;
 }
 .jia{
-    width: 70px;
-    height: 70px;
-    margin: 19px 17px;
+    width: 70/@vw;
+    height: 70/@vw;
+    margin: 19/@vw 17/@vw;
 }
 .ti {
-    width: 345px;
-    height: 44px;
-    margin: 88px auto 0; 
+    width: 345/@vw;
+    height: 44/@vw;
+    margin: 88/@vw auto 0; 
     background-color: #ea5656;
-    border-radius: 25px;
+    border-radius: 25/@vw;
     color: #ffffff;
-    font-size: 15px;
+    font-size: 15/@vw;
     text-align: center;
-    line-height: 44px;
+    line-height: 44/@vw;
 }
 </style>

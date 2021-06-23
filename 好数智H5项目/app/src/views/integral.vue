@@ -68,7 +68,9 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .integral_box {
   width: 100%;
   height: 100%;
@@ -76,59 +78,59 @@ export default {
 }
 .integral_box .integral_bg {
   width: 100%;
-  height: 332px;
+  height: 332/@vw;
   background: url("../assets/integral_bg.png") no-repeat;
-  background-size: 100% 332px;
+  background-size: 100% 332/@vw;
 }
 .integral_box .integral_bg .preferential {
   display: flex;
 }
 .integral_box .integral_bg .preferential img {
-  width: 10px;
-  height: 16px;
-  margin: 25px 0 0 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 25/@vw 0 0 15/@vw;
 }
 .integral_box .integral_bg .preferential h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #ffffff;
   font-weight: 500;
-  margin-left: 132px;
-  margin-top: 25px;
+  margin-left: 132/@vw;
+  margin-top: 25/@vw;
 }
 .integral_box .integral_bg .signing {
-  width: 128px;
-  height: 121px;
-  margin: 76px auto 0;
+  width: 128/@vw;
+  height: 121/@vw;
+  margin: 76/@vw auto 0;
   text-align: center;
 }
 .integral_box .integral_bg .signing p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 10/@vw;
 }
 .integral_box .integral_bg .signing h2 {
-  font-size: 40px;
+  font-size: 40/@vw;
   color: #fff;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 10/@vw;
 }
 .integral_box .integral_bg .signing span {
   display: inline-block;
-  width: 128px;
-  height: 38px;
+  width: 128/@vw;
+  height: 38/@vw;
   background: url("../assets/圆角矩形 5@2x.png") no-repeat;
-  background-size: 128px 38px;
+  background-size: 128/@vw 38/@vw;
   text-align: center;
-  line-height: 34px;
+  line-height: 34/@vw;
   color: #ea5656;
-  font-size: 14px;
+  font-size: 14/@vw;
 }
 .integral_box .integral_bg .exchange {
-  width: 356px;
-  height: 55px;
-  margin: 60px auto;
+  width: 356/@vw;
+  height: 55/@vw;
+  margin: 60/@vw auto;
   background-color: #fff;
-  border-radius: 25px;
+  border-radius: 25/@vw;
   display: flex;
   align-items: center;
 }
@@ -142,75 +144,75 @@ export default {
 }
 .integral_box .integral_bg .exchange .eleven img,
 .integral_box .integral_bg .exchange .twelve img {
-  width: 17px;
-  height: 19px;
-  margin: 0 14px 0 20px;
+  width: 17/@vw;
+  height: 19/@vw;
+  margin: 0 14/@vw 0 20/@vw;
 }
 .integral_box .integral_bg .exchange .eleven p,
 .integral_box .integral_bg .exchange .twelve p {
-  font-size: 15px;
+  font-size: 15/@vw;
   color: #666666;
 }
 .integral_box .integral_bg .exchange .eleven p {
-  margin-right: 10px;
+  margin-right: 10/@vw;
 }
 .integral_box .integral_bg .exchange .twelve img {
-  margin-left: 14px;
+  margin-left: 14/@vw;
 }
 .integral_box .integral_bg .exchange span {
-  width: 2px;
-  height: 26px;
+  width: 2/@vw;
+  height: 26/@vw;
   background-color: #d8d8d8;
 }
 .integral_box .task {
-  width: 345px;
-  height: 260px;
-  margin: 35px 15px 0;
+  width: 345/@vw;
+  height: 260/@vw;
+  margin: 35/@vw 15/@vw 0;
   background-color: #fff;
 }
 .integral_box .task h4 {
-  padding: 16px 0 14px 14px;
-  font-size: 14px;
+  padding: 16/@vw 0 14/@vw 14/@vw;
+  font-size: 14/@vw;
   color: #333333;
 }
 .integral_box .task ul {
-  width: 317px;
-  height: 210px;
-  margin: 0 14px;
+  width: 317/@vw;
+  height: 210/@vw;
+  margin: 0 14/@vw;
 }
 .integral_box .task ul li {
   width: 100%;
   height: 33%;
-  border-top: 1px solid #f2f2f2;
+  border-top: 1/@vw solid #f2f2f2;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .integral_box .task ul li .shared p{
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin: 10px 0;
+  margin: 10/@vw 0;
 }
 .integral_box .task ul li .shared .addsix {
   display: flex;
   align-items: center;
 }
 .integral_box .task ul li .shared .addsix  img {
-  width: 16px;
-  height: 16px;
+  width: 16/@vw;
+  height: 16/@vw;
 }
 .integral_box .task ul li .shared .addsix span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #ea5656;
 }
 .integral_box .task ul li .alreadyd {
-  width: 72px;
-  height: 22px;
-  border: 1px solid #ff8e00;
+  width: 72/@vw;
+  height: 22/@vw;
+  border: 1/@vw solid #ff8e00;
   color: #FF9204;
-  font-size: 12px;
-  border-radius: 25px;
+  font-size: 12/@vw;
+  border-radius: 25/@vw;
   text-align: center;
-  line-height: 22px;
+  line-height: 22/@vw;
 }
 </style>

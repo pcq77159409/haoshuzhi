@@ -103,7 +103,9 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .login-box {
   width: 100%;
   height: 100%;
@@ -113,76 +115,76 @@ export default {
   align-items: center;
 }
 .login-box .white_box {
-  width: 249px;
-  height: 256px;
+  width: 249/@vw;
+  height: 256/@vw;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 4/@vw;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .login-box .white_box .colse {
-  width: 15px;
-  height: 15px;
+  width: 15/@vw;
+  height: 15/@vw;
   position: absolute;
-  top: 6px;
-  right: 8px;
+  top: 6/@vw;
+  right: 8/@vw;
 }
 .login-box .white_box .logo {
-  width: 136px;
-  height: 44px;
-  margin-top: 27px;
+  width: 136/@vw;
+  height: 44/@vw;
+  margin-top: 27/@vw;
 }
 .login-box .white_box ul {
-  width: 200px;
-  height: 102px;
-  margin-top: 10px;
+  width: 200/@vw;
+  height: 102/@vw;
+  margin-top: 10/@vw;
 }
 .login-box .white_box ul li {
   display: flex;
   align-items: flex-end;
   width: 100%;
-  height: 50px;
-  border-bottom: 1px solid #fe5858;
-  padding-bottom: 6px;
+  height: 50/@vw;
+  border-bottom: 1/@vw solid #fe5858;
+  padding-bottom: 6/@vw;
   box-sizing: border-box;
 }
 .login-box .white_box ul li img {
-  width: 10px;
-  height: 14px;
-  margin: 0 10px 5px 4px;
+  width: 10/@vw;
+  height: 14/@vw;
+  margin: 0 10/@vw 5/@vw 4/@vw;
 }
 .login-box .white_box ul li input {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  width: 122px;
-  margin-bottom: 5px;
+  width: 122/@vw;
+  margin-bottom: 5/@vw;
 }
 .login-box .white_box ul li button {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #fe5858;
-  border: 1px dashed #fe5858;
+  border: 1/@vw dashed #fe5858;
   text-align: center;
   background: transparent;
-  width: 50px;
-  height: 24px;
+  width: 50/@vw;
+  height: 24/@vw;
 }
 .login-box .white_box .login {
-  width: 214px;
-  height: 33px;
+  width: 214/@vw;
+  height: 33/@vw;
   background-color: #fe5858;
   color: #fff;
-  font-size: 14px;
+  font-size: 14/@vw;
   text-align: center;
-  line-height: 33px;
+  line-height: 33/@vw;
   margin: 0 auto;
-  border-radius: 25px;
-  margin-top: 20px;
+  border-radius: 25/@vw;
+  margin-top: 20/@vw;
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: #999999;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 </style>

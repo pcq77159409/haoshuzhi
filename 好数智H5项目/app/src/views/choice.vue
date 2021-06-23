@@ -722,7 +722,8 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 body,
 html {
   width: 100%;
@@ -751,7 +752,7 @@ html {
 }
 .wrok {
   background: url("../assets/white_bg.png");
-  background-size: 115px 25px;
+  background-size: 115/@vw 25/@vw;
   color: #fe5858;
 }
 .choice_box {
@@ -761,33 +762,33 @@ html {
 }
 .choice_box .package_box {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
 }
 .choice_box .package_box img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .choice_box .package_box h4 {
-  margin-left: 132px;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
 .choice_box .select_change {
   width: 100%;
-  height: 43px;
+  height: 43/@vw;
   background-color: #fff;
-  border: 1px solid #e5e5e5;
+  border: 1/@vw solid #e5e5e5;
 }
 .choice_box .select_change ul {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  line-height: 33px;
+  line-height: 33/@vw;
 }
 .choice_box .select_change ul li {
   display: flex;
@@ -796,33 +797,33 @@ html {
 }
 .choice_box .select_change ul li .red_triangle {
   position: absolute;
-  right: -4px;
+  right: -4/@vw;
   top: 44%;
 }
 .choice_box .select_change ul li p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #666666;
-  margin-right: 9px;
+  margin-right: 9/@vw;
 }
 .choice_box .select_change ul li img {
-  width: 6px;
-  height: 4px;
+  width: 6/@vw;
+  height: 4/@vw;
 }
 .choice_box .select_change ul li:last-child img {
-  width: 10px;
-  height: 9px;
+  width: 10/@vw;
+  height: 9/@vw;
 }
 .choice_box .Belonging,
 .choice_box .regular {
   width: 100%;
-  height: 368px;
+  height: 368/@vw;
   position: absolute;
   left: 0;
-  top: 109px;
+  top: 109/@vw;
   display: flex;
 }
 .choice_box .regular {
-  height: 360px;
+  height: 360/@vw;
 }
 .choice_box .Belonging .pro {
   width: 40%;
@@ -833,24 +834,24 @@ html {
 .choice_box .Belonging .pro li,
 .choice_box .Belonging .city li {
   width: 100%;
-  height: 45px;
-  border-bottom: 1px solid #ececec;
+  height: 45/@vw;
+  border-bottom: 1/@vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .choice_box .Belonging .pro li p {
   color: #333333;
-  font-size: 10pt;
-  margin-left: 35px;
+  font-size: 10/@vw*1.3;
+  margin-left: 35/@vw;
 }
 
 .choice_box .Belonging .pro li img,
 .choice_box .Belonging .city li img {
   position: absolute;
-  left: 15px;
-  width: 10pt;
-  height: 7pt;
+  left: 15/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
 }
 .choice_box .Belonging .city {
   width: 60%;
@@ -859,45 +860,45 @@ html {
 }
 .choice_box .Belonging .city li p {
   color: #333333;
-  font-size: 10pt;
-  margin-left: 48px;
+  font-size: 10/@vw*1.3;
+  margin-left: 48/@vw;
 }
 .choice_box .opeateing {
   width: 100%;
-  height: 360px;
+  height: 360/@vw;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 109px;
+  top: 109/@vw;
   display: flex;
 }
 .choice_box .opeateing ul {
   width: 100%;
-  height: 88px;
+  height: 88/@vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 .choice_box .opeateing ul li {
-  width: 187px;
-  height: 43px;
+  width: 187/@vw;
+  height: 43/@vw;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1/@vw solid #ececec;
   position: relative;
 }
 .choice_box .opeateing ul li img {
   position: absolute;
-  left: 40px;
-  width: 10pt;
-  height: 7pt;
+  left: 40/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
   display: none;
 }
 .choice_box .opeateing ul li p {
   color: #333333;
-  font-size: 12px;
-  margin-left: 63px;
+  font-size: 12/@vw;
+  margin-left: 63/@vw;
   text-align: center;
 }
 .choice_box .opeateing ul li:hover,
@@ -919,23 +920,23 @@ html {
 }
 .choice_box .regular ul li {
   width: 100%;
-  height: 44px;
-  border-bottom: 1px solid #ececec;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .choice_box .regular ul li img {
   position: absolute;
-  left: 15px;
-  width: 10pt;
-  height: 7pt;
+  left: 15/@vw;
+  width: 10/@vw*1.3;
+  height: 7/@vw*1.3;
   display: none;
 }
 .choice_box .regular ul li p {
   color: #333333;
-  font-size: 12px;
-  margin-left: 40px;
+  font-size: 12/@vw;
+  margin-left: 40/@vw;
 }
 .choice_box .Montmorillonite {
   width: 100%;
@@ -946,60 +947,60 @@ html {
   top: 0;
 }
 .choice_box .Montmorillonite .search_filter {
-  width: 330px;
+  width: 330/@vw;
   height: 100%;
   background-color: #fff;
-  margin-left: 45px;
+  margin-left: 45/@vw;
   overflow-y: auto;
 }
 .choice_box .Montmorillonite .search_filter .back {
   width: 100%;
-  height: 40px;
-  border-bottom: 1px solid #f2f2f2;
+  height: 40/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   align-items: center;
 }
 .choice_box .Montmorillonite .search_filter .back img {
-  width: 6px;
-  height: 11px;
-  margin-left: 11px;
+  width: 6/@vw;
+  height: 11/@vw;
+  margin-left: 11/@vw;
 }
 .choice_box .Montmorillonite .search_filter .back p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 .choice_box .Montmorillonite .search_filter .handle {
-  width: 286px;
-  height: 55px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 55/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .choice_box .Montmorillonite .search_filter .handle p {
-  width: 115px;
-  height: 25px;
+  width: 115/@vw;
+  height: 25/@vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25px;
+  line-height: 25/@vw;
   color: #999999;
 }
 
 .choice_box .Montmorillonite .search_filter .price {
-  width: 286px;
-  height: 200px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 200/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   position: relative;
 }
 .choice_box .Montmorillonite .search_filter .price p {
   position: absolute;
-  left: 184px;
-  top: 157px;
-  font-size: 12px;
+  left: 184/@vw;
+  top: 157/@vw;
+  font-size: 12/@vw;
   color: #666666;
 }
 .choice_box .Montmorillonite .search_filter .price h5,
@@ -1007,9 +1008,9 @@ html {
 .choice_box .Montmorillonite .search_filter .contract h5,
 .choice_box .Montmorillonite .search_filter .more_number h5 {
   color: #666666;
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: 500;
-  margin: 14px 0;
+  margin: 14/@vw 0;
 }
 .choice_box .Montmorillonite .search_filter .price ul,
 .choice_box .Montmorillonite .search_filter .charge ul,
@@ -1023,24 +1024,24 @@ html {
 .choice_box .Montmorillonite .search_filter .charge ul li,
 .choice_box .Montmorillonite .search_filter .more_number ul li {
   position: relative;
-  width: 89px;
-  height: 25px;
+  width: 89/@vw;
+  height: 25/@vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  font-size: 12px;
+  line-height: 25/@vw;
+  margin-bottom: 15/@vw;
+  border-radius: 4/@vw;
+  font-size: 12/@vw;
   color: #666666;
 }
 .choice_box .Montmorillonite .search_filter .more_number ul li {
-  width: 68px;
+  width: 68/@vw;
 }
 
 .choice_box .Montmorillonite .search_filter .price ul li span,
 .choice_box .Montmorillonite .search_filter .charge span {
   position: absolute;
-  left: 10px;
+  left: 10/@vw;
   top: 0;
 }
 .choice_box .Montmorillonite .search_filter .price ul li input,
@@ -1048,7 +1049,7 @@ html {
   border: none;
   outline: none;
   background: none;
-  text-indent: 30px;
+  text-indent: 30/@vw;
   width: 100%;
   height: 100%;
 }
@@ -1058,12 +1059,12 @@ html {
 }
 .choice_box .Montmorillonite .search_filter .price ul li:last-child,
 .choice_box .Montmorillonite .search_filter .charge ul li:last-child {
-  width: 85px;
-  margin-left: 8px;
+  width: 85/@vw;
+  margin-left: 8/@vw;
 }
 .choice_box .Montmorillonite .search_filter .price ul li:nth-of-type(11),
 .choice_box .Montmorillonite .search_filter .charge ul li:nth-of-type(11) {
-  width: 85px;
+  width: 85/@vw;
 }
 .choice_box .Montmorillonite .search_filter .price ul li:nth-of-type(11):hover {
   color: #666666;
@@ -1071,193 +1072,193 @@ html {
 }
 
 .choice_box .Montmorillonite .search_filter .charge {
-  width: 286px;
-  height: 160px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 160/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   position: relative;
 }
 .choice_box .Montmorillonite .search_filter .charge p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
   position: absolute;
-  left: 186px;
-  top: 117px;
+  left: 186/@vw;
+  top: 117/@vw;
 }
 .choice_box .Montmorillonite .search_filter .contract {
-  width: 286px;
-  height: 195px;
-  margin: 0 22px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 286/@vw;
+  height: 195/@vw;
+  margin: 0 22/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   position: relative;
 }
 .choice_box .Montmorillonite .search_filter .contract .linings {
-  width: 1px;
-  height: 104px;
+  width: 1/@vw;
+  height: 104/@vw;
   background-color: #f2f2f2;
   position: absolute;
   left: 50%;
-  top: 74px;
+  top: 74/@vw;
 }
 .choice_box .Montmorillonite .search_filter .contract .december {
   width: 100%;
-  height: 25px;
+  height: 25/@vw;
   display: flex;
   justify-content: space-around;
 }
 .choice_box .Montmorillonite .search_filter .contract .december li {
-  width: 89px;
-  height: 25px;
+  width: 89/@vw;
+  height: 25/@vw;
   background-color: #f8f8f8;
   text-align: center;
-  border-radius: 4px;
-  font-size: 12px;
-  line-height: 25px;
+  border-radius: 4/@vw;
+  font-size: 12/@vw;
+  line-height: 25/@vw;
   color: #666666;
 }
 .choice_box .Montmorillonite .search_filter .contract .change {
   width: 100%;
-  height: 100px;
-  margin-top: 15px;
+  height: 100/@vw;
+  margin-top: 15/@vw;
 }
 .choice_box .Montmorillonite .search_filter .contract .change li {
   width: 100%;
-  height: 25px;
+  height: 25/@vw;
   display: flex;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1/@vw solid #f2f2f2;
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 .choice_box .Montmorillonite .search_filter .contract .change li:first-child {
-  border-top: 1px solid #f2f2f2;
+  border-top: 1/@vw solid #f2f2f2;
 }
 .choice_box .Montmorillonite .search_filter .contract .change li h3 {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #666666;
   flex: 1;
 }
 .choice_box .Montmorillonite .search_filter .contract .change li p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
   flex: 1;
 }
 .choice_box .Montmorillonite .search_filter .more_number {
-  width: 286px;
-  height: 160px;
-  margin: 0 22px;
+  width: 286/@vw;
+  height: 160/@vw;
+  margin: 0 22/@vw;
 }
 .choice_box .Montmorillonite .search_filter .more_number ul li:last-child {
-  margin-right: 142px;
+  margin-right: 142/@vw;
 }
 .choice_box .Montmorillonite .search_filter .none ul li:last-child {
-  margin-right: 214px;
+  margin-right: 214/@vw;
 }
 .choice_box .Montmorillonite .search_filter .sure {
   width: 100%;
-  height: 44px;
+  height: 44/@vw;
   display: flex;
 }
 .choice_box .Montmorillonite .search_filter .sure p {
   width: 50%;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 44px;
-  font-size: 16px;
+  line-height: 44/@vw;
+  font-size: 16/@vw;
   color: #666666;
-  border-bottom: 1px solid #f2f2f2;
-  border-top: 1px solid #f2f2f2;
+  border-bottom: 1/@vw solid #f2f2f2;
+  border-top: 1/@vw solid #f2f2f2;
 }
 .choice_box .Montmorillonite .search_filter .sure span {
   width: 50%;
   background-color: #fe5858;
   text-align: center;
-  line-height: 44px;
-  font-size: 16px;
+  line-height: 44/@vw;
+  font-size: 16/@vw;
   color: #ffffff;
 }
 
 .choice_box .mocha {
-  width: 345px;
-  height: 555px;
+  width: 345/@vw;
+  height: 555/@vw;
   margin: 0 auto;
 }
 .choice_box .mocha .Characteristics {
   width: 100%;
-  height: 103px;
+  height: 103/@vw;
   background-color: #fff;
-  margin-top: 10px;
-  border-radius: 4px;
+  margin-top: 10/@vw;
+  border-radius: 4/@vw;
   display: flex;
 }
 .choice_box .mocha .Characteristics .tao {
-  width: 80px;
-  height: 80px;
-  margin: 12px 0 0 10px;
+  width: 80/@vw;
+  height: 80/@vw;
+  margin: 12/@vw 0 0 10/@vw;
 }
 .choice_box .mocha .Characteristics .movement {
-  width: 240px;
+  width: 240/@vw;
   display: flex;
-  height: 20px;
-  margin: 10px 4px 0 16px;
+  height: 20/@vw;
+  margin: 10/@vw 4/@vw 0 16/@vw;
   justify-content: space-between;
 }
 .choice_box .mocha .Characteristics .movement h6 {
   color: #333333;
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 .choice_box .mocha .Characteristics .movement .tea {
   display: flex;
 }
 .choice_box .mocha .Characteristics .movement .tea p,
 .choice_box .mocha .Characteristics .movement .tea span {
-  font-size: 13px;
+  font-size: 13/@vw;
   color: #666666;
-  margin-right: 6px;
+  margin-right: 6/@vw;
 }
 .choice_box .mocha .Characteristics .voice {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin: 2px 0 0 16px;
+  margin: 2/@vw 0 0 16/@vw;
 }
 .choice_box .mocha .Characteristics .amount {
-  width: 202px;
+  width: 202/@vw;
   display: flex;
-  margin-left: 16px;
+  margin-left: 16/@vw;
   justify-content: flex-start;
-  margin-top: 6px;
+  margin-top: 6/@vw;
 }
 .choice_box .mocha .Characteristics .amount li {
   display: flex;
   align-items: center;
-  margin-right: 32px;
+  margin-right: 32/@vw;
 }
 .choice_box .mocha .Characteristics .amount li:last-child {
   margin: 0;
 }
 .choice_box .mocha .Characteristics .amount li img {
-  width: 8px;
-  height: 8px;
-  margin-right: 4px;
+  width: 8/@vw;
+  height: 8/@vw;
+  margin-right: 4/@vw;
 }
 .choice_box .mocha .Characteristics .amount li p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .choice_box .mocha .Characteristics .champion {
-  width: 232px;
+  width: 232/@vw;
   display: flex;
-  margin-left: 16px;
-  margin-top: 4px;
+  margin-left: 16/@vw;
+  margin-top: 4/@vw;
   justify-content: space-between;
 }
 .choice_box .mocha .Characteristics .champion p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .choice_box .mocha .Characteristics .champion span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #ea5656;
 }
 </style>

@@ -49,7 +49,9 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .wallet_box {
   width: 100%;
   height: 100%;
@@ -57,39 +59,39 @@ export default {
 }
 .wallet_box .plassets {
   width: 100%;
-  height: 230px;
+  height: 230/@vw;
   background: url("../assets/组 6@2x (1).png") no-repeat;
-  background-size: 100% 230px;
+  background-size: 100% 230/@vw;
 }
 .wallet_box .plassets .mine_bag {
   display: flex;
 }
 .wallet_box .plassets .mine_bag img {
-  width: 10px;
-  height: 16px;
-  margin: 31px 0 0 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 31/@vw 0 0 15/@vw;
 }
 .wallet_box .plassets .mine_bag h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #ffffff;
-  margin: 28px auto 0;
+  margin: 28/@vw auto 0;
   font-weight: 500;
 }
 .wallet_box .plassets .total_errors {
-  margin: 62px 0 0 68px;
+  margin: 62/@vw 0 0 68/@vw;
   text-align: center;
-  width: 100px;
+  width: 100/@vw;
 }
 .wallet_box .plassets .total_errors:nth-of-type(2) {
-  margin-left: 40px;
+  margin-left: 40/@vw;
 }
 .wallet_box .plassets .total_errors p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #ffffff;
-  margin-bottom: 12px;
+  margin-bottom: 12/@vw;
 }
 .wallet_box .plassets .total_errors span {
-  font-size: 22px;
+  font-size: 22/@vw;
   color: #ffffff;
 }
 .wallet_box .plassets .dolors {
@@ -97,33 +99,33 @@ export default {
   align-items: center;
 }
 .wallet_box .plassets .dolors i {
-  width: 1px;
-  height: 42px;
+  width: 1/@vw;
+  height: 42/@vw;
   background-color: #f2f2f2;
-  margin: 60px 0 0 30px;
+  margin: 60/@vw 0 0 30/@vw;
 }
 .wallet_box .tix {
-  width: 163px;
-  height: 50px;
+  width: 163/@vw;
+  height: 50/@vw;
   background: url("../assets/white.png") no-repeat;
-  background-size: 163px 50px;
+  background-size: 163/@vw 50/@vw;
   text-align: center;
-  line-height: 50px;
+  line-height: 50/@vw;
   color: #ea5656;
-  font-size: 14px;
-  margin: -28px auto;
+  font-size: 14/@vw;
+  margin: -28/@vw auto;
 }
 .wallet_box  ul {
-    width: 345px;
-    height: 88px;
+    width: 345/@vw;
+    height: 88/@vw;
     background-color: #fff;
-    margin: 56px auto 0;
+    margin: 56/@vw auto 0;
 }
 .wallet_box  ul li {
-    width: 325px;
-    height: 43px;
-    margin: 0 10px;
-    border-bottom: 1px solid #f2f2f2;
+    width: 325/@vw;
+    height: 43/@vw;
+    margin: 0 10/@vw;
+    border-bottom: 1/@vw solid #f2f2f2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -136,16 +138,16 @@ export default {
     align-items: center;
 }
 .wallet_box  ul li  .szmx img{
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
+    width: 15/@vw;
+    height: 15/@vw;
+    margin-right: 10/@vw;
 }
 .wallet_box  ul li  .szmx p {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #666666;
 }
 .wallet_box  ul li img {
-    width: 5px;
-    height: 10px;
+    width: 5/@vw;
+    height: 10/@vw;
 }
 </style>

@@ -346,7 +346,8 @@ export default {
   },
 };
 </script> 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .comfirm_box {
   width: 100%;
   height: 100%;
@@ -355,39 +356,39 @@ export default {
 }
 .comfirm_box .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
 }
 .comfirm_box .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .comfirm_box .jumplabel h4 {
-  font-size: 16px;
-  margin-left: 132px;
+  font-size: 16/@vw;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
 .comfirm_box .endcsname {
-  width: 345px;
-  height: 68px;
+  width: 345/@vw;
+  height: 68/@vw;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10/@vw 15/@vw;
   display: flex;
-  border-radius: 4px;
+  border-radius: 4/@vw;
 }
 .comfirm_box .endcsname img:first-child {
-  width: 20px;
-  height: 29px;
-  margin: 20px 0 0 20px;
+  width: 20/@vw;
+  height: 29/@vw;
+  margin: 20/@vw 0 0 20/@vw;
 }
 .comfirm_box .endcsname img:last-child {
-  width: 8px;
-  height: 14px;
-  margin: 29px 0 0 10px;
+  width: 8/@vw;
+  height: 14/@vw;
+  margin: 29/@vw 0 0 10/@vw;
 }
 .comfirm_box .endcsname .mercifully {
   width: 80%;
@@ -397,189 +398,189 @@ export default {
 }
 .comfirm_box .endcsname .mercifully .parameter h3 {
   color: #333333;
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: 500;
-  margin: 15px 0 0 12px;
+  margin: 15/@vw 0 0 12/@vw;
 }
 .comfirm_box .endcsname .mercifully .parameter p {
   color: #666666;
-  font-size: 12px;
-  margin: 17px 0 0 14px;
+  font-size: 12/@vw;
+  margin: 17/@vw 0 0 14/@vw;
 }
 .comfirm_box .endcsname .mercifully .reklameadvice {
   display: flex;
 }
 .comfirm_box .endcsname .mercifully .reklameadvice p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin: 4px 0 0 12px;
+  margin: 4/@vw 0 0 12/@vw;
 }
 .comfirm_box .store {
-  width: 345px;
-  height: 140px;
+  width: 345/@vw;
+  height: 140/@vw;
   background-color: #fff;
-  margin: 0 15px;
-  border-radius: 4px;
+  margin: 0 15/@vw;
+  border-radius: 4/@vw;
 }
 .comfirm_box .store .sizeof {
-  width: 325px;
-  height: 35px;
-  margin: 0 10px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 325/@vw;
+  height: 35/@vw;
+  margin: 0 10/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   align-items: center;
 }
 .comfirm_box .store .sizeof img:first-child {
-  width: 13px;
-  height: 13px;
-  margin-right: 6px;
+  width: 13/@vw;
+  height: 13/@vw;
+  margin-right: 6/@vw;
 }
 .comfirm_box .store .sizeof img:last-child {
-  width: 8px;
-  height: 8px;
+  width: 8/@vw;
+  height: 8/@vw;
 }
 .comfirm_box .store .sizeof p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin-right: 6px;
-  margin-bottom: 2px;
+  margin-right: 6/@vw;
+  margin-bottom: 2/@vw;
   font-weight: 600;
 }
 .comfirm_box .store .number_box {
-  width: 314px;
-  margin: 12px 10px 0 21px;
+  width: 314/@vw;
+  margin: 12/@vw 10/@vw 0 21/@vw;
   display: flex;
   justify-content: space-between;
 }
 .comfirm_box .store .number_box p {
-  font-size: 18px;
+  font-size: 18/@vw;
   color: #333333;
   font-weight: 600;
 }
 .comfirm_box .store .number_box span {
   color: #ea5656;
-  font-size: 14px;
+  font-size: 14/@vw;
 }
 .comfirm_box .store .move_box {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
-  margin: 8px 0 14px 21px;
+  margin: 8/@vw 0 14/@vw 21/@vw;
 }
 .comfirm_box .store .move_box span {
-  margin-left: 6px;
+  margin-left: 6/@vw;
 }
 .comfirm_box .store .mobiles {
-  width: 314px;
-  margin: 0 10px 0 21px;
+  width: 314/@vw;
+  margin: 0 10/@vw 0 21/@vw;
   display: flex;
   justify-content: space-between;
 }
 .comfirm_box .store .mobiles p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .comfirm_box .store .mobiles span {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
   font-weight: 600;
 }
 .comfirm_box .store .mobiles span i {
   color: #ea5656;
   font-weight: 500;
-  margin-left: 6px;
+  margin-left: 6/@vw;
 }
 .comfirm_box .rest_name {
-  width: 345px;
-  height: 178px;
+  width: 345/@vw;
+  height: 178/@vw;
   background-color: #fff;
-  margin: 10px 15px;
+  margin: 10/@vw 15/@vw;
 }
 .comfirm_box .rest_name .safeEmail {
-  width: 325px;
-  height: 44px;
-  border-bottom: 1px solid #f0f0f0;
+  width: 325/@vw;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .comfirm_box .rest_name .safeEmail p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
 }
 .comfirm_box .rest_name .safeEmail span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .comfirm_box .rest_name .safeEmail span img {
-  width: 6px;
-  height: 10px;
-  margin-left: 4px;
+  width: 6/@vw;
+  height: 10/@vw;
+  margin-left: 4/@vw;
 }
 .comfirm_box .rest_name .email {
-  width: 325px;
-  height: 44px;
-  border-bottom: 1px solid #f0f0f0;
+  width: 325/@vw;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 10px;
-  border-radius: 4px;
+  margin: 0 10/@vw;
+  border-radius: 4/@vw;
 }
 .comfirm_box .rest_name .email p,
 .comfirm_box .rest_name .email h5 {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin-right: 17px;
+  margin-right: 17/@vw;
   font-weight: normal;
 }
 .comfirm_box .rest_name .email span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
 }
 .comfirm_box .rest_name .im_rest {
-  width: 325px;
-  height: 44px;
+  width: 325/@vw;
+  height: 44/@vw;
   display: flex;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .comfirm_box .rest_name .im_rest p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin-right: 22px;
+  margin-right: 22/@vw;
 }
 .comfirm_box .rest_name .im_rest span {
   color: #999999;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .comfirm_box .thepreferential {
-  width: 345px;
-  height: 133px;
-  margin: 10px 15px 58px;
+  width: 345/@vw;
+  height: 133/@vw;
+  margin: 10/@vw 15/@vw 58/@vw;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 4/@vw;
 }
 .comfirm_box .thepreferential li {
-  width: 325px;
-  height: 44px;
-  border-bottom: 1px solid #f0f0f0;
+  width: 325/@vw;
+  height: 44/@vw;
+  border-bottom: 1/@vw solid #f0f0f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 10/@vw;
 }
 .comfirm_box .thepreferential li:last-child {
   border: none;
 }
 .comfirm_box .thepreferential li p,
 .comfirm_box .thepreferential li span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
 }
 .comfirm_box .sensorbox_init_osd {
   width: 100%;
-  height: 44px;
+  height: 44/@vw;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -588,26 +589,26 @@ export default {
   bottom: 0;
 }
 .comfirm_box .sensorbox_init_osd p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #2c2c2c;
   font-weight: 600;
-  margin-left: 14px;
+  margin-left: 14/@vw;
 }
 .comfirm_box .sensorbox_init_osd span {
   color: #fe5858;
-  font-size: 14px;
-  margin-left: 4px;
+  font-size: 14/@vw;
+  margin-left: 4/@vw;
   font-weight: 600;
 }
 .comfirm_box .sensorbox_init_osd .commit {
-  width: 105px;
+  width: 105/@vw;
   height: 100%;
   background-color: #fe5858;
   color: #fff;
   text-align: center;
-  line-height: 44px;
+  line-height: 44/@vw;
   position: absolute;
   right: 0;
-  font-size: 14px;
+  font-size: 14/@vw;
 }
 </style>

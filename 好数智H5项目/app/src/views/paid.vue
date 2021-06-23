@@ -109,7 +109,7 @@
       </div>
     </div>
 
-    <el-dialog :visible.sync="centerDialogVisible" width="295px" center>
+    <el-dialog :visible.sync="centerDialogVisible" width="78.6666vw" center>
       <span class="phones">拨打电话</span>
       <p class="phonel">030—79772486</p>
       <div class="xia"></div>
@@ -128,7 +128,7 @@
       </p>
     </div>
     <div class="chuan">
-      <el-dialog :visible.sync="onclickCenel" width="295px" center>
+      <el-dialog :visible.sync="onclickCenel" width="78.6666vw" center>
         <span class="cencl"> </span>
         <p class="phonels">请问您是否确认取消此订单？</p>
 
@@ -263,17 +263,19 @@ export default {
 };
 </script>
 
-<style scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .phonels {
-  margin-left: 42px;
-  margin-bottom: 41px;
-  margin-top: -29px;
+  margin-left: 42/@vw;
+  margin-bottom: 41/@vw;
+  margin-top: -29/@vw;
 }
 .A /deep/ .el-dialog {
-  border-radius: 6px;
+  border-radius: 6/@vw;
 }
 .A /deep/ .el-dialog--center .el-dialog__body {
-  padding: 30px 25px 0;
+  padding: 30/@vw 25/@vw 0;
 }
 .A /deep/ .el-dialog__header {
   padding: 0;
@@ -288,59 +290,59 @@ export default {
   background-color: white;
 }
 .phonel {
-  margin-left: 65px;
-  margin-bottom: 15px;
-  margin-top: 10px;
+  margin-left: 65/@vw;
+  margin-bottom: 15/@vw;
+  margin-top: 10/@vw;
 }
 .el-dialog__wrapper {
   position: fixed;
-  top: 132px;
-  right: 0px;
-  bottom: -1px;
+  top: 132/@vw;
+  right: 0/@vw;
+  bottom: -1/@vw;
   left: 0;
   overflow: auto;
   margin: 0;
 }
 .cencl {
-  margin-left: 43px;
+  margin-left: 43/@vw;
   color: #333333;
   font-weight: bold;
 }
 .phones {
-  margin-left: 95px;
+  margin-left: 95/@vw;
   color: #333333;
   font-weight: bold;
 }
 .el-dialog--center .el-dialog__footer {
-  height: 51px;
-  margin-top: -30px;
+  height: 51/@vw;
+  margin-top: -30/@vw;
 }
 .xia {
-  width: 295px;
-  height: 1px;
+  width: 295/@vw;
+  height: 1/@vw;
   background-color: #f5f5f5;
-  margin-top: 10px;
-  margin-left: -25px;
+  margin-top: 10/@vw;
+  margin-left: -25/@vw;
 }
 .que {
-  font-size: 15px;
-  margin-top: 9px;
+  font-size: 15/@vw;
+  margin-top: 9/@vw;
   color: #0443d1;
 }
 .cancal {
-  font-size: 15px;
-  margin-top: 9px;
+  font-size: 15/@vw;
+  margin-top: 9/@vw;
   color: #0443d1;
 }
 .el-dialog--center {
   text-align: center;
-  border-radius: 10px;
+  border-radius: 10/@vw;
 }
 .rightss {
-  width: 1px;
-  height: 51px;
+  width: 1/@vw;
+  height: 51/@vw;
   background-color: #f5f5f5;
-  margin-top: -10px;
+  margin-top: -10/@vw;
 }
 .buttom {
   display: flex;
@@ -352,7 +354,7 @@ export default {
   white-space: nowrap;
   cursor: pointer;
   background: #fff;
-  border: 1px solid white;
+  border: 1/@vw solid white;
   color: #409eff;
   -webkit-appearance: none;
   text-align: center;
@@ -361,9 +363,9 @@ export default {
   margin: 0;
   transition: 0.1s;
   font-weight: 500;
-  padding: 12px 20px;
-  font-size: 14px;
-  border-radius: 4px;
+  padding: 12/@vw 20/@vw;
+  font-size: 14/@vw;
+  border-radius: 4/@vw;
 }
 .el-button--primary:hover {
   background: white;
@@ -377,11 +379,11 @@ export default {
 }
 
 .el-button + .el-button {
-  margin-left: 42px;
+  margin-left: 42/@vw;
 }
 .cancel {
-  width: 100px;
-  height: 40px;
+  width: 100/@vw;
+  height: 40/@vw;
 }
 
 .delivery {
@@ -389,54 +391,54 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 60/@vw;
   background-color: white;
   display: flex;
   align-items: center;
 }
 .delivery p:first-child {
-  margin: 0 25px 0 152px;
-  border: 1px solid #f5f5f5;
+  margin: 0 25/@vw 0 152/@vw;
+  border: 1/@vw solid #f5f5f5;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 15/@vw;
   color: #999999;
-  font-size: 12px;
-  width: 112px;
-  height: 26px;
-  line-height: 26px;
+  font-size: 12/@vw;
+  width: 112/@vw;
+  height: 26/@vw;
+  line-height: 26/@vw;
 }
 .delivery p {
-  border: 1px solid #fe5858;
+  border: 1/@vw solid #fe5858;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 15/@vw;
   color: #fe5858;
-  font-size: 12px;
-  width: 112px;
-  height: 26px;
-  line-height: 26px;
-  margin-right: 15px;
+  font-size: 12/@vw;
+  width: 112/@vw;
+  height: 26/@vw;
+  line-height: 26/@vw;
+  margin-right: 15/@vw;
 }
 .v {
-  width: 20px;
-  height: 20px;
-  margin: 0 14px;
+  width: 20/@vw;
+  height: 20/@vw;
+  margin: 0 14/@vw;
 }
 .borders {
-  border-right: 1px solid #ccc;
-  width: 1px;
-  height: 22px;
+  border-right: 1/@vw solid #ccc;
+  width: 1/@vw;
+  height: 22/@vw;
 }
 .make {
-  width: 350px;
-  height: 46px;
+  width: 350/@vw;
+  height: 46/@vw;
   background-color: white;
-  margin: -52px 13px;
-  border-radius: 5px;
+  margin: -52/@vw 13/@vw;
+  border-radius: 5/@vw;
   display: flex;
   color: #666666;
   justify-content: space-evenly;
-  line-height: 46px;
-  margin-bottom: 15px;
+  line-height: 46/@vw;
+  margin-bottom: 15/@vw;
   align-items: center;
 }
 .make .bo {
@@ -444,46 +446,46 @@ export default {
   align-items: center;
 }
 .make p {
-  font-size: 15px;
+  font-size: 15/@vw;
 }
 .make img {
-  width: 15px;
-  height: 15px;
-  margin-right: 10px;
+  width: 15/@vw;
+  height: 15/@vw;
+  margin-right: 10/@vw;
 }
 .rights {
-  margin-left: 25px;
+  margin-left: 25/@vw;
 }
 .information {
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: bold;
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 200px;
-  height: 30px;
-  line-height: 40px;
+  margin-left: 20/@vw;
+  margin-top: 20/@vw;
+  width: 200/@vw;
+  height: 30/@vw;
+  line-height: 40/@vw;
 }
 .table {
-  font-size: 12px;
-  line-height: 40px;
+  font-size: 12/@vw;
+  line-height: 40/@vw;
 }
 .table li {
   display: flex;
-  /* width: 200px; */
-  height: 30px;
-  margin-left: 20px;
-  margin-top: 9px;
+  /* width: 200/@vw; */
+  height: 30/@vw;
+  margin-left: 20/@vw;
+  margin-top: 9/@vw;
 }
 .no {
-  width: 350px;
-  height: 125px;
+  width: 350/@vw;
+  height: 125/@vw;
   background-color: white;
-  margin: 65px 13px;
-  border-radius: 5px;
-  font-size: 13px;
+  margin: 65/@vw 13/@vw;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
 }
 /* .yes p {
-  line-height: 40px;
+  line-height: 40/@vw;
   display: flex;
   align-items: center;
 }
@@ -491,49 +493,49 @@ export default {
   color: #fe5858;
 }
 .yes {
-  width: 350px;
-  height: 40px;
+  width: 350/@vw;
+  height: 40/@vw;
   background-color: white;
-  margin: -52px 13px;
-  border-radius: 5px;
-  font-size: 13px;
+  margin: -52/@vw 13/@vw;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
 } */
 .redmoney {
   color: #fe5858;
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 .heng {
   display: flex;
   justify-content: space-between;
 }
 .this {
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 .moneys {
   position: absolute;
-  right: 11px;
-  bottom: 47px;
-  border: 1px solid #666666;
+  right: 11/@vw;
+  bottom: 47/@vw;
+  border: 1/@vw solid #666666;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 15/@vw;
   color: #666666;
   font-weight: 600;
-  padding: 0 18px;
-  font-size: 12px;
+  padding: 0 18/@vw;
+  font-size: 12/@vw;
 }
 .pays {
-  font-size: 16px;
+  font-size: 16/@vw;
   color: #fe5858;
 }
 .need {
   display: block;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
-  margin-top: 10px;
-  margin-left: 231px;
+  margin-top: 10/@vw;
+  margin-left: 231/@vw;
 }
 .ordertime {
-  font-size: 12px;
+  font-size: 12/@vw;
   display: flex;
   color: #333333;
   font-weight: 600;
@@ -545,88 +547,88 @@ export default {
   justify-content: space-between;
 }
 .spend {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .yidong {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 .phonenumber {
-  font-size: 16px;
+  font-size: 16/@vw;
   font-weight: bold;
   color: #333333;
 }
 .xian {
-  width: 330px;
-  height: 1px;
+  width: 330/@vw;
+  height: 1/@vw;
   background-color: #f2f2f2;
-  margin: 10px auto;
+  margin: 10/@vw auto;
 }
 .names {
-  margin: 0 10px;
-  line-height: 25px;
+  margin: 0 10/@vw;
+  line-height: 25/@vw;
   color: #666666;
 }
 
 .shoping {
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   display: flex;
   align-items: center;
 }
 .shops {
-  width: 15px;
-  height: 15px;
-  padding: 0px 2px;
-  margin-right: 8px;
+  width: 15/@vw;
+  height: 15/@vw;
+  padding: 0/@vw 2/@vw;
+  margin-right: 8/@vw;
 }
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .orders {
-  width: 350px;
-  height: 148px;
+  width: 350/@vw;
+  height: 148/@vw;
   background-color: white;
-  margin: 35px auto -54px;
-  border-radius: 5px;
+  margin: 35/@vw auto -54/@vw;
+  border-radius: 5/@vw;
   position: relative;
 }
 
 .name {
-  font-size: 15px;
+  font-size: 15/@vw;
   font-weight: bold;
   color: #333333;
-  width: 200px;
-  margin: 6px 15px;
+  width: 200/@vw;
+  margin: 6/@vw 15/@vw;
 }
 .number {
-  font-size: 13px;
+  font-size: 13/@vw;
   font-weight: 500;
   color: #333333;
 }
 .add {
-  font-size: 13px;
+  font-size: 13/@vw;
   color: #333333;
-  /* width: 200px; */
-  margin: 0 15px;
+  /* width: 200/@vw; */
+  margin: 0 15/@vw;
 }
 .A {
   width: 100%;
   height: 100%;
   position: relative;
   background-color: #f5f5f5;
-  padding-bottom:50px ;
+  padding-bottom:50/@vw ;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
 }
 .imgs {
   width: 100%;
-  height: 85px;
+  height: 85/@vw;
   background-color: #fe5858;
   display: flex;
   position: relative;
@@ -634,16 +636,16 @@ export default {
 }
 
 .back {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .detalis {
-  width: 100px;
-  height: 30px;
+  width: 100/@vw;
+  height: 30/@vw;
   margin: 0 auto;
   color: white;
-  font-size: 18px;
+  font-size: 18/@vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
 }
@@ -651,49 +653,49 @@ export default {
   display: flex;
 }
 .delivered {
-  width: 255px;
-  height: 95px;
+  width: 255/@vw;
+  height: 95/@vw;
   background-color: #fe5858;
 }
 .right {
-  width: 120px;
-  height: 95px;
+  width: 120/@vw;
+  height: 95/@vw;
   background-color: #fe5858;
 }
 .right img {
-  width: 43px;
-  height: 45px;
-  margin: 0 29px;
+  width: 43/@vw;
+  height: 45/@vw;
+  margin: 0 29/@vw;
 }
 .address {
   position: relative;
-  margin: -27px 13px;
-  width: 350px;
-  height: 80px;
+  margin: -27/@vw 13/@vw;
+  width: 350/@vw;
+  height: 80/@vw;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 5/@vw;
   display: flex;
   align-items: center;
 }
 .address img {
-  width: 20px;
-  height: 30px;
-  margin-left: 20px;
-  margin-top: 8px;
+  width: 20/@vw;
+  height: 30/@vw;
+  margin-left: 20/@vw;
+  margin-top: 8/@vw;
 }
 .one {
-  width: 100px;
-  height: 35px;
-  font-size: 20px;
+  width: 100/@vw;
+  height: 35/@vw;
+  font-size: 20/@vw;
   font-weight: bold;
   color: white;
-  margin-left: 40px;
+  margin-left: 40/@vw;
 }
 .two {
-  width: 220px;
-  height: 30px;
-  font-size: 14px;
+  width: 220/@vw;
+  height: 30/@vw;
+  font-size: 14/@vw;
   color: white;
-  margin-left: 42px;
+  margin-left: 42/@vw;
 }
 </style>

@@ -24,26 +24,27 @@ export default {
   },
 };
 </script> 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .pay_box {
   width: 100%;
   height: 100%;
 }
 .pay_box .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
 }
 .pay_box .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .pay_box .jumplabel h4 {
-  font-size: 16px;
-  margin-left: 132px;
+  font-size: 16/@vw;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
@@ -51,33 +52,33 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 58px;
+  margin-top: 58/@vw;
 }
 .pay_box .gou img {
-  width: 77px;
-  height: 77px;
-  margin-bottom: 26px;
+  width: 77/@vw;
+  height: 77/@vw;
+  margin-bottom: 26/@vw;
 }
 .pay_box .gou p {
-  font-size: 18px;
+  font-size: 18/@vw;
   color: #333333;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 20/@vw;
 }
 .pay_box .gou span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .pay_box .watch {
-    width: 345px;
-    height: 44px;
-    margin: 0 15px;
+    width: 345/@vw;
+    height: 44/@vw;
+    margin: 0 15/@vw;
     background-color: #ea5656;
     color: #fff;
-    font-size: 16px;
+    font-size: 16/@vw;
     text-align: center;
-    line-height: 44px;
-    border-radius: 25px;
-    margin-top: 43px;
+    line-height: 44/@vw;
+    border-radius: 25/@vw;
+    margin-top: 43/@vw;
 }
 </style>

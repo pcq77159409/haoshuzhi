@@ -18,8 +18,8 @@
       <div class="restore" @click="imgShow = 3">
         <img src="../assets/1234.png" alt="" />
         <p>支付宝支付</p>
-        <!-- <span style="width: 200px">当前余额{{ balance }}元</span> -->
-        <span style="width: 160px"></span>
+        <!-- <span style="width: 200/@vw">当前余额{{ balance }}元</span> -->
+        <span style="width: 42.666vw"></span>
         <img
           src="../assets/选择 拷贝 2@2x.png"
           alt=""
@@ -155,13 +155,14 @@ export default {
   },
 };
 </script> 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .box {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100px;
+  height: 100/@vw;
   display: none;
 }
 #alipaysubmit {
@@ -176,110 +177,110 @@ export default {
 
 .ace_jump_search .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
 }
 .ace_jump_search .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .ace_jump_search .jumplabel h4 {
-  font-size: 16px;
-  margin-left: 132px;
+  font-size: 16/@vw;
+  margin-left: 132/@vw;
   color: #fff;
   font-weight: 500;
 }
 .ace_jump_search .force_time {
   width: 100%;
-  height: 12 0px;
-  margin-top: 45px;
+  height: 12 0/@vw;
+  margin-top: 45/@vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .ace_jump_search .force_time .inform {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 20/@vw;
 }
 .ace_jump_search .force_time .inform span,
 .ace_jump_search .force_time .inform p {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #ea5656;
-  margin-right: 6px;
+  margin-right: 6/@vw;
 }
 .ace_jump_search .force_time h2 {
-  margin-right: 4px;
+  margin-right: 4/@vw;
   color: #333333;
-  margin-bottom: 17px;
+  margin-bottom: 17/@vw;
 }
 .ace_jump_search .force_time i {
   color: #666666;
-  font-size: 12px;
+  font-size: 12/@vw;
 }
 .ace_jump_search .force_time i span {
-  margin-left: 6px;
+  margin-left: 6/@vw;
 }
 .ace_jump_search .debugformat {
-  width: 353px;
-  height: 109px;
-  margin: 45px auto 227px;
+  width: 353/@vw;
+  height: 109/@vw;
+  margin: 45/@vw auto 227/@vw;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 4/@vw;
 }
 .ace_jump_search .debugformat .restore {
   display: flex;
   align-items: center;
-  width: 325px;
+  width: 325/@vw;
   height: 50%;
-  margin: 0 14px;
-  border-bottom: 1px solid #f8f8f8;
+  margin: 0 14/@vw;
+  border-bottom: 1/@vw solid #f8f8f8;
   position: relative;
 }
 .ace_jump_search .debugformat .restore img:first-child {
-  width: 16px;
-  height: 17px;
-  margin-right: 14px;
+  width: 16/@vw;
+  height: 17/@vw;
+  margin-right: 14/@vw;
 }
 .ace_jump_search .debugformat .restore img:last-child {
-  width: 15px;
-  height: 15px;
-  // margin-left: 90px;
+  width: 15/@vw;
+  height: 15/@vw;
+  // margin-left: 90/@vw;
 }
 .ace_jump_search .debugformat .restore .xs {
-  width: 15px;
-  height: 15px;
+  width: 15/@vw;
+  height: 15/@vw;
   position: absolute;
-  right: 1px;
+  right: 1/@vw;
 }
 .ace_jump_search .debugformat .restore p {
-  width: 100px;
-  font-size: 15px;
+  width: 100/@vw;
+  font-size: 15/@vw;
   color: #333333;
   font-weight: 600;
-  margin-right: 20px;
+  margin-right: 20/@vw;
 }
 .ace_jump_search .debugformat .restore span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #666666;
 }
 .ace_jump_search .debugformat .wecat img:last-child {
-  margin-left: 200px;
+  margin-left: 200/@vw;
 }
 .ace_jump_search .offset {
   position: fixed;
   left: 50%;
-  bottom: 50px;
+  bottom: 50/@vw;
   transform: translateX(-50%);
-  width: 345px;
-  height: 44px;
+  width: 345/@vw;
+  height: 44/@vw;
   background-color: #ea5656;
-  border-radius: 25px;
+  border-radius: 25/@vw;
   text-align: center;
-  line-height: 44px;
+  line-height: 44/@vw;
   color: #fff;
-  font-size: 16px;
+  font-size: 16/@vw;
 }
 </style>

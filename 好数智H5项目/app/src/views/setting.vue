@@ -63,17 +63,19 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .set_box {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
-  padding-top: 64px;
+  padding-top: 64/@vw;
   box-sizing: border-box;
 }
 .set_box .jumplabel {
   width: 100%;
-  height: 64px;
+  height: 64/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -83,12 +85,12 @@ export default {
   z-index: 2;
 }
 .set_box .jumplabel img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .set_box .jumplabel h4 {
-  font-size: 16px;
+  font-size: 16/@vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
@@ -96,59 +98,59 @@ export default {
 .set_box .show {
   width: 100%;
   background-color: #fff;
-  margin-top: 10px;
+  margin-top: 10/@vw;
 }
 .set_box .show ul {
   width: 100%;
 }
 .set_box .show ul li {
-  width: 345px;
-  height: 54px;
-  border-bottom: 1px solid #f2f2f2;
+  width: 345/@vw;
+  height: 54/@vw;
+  border-bottom: 1/@vw solid #f2f2f2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 15px;
+  margin: 0 15/@vw;
 }
 .set_box .show ul li:last-child {
   border-bottom: none;
 }
 .set_box .show ul li p {
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
 }
 .set_box .show ul li span {
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
-  margin-right: 8px;
+  margin-right: 8/@vw;
 }
 .set_box .show ul li img {
-  width: 8px;
-  height: 14px;
+  width: 8/@vw;
+  height: 14/@vw;
 }
 .set_box i {
   display: inline-block;
-  margin: 10px 0 20px 15px;
-  font-size: 12px;
+  margin: 10/@vw 0 20/@vw 15/@vw;
+  font-size: 12/@vw;
   color: #999999;
 }
 .set_box .clear {
   width: 100%;
-  height: 54px;
+  height: 54/@vw;
   background-color: #fff;
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #333333;
-  margin: 10px 0;
-  line-height: 54px;
-  text-indent: 15px;
+  margin: 10/@vw 0;
+  line-height: 54/@vw;
+  text-indent: 15/@vw;
 }
 .set_box .login {
   width: 100%;
-  height: 54px;
+  height: 54/@vw;
   background-color: #fff;
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #ea5656;
   text-align: center;
-  line-height: 54px;
+  line-height: 54/@vw;
 }
 </style>

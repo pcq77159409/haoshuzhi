@@ -29,7 +29,9 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .through_box {
   width: 100%;
   height: 100%;
@@ -38,46 +40,46 @@ export default {
 }
 .through_box .head_boxs {
     display: flex;
-    padding-top: 20px;
+    padding-top: 20/@vw;
     align-items: center;
 }
 .through_box .head_boxs img {
-    width: 10px;
-    height: 16px;
-    padding-left: 15px;
+    width: 10/@vw;
+    height: 16/@vw;
+    padding-left: 15/@vw;
 }
 .through_box .head_boxs h4 {
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 16/@vw;
     color: #ffffff;
     font-weight: 500;
-    margin-right: 153px;
+    margin-right: 153/@vw;
 }
 .through_box .nav_box {
-    width: 78px;
-    height: 116px;
-    margin: 56px auto 0;
+    width: 78/@vw;
+    height: 116/@vw;
+    margin: 56/@vw auto 0;
     text-align: center;
 }
 .through_box .nav_box img {
-    width: 78px;
-    height: 78px;
-    margin-bottom: 6px;
+    width: 78/@vw;
+    height: 78/@vw;
+    margin-bottom: 6/@vw;
 }
 .through_box .nav_box p{
-    font-size: 15px;
+    font-size: 15/@vw;
     color: #ffffff;
 }
 .through_box .congratulations {
-    width: 254px;
-    height: 66px;
-    margin: 138px auto 0;
+    width: 254/@vw;
+    height: 66/@vw;
+    margin: 138/@vw auto 0;
     text-align: center;
 }
 .through_box .congratulations h4{
-    font-size: 15px;
+    font-size: 15/@vw;
     color: #333333;
-    margin-bottom: 14px;
+    margin-bottom: 14/@vw;
 }
 .through_box .congratulations .reading {
     display: flex;
@@ -85,27 +87,27 @@ export default {
     justify-content: center;
 }
 .through_box .congratulations .reading img {
-    width: 12px;
-    height: 12px;
-    margin-right: 8px;
+    width: 12/@vw;
+    height: 12/@vw;
+    margin-right: 8/@vw;
 }
 .through_box .congratulations .reading p {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #999999;
 }
 .through_box .congratulations .reading span {
-    font-size: 12px;
+    font-size: 12/@vw;
     color: #FE5858;
 }
 .through_box .jiaona {
-    width: 325px;
-    height: 44px;
+    width: 325/@vw;
+    height: 44/@vw;
     background-color: #FE5858;
-    margin: 40px auto 0;
-    border-radius: 25px;
-    font-size: 14px;
+    margin: 40/@vw auto 0;
+    border-radius: 25/@vw;
+    font-size: 14/@vw;
     color: #ffffff;
     text-align: center;
-    line-height: 44px;
+    line-height: 44/@vw;
 }
 </style>

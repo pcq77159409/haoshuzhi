@@ -74,215 +74,217 @@ export default {
 };
 </script>
 
-<style>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 .xian {
-  width: 330px;
-  height: 1px;
+  width: 330/@vw;
+  height: 1/@vw;
   background: #f2f2f2;
-  margin-left: 10px;
+  margin-left: 10/@vw;
 }
 .qian {
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .zong {
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .name {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #fe5858;
 }
 .qians {
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .zongs {
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .nameA {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 12/@vw;
   color: #999999;
 }
 .yingye {
-  font-size: 12px;
-  margin-left: 10px;
-  margin-top: -6px;
+  font-size: 12/@vw;
+  margin-left: 10/@vw;
+  margin-top: -6/@vw;
 }
 .number {
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: bold;
-  margin: 0 10px;
-  padding: 10px 0;
+  margin: 0 10/@vw;
+  padding: 10/@vw 0;
 }
 .three {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 10/@vw 0;
 }
 .money {
-  font-size: 12px;
-  margin-left: 10px;
+  font-size: 12/@vw;
+  margin-left: 10/@vw;
 }
 .total {
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 .moneys {
   color: #fe5858;
-  margin-right: 10px;
+  margin-right: 10/@vw;
 }
 .card {
-  width: 330px;
-  height: 90px;
+  width: 330/@vw;
+  height: 90/@vw;
   background: #f8f8f8;
-  margin-left: 10px;
-  border-radius: 5px;
+  margin-left: 10/@vw;
+  border-radius: 5/@vw;
 }
 .tuikuan {
-  font-size: 13px;
+  font-size: 13/@vw;
   font-weight: bold;
-  margin: 0 10px;
-  padding: 10px 0;
+  margin: 0 10/@vw;
+  padding: 10/@vw 0;
 }
 
 .el-dialog {
   margin-top: 45vh;
-  width: 233px;
+  width: 233/@vw;
 }
 .el-dialog--center {
   text-align: center;
-  height: 70px;
+  height: 70/@vw;
   background: #666666;
   margin-top: 45vh;
 }
 
 .v {
-  width: 20px;
-  height: 20px;
+  width: 20/@vw;
+  height: 20/@vw;
 }
 .borders {
-  border-right: 1px solid #ccc;
-  width: 1px;
-  height: 40px;
-  margin-top: 10px;
+  border-right: 1/@vw solid #ccc;
+  width: 1/@vw;
+  height: 40/@vw;
+  margin-top: 10/@vw;
 }
 .make {
-  width: 350px;
-  height: 60px;
+  width: 350/@vw;
+  height: 60/@vw;
   background-color: white;
-  margin: -45px 13px;
-  border-radius: 5px;
-  font-size: 13px;
+  margin: -45/@vw 13/@vw;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
   display: flex;
   color: #666666;
-  font-size: 15px;
+  font-size: 15/@vw;
   justify-content: space-evenly;
-  line-height: 60px;
-  margin-bottom: 15px;
+  line-height: 60/@vw;
+  margin-bottom: 15/@vw;
 }
 
 .rights {
-  margin-left: 25px;
+  margin-left: 25/@vw;
 }
 .information {
-  font-size: 14px;
+  font-size: 14/@vw;
   font-weight: bold;
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 200px;
-  height: 30px;
-  line-height: 40px;
+  margin-left: 20/@vw;
+  margin-top: 20/@vw;
+  width: 200/@vw;
+  height: 30/@vw;
+  line-height: 40/@vw;
 }
 .table {
-  font-size: 12px;
-  line-height: 40px;
+  font-size: 12/@vw;
+  line-height: 40/@vw;
 }
 .table li {
   display: flex;
-  width: 200px;
-  height: 30px;
-  margin-left: 20px;
+  width: 200/@vw;
+  height: 30/@vw;
+  margin-left: 20/@vw;
 }
 .no {
-  width: 350px;
-  height: 290px;
+  width: 350/@vw;
+  height: 290/@vw;
   background-color: white;
-  margin: 65px 13px;
-  border-radius: 5px;
-  font-size: 13px;
+  margin: 65/@vw 13/@vw;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
 }
 .yes p {
-  line-height: 40px;
-  margin: 0 40px;
+  line-height: 40/@vw;
+  margin: 0 40/@vw;
 }
 .yes span {
   color: #fe5858;
 }
 .yes {
-  width: 350px;
-  height: 40px;
+  width: 350/@vw;
+  height: 40/@vw;
   background-color: white;
-  margin: -52px 13px;
-  border-radius: 5px;
-  font-size: 13px;
+  margin: -52/@vw 13/@vw;
+  border-radius: 5/@vw;
+  font-size: 13/@vw;
 }
 .redmoney {
   color: #fe5858;
-  font-size: 13px;
+  font-size: 13/@vw;
 }
 .heng {
   display: flex;
   justify-content: space-between;
 }
 .this {
-  margin-left: 5px;
+  margin-left: 5/@vw;
 }
 
 .pay {
-  margin: -25px 28px;
-  font-size: 16px;
+  margin: -25/@vw 28/@vw;
+  font-size: 16/@vw;
   color: #fe5858;
 }
 .need {
-  margin: 0 255px;
+  margin: 0 255/@vw;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 14/@vw;
   color: #333333;
 }
 .ordertime {
-  font-size: 12px;
+  font-size: 12/@vw;
   display: flex;
-  margin-top: 5px;
+  margin-top: 5/@vw;
 }
 .spend {
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 12/@vw;
+  margin-top: 5/@vw;
 }
 
 .phonenumber {
-  font-size: 16px;
+  font-size: 16/@vw;
   font-weight: bold;
   color: #333333;
 }
 
 .names {
-  margin: 0 10px;
-  line-height: 25px;
+  margin: 0 10/@vw;
+  line-height: 25/@vw;
   color: #666666;
 }
 
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10px 10px;
+  margin: 10/@vw 10/@vw;
 }
 .orders {
-  width: 350px;
-  height: 258px;
+  width: 350/@vw;
+  height: 258/@vw;
   background-color: white;
-  margin: 59px 13px;
-  border-radius: 5px;
+  margin: 59/@vw 13/@vw;
+  border-radius: 5/@vw;
   position: relative;
 }
 
@@ -294,23 +296,23 @@ export default {
 }
 .imgs {
   width: 100%;
-  height: 85px;
+  height: 85/@vw;
   background-color: #fe5858;
   display: flex;
   position: relative;
 }
 
 .back {
-  width: 10px;
-  height: 16px;
-  margin: 35px 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin: 35/@vw 15/@vw;
 }
 .detalis {
-  width: 100px;
-  height: 30px;
-  margin: 32px 109px;
+  width: 100/@vw;
+  height: 30/@vw;
+  margin: 32/@vw 109/@vw;
   color: white;
-  font-size: 16px;
+  font-size: 16/@vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
 }
@@ -318,42 +320,42 @@ export default {
   display: flex;
 }
 .delivered {
-  width: 255px;
-  height: 95px;
+  width: 255/@vw;
+  height: 95/@vw;
   background-color: #fe5858;
 }
 .right {
-  width: 120px;
-  height: 95px;
+  width: 120/@vw;
+  height: 95/@vw;
   background-color: #fe5858;
 }
 .right img {
-  width: 60px;
-  height: 52px;
-  margin: 0 29px;
+  width: 60/@vw;
+  height: 52/@vw;
+  margin: 0 29/@vw;
 }
 .address {
   position: absolute;
-  margin: -27px 13px;
-  width: 350px;
-  height: 75px;
+  margin: -27/@vw 13/@vw;
+  width: 350/@vw;
+  height: 75/@vw;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 5/@vw;
 }
 
 .one {
-  width: 130px;
-  height: 35px;
-  font-size: 20px;
+  width: 130/@vw;
+  height: 35/@vw;
+  font-size: 20/@vw;
   font-weight: bold;
   color: white;
-  margin-left: 40px;
+  margin-left: 40/@vw;
 }
 .two {
-  width: 220px;
-  height: 30px;
-  font-size: 14px;
+  width: 220/@vw;
+  height: 30/@vw;
+  font-size: 14/@vw;
   color: white;
-  margin-left: 42px;
+  margin-left: 42/@vw;
 }
 </style>

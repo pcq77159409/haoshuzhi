@@ -20,21 +20,21 @@
           <div style="display: flex; align-items: center">
             <input
               type="radio"
-              style="margintop: 2px"
+              style="margintop:0.533vw"
               name="default"
               @click="onclickDefault(item)"
               :checked="item.is_default == 1"
             />
-            <p style="fontsize: 8px; color: #333333; margin-left: 6px">
+            <p style="fontsize: 2.1333vw; color: #333333; margin-left: 1.6vw">
               默认地址
             </p>
           </div>
-          <p style="fontsize: 8px; color: #333333; marginright: 20px">
-            <img src="../assets/111.png" style="margin-right: 6px" />
-            <span style="margin-right: 20px" @click="onClickEditGoods(item.id)"
+          <p style="fontsize: 2.1333vw; color: #333333; marginright: 5.3333vw">
+            <img src="../assets/111.png" style="margin-right: 1.6vw" />
+            <span style="margin-right: 5.333vw" @click="onClickEditGoods(item.id)"
               >编辑</span
-            ><img src="../assets/222.png" style="margin-right: 6px" />
-            <span style="margin-right: 10px" @click="onClickDelete">删除</span>
+            ><img src="../assets/222.png" style="margin-right: 1.6vw" />
+            <span style="margin-right: 2.6666vw" @click="onClickDelete">删除</span>
           </p>
         </div>
       </div>
@@ -121,7 +121,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+
+<style lang="less" scoped>
+@import "../assets/css/base.less";
 body,
 html {
   width: 100%;
@@ -129,77 +131,77 @@ html {
   overflow: hidden;
 }
 .totals {
-  width: 250pt;
-  height: 100pt;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  width: 250/@vw*1.3;
+  height: 100/@vw*1.3;
+  margin-bottom: 10/@vw;
+  border-radius: 4/@vw;
   background-color: #fff;
 }
 .total {
   width: 100%;
-  max-height: 500px;
+  max-height: 500/@vw;
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 10/@vw;
   justify-content: space-evenly;
 }
 .bottom {
-  width: 345px;
-  height: 34pt;
+  width: 345/@vw;
+  height: 34/@vw*1.3;
   background: #ea5656;
-  border-radius: 20px;
-  margin: 50px auto 20px;
+  border-radius: 20/@vw;
+  margin: 50/@vw auto 20/@vw;
 }
 .bottom p {
-  line-height: 34pt;
+  line-height: 34/@vw*1.3;
   text-align: center;
   color: white;
-  font-size: 16px;
+  font-size: 16/@vw;
 }
 .boxs {
   width: 90%;
-  height: 1px;
+  height: 1/@vw;
   background: #f2f2f2;
   margin: 0 auto;
-  margin-top: 15px;
+  margin-top: 15/@vw;
 }
 .number {
   display: flex;
   align-items: center;
-  margin: 15px 0 0 15px;
+  margin: 15/@vw 0 0 15/@vw;
 }
 .number p:first-child {
-  font-size: 16px;
+  font-size: 16/@vw;
 }
 .number p:last-child {
-  font-size: 14px;
-  margin-left: 10px;
+  font-size: 14/@vw;
+  margin-left: 10/@vw;
 }
 .names {
   width: 100%;
-  height: 65px;
+  height: 65/@vw;
   background: #ea5656;
   display: flex;
   align-items: center;
 }
 .names img {
-  width: 10px;
-  height: 16px;
-  margin-left: 15px;
+  width: 10/@vw;
+  height: 16/@vw;
+  margin-left: 15/@vw;
 }
 .names p {
-  font-size: 18px;
+  font-size: 18/@vw;
   color: white;
-  margin-left: 132px;
+  margin-left: 132/@vw;
 }
 
 .money {
   width: 95%;
   display: flex;
-  font-size: 12px;
+  font-size: 12/@vw;
   justify-content: space-between;
-  margin: 14px 12px 0;
+  margin: 14/@vw 12/@vw 0;
 }
 .money p {
   color: #333333;
@@ -212,9 +214,9 @@ html {
   background-color: #f5f5f5;
 }
 .money img {
-  width: 15px;
-  height: 15px;
-  margin-right: 5px;
+  width: 15/@vw;
+  height: 15/@vw;
+  margin-right: 5/@vw;
 }
 </style>
 
