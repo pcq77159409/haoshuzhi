@@ -160,8 +160,8 @@ body {
   position: absolute;
   left: 135px;
   top: 89px;
-  width: 10pt;
-  height: 10pt;
+  width: 10/@vw*1.3;
+  height: 10/@vw*1.3;
 }
 .hots {
   width: 100px;

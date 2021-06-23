@@ -26,7 +26,7 @@
     background: #FF5757;
 }
 .service p{
-    font-size: 16pt;
+    font-size: 16/@vw*1.3;
     color: white;
     font-family: PingFang-SC-Medium;
     font-weight: Medium;
@@ -39,8 +39,8 @@
     height: 300/@vw;
 }
 .Collection img{
-    width: 180pt;
-    height: 115pt;
+    width: 180/@vw*1.3;
+    height: 115/@vw*1.3;
     margin-top: 50/@vw;
 }
 .Collection p{
