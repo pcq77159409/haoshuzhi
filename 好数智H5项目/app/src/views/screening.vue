@@ -154,8 +154,8 @@
               v-show="active == 2"
             />
           </li>
-          <li @click="onClickBack">
-            <p>筛选</p>
+          <li @click="onClickShow(3)"> 
+            <p @click="onClickBack">筛选</p>
             <img src="../assets/filter.png" alt="" />
           </li>
         </ul>
@@ -165,6 +165,72 @@
 
     <!--手机号 开始-->
     <div class="class_name">
+    <!-- 归属地 开始-->
+    <div class="Belonging" v-show="active == 0">
+      <ul class="pro">
+        <li
+          v-for="(item, index) in proList"
+          :key="index"
+          :class="{ current: num == index }"
+          @click="onClickHide(index, item)"
+        >
+          <img src="../assets/right.png" alt="" v-show="num == index" />
+          <p>{{ item }}</p>
+        </li>
+      </ul>
+      <ul class="city">
+        <li
+          v-for="(item, index) in cityList[nums]"
+          :key="index"
+          :class="{ currents: wrap == item }"
+          @click="onClickHided(item)"
+        >
+          <img src="../assets/right.png" alt="" v-show="wrap == item" />
+          <p>{{ item }}</p>
+        </li>
+      </ul>
+    </div>
+    <!-- 归属地 结束-->
+
+    <!-- 运营商 开始-->
+    <div class="opeateing" v-show="active == 1">
+      <ul>
+        <li
+          v-for="(item, index) in chinese"
+          :key="index"
+          :class="{ currents: opList == item.operators_name }"
+          @click="onclickOpeateing(item.operators_name)"
+        >
+          <img
+            src="../assets/right.png"
+            alt=""
+            v-show="opList == item.operators_name"
+          />
+          <p>{{ item.operators_name }}</p>
+        </li>
+      </ul>
+    </div>
+    <!-- 运营商 结束-->
+
+    <!-- 规律 开始-->
+    <div class="regular" v-show="active == 2">
+      <ul>
+        <li
+          v-for="(item, index) in rule"
+          :key="index"
+          :class="{ currents: regList == index }"
+          @click="onclickRegList(index, item.id)"
+        >
+          <img src="../assets/right.png" alt="" v-show="regList == index" />
+          <p>{{ item.name }}</p>
+        </li>
+      </ul>
+    </div>
+    <!-- 规律 结束-->
+
+
+
+
       <!--暂无搜索内容 开始-->
       <div class="available" v-show="isShow">
         <img src="../assets/sou.png" alt="" />
@@ -193,75 +259,12 @@
     </div>
     <!--手机号 结束-->
 
-    <!-- 归属地 开始-->
-    <div class="Belonging" v-show="flag">
-      <ul class="pro">
-        <li
-          v-for="(item, index) in proList"
-          :key="index"
-          :class="{ current: num == index }"
-          @click="onClickHide(index, item)"
-        >
-          <img src="../assets/right.png" alt="" v-show="num == index" />
-          <p>{{ item }}</p>
-        </li>
-      </ul>
-      <ul class="city">
-        <li
-          v-for="(item, index) in cityList[nums]"
-          :key="index"
-          :class="{ currents: wrap == item }"
-          @click="onClickHided(item)"
-        >
-          <img src="../assets/right.png" alt="" v-show="wrap == item" />
-          <p>{{ item }}</p>
-        </li>
-      </ul>
-    </div>
-    <!-- 归属地 结束-->
-
-    <!-- 运营商 开始-->
-    <div class="opeateing" v-show="cut">
-      <ul>
-        <li
-          v-for="(item, index) in chinese"
-          :key="index"
-          :class="{ currents: opList == item.operators_name }"
-          @click="onclickOpeateing(item.operators_name)"
-        >
-          <img
-            src="../assets/right.png"
-            alt=""
-            v-show="opList == item.operators_name"
-          />
-          <p>{{ item.operators_name }}</p>
-        </li>
-      </ul>
-    </div>
-    <!-- 运营商 结束-->
-
-    <!-- 规律 开始-->
-    <div class="regular" v-show="regulars">
-      <ul>
-        <li
-          v-for="(item, index) in rule"
-          :key="index"
-          :class="{ currents: regList == index }"
-          @click="onclickRegList(index, item.id)"
-        >
-          <img src="../assets/right.png" alt="" v-show="regList == index" />
-          <p>{{ item.name }}</p>
-        </li>
-      </ul>
-    </div>
-    <!-- 规律 结束-->
-
     <!-- 搜索筛选 开始-->
-    <div class="Montmorillonite" v-show="back">
+    <div class="Montmorillonite" v-show="active == 3">
       <div class="search_filter animate__animated animate__fadeInRight">
         <!-- 返回按钮 -->
         <div class="back">
-          <img src="../assets/back.png" alt="" @click="back = false" />
+          <img src="../assets/back.png" alt="" @click="active = -1" />
           <p @click="back = false">筛选</p>
         </div>
         <!-- 返回按钮 -->
@@ -800,6 +803,7 @@ export default {
     },
     onClickTo() {
       this.back = false;
+      this.active=-1;
       this.parameter = {};
       if (this.tranges === null) {
         this.searchFilter.handle_type = "";
@@ -958,6 +962,7 @@ export default {
       this.maxNumber = "";
       this.contractListed = false;
       this.lowPinListed = false;
+      this.active=-1;
     },
     onSearch() {
       this.parameter = {};
@@ -1011,7 +1016,7 @@ export default {
       words = words.substring(words.length - 1, words.length);
       number[index].value = words;
 
-      if (event.code == "Backspace") {
+      if (event.keyCode == 8) {
         if (index >= 1) {
           number[index - 1].focus();
         }
@@ -1178,8 +1183,7 @@ a {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
-  overflow: hidden;
-  max-height: 812px;
+  overflow-y: auto;
 }
 .Mobile_phone .reds {
   width: 100%;
@@ -1231,7 +1235,8 @@ a {
   width: 100%;
   height: 100%;
   // vertical-align: middle;
-  transform: translateY(-5 / @vw);
+  // transform: translateY(-5 / @vw);
+  display: block;
 }
 .Mobile_phone .reds .input_bg .tail p {
   font-size: 10 / @vw*1.3;
@@ -1331,7 +1336,8 @@ a {
   height: 43 / @vw;
   background-color: #fff;
   margin-top: 20 / @vw;
-  border: 1 / @vw solid #e5e5e5;
+  border-top: 1 / @vw solid #e5e5e5;
+  border-bottom: 1 / @vw solid #e5e5e5;
 }
 .Mobile_phone .select_change ul {
   width: 100%;
@@ -1364,13 +1370,14 @@ a {
   height: 9 / @vw;
 }
 .Mobile_phone .class_name {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  overflow-y: auto;
+  // overflow-y: auto;
   padding: 0 10 / @vw;
   box-sizing: border-box;
-  height: 352 / @vw;
+  // height: 352 / @vw;
 }
 .Mobile_phone .start {
   width: 167 / @vw;
@@ -1428,8 +1435,9 @@ a {
   height: 365 / @vw;
   position: absolute;
   left: 0;
-  top: 301 / @vw;
+  top: 0 / @vw;
   display: flex;
+  z-index: 999;
 }
 .Mobile_phone .Belonging .pro {
   width: 40%;
@@ -1469,12 +1477,13 @@ a {
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 365 / @vw;
+  height: 88 / @vw;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 301 / @vw;
+  top: 0/ @vw;
   display: flex;
+  z-index: 999;
 }
 .Mobile_phone .opeateing ul {
   width: 100%;

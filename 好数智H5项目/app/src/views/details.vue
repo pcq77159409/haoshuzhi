@@ -26,14 +26,15 @@
     <div class="phone">
       <p>
         号码套餐
-        <span v-if="detailsList.numberpackage[0].storepackage != null">
-          <span
-            @click="onClickBack(detailsList.numberpackage[0].storepackage.id)"
-            >{{ taocan }}</span
-          >
-        </span>
+        <em v-if="detailsList.numberpackage.length != 0" style="width:10px; font-style: normal;">
+          <span v-if="detailsList.numberpackage[0].storepackage != null">
+            <span
+              @click="onClickBack(detailsList.numberpackage[0].storepackage.id)"
+              >{{ taocan }}</span
+            >
+          </span>
+        </em>
       </p>
-      <img src="../assets/形状 20@2x.png" alt="">
     </div>
     <div class="box">
       <ul>
@@ -127,25 +128,27 @@
         </div>
         <div class="traffic">
           <h5>套餐</h5>
-          <ul v-if="detailsList.numberpackage[0].storepackage != null">
-            <li
-              v-for="(item, index) in detailsList.numberpackage"
-              :key="index"
-              :class="{ current: taocanXZ == item.storepackage.id }"
-              @click="
-                onclickTaocanZX(
-                  item.storepackage.id,
-                  item.storepackage.package_name
-                )
-              "
-            >
-              {{ item.storepackage.package_name }}
-            </li>
-            <!-- <li>19元移动花卡宝藏版</li>
+          <div v-if="detailsList.numberpackage.length != 0">
+            <ul v-if="detailsList.numberpackage[0].storepackage != null">
+              <li
+                v-for="(item, index) in detailsList.numberpackage"
+                :key="index"
+                :class="{ current: taocanXZ == item.storepackage.id }"
+                @click="
+                  onclickTaocanZX(
+                    item.storepackage.id,
+                    item.storepackage.package_name
+                  )
+                "
+              >
+                {{ item.storepackage.package_name }}
+              </li>
+              <!-- <li>19元移动花卡宝藏版</li>
             <li>19元移动花卡宝藏版</li>
             <li>18元小魔卡</li>
             <li>58元流量+语音畅享套餐</li> -->
-          </ul>
+            </ul>
+          </div>
         </div>
         <div class="unlimited">
           <h5>套餐内容</h5>
@@ -429,9 +432,11 @@ export default {
       if (r.code == 200) {
         this.detailsList = r.data[0][0];
         let numberpackage = r.data[0][0].numberpackage[0];
-        if (numberpackage.storepackage != null) {
-          this.taocanXZ = numberpackage.storepackage.id;
-          this.taocan = numberpackage.storepackage.package_name;
+        if (r.data[0][0].numberpackage.length != 0) {
+          if (numberpackage.storepackage != null) {
+            this.taocanXZ = numberpackage.storepackage.id;
+            this.taocan = numberpackage.storepackage.package_name;
+          }
         }
       } else if (r.code == 700) {
         this.$router.push("/login");
@@ -500,7 +505,7 @@ li {
 }
 .liji {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   padding: 65 / @vw 0 60 / @vw;
   background-color: #f8f8f8;
   overflow: auto;
@@ -512,7 +517,7 @@ li {
 }
 .box {
   width: 345 / @vw;
-  height: 240 / @vw;
+  height: 247 / @vw;
   margin-bottom: 10 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
@@ -520,7 +525,7 @@ li {
 }
 .box ul li {
   line-height: 40 / @vw;
-  font-size: 14/ @vw;
+  font-size: 13 / @vw;
   margin: auto 15 / @vw;
 }
 .phone {
@@ -531,9 +536,6 @@ li {
   background-color: #fff;
   margin: 10 / @vw auto;
   line-height: 44 / @vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 .phone p {
   margin: auto 15 / @vw;
@@ -541,14 +543,9 @@ li {
   font-size: 14 / @vw;
   font-weight: bold;
 }
-.phone img {
-  width: 7/@vw;
-  height: 9/@vw;
-  margin-right: 10/@vw;
-}
 .phone p span {
   display: inline-block;
-  width: 220/@vw;
+  width: 220 / @vw;
   margin-left: 15 / @vw;
   font-size: 12px;
 }
