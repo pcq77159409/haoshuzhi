@@ -547,6 +547,8 @@ li {
   margin-right: 10/@vw;
 }
 .phone p span {
+  display: inline-block;
+  width: 220/@vw;
   margin-left: 15 / @vw;
   font-size: 12px;
 }
