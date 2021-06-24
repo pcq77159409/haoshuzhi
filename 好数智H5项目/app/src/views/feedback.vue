@@ -35,7 +35,7 @@ export default {
 }
 .header{
     width: 100%;
-    height: 64/@vw;
+    height: 58/@vw;
     background-color: #ea5656;
     display: flex;
     align-items: center;

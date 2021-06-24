@@ -728,7 +728,7 @@ li {
 }
 .service {
   width: 100%;
-  height: 65 / @vw;
+  height: 58 / @vw;
   background: #ea5656;
   display: flex;
   align-items: center;

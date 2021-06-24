@@ -93,7 +93,7 @@
 }
 .header {
   width: 100%;
-  height: 64 / @vw;
+  height: 58 / @vw;
   background-color: #fe5858;
   display: flex;
   align-items: center;
