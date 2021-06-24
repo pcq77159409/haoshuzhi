@@ -116,29 +116,31 @@
         </li>
       </ul>
       <!-- 归属地 开始-->
-      <div class="Belonging" v-show="flag">
-        <ul class="pro">
-          <li
-            v-for="(item, index) in proList"
-            :key="index"
-            :class="{ current: num == index }"
-            @click="onClickHide(index, item)"
-          >
-            <img src="../assets/right.png" alt="" v-show="num == index" />
-            <p>{{ item }}</p>
-          </li>
-        </ul>
-        <ul class="city">
-          <li
-            v-for="(item, index) in cityList[nums]"
-            :key="index"
-            :class="{ currents: wrap == item }"
-            @click="onClickHided(item)"
-          >
-            <img src="../assets/right.png" alt="" v-show="wrap == item" />
-            <p>{{ item }}</p>
-          </li>
-        </ul>
+      <div class="black" v-show="flag">
+        <div class="Belonging" >
+          <ul class="pro">
+            <li
+              v-for="(item, index) in proList"
+              :key="index"
+              :class="{ current: num == index }"
+              @click="onClickHide(index, item)"
+            >
+              <img src="../assets/right.png" alt="" v-show="num == index" />
+              <p>{{ item }}</p>
+            </li>
+          </ul>
+          <ul class="city">
+            <li
+              v-for="(item, index) in cityList[nums]"
+              :key="index"
+              :class="{ currents: wrap == item }"
+              @click="onClickHided(item)"
+            >
+              <img src="../assets/right.png" alt="" v-show="wrap == item" />
+              <p>{{ item }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
       <!-- 归属地 结束-->
       <!-- 规律 开始-->
@@ -308,15 +310,19 @@
         <!-- 不含数字 结束-->
 
         <!-- 运营商 开始-->
-          <div class="yuny">
-            <h5>运营商</h5>
-            <ul>
-              <li>中国移动</li>
-              <li>中国移动</li>
-              <li>中国移动</li>
-              <li>中国移动</li>
-            </ul>
-          </div>
+        <div class="yuny">
+          <h5>运营商</h5>
+          <ul>
+            <li
+              v-for="(item, index) in chinese"
+              :key="index"
+              :class="{ active: opList == item.operators_name }"
+              @click="onclickOpeateing(item.operators_name)"
+            >
+              <p>{{ item.operators_name }}</p>
+            </li>
+          </ul>
+        </div>
         <!-- 运营商 结束-->
 
         <!-- 按钮 开始-->
@@ -700,8 +706,8 @@ export default {
       } else {
         this.back = false;
       }
-      this.flag=false;
-      this.regulars=false
+      this.flag = false;
+      this.regulars = false;
     },
     onClickTo() {
       this.back = false;
@@ -1059,6 +1065,15 @@ export default {
 a {
   text-decoration: none;
 }
+.black {
+  width: 345 / @vw;
+  height: 534 / @vw;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: -1 / @vw;
+  top: 44 / @vw;
+  z-index: 9;
+}
 .Mobile_phone .active {
   background-color: #ea5656 !important;
   color: #ffffff !important;
@@ -1074,7 +1089,7 @@ a {
 }
 .wrok {
   background: url("../assets/white_bg.png");
-  background-size: 115/@vw 25/@vw;
+  background-size: 115 / @vw 25 / @vw;
   color: #fe5858;
 }
 
@@ -1086,42 +1101,42 @@ a {
 }
 .Mobile_phone .reds {
   width: 100%;
-  height: 234/@vw;
+  height: 234 / @vw;
   background: url("../assets/矩形 12@2x.png") no-repeat;
-  background-size: 100% 234/@vw;
+  background-size: 100% 234 / @vw;
 }
 .Mobile_phone .reds .moveing {
   display: flex;
 }
 .Mobile_phone .reds .moveing img {
-  width: 10/@vw;
-  height: 16/@vw;
-  margin: 35/@vw 0 0 15/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
+  margin: 35 / @vw 0 0 15 / @vw;
   pointer-events: auto;
 }
 .Mobile_phone .reds .moveing h3 {
   color: #ffffff;
-  margin: 30/@vw auto 0;
-  font-size: 16/@vw;
+  margin: 30 / @vw auto 0;
+  font-size: 16 / @vw;
   font-weight: 500;
 }
 .Mobile_phone .banner_box {
-  width: 352/@vw;
-  height: 134/@vw;
-  margin: -121/@vw auto;
-  border-radius: 6/@vw;
+  width: 352 / @vw;
+  height: 134 / @vw;
+  margin: -121 / @vw auto;
+  border-radius: 6 / @vw;
 }
 .Mobile_phone .banner_box img {
   width: 100%;
   height: 100%;
-  border-radius: 6/@vw;
+  border-radius: 6 / @vw;
 }
 .Mobile_phone .accurate .input_bg {
-  width: 328/@vw;
-  height: 28/@vw;
+  width: 328 / @vw;
+  height: 28 / @vw;
   background: url("../assets/input_bg_hui.png") no-repeat;
-  background-size: 328/@vw 28/@vw;
-  margin: 12/@vw auto 0;
+  background-size: 328 / @vw 28 / @vw;
+  margin: 12 / @vw auto 0;
   display: flex;
 }
 .Mobile_phone .accurate .input_bg .tail {
@@ -1131,10 +1146,10 @@ a {
   align-items: center;
 }
 .Mobile_phone .accurate .input_bg .tail .img {
-  width: 12/@vw;
-  height: 12/@vw;
-  margin: 0 10/@vw 0 15/@vw;
-  border: #ccc solid 1/@vw;
+  width: 12 / @vw;
+  height: 12 / @vw;
+  margin: 0 10 / @vw 0 15 / @vw;
+  border: #ccc solid 1 / @vw;
   // border-radius: 2/@vw;
   overflow: hidden;
 }
@@ -1143,16 +1158,16 @@ a {
   width: 100%;
   height: 100%;
   // vertical-align: middle;
-  transform: translateY(-5/@vw);
+  transform: translateY(-5 / @vw);
 }
 .Mobile_phone .accurate .input_bg .tail p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
-  margin: 0 10/@vw 1/@vw 0;
+  margin: 0 10 / @vw 1 / @vw 0;
 }
 .Mobile_phone .accurate .input_bg .tail span {
-  width: 1/@vw;
-  height: 12/@vw;
+  width: 1 / @vw;
+  height: 12 / @vw;
   background-color: #e0e0e0;
 }
 .Mobile_phone .accurate .input_bg .searchs {
@@ -1166,44 +1181,44 @@ a {
   width: 80%;
 }
 .Mobile_phone .accurate .input_bg .searchs .want img {
-  width: 10/@vw*1.3;
-  height: 10/@vw*1.3;
-  margin: 0 10/@vw 0 4/@vw;
+  width: 10 / @vw*1.3;
+  height: 10 / @vw*1.3;
+  margin: 0 10 / @vw 0 4 / @vw;
 }
 .Mobile_phone .accurate .input_bg .searchs .want input {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #999999;
   background: transparent;
 }
 .Mobile_phone .accurate .input_bg .searchs h4 {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #ffffff;
   font-weight: 500;
-  margin-right: 11/@vw;
-  line-height: 28/@vw;
+  margin-right: 11 / @vw;
+  line-height: 28 / @vw;
 }
 .Mobile_phone .accurate {
-  width: 345/@vw;
-  height: 176/@vw;
+  width: 345 / @vw;
+  height: 176 / @vw;
   background-color: #fff;
   margin: 0 auto;
-  padding-top: 10/@vw;
+  padding-top: 10 / @vw;
   box-sizing: border-box;
-  margin-top: 134/@vw;
+  margin-top: 134 / @vw;
 }
 .Mobile_phone .accurate .phoneNumber {
   display: flex;
-  margin: 20/@vw 18/@vw 0;
+  margin: 20 / @vw 18 / @vw 0;
   justify-content: space-evenly;
 }
 .Mobile_phone .accurate .phoneNumber li {
-  width: 22/@vw;
-  height: 26/@vw;
+  width: 22 / @vw;
+  height: 26 / @vw;
   text-align: center;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
 }
 .Mobile_phone .accurate .phoneNumber li input:focus {
-  border: 1/@vw solid #dc0101;
+  border: 1 / @vw solid #dc0101;
 }
 .Mobile_phone .accurate .phoneNumber li:first-child input {
   color: #333333;
@@ -1214,28 +1229,28 @@ a {
   text-align: center;
   color: #dc0101;
   outline: none;
-  border-radius: 3/@vw;
-  border: 1/@vw solid #cacaca;
+  border-radius: 3 / @vw;
+  border: 1 / @vw solid #cacaca;
 }
 
 .Mobile_phone .accurate p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #fe5858;
-  margin: 10/@vw 0 0 21/@vw;
+  margin: 10 / @vw 0 0 21 / @vw;
 }
 .Mobile_phone .accurate .reset {
-  margin: 16/@vw 48/@vw 0;
+  margin: 16 / @vw 48 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .accurate .reset li {
-  width: 130/@vw;
-  height: 26/@vw;
+  width: 130 / @vw;
+  height: 26 / @vw;
   text-align: center;
-  line-height: 26/@vw;
-  border-radius: 20/@vw;
-  font-size: 12/@vw;
-  margin-right: 20/@vw;
+  line-height: 26 / @vw;
+  border-radius: 20 / @vw;
+  font-size: 12 / @vw;
+  margin-right: 20 / @vw;
 }
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;
@@ -1246,11 +1261,11 @@ a {
   color: #ffffff;
 }
 .Mobile_phone .select_change {
-  width: 345/@vw;
-  height: 43/@vw;
+  width: 345 / @vw;
+  height: 43 / @vw;
   background-color: #fff;
-  margin: 10/@vw auto 0;
-  border: 1/@vw solid #e5e5e5;
+  margin: 10 / @vw auto 0;
+  border: 1 / @vw solid #e5e5e5;
   position: relative;
 }
 .Mobile_phone .select_change .area {
@@ -1258,7 +1273,7 @@ a {
   height: 100%;
   display: flex;
   justify-content: space-between;
-  line-height: 33/@vw;
+  line-height: 33 / @vw;
 }
 .Mobile_phone .select_change .area li {
   display: flex;
@@ -1266,47 +1281,47 @@ a {
   position: relative;
 }
 .Mobile_phone .select_change .area li :first-child {
-  margin-left: 10/@vw;
+  margin-left: 10 / @vw;
 }
 
 .Mobile_phone .select_change .area li :last-child {
-  margin-right: 10/@vw;
+  margin-right: 10 / @vw;
 }
 .Mobile_phone .select_change .area li .red_triangle {
   position: absolute;
-  right: -18/@vw;
+  right: -18 / @vw;
   top: 45.4%;
 }
 .Mobile_phone .select_change .area li p {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #666666;
-  margin-right: 9/@vw;
+  margin-right: 9 / @vw;
 }
 .Mobile_phone .select_change .area li img {
-  width: 6/@vw;
-  height: 4/@vw;
+  width: 6 / @vw;
+  height: 4 / @vw;
 }
 .Mobile_phone .select_change .area li:last-child img {
-  width: 10/@vw;
-  height: 9/@vw;
+  width: 10 / @vw;
+  height: 9 / @vw;
 }
 .Mobile_phone .class_name {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   overflow-y: auto;
-  padding: 0 15/@vw;
+  padding: 0 15 / @vw;
   box-sizing: border-box;
   height: 68%;
-  margin-bottom: 60/@vw;
+  margin-bottom: 60 / @vw;
 }
 .Mobile_phone .start {
-  width: 167/@vw;
-  height: 102/@vw;
-  border: 1/@vw solid #e5e5e5;
-  border-radius: 10/@vw;
+  width: 167 / @vw;
+  height: 102 / @vw;
+  border: 1 / @vw solid #e5e5e5;
+  border-radius: 10 / @vw;
   position: relative;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   background-color: #fff;
 }
 
@@ -1314,54 +1329,64 @@ a {
   position: absolute;
   right: 0;
   top: 0;
-  width: 30/@vw;
-  height: 18/@vw;
+  width: 30 / @vw;
+  height: 18 / @vw;
 }
 .Mobile_phone .start h5 {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   color: #333333;
   font-weight: bold;
-  margin: 12/@vw 0 0 10/@vw;
+  margin: 12 / @vw 0 0 10 / @vw;
 }
 .Mobile_phone .start .commission {
-  margin: 10/@vw 10/@vw 0;
+  margin: 10 / @vw 10 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .start .commission p {
   color: #666666;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .start .commission span,
 .Mobile_phone .start .contains p {
   color: #dd1414;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .start .contains {
-  margin: 10/@vw 6/@vw 0;
+  margin: 10 / @vw 6 / @vw 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .Mobile_phone .start .contains span {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #dc0101;
   font-weight: bold;
 }
-
-.Mobile_phone .select_change .Belonging,
 .Mobile_phone .select_change .regular {
-  width: 345/@vw;
-  height: 365/@vw;
+  width: 345 / @vw;
+  height: 365 / @vw;
   position: absolute;
-  left: -1/@vw;
-  top: 44/@vw;
+  left: -1 / @vw;
+  top: 44 / @vw;
   display: flex;
   z-index: 2;
   align-content: space-between;
-  border-left: 1/@vw solid #ececec;
-  border-right: 1/@vw solid #ececec;
+  border-left: 1 / @vw solid #ececec;
+  border-right: 1 / @vw solid #ececec;
+}
+.Mobile_phone .select_change .Belonging {
+  width: 345 / @vw;
+  height: 365 / @vw;
+  position: absolute;
+  left: -1 / @vw;
+  top: -1 / @vw;
+  display: flex;
+  z-index: 2;
+  align-content: space-between;
+  border-left: 1 / @vw solid #ececec;
+  border-right: 1 / @vw solid #ececec;
 }
 .Mobile_phone .Belonging .pro {
   width: 40%;
@@ -1372,24 +1397,24 @@ a {
 .Mobile_phone .Belonging .pro li,
 .Mobile_phone .Belonging .city li {
   width: 100%;
-  height: 45/@vw;
-  border-bottom: 1/@vw solid #ececec;
+  height: 45 / @vw;
+  border-bottom: 1 / @vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .select_change .Belonging .pro li p {
   color: #333333;
-  font-size: 10/@vw*1.3;
-  margin-left: 35/@vw;
+  font-size: 10 / @vw*1.3;
+  margin-left: 35 / @vw;
 }
 
 .Mobile_phone .select_change .Belonging .pro li img,
-.Mobile_phone.select_change .Belonging .city li img {
+.Mobile_phone .select_change .Belonging .city li img {
   position: absolute;
-  left: 15/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3 !important;
+  height: 7 / @vw*1.3 !important;
 }
 .Mobile_phone .select_change .Belonging .city {
   width: 60%;
@@ -1400,45 +1425,45 @@ a {
 }
 .Mobile_phone .select_change .Belonging .city li p {
   color: #333333;
-  font-size: 10/@vw*1.3;
-  margin-left: 48/@vw;
+  font-size: 10 / @vw*1.3;
+  margin-left: 48 / @vw;
 }
 .Mobile_phone .select_change .opeateing {
   width: 100%;
-  height: 90/@vw;
+  height: 90 / @vw;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 303/@vw;
+  top: 303 / @vw;
   display: flex;
 }
 .Mobile_phone .select_change .opeateing ul {
   width: 100%;
-  height: 88/@vw;
+  height: 88 / @vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 .Mobile_phone .select_change .opeateing ul li {
-  width: 187/@vw;
-  height: 43/@vw;
+  width: 187 / @vw;
+  height: 43 / @vw;
   display: flex;
   align-items: center;
-  border-bottom: 1/@vw solid #ececec;
+  border-bottom: 1 / @vw solid #ececec;
   position: relative;
 }
 .Mobile_phone .select_change .opeateing ul li img {
   position: absolute;
-  left: 40/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 40 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
   // display: none;
 }
 .Mobile_phone .select_change .opeateing ul li p {
   color: #333333;
-  font-size: 12/@vw;
-  margin-left: 63/@vw;
+  font-size: 12 / @vw;
+  margin-left: 63 / @vw;
   text-align: center;
 }
 .Mobile_phone .select_change .regular .currents,
@@ -1465,23 +1490,23 @@ a {
 }
 .Mobile_phone .select_change .regular ul li {
   width: 100%;
-  height: 44/@vw;
-  border-bottom: 1/@vw solid #ececec;
+  height: 44 / @vw;
+  border-bottom: 1 / @vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .select_change .regular ul li img {
   position: absolute;
-  left: 15/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
   // display: none;
 }
 .Mobile_phone .select_change .regular ul li p {
   color: #333333;
-  font-size: 12/@vw;
-  margin-left: 40/@vw;
+  font-size: 12 / @vw;
+  margin-left: 40 / @vw;
 }
 .Mobile_phone .Montmorillonite {
   width: 100%;
@@ -1493,60 +1518,60 @@ a {
   z-index: 99;
 }
 .Mobile_phone .Montmorillonite .search_filter {
-  width: 330/@vw;
+  width: 330 / @vw;
   height: 100%;
   background-color: #fff;
-  margin-left: 45/@vw;
+  margin-left: 45 / @vw;
   overflow-y: auto;
 }
 .Mobile_phone .Montmorillonite .search_filter .back {
   width: 100%;
-  height: 40/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  height: 40 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .back img {
-  width: 6/@vw;
-  height: 11/@vw;
-  margin-left: 11/@vw;
+  width: 6 / @vw;
+  height: 11 / @vw;
+  margin-left: 11 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .back p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
-  margin-left: 5/@vw;
+  margin-left: 5 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle {
-  width: 286/@vw;
-  height: 55/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 55 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle p {
-  width: 115/@vw;
-  height: 25/@vw;
+  width: 115 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25/@vw;
+  line-height: 25 / @vw;
   color: #999999;
 }
 
 .Mobile_phone .Montmorillonite .search_filter .price {
-  width: 286/@vw;
-  height: 200/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 200 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .price p {
   position: absolute;
-  left: 184/@vw;
-  top: 157/@vw;
-  font-size: 12/@vw;
+  left: 184 / @vw;
+  top: 157 / @vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .price h5,
@@ -1554,9 +1579,9 @@ a {
 .Mobile_phone .Montmorillonite .search_filter .contract h5,
 .Mobile_phone .Montmorillonite .search_filter .more_number h5 {
   color: #666666;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   font-weight: 500;
-  margin: 14/@vw 0;
+  margin: 14 / @vw 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul,
 .Mobile_phone .Montmorillonite .search_filter .charge ul,
@@ -1570,24 +1595,24 @@ a {
 .Mobile_phone .Montmorillonite .search_filter .charge ul li,
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
   position: relative;
-  width: 89/@vw;
-  height: 25/@vw;
+  width: 89 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25/@vw;
-  margin-bottom: 15/@vw;
-  border-radius: 4/@vw;
-  font-size: 12/@vw;
+  line-height: 25 / @vw;
+  margin-bottom: 15 / @vw;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
-  width: 68/@vw;
+  width: 68 / @vw;
 }
 
 .Mobile_phone .Montmorillonite .search_filter .price ul li span,
 .Mobile_phone .Montmorillonite .search_filter .charge span {
   position: absolute;
-  left: 10/@vw;
+  left: 10 / @vw;
   top: 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li input,
@@ -1595,7 +1620,7 @@ a {
   border: none;
   outline: none;
   background: none;
-  text-indent: 30/@vw;
+  text-indent: 30 / @vw;
   width: 100%;
   height: 100%;
 }
@@ -1605,12 +1630,12 @@ a {
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:last-child,
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:last-child {
-  width: 85/@vw;
-  margin-left: 8/@vw;
+  width: 85 / @vw;
+  margin-left: 8 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:nth-of-type(11),
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:nth-of-type(11) {
-  width: 85/@vw;
+  width: 85 / @vw;
 }
 .Mobile_phone
   .Montmorillonite
@@ -1623,158 +1648,158 @@ a {
 }
 
 .Mobile_phone .Montmorillonite .search_filter .charge {
-  width: 286/@vw;
-  height: 80/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 80 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .charge p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
   position: absolute;
-  left: 186/@vw;
-  top: 117/@vw;
+  left: 186 / @vw;
+  top: 117 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract {
-  width: 286/@vw;
-  height: 80/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 80 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .linings {
-  width: 1/@vw;
-  height: 104/@vw;
+  width: 1 / @vw;
+  height: 104 / @vw;
   background-color: #f2f2f2;
   position: absolute;
   left: 50%;
-  top: 74/@vw;
+  top: 74 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december {
   width: 100%;
-  height: 25/@vw;
+  height: 25 / @vw;
   display: flex;
   justify-content: space-around;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december li {
-  width: 89/@vw;
-  height: 25/@vw;
+  width: 89 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  border-radius: 4/@vw;
-  font-size: 12/@vw;
-  line-height: 25/@vw;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
+  line-height: 25 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change {
   width: 100%;
-  height: 100/@vw;
-  margin-top: 15/@vw;
+  height: 100 / @vw;
+  margin-top: 15 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li {
   width: 100%;
-  height: 25/@vw;
+  height: 25 / @vw;
   display: flex;
-  border-bottom: 1/@vw solid #f2f2f2;
+  border-bottom: 1 / @vw solid #f2f2f2;
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li:first-child {
-  border-top: 1/@vw solid #f2f2f2;
+  border-top: 1 / @vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li h3 {
   font-weight: 500;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number {
-  width: 286/@vw;
-  height: 160/@vw;
-  margin: 0 22/@vw;
+  width: 286 / @vw;
+  height: 160 / @vw;
+  margin: 0 22 / @vw;
 }
 // .Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-child {
 //   margin-right: 142/@vw;
 // }
 .Mobile_phone .Montmorillonite .search_filter .none ul li:last-child {
-  margin-right: 214/@vw;
+  margin-right: 214 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure {
   width: 100%;
-  height: 44/@vw;
+  height: 44 / @vw;
   display: flex;
-  margin-bottom: 52/@vw;
-  margin-top: 54/@vw;
+  margin-bottom: 52 / @vw;
+  margin-top: 54 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure p {
   width: 50%;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 44/@vw;
-  font-size: 16/@vw;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
   color: #666666;
-  border-bottom: 1/@vw solid #f2f2f2;
-  border-top: 1/@vw solid #f2f2f2;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  border-top: 1 / @vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure span {
   width: 50%;
   background-color: #fe5858;
   text-align: center;
-  line-height: 44/@vw;
-  font-size: 16/@vw;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
   color: #ffffff;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change .actives {
   color: #ea5656;
 }
 .Mobile_phone .available {
-  width: 137/@vw;
-  margin: 46/@vw auto;
+  width: 137 / @vw;
+  margin: 46 / @vw auto;
   text-align: center;
 }
 .Mobile_phone .available img {
   width: 100%;
-  height: 100/@vw;
+  height: 100 / @vw;
 }
 .Mobile_phone .available p {
   color: #999999;
-  font-size: 12/@vw;
-  margin-top: 17/@vw;
+  font-size: 12 / @vw;
+  margin-top: 17 / @vw;
 }
 .Montmorillonite .search_filter .yuny {
-  width: 213/@vw;
-  height: 91/@vw;
-  margin-left: 22/@vw;
+  width: 213 / @vw;
+  height: 91 / @vw;
+  margin-left: 22 / @vw;
 }
 .Montmorillonite .search_filter .yuny h5 {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #666666;
   font-weight: 500;
-  margin-bottom: 14/@vw;
+  margin-bottom: 14 / @vw;
 }
 .Montmorillonite .search_filter .yuny ul {
   width: 100%;
-  height: 65/@vw;
+  height: 65 / @vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 .Montmorillonite .search_filter .yuny ul li {
-  width: 99/@vw;
-  height: 25/@vw;
+  width: 99 / @vw;
+  height: 25 / @vw;
   background: #f8f8f8;
   color: #666666;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   text-align: center;
-  line-height: 25/@vw;
-  border-radius: 4/@vw;
-  margin-bottom: 15/@vw;
+  line-height: 25 / @vw;
+  border-radius: 4 / @vw;
+  margin-bottom: 15 / @vw;
 }
 </style>

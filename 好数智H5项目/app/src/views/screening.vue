@@ -1,6 +1,7 @@
 <template>
   <div class="Mobile_phone">
-    <!-- 头部导航 开始-->
+   <div class="bb">
+      <!-- 头部导航 开始-->
     <div class="reds">
       <div class="moveing">
         <img src="../assets/left.png" alt="" @click="onClickGo" />
@@ -120,6 +121,7 @@
       </ul>
     </div>
     <!-- 下拉选择 结束-->
+   </div>
 
     <!--手机号 开始-->
     <div class="class_name">
@@ -1113,6 +1115,9 @@ export default {
 a {
   text-decoration: none;
 }
+.bb {
+  height: 45%;
+}
 .Mobile_phone .active {
   background-color: #ea5656 !important;
   color: #ffffff !important;
@@ -1137,6 +1142,7 @@ a {
   height: 100%;
   background-color: #f8f8f8;
   overflow: hidden;
+  max-height: 812px;
 }
 .Mobile_phone .reds {
   width: 100%;
@@ -1327,7 +1333,7 @@ a {
   overflow-y: auto;
   padding: 0 10/@vw;
   box-sizing: border-box;
-  height: 52%;
+  height: 55%;
 }
 .Mobile_phone .start {
   width: 167/@vw;
@@ -1765,5 +1771,13 @@ a {
   color: #999999;
   font-size: 12/@vw;
   margin-top: 17/@vw;
+}
+@media screen and (min-height:800px) {
+  .bb {
+    height: 38%;
+  }
+  .class_name {
+    height: 57%;
+  }
 }
 </style>
