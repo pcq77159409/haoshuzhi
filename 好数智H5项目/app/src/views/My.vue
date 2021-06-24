@@ -11,7 +11,13 @@
           <div class="id">
             <p>{{ user.username }}</p>
             <p>ID:{{ user.id }}</p>
-            <div class="login" v-if="loginShow == 1" @click="$router.push('/login')">手机号登录</div>
+            <div
+              class="login"
+              v-if="loginShow == 1"
+              @click="$router.push('/login')"
+            >
+              手机号登录
+            </div>
           </div>
         </div>
         <div @click="onClickOpen">
@@ -133,6 +139,7 @@ export default {
   data() {
     return {
       flag: false,
+      loginShow: null,
       user: [],
       unapid: {
         address: "asgag",
@@ -164,7 +171,6 @@ export default {
         status: 1,
         updated_at: "2021-06-07 10:49:21",
         user_id: 21,
-        loginShow:null,
       },
     };
   },
@@ -192,18 +198,18 @@ export default {
     },
   },
   mounted() {
-    this.loginShow = localStorage.getItem('uuidstatus');
-    this.$get("/api/user/getinfo", { user_id: localStorage.getItem('user-id') }).then(
-      (r) => {
-        console.log(r);
-        if (r.code == 200) {
-          this.user = r.data;
-        }
+    this.loginShow = localStorage.getItem("uuidstatus");
+    this.$get("/api/user/getinfo", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        this.user = r.data;
       }
-    );
+    });
 
     this.$get("/api/order/getlist", {
-      user_id: localStorage.getItem('user-id'),
+      user_id: localStorage.getItem("user-id"),
       status: 1,
     }).then((r) => {
       console.log(r);
@@ -227,16 +233,16 @@ body {
   width: 100%;
   height: 100%;
 }
-.login{
-  width: 80/@vw;
-  height: 24/@vw;
+.login {
+  width: 80 / @vw;
+  height: 24 / @vw;
   text-align: center;
-  line-height: 24/@vw;
-  border-radius: 12/@vw;
+  line-height: 24 / @vw;
+  border-radius: 12 / @vw;
   color: #fff;
-  background-color: rgba(0,0,0,.3);
-  margin-top: 5/@vw;
-  font-size: 14/@vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: 5 / @vw;
+  font-size: 14 / @vw;
 }
 .ccccc {
   position: relative;

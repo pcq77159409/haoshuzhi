@@ -1,7 +1,7 @@
 <template>
   <div class="comfirm_box">
     <div class="jumplabel">
-      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
+      <img src="../assets/left.png" alt="" @click="$router.push('/commons/home/m')" />
       <h4>支付订单</h4>
     </div>
     <div
