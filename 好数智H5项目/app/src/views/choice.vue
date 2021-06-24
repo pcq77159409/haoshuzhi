@@ -729,7 +729,6 @@ html {
   width: 100%;
   height: 100%;
   margin: 0;
-  background-color: #f5f5f5;
   overflow-x: hidden;
 }
 * {
@@ -759,6 +758,7 @@ html {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  background-color: #f8f8f8;
 }
 .choice_box .package_box {
   width: 100%;

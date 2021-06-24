@@ -1,127 +1,167 @@
 <template>
   <div class="Mobile_phone">
-   <div class="bb">
+    <div class="bb">
       <!-- 头部导航 开始-->
-    <div class="reds">
-      <div class="moveing">
-        <img src="../assets/left.png" alt="" @click="onClickGo" />
-        <h3>{{ title }}</h3>
-      </div>
-      <div class="input_bg">
-        <div class="tail" @click="onclickTyped">
-          <div class="img">
-            <img src="../assets/yes.png" alt="" v-show="typed == 0" />
-          </div>
-          <p>尾号</p>
-          <span></span>
+      <div class="reds">
+        <div class="moveing">
+          <img src="../assets/left.png" alt="" @click="onClickGo" />
+          <h3>{{ title }}</h3>
         </div>
-        <div class="searchs">
-          <div class="want">
-            <img src="../assets/搜索@2x.png" alt="" />
+        <div class="input_bg">
+          <div class="tail" @click="onclickTyped">
+            <div class="img">
+              <img src="../assets/yes.png" alt="" v-show="typed == 0" />
+            </div>
+            <p>尾号</p>
+            <span></span>
+          </div>
+          <div class="searchs">
+            <div class="want">
+              <img src="../assets/搜索@2x.png" alt="" />
+              <input
+                type="text"
+                placeholder="搜索你想要的号码"
+                v-model="searchInput"
+                @keyup.enter="onSearch"
+              />
+            </div>
+            <h4 @click="onSearch">搜索</h4>
+          </div>
+        </div>
+      </div>
+      <!-- 头部导航 结束-->
+
+      <!-- 搜索号码 开始-->
+      <div class="accurate">
+        <ul class="phoneNumber">
+          <li>
             <input
-              type="text"
-              placeholder="搜索你想要的号码"
-              v-model="searchInput"
-              @keyup.enter="onSearch"
+              type="number"
+              value="1"
+              @keyup="onkeyupInputSearch(0)"
+              class="number"
             />
-          </div>
-          <h4 @click="onSearch">搜索</h4>
-        </div>
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(1)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(2)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(3)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(4)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(5)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(6)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(7)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(8)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(9)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(10)"
+              class="number"
+            />
+          </li>
+        </ul>
+        <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
+        <ul class="reset">
+          <li @click="onclickResetInput">重置</li>
+          <li @click="onclickAccurateSearch">精准搜索</li>
+        </ul>
       </div>
-    </div>
-    <!-- 头部导航 结束-->
+      <!-- 搜索号码 结束-->
 
-    <!-- 搜索号码 开始-->
-    <div class="accurate">
-      <ul class="phoneNumber">
-        <li>
-          <input
-            type="number"
-            value="1"
-            @keyup="onkeyupInputSearch(0)"
-            class="number"
-          />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(1)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(2)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(3)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(4)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(5)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(6)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(7)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(8)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(9)" class="number" />
-        </li>
-        <li>
-          <input type="number" @keyup="onkeyupInputSearch(10)" class="number" />
-        </li>
-      </ul>
-      <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
-      <ul class="reset">
-        <li @click="onclickResetInput">重置</li>
-        <li @click="onclickAccurateSearch">精准搜索</li>
-      </ul>
+      <!-- 下拉选择 开始-->
+      <div class="select_change">
+        <ul>
+          <li @click="onClickShow(0)">
+            <p @click="onClickDn">归属地</p>
+            <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
+            <img
+              src="../assets/red_triangle.png"
+              alt=""
+              class="red_triangle"
+              v-show="active == 0"
+            />
+          </li>
+          <li @click="onClickShow(1)">
+            <p @click="onClickOperating">运营商</p>
+            <img src="../assets/triangle.png" alt="" v-show="active !== 1" />
+            <img
+              src="../assets/red_triangle.png"
+              alt=""
+              class="red_triangle"
+              v-show="active == 1"
+            />
+          </li>
+          <li @click="onClickShow(2)">
+            <p @click="onClickRegular">规律</p>
+            <img src="../assets/triangle.png" alt="" v-show="active !== 2" />
+            <img
+              src="../assets/red_triangle.png"
+              alt=""
+              class="red_triangle"
+              v-show="active == 2"
+            />
+          </li>
+          <li @click="onClickBack">
+            <p>筛选</p>
+            <img src="../assets/filter.png" alt="" />
+          </li>
+        </ul>
+      </div>
+      <!-- 下拉选择 结束-->
     </div>
-    <!-- 搜索号码 结束-->
-
-    <!-- 下拉选择 开始-->
-    <div class="select_change">
-      <ul>
-        <li @click="onClickShow(0)">
-          <p @click="onClickDn">归属地</p>
-          <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
-          <img
-            src="../assets/red_triangle.png"
-            alt=""
-            class="red_triangle"
-            v-show="active == 0"
-          />
-        </li>
-        <li @click="onClickShow(1)">
-          <p @click="onClickOperating">运营商</p>
-          <img src="../assets/triangle.png" alt="" v-show="active !== 1" />
-          <img
-            src="../assets/red_triangle.png"
-            alt=""
-            class="red_triangle"
-            v-show="active == 1"
-          />
-        </li>
-        <li @click="onClickShow(2)">
-          <p @click="onClickRegular">规律</p>
-          <img src="../assets/triangle.png" alt="" v-show="active !== 2" />
-          <img
-            src="../assets/red_triangle.png"
-            alt=""
-            class="red_triangle"
-            v-show="active == 2"
-          />
-        </li>
-        <li @click="onClickBack">
-          <p>筛选</p>
-          <img src="../assets/filter.png" alt="" />
-        </li>
-      </ul>
-    </div>
-    <!-- 下拉选择 结束-->
-   </div>
 
     <!--手机号 开始-->
     <div class="class_name">
@@ -703,7 +743,7 @@ export default {
   },
   methods: {
     onClickGo() {
-      this.$router.push('/commons/home/m');
+      this.$router.push("/commons/home/m");
     },
     onClickShow(num) {
       if (this.active == num) {
@@ -1007,7 +1047,7 @@ export default {
         }
       });
       str;
-      this.parameter = {accurate:''};
+      this.parameter = { accurate: "" };
       this.onclickQuery();
     },
     onclickQuery() {
@@ -1061,7 +1101,7 @@ export default {
         }
       });
     });
-// console.log(this.$route.query);
+    // console.log(this.$route.query);
     if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
       this.title = "移动号码";
     } else if (
@@ -1091,13 +1131,13 @@ export default {
   watch: {
     opList(val) {
       console.log(val);
-      if (val == '中国移动') {
+      if (val == "中国移动") {
         this.title = "移动号码";
-      } else if (val == '中国联通') {
+      } else if (val == "中国联通") {
         this.title = "联通号码";
-      } else if (val == '中国电信') {
+      } else if (val == "中国电信") {
         this.title = "电信号码";
-      } else if (val == '虚拟运营商') {
+      } else if (val == "虚拟运营商") {
         this.title = "虚拟号码";
       }
     },
@@ -1115,9 +1155,6 @@ export default {
 a {
   text-decoration: none;
 }
-.bb {
-  height: 45%;
-}
 .Mobile_phone .active {
   background-color: #ea5656 !important;
   color: #ffffff !important;
@@ -1133,7 +1170,7 @@ a {
 }
 .wrok {
   background: url("../assets/white_bg.png");
-  background-size: 115/@vw 25/@vw;
+  background-size: 115 / @vw 25 / @vw;
   color: #fe5858;
 }
 
@@ -1146,7 +1183,7 @@ a {
 }
 .Mobile_phone .reds {
   width: 100%;
-  height: 122/@vw;
+  height: 122 / @vw;
   background-color: #fe5858;
 }
 .Mobile_phone .reds .moveing {
@@ -1154,25 +1191,25 @@ a {
   align-items: center;
 }
 .Mobile_phone .reds .moveing img {
-  width: 10/@vw;
-  height: 16/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
+  left: 15 / @vw;
   pointer-events: auto;
-  margin-top: 14/@vw;
+  margin-top: 14 / @vw;
 }
 .Mobile_phone .reds .moveing h3 {
   color: #ffffff;
-  margin: 20/@vw auto 0;
-  font-size: 18/@vw;
+  margin: 20 / @vw auto 0;
+  font-size: 18 / @vw;
   font-weight: 500;
 }
 .Mobile_phone .reds .input_bg {
-  width: 345/@vw;
-  height: 28/@vw;
+  width: 345 / @vw;
+  height: 28 / @vw;
   background: url("../assets/input_bg.png") no-repeat;
-  background-size: 345/@vw 28/@vw;
-  margin: 22/@vw auto 0;
+  background-size: 345 / @vw 28 / @vw;
+  margin: 22 / @vw auto 0;
   display: flex;
 }
 .Mobile_phone .reds .input_bg .tail {
@@ -1182,10 +1219,10 @@ a {
   align-items: center;
 }
 .Mobile_phone .reds .input_bg .tail .img {
-  width: 12/@vw;
-  height: 12/@vw;
-  margin: 0 10/@vw 0 15/@vw;
-  border: #ccc solid 1/@vw;
+  width: 12 / @vw;
+  height: 12 / @vw;
+  margin: 0 10 / @vw 0 15 / @vw;
+  border: #ccc solid 1 / @vw;
   // border-radius: 2/@vw;
   overflow: hidden;
 }
@@ -1194,17 +1231,17 @@ a {
   width: 100%;
   height: 100%;
   // vertical-align: middle;
-  transform: translateY(-5/@vw);
+  transform: translateY(-5 / @vw);
 }
 .Mobile_phone .reds .input_bg .tail p {
-  font-size: 10/@vw*1.3;
+  font-size: 10 / @vw*1.3;
   color: #666666;
-  margin-right: 10/@vw;
-  margin-bottom: 1/@vw;
+  margin-right: 10 / @vw;
+  margin-bottom: 1 / @vw;
 }
 .Mobile_phone .reds .input_bg .tail span {
-  width: 1/@vw;
-  height: 12/@vw;
+  width: 1 / @vw;
+  height: 12 / @vw;
   background-color: #e0e0e0;
 }
 .Mobile_phone .reds .input_bg .searchs {
@@ -1218,37 +1255,37 @@ a {
   width: 80%;
 }
 .Mobile_phone .reds .input_bg .searchs .want img {
-  width: 10/@vw*1.3;
-  height: 10/@vw*1.3;
-  margin: 0 10/@vw 0 4/@vw;
+  width: 10 / @vw*1.3;
+  height: 10 / @vw*1.3;
+  margin: 0 10 / @vw 0 4 / @vw;
 }
 .Mobile_phone .reds .input_bg .searchs .want input {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #999999;
 }
 .Mobile_phone .reds .input_bg .searchs h4 {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #ffffff;
   font-weight: 500;
-  margin-right: 11/@vw;
-  line-height: 28/@vw;
+  margin-right: 11 / @vw;
+  line-height: 28 / @vw;
 }
 .Mobile_phone .accurate {
   width: 100%;
 }
 .Mobile_phone .accurate .phoneNumber {
   display: flex;
-  margin: 20/@vw 18/@vw 0;
+  margin: 20 / @vw 18 / @vw 0;
   justify-content: space-evenly;
 }
 .Mobile_phone .accurate .phoneNumber li {
-  width: 22/@vw;
-  height: 26/@vw;
+  width: 22 / @vw;
+  height: 26 / @vw;
   text-align: center;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
 }
 .Mobile_phone .accurate .phoneNumber li input:focus {
-  border: 1/@vw solid #dc0101;
+  border: 1 / @vw solid #dc0101;
 }
 .Mobile_phone .accurate .phoneNumber li:first-child input {
   color: #333333;
@@ -1259,27 +1296,27 @@ a {
   text-align: center;
   color: #dc0101;
   outline: none;
-  border-radius: 3/@vw;
-  border: 1/@vw solid #cacaca;
+  border-radius: 3 / @vw;
+  border: 1 / @vw solid #cacaca;
 }
 
 .Mobile_phone .accurate p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #fe5858;
-  margin: 10/@vw 0 0 21/@vw;
+  margin: 10 / @vw 0 0 21 / @vw;
 }
 .Mobile_phone .accurate .reset {
-  margin: 16/@vw 48/@vw 0;
+  margin: 16 / @vw 48 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .accurate .reset li {
-  width: 130/@vw;
-  height: 26/@vw;
+  width: 130 / @vw;
+  height: 26 / @vw;
   text-align: center;
-  line-height: 26/@vw;
-  border-radius: 20/@vw;
-  font-size: 10/@vw*1.3;
+  line-height: 26 / @vw;
+  border-radius: 20 / @vw;
+  font-size: 10 / @vw*1.3;
 }
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;
@@ -1291,17 +1328,17 @@ a {
 }
 .Mobile_phone .select_change {
   width: 100%;
-  height: 43/@vw;
+  height: 43 / @vw;
   background-color: #fff;
-  margin-top: 20/@vw;
-  border: 1/@vw solid #e5e5e5;
+  margin-top: 20 / @vw;
+  border: 1 / @vw solid #e5e5e5;
 }
 .Mobile_phone .select_change ul {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  line-height: 33/@vw;
+  line-height: 33 / @vw;
 }
 .Mobile_phone .select_change ul li {
   display: flex;
@@ -1310,38 +1347,38 @@ a {
 }
 .Mobile_phone .select_change ul li .red_triangle {
   position: absolute;
-  right: -4/@vw;
+  right: -4 / @vw;
   top: 44%;
 }
 .Mobile_phone .select_change ul li p {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #666666;
-  margin-right: 9/@vw;
+  margin-right: 9 / @vw;
 }
 .Mobile_phone .select_change ul li img {
-  width: 6/@vw;
-  height: 4/@vw;
+  width: 6 / @vw;
+  height: 4 / @vw;
 }
 .Mobile_phone .select_change ul li:last-child img {
-  width: 10/@vw;
-  height: 9/@vw;
+  width: 10 / @vw;
+  height: 9 / @vw;
 }
 .Mobile_phone .class_name {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   overflow-y: auto;
-  padding: 0 10/@vw;
+  padding: 0 10 / @vw;
   box-sizing: border-box;
-  height: 55%;
+  height: 352 / @vw;
 }
 .Mobile_phone .start {
-  width: 167/@vw;
-  height: 102/@vw;
-  border: 1/@vw solid #e5e5e5;
-  border-radius: 10/@vw;
+  width: 167 / @vw;
+  height: 102 / @vw;
+  border: 1 / @vw solid #e5e5e5;
+  border-radius: 10 / @vw;
   position: relative;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   background-color: #fff;
 }
 
@@ -1349,38 +1386,38 @@ a {
   position: absolute;
   right: 0;
   top: 0;
-  width: 30/@vw;
-  height: 18/@vw;
+  width: 30 / @vw;
+  height: 18 / @vw;
 }
 .Mobile_phone .start h5 {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   color: #333333;
   font-weight: bold;
-  margin: 12/@vw 0 0 10/@vw;
+  margin: 12 / @vw 0 0 10 / @vw;
 }
 .Mobile_phone .start .commission {
-  margin: 10/@vw 10/@vw 0;
+  margin: 10 / @vw 10 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .start .commission p {
   color: #666666;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .start .commission span,
 .Mobile_phone .start .contains p {
   color: #dd1414;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .start .contains {
-  margin: 10/@vw 6/@vw 0;
+  margin: 10 / @vw 6 / @vw 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .Mobile_phone .start .contains span {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #dc0101;
   font-weight: bold;
 }
@@ -1388,10 +1425,10 @@ a {
 .Mobile_phone .Belonging,
 .Mobile_phone .regular {
   width: 100%;
-  height: 365/@vw;
+  height: 365 / @vw;
   position: absolute;
   left: 0;
-  top: 301/@vw;
+  top: 301 / @vw;
   display: flex;
 }
 .Mobile_phone .Belonging .pro {
@@ -1401,24 +1438,24 @@ a {
 .Mobile_phone .Belonging .pro li,
 .Mobile_phone .Belonging .city li {
   width: 100%;
-  height: 45/@vw;
-  border-top: 1/@vw solid #ececec;
+  height: 45 / @vw;
+  border-top: 1 / @vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .Belonging .pro li p {
   color: #333333;
-  font-size: 10/@vw*1.3;
-  margin-left: 35/@vw;
+  font-size: 10 / @vw*1.3;
+  margin-left: 35 / @vw;
 }
 
 .Mobile_phone .Belonging .pro li img,
 .Mobile_phone .Belonging .city li img {
   position: absolute;
-  left: 15/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
 }
 .Mobile_phone .Belonging .city {
   width: 60%;
@@ -1427,45 +1464,45 @@ a {
 }
 .Mobile_phone .Belonging .city li p {
   color: #333333;
-  font-size: 10/@vw*1.3;
-  margin-left: 48/@vw;
+  font-size: 10 / @vw*1.3;
+  margin-left: 48 / @vw;
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 365/@vw;
+  height: 365 / @vw;
   background-color: #f8f8f8;
   position: absolute;
   left: 0;
-  top: 301/@vw;
+  top: 301 / @vw;
   display: flex;
 }
 .Mobile_phone .opeateing ul {
   width: 100%;
-  height: 88/@vw;
+  height: 88 / @vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 .Mobile_phone .opeateing ul li {
-  width: 187/@vw;
-  height: 43/@vw;
+  width: 187 / @vw;
+  height: 43 / @vw;
   display: flex;
   align-items: center;
-  border-bottom: 1/@vw solid #ececec;
+  border-bottom: 1 / @vw solid #ececec;
   position: relative;
 }
 .Mobile_phone .opeateing ul li img {
   position: absolute;
-  left: 40/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 40 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
   // display: none;
 }
 .Mobile_phone .opeateing ul li p {
   color: #333333;
-  font-size: 12/@vw;
-  margin-left: 63/@vw;
+  font-size: 12 / @vw;
+  margin-left: 63 / @vw;
   text-align: center;
 }
 .Mobile_phone .regular .currents,
@@ -1492,23 +1529,23 @@ a {
 }
 .Mobile_phone .regular ul li {
   width: 100%;
-  height: 44/@vw;
-  border-bottom: 1/@vw solid #ececec;
+  height: 44 / @vw;
+  border-bottom: 1 / @vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .regular ul li img {
   position: absolute;
-  left: 15/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
   // display: none;
 }
 .Mobile_phone .regular ul li p {
   color: #333333;
-  font-size: 12/@vw;
-  margin-left: 40/@vw;
+  font-size: 12 / @vw;
+  margin-left: 40 / @vw;
 }
 .Mobile_phone .Montmorillonite {
   width: 100%;
@@ -1519,60 +1556,60 @@ a {
   top: 0;
 }
 .Mobile_phone .Montmorillonite .search_filter {
-  width: 330/@vw;
+  width: 330 / @vw;
   height: 100%;
   background-color: #fff;
-  margin-left: 45/@vw;
+  margin-left: 45 / @vw;
   overflow-y: auto;
 }
 .Mobile_phone .Montmorillonite .search_filter .back {
   width: 100%;
-  height: 40/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  height: 40 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .back img {
-  width: 6/@vw;
-  height: 11/@vw;
-  margin-left: 11/@vw;
+  width: 6 / @vw;
+  height: 11 / @vw;
+  margin-left: 11 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .back p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
-  margin-left: 5/@vw;
+  margin-left: 5 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle {
-  width: 286/@vw;
-  height: 55/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 55 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle p {
-  width: 115/@vw;
-  height: 25/@vw;
+  width: 115 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25/@vw;
+  line-height: 25 / @vw;
   color: #999999;
 }
 
 .Mobile_phone .Montmorillonite .search_filter .price {
-  width: 286/@vw;
-  height: 200/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 200 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .price p {
   position: absolute;
-  left: 184/@vw;
-  top: 157/@vw;
-  font-size: 12/@vw;
+  left: 184 / @vw;
+  top: 157 / @vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .price h5,
@@ -1580,9 +1617,9 @@ a {
 .Mobile_phone .Montmorillonite .search_filter .contract h5,
 .Mobile_phone .Montmorillonite .search_filter .more_number h5 {
   color: #666666;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   font-weight: 500;
-  margin: 14/@vw 0;
+  margin: 14 / @vw 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul,
 .Mobile_phone .Montmorillonite .search_filter .charge ul,
@@ -1596,24 +1633,24 @@ a {
 .Mobile_phone .Montmorillonite .search_filter .charge ul li,
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
   position: relative;
-  width: 89/@vw;
-  height: 25/@vw;
+  width: 89 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25/@vw;
-  margin-bottom: 15/@vw;
-  border-radius: 4/@vw;
-  font-size: 12/@vw;
+  line-height: 25 / @vw;
+  margin-bottom: 15 / @vw;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
-  width: 68/@vw;
+  width: 68 / @vw;
 }
 
 .Mobile_phone .Montmorillonite .search_filter .price ul li span,
 .Mobile_phone .Montmorillonite .search_filter .charge span {
   position: absolute;
-  left: 10/@vw;
+  left: 10 / @vw;
   top: 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li input,
@@ -1621,7 +1658,7 @@ a {
   border: none;
   outline: none;
   background: none;
-  text-indent: 30/@vw;
+  text-indent: 30 / @vw;
   width: 100%;
   height: 100%;
 }
@@ -1631,12 +1668,12 @@ a {
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:last-child,
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:last-child {
-  width: 85/@vw;
-  margin-left: 8/@vw;
+  width: 85 / @vw;
+  margin-left: 8 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:nth-of-type(11),
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:nth-of-type(11) {
-  width: 85/@vw;
+  width: 85 / @vw;
 }
 .Mobile_phone
   .Montmorillonite
@@ -1649,135 +1686,132 @@ a {
 }
 
 .Mobile_phone .Montmorillonite .search_filter .charge {
-  width: 286/@vw;
-  height: 80/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 80 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .charge p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
   position: absolute;
-  left: 186/@vw;
-  top: 117/@vw;
+  left: 186 / @vw;
+  top: 117 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract {
-  width: 286/@vw;
-  height: 195/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 195 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .linings {
-  width: 1/@vw;
-  height: 104/@vw;
+  width: 1 / @vw;
+  height: 104 / @vw;
   background-color: #f2f2f2;
   position: absolute;
   left: 50%;
-  top: 74/@vw;
+  top: 74 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december {
   width: 100%;
-  height: 25/@vw;
+  height: 25 / @vw;
   display: flex;
   justify-content: space-around;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december li {
-  width: 89/@vw;
-  height: 25/@vw;
+  width: 89 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  border-radius: 4/@vw;
-  font-size: 12/@vw;
-  line-height: 25/@vw;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
+  line-height: 25 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change {
   width: 100%;
-  height: 100/@vw;
-  margin-top: 15/@vw;
+  height: 100 / @vw;
+  margin-top: 15 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li {
   width: 100%;
-  height: 25/@vw;
+  height: 25 / @vw;
   display: flex;
-  border-bottom: 1/@vw solid #f2f2f2;
+  border-bottom: 1 / @vw solid #f2f2f2;
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li:first-child {
-  border-top: 1/@vw solid #f2f2f2;
+  border-top: 1 / @vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li h3 {
   font-weight: 500;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number {
-  width: 286/@vw;
-  height: 160/@vw;
-  margin: 0 22/@vw;
+  width: 286 / @vw;
+  height: 160 / @vw;
+  margin: 0 22 / @vw;
 }
 // .Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-child {
 //   margin-right: 142/@vw;
 // }
 .Mobile_phone .Montmorillonite .search_filter .none ul li:last-child {
-  margin-right: 214/@vw;
+  margin-right: 214 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure {
   width: 100%;
-  height: 44/@vw;
+  height: 44 / @vw;
   display: flex;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure p {
   width: 50%;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 44/@vw;
-  font-size: 16/@vw;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
   color: #666666;
-  border-bottom: 1/@vw solid #f2f2f2;
-  border-top: 1/@vw solid #f2f2f2;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  border-top: 1 / @vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure span {
   width: 50%;
   background-color: #fe5858;
   text-align: center;
-  line-height: 44/@vw;
-  font-size: 16/@vw;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
   color: #ffffff;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change .actives {
   color: #ea5656;
 }
 .Mobile_phone .available {
-  width: 137/@vw;
-  margin: 46/@vw auto;
+  width: 137 / @vw;
+  margin: 46 / @vw auto;
   text-align: center;
 }
 .Mobile_phone .available img {
   width: 100%;
-  height: 100/@vw;
+  height: 100 / @vw;
 }
 .Mobile_phone .available p {
   color: #999999;
-  font-size: 12/@vw;
-  margin-top: 17/@vw;
+  font-size: 12 / @vw;
+  margin-top: 17 / @vw;
 }
-@media screen and (min-height:800px) {
-  .bb {
-    height: 38%;
-  }
-  .class_name {
-    height: 57%;
+@media screen and (max-width:400px) and (min-height: 811px) {
+  .Mobile_phone .class_name {
+    height: 496 / @vw;
   }
 }
 </style>

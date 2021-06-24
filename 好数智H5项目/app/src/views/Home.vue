@@ -250,8 +250,8 @@ a {
   margin-left: 10/@vw;
 }
 .money {
-  margin-top: 8/@vw;
-  width: 95%;
+  margin-top: 6/@vw;
+  width: 97%;
   display: flex;
   font-size: 12/@vw;
   justify-content: space-between;
@@ -452,7 +452,7 @@ a {
   color: #dd1414;
 }
 .cap .shit .han {
-  font-size: 8/@vw;
+  font-size: 12/@vw;
   color: #dd1414;
   margin-top: 4/@vw;
 }
@@ -478,7 +478,7 @@ a {
   width: 100%;
   margin-top: 10/@vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 .like .shun li {
