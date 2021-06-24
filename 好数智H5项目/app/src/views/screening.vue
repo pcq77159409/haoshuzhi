@@ -258,7 +258,7 @@
 
     <!-- 搜索筛选 开始-->
     <div class="Montmorillonite" v-show="back">
-      <div class="search_filter">
+      <div class="search_filter animate__animated animate__fadeInRight">
         <!-- 返回按钮 -->
         <div class="back">
           <img src="../assets/back.png" alt="" @click="back = false" />
@@ -1809,7 +1809,7 @@ a {
   font-size: 12 / @vw;
   margin-top: 17 / @vw;
 }
-@media screen and (max-width:400px) and (min-height: 811px) {
+@media screen and (max-width: 400px) and (min-height: 811px) {
   .Mobile_phone .class_name {
     height: 496 / @vw;
   }
