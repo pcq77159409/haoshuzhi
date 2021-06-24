@@ -248,6 +248,7 @@ a {
   font-size: 19/@vw;
   margin-top: 15/@vw;
   margin-left: 10/@vw;
+  font-weight: 600;
 }
 .money {
   margin-top: 6/@vw;
@@ -317,7 +318,7 @@ a {
 .heads {
   width: 340/@vw;
   height: 120/@vw;
-  margin: -100/@vw auto 0;
+  margin: -126/@vw auto 0;
   border-radius: 5/@vw;
   overflow: hidden;
 }

@@ -31,6 +31,8 @@
         号码套餐
         <span>{{ pcq.package_name }}</span>
       </p>
+      <img src="../assets/形状 20@2x.png" alt="">
+
     </div>
     <div class="box">
       <ul>
@@ -93,6 +95,7 @@
         号码套餐
         <span>{{ tjb.package_name }}</span>
       </p>
+      <img src="../assets/形状 20@2x.png" alt="">
     </div>
     <div class="box">
       <ul>
@@ -650,7 +653,7 @@ li {
 }
 .box ul li {
   line-height: 40 / @vw;
-  font-size: 13 / @vw;
+  font-size: 14 / @vw;
   margin: auto 15 / @vw;
 }
 .endcsname {
@@ -698,13 +701,21 @@ li {
   margin: 4 / @vw 0 0 12 / @vw;
 }
 .phone {
-  width: 250 / @vw*1.3;
-  height: 40 / @vw*1.3;
+  width: 328 / @vw;
+  height: 44 / @vw;
   margin-bottom: 10 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
   margin: 10 / @vw auto;
-  line-height: 40 / @vw*1.3;
+  line-height: 44 / @vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.phone img {
+  width: 7/@vw;
+  height: 9/@vw;
+  margin-right: 10/@vw;
 }
 .phone p {
   margin: auto 15 / @vw;

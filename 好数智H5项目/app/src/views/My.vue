@@ -32,7 +32,7 @@
             <img src="../assets/balance.png" alt="" />
             <p>钱包余额</p>
           </li>
-          <li @click="$router.push('/coupons')">
+          <li @click="onJin">
             <img src="../assets/coupon.png" alt="" />
             <p>优惠劵</p>
           </li>
@@ -196,6 +196,10 @@ export default {
         },
       });
     },
+    onJin(){
+      alert('该功能暂未开放，敬请期待')
+    }
+
   },
   mounted() {
     this.loginShow = localStorage.getItem("uuidstatus");
@@ -232,6 +236,7 @@ export default {
 body {
   width: 100%;
   height: 100%;
+  background-color: #f5f5f5;
 }
 .login {
   width: 80 / @vw;
@@ -271,14 +276,14 @@ body {
 .box p {
   position: absolute;
   left: 45%;
-  top: 35 / @vw;
+  top: 15 / @vw;
   color: #ffffff;
   font-weight: 500;
 }
 .good {
   position: absolute;
   left: 30 / @vw;
-  top: 76 / @vw;
+  top: 60 / @vw;
   display: flex;
   justify-content: space-between;
   align-items: center;

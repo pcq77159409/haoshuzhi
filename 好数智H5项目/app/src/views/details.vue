@@ -33,6 +33,7 @@
           >
         </span>
       </p>
+      <img src="../assets/形状 20@2x.png" alt="">
     </div>
     <div class="box">
       <ul>
@@ -499,7 +500,7 @@ li {
 }
 .liji {
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   padding: 65 / @vw 0 60 / @vw;
   background-color: #f8f8f8;
   overflow: auto;
@@ -511,7 +512,7 @@ li {
 }
 .box {
   width: 345 / @vw;
-  height: 247 / @vw;
+  height: 240 / @vw;
   margin-bottom: 10 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
@@ -519,7 +520,7 @@ li {
 }
 .box ul li {
   line-height: 40 / @vw;
-  font-size: 13 / @vw;
+  font-size: 14/ @vw;
   margin: auto 15 / @vw;
 }
 .phone {
@@ -530,12 +531,20 @@ li {
   background-color: #fff;
   margin: 10 / @vw auto;
   line-height: 44 / @vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .phone p {
   margin: auto 15 / @vw;
   color: #333333;
   font-size: 14 / @vw;
   font-weight: bold;
+}
+.phone img {
+  width: 7/@vw;
+  height: 9/@vw;
+  margin-right: 10/@vw;
 }
 .phone p span {
   margin-left: 15 / @vw;

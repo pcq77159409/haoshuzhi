@@ -96,4 +96,7 @@ export default {
   box-sizing: border-box;
   opacity: 1;
 }
+.mybox {
+  margin: -20/@vw 0;
+}
 </style>
