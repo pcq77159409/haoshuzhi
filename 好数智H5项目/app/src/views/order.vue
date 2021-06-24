@@ -372,6 +372,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
+  overflow: auto;
 }
 .yyyyy /deep/ .tabr .el-tabs__nav-wrap::after {
   background-color: transparent;

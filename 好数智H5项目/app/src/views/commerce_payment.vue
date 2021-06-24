@@ -1,7 +1,7 @@
 <template>
   <div class="ace_jump_search">
     <div class="jumplabel">
-      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
+      <img src="../assets/left.png" alt="" @click="onclickGo" />
       <h4>订单支付</h4>
     </div>
     <div class="force_time">
@@ -57,9 +57,14 @@ export default {
       number: "100",
       balance: 0,
       imgShow: 2,
+      timer: null,
     };
   },
   methods: {
+    onclickGo() {
+      clearInterval(this.timer);
+      this.$router.go(-1);
+    },
     onclickPayment() {
       this.$post("api/order/mobielpay", {
         user_id: localStorage.getItem("user-id"),
@@ -123,7 +128,7 @@ export default {
         lefts = Math.floor((lefttime / 1000) % 60); //计算秒数
 
       if (endtime - nowtime <= 0) {
-        clearInterval(timer);
+        clearInterval(this.timer);
         this.$router.go(-1); //时间到了返回上一个页面
       }
       this.hour = lefth;
@@ -131,14 +136,18 @@ export default {
       this.second = lefts;
       // return add0(leftm) + ":" + add0(lefts); //返回倒计时的字符串
     };
-    var timer = setInterval(() => {
+    this.timer = setInterval(() => {
       this.$get("/api/order/info", {
         user_id: localStorage.getItem("user-id"),
         order_id: this.$route.query.order_id,
       }).then((r) => {
         // console.log(r);
-        if(r.data.status!=1){
-          this.$router.push({path:'',query:{order_id: this.$route.query.order_id}});
+        if (r.data.status != 1) {
+          clearInterval(this.timer);
+          this.$router.push({
+            path: "/Payload",
+            query: { order_id: this.$route.query.order_id },
+          });
         }
       });
       showtime();

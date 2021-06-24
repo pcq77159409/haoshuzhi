@@ -5,7 +5,7 @@
         src="../assets/关闭按钮@2x.png"
         alt=""
         class="colse"
-        @click="$router.push('/commons/home/m')"
+        @click="$router.go(-1)"
       />
       <img src="../assets/logo2x.png" alt="" class="logo" />
       <ul>
@@ -88,9 +88,10 @@ export default {
           if (val.code == 200) {
             localStorage.setItem("token", val.data.token);
             localStorage.setItem("user-id", val.data.id);
+            localStorage.setItem("uuidstatus", val.data.uuidstatus);
             alert("登陆成功");
             setTimeout(() => {
-              this.$router.push("/commons/home/m");
+              this.$router.go(-1);
             }, 2000);
           } else {
             alert(val.msg);
