@@ -34,7 +34,7 @@
             <span style="margin-right: 5.333vw" @click="onClickEditGoods(item.id)"
               >编辑</span
             ><img src="../assets/222.png" style="margin-right: 1.6vw" />
-            <span style="margin-right: 2.6666vw" @click="onClickDelete">删除</span>
+            <span style="margin-right: 2.6666vw" @click="onClickDelete(item.id)">删除</span>
           </p>
         </div>
       </div>
@@ -44,7 +44,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -86,11 +85,11 @@ export default {
     onClickIntroPara() {
       this.$router.go(-1);
     },
-    onClickDelete() {
+    onClickDelete(id) {
       let user_id=localStorage.getItem('user-id');
       this.$post("/api/address/del", {
         user_id: user_id,
-        id: this.id,
+        id: id,
       }).then((val) => {
         console.log(val);
         this.$get("/api/address/getlist", {
@@ -220,5 +219,9 @@ html {
   height: 15/@vw;
   margin-right: 5/@vw;
 }
+// .money input{
+//   width: 10/@vw;
+//   height: 10/@vw;
+// }
 </style>
 

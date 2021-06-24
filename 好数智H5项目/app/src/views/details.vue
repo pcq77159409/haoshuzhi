@@ -538,6 +538,8 @@ li {
   font-weight: bold;
 }
 .phone p span {
+  display: inline-block;
+  width: 220/@vw;
   margin-left: 15 / @vw;
   font-size: 12px;
 }
