@@ -205,7 +205,8 @@ export default {
     }).then((r) => {
       console.log(r);
       if (r.code == 200) {
-        if (r.data.length == 0) {
+        if (r.data.data.length == 0) {
+          console.log(123);
           this.unapid = {};
         } else {
           this.unapid = r.data.data[0];

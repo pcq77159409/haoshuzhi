@@ -39,11 +39,11 @@ Vue.prototype.$get = function(url, val) {
             uuid: localStorage.getItem('uuidstatus')
         }
     }).then((r) => {
-        console.log(r);
+        // console.log(r);
         if (r.code == 700 || r.code == 600) {
             Vue.$router.push('/login');
         } else if (r.code == 601) {
-            console.log(601);
+            // console.log(601);
 
             axios.post('api/user/uuidlogin', '', {
                 headers: {
@@ -52,7 +52,7 @@ Vue.prototype.$get = function(url, val) {
                     uuid: localStorage.getItem('uuidstatus')
                 }
             }).then((r) => {
-                console.log(r);
+                // console.log(r);
                 if (r.code == 200) {
                     localStorage.setItem('user-id', r.data.id);
                     localStorage.setItem('token', r.data.token);
@@ -73,19 +73,19 @@ Vue.prototype.$post = function(url, val) {
             uuid: localStorage.getItem('uuidstatus')
         }
     }).then((r) => {
-        console.log(r);
+        // console.log(r);
         if (r.code == 700 || r.code == 600) {
             Vue.$router.push('/login');
         } else if (r.code == 601) {
-            console.log(601);
-            axios.post('api/user/uuidlogin', '', {
+            // console.log(601);
+            axios.post('api/user/uuidlogin', {}, {
                 headers: {
                     token: localStorage.getItem('token'),
                     user_id: localStorage.getItem('user-id'),
                     uuid: localStorage.getItem('uuidstatus')
                 }
             }).then((r) => {
-                console.log(r);
+                // console.log(r);
                 if (r.code == 200) {
                     localStorage.setItem('user-id', r.data.id);
                     localStorage.setItem('token', r.data.token);
@@ -118,6 +118,6 @@ const uuid = require('uuid')
 if (localStorage.getItem('uuidstatus') == null) {
     localStorage.setItem('uuidstatus', uuid.v1());
 }
-console.log(localStorage.getItem('user-id'));
-console.log(localStorage.getItem('token'));
-console.log(localStorage.getItem('uuidstatus'));
+// console.log(localStorage.getItem('user-id'));
+// console.log(localStorage.getItem('token'));
+// console.log(localStorage.getItem('uuidstatus'));

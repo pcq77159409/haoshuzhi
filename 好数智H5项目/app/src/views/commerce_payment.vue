@@ -62,7 +62,7 @@ export default {
   methods: {
     onclickPayment() {
       this.$post("api/order/mobielpay", {
-        user_id: localStorage.getItem('user-id'),
+        user_id: localStorage.getItem("user-id"),
         order_id: this.$route.query.order_id,
         paytype: this.imgShow,
       }).then((r) => {
@@ -132,6 +132,15 @@ export default {
       // return add0(leftm) + ":" + add0(lefts); //返回倒计时的字符串
     };
     var timer = setInterval(() => {
+      this.$get("/api/order/info", {
+        user_id: localStorage.getItem("user-id"),
+        order_id: this.$route.query.order_id,
+      }).then((r) => {
+        // console.log(r);
+        if(r.data.status!=1){
+          this.$router.push({path:'',query:{order_id: this.$route.query.order_id}});
+        }
+      });
       showtime();
     }, 1000); //反复执行函数本身
 
@@ -139,7 +148,7 @@ export default {
     this.number = this.$route.query.number;
 
     this.$get("/api/balance_log/balance", {
-      user_id: localStorage.getItem('user-id'),
+      user_id: localStorage.getItem("user-id"),
     }).then((r) => {
       console.log(r);
       if (r.code == 200) {
@@ -162,7 +171,7 @@ export default {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100/@vw;
+  height: 100 / @vw;
   display: none;
 }
 #alipaysubmit {
@@ -177,112 +186,112 @@ export default {
 
 .ace_jump_search .jumplabel {
   width: 100%;
-  height: 64/@vw;
+  height: 64 / @vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
 }
 .ace_jump_search .jumplabel img {
-  width: 10/@vw;
-  height: 16/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
+  left: 15 / @vw;
   pointer-events: auto;
 }
 .ace_jump_search .jumplabel h4 {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .ace_jump_search .force_time {
   width: 100%;
-  height: 12 0/@vw;
-  margin-top: 45/@vw;
+  height: 12 0 / @vw;
+  margin-top: 45 / @vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .ace_jump_search .force_time .inform {
   display: flex;
-  margin-bottom: 20/@vw;
+  margin-bottom: 20 / @vw;
 }
 .ace_jump_search .force_time .inform span,
 .ace_jump_search .force_time .inform p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #ea5656;
-  margin-right: 6/@vw;
+  margin-right: 6 / @vw;
 }
 .ace_jump_search .force_time h2 {
-  margin-right: 4/@vw;
+  margin-right: 4 / @vw;
   color: #333333;
-  margin-bottom: 17/@vw;
+  margin-bottom: 17 / @vw;
 }
 .ace_jump_search .force_time i {
   color: #666666;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .ace_jump_search .force_time i span {
-  margin-left: 6/@vw;
+  margin-left: 6 / @vw;
 }
 .ace_jump_search .debugformat {
-  width: 353/@vw;
-  height: 109/@vw;
-  margin: 45/@vw auto 227/@vw;
+  width: 353 / @vw;
+  height: 109 / @vw;
+  margin: 45 / @vw auto 227 / @vw;
   background-color: #fff;
-  border-radius: 4/@vw;
+  border-radius: 4 / @vw;
 }
 .ace_jump_search .debugformat .restore {
   display: flex;
   align-items: center;
-  width: 325/@vw;
+  width: 325 / @vw;
   height: 50%;
-  margin: 0 14/@vw;
-  border-bottom: 1/@vw solid #f8f8f8;
+  margin: 0 14 / @vw;
+  border-bottom: 1 / @vw solid #f8f8f8;
   position: relative;
 }
 .ace_jump_search .debugformat .restore img:first-child {
-  width: 16/@vw;
-  height: 17/@vw;
-  margin-right: 14/@vw;
+  width: 16 / @vw;
+  height: 17 / @vw;
+  margin-right: 14 / @vw;
 }
 .ace_jump_search .debugformat .restore img:last-child {
-  width: 15/@vw;
-  height: 15/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
   // margin-left: 90/@vw;
 }
 .ace_jump_search .debugformat .restore .xs {
-  width: 15/@vw;
-  height: 15/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
   position: absolute;
-  right: 1/@vw;
+  right: 1 / @vw;
 }
 .ace_jump_search .debugformat .restore p {
-  width: 100/@vw;
-  font-size: 15/@vw;
+  width: 100 / @vw;
+  font-size: 15 / @vw;
   color: #333333;
   font-weight: 600;
-  margin-right: 20/@vw;
+  margin-right: 20 / @vw;
 }
 .ace_jump_search .debugformat .restore span {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .ace_jump_search .debugformat .wecat img:last-child {
-  margin-left: 200/@vw;
+  margin-left: 200 / @vw;
 }
 .ace_jump_search .offset {
   position: fixed;
   left: 50%;
-  bottom: 50/@vw;
+  bottom: 50 / @vw;
   transform: translateX(-50%);
-  width: 345/@vw;
-  height: 44/@vw;
+  width: 345 / @vw;
+  height: 44 / @vw;
   background-color: #ea5656;
-  border-radius: 25/@vw;
+  border-radius: 25 / @vw;
   text-align: center;
-  line-height: 44/@vw;
+  line-height: 44 / @vw;
   color: #fff;
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
 }
 </style>
