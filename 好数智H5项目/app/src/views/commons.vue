@@ -65,6 +65,7 @@ export default {
       this.src = require("../assets/分类@2x.png");
       this.$refs.lei.style = "color:#fe5858;";
       this.hover = 2;
+      this.$router.push('/commons/about')
     },
   },
   mounted() {
