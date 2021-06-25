@@ -6,6 +6,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import { Swipe, SwipeItem } from 'vant';
 import axios from "axios";
+
+
+import VueTouch from 'vue-touch'
+Vue.use(VueTouch, { name: 'v-touch' })
+
+
 axios.defaults.baseURL = '/index.php';
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;

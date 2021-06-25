@@ -20,19 +20,37 @@
           v-for="(item, index) in dataList"
           :key="index"
           @click="
-            $router.push({ path: '/details',query: { 'ids[]': item.numberinfo.id } })
+            $router.push({
+              path: '/details',
+              query: { 'ids[]': item.numberinfo.id },
+            })
           "
         >
-          <img src="../assets/矩形 47@2x.png" alt="" />
-          <p v-html="item.numberinfo.number"></p>
-          <div class="b_c_div1">
-            <i>{{ item.numberinfo.location }}</i>
-            <span>佣金 ¥{{ item.numberinfo.returned_commission }}</span>
-          </div>
-          <div class="b_c_div2">
-            <span>含话费 ¥{{ item.numberinfo.prepaid_charge }}</span
-            ><span>¥{{ item.numberinfo.sale_price }}</span>
-          </div>
+          <v-touch
+            v-on:swipeleft="swiperleft(index)"
+            v-on:swiperight="swiperright"
+            class="wrapper"
+          >
+            <div class="menu-container" ref="menuContainer">
+              <img src="../assets/矩形 47@2x.png" alt="" />
+              <p v-html="item.numberinfo.number"></p>
+              <div class="b_c_div1">
+                <i>{{ item.numberinfo.location }}</i>
+                <span>佣金 ¥{{ item.numberinfo.returned_commission }}</span>
+              </div>
+              <div class="b_c_div2">
+                <span>含话费 ¥{{ item.numberinfo.prepaid_charge }}</span
+                ><span>¥{{ item.numberinfo.sale_price }}</span>
+              </div>
+              <div
+                class="delete"
+                :class="{ tran: tranShow == index }"
+                @click.stop="onclickDel(item.numberinfo.id)"
+              >
+                删除
+              </div>
+            </div>
+          </v-touch>
         </li>
       </ul>
     </div>
@@ -44,9 +62,47 @@ export default {
     return {
       show: true,
       dataList: [],
+      tranShow: -1,
     };
   },
-  methods: {},
+  methods: {
+    swiperleft: function (index) {
+      console.log("左划");
+      this.tranShow = index;
+    },
+    swiperright: function () {
+      console.log("右滑");
+      this.tranShow = -1;
+    },
+    onclickDel(id) {
+      this.$post("/api/number/delcollectnumber", {
+        number_ids: [id],
+        user_id: localStorage.getItem("user-id"),
+      }).then((r) => {
+        // console.log(r);
+        if (r.code == 200) {
+          this.tranShow = -1;
+          this.$get("/api/number/collectlist", {
+            user_id: localStorage.getItem("user-id"),
+          }).then((r) => {
+            console.log(r);
+            if (r.code == 200) {
+              this.dataList = r.data;
+              if (r.data.length == 0) {
+                this.show = true;
+              } else {
+                this.show = false;
+              }
+            } else {
+              alert(r.msg);
+            }
+          });
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
+  },
   mounted() {
     this.$get("/api/number/collectlist", {
       user_id: localStorage.getItem("user-id"),
@@ -127,6 +183,7 @@ export default {
   padding: 10 / @vw 15 / @vw;
   box-sizing: border-box;
   background-color: #fff;
+  overflow: hidden;
 }
 .content li span {
   font-weight: 500;
@@ -161,5 +218,22 @@ export default {
   top: 0;
   width: 23 / @vw*1.4;
   height: 14 / @vw*1.4;
+}
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 16 / @vw;
+  color: #fff;
+  text-align: center;
+  line-height: 84 / @vw;
+  width: 141 / @vw / 2;
+  background-color: #fe5858;
+  border-radius: 0px 8px 8px 0px;
+  transition: all 0.5s;
+  transform: translateX(141 / @vw);
+}
+.content .tran {
+  transform: translateX(0 / @vw);
 }
 </style>
