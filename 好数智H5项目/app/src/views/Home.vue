@@ -1,5 +1,44 @@
 <template>
   <div class="home">
+    <div class="searchBox" v-show="searchShow" @click="searchShow = false">
+      <div class="sb_head" @click.stop="searchShow = true">
+        <div class="sbh_top">
+          <div class="sbht_center">
+            <img src="../assets/搜索@2x.png" alt="" class="search" />
+            <input
+            v-bind:autofocus="!searchBtnFlag"
+              type="text"
+              placeholder="请输入您要搜索的内容"
+              @keyup.enter="onKeyupSearch"
+              v-model="search"
+              maxlength="11"
+              id="inputVal"
+            />
+          </div>
+        </div>
+        <div class="used">
+          <h3>常用搜索</h3>
+          <ul>
+            <li @click="onclickSearch(666)">666</li>
+            <li @click="onclickSearch(888)">888</li>
+            <li @click="onclickSearch(999)">999</li>
+            <li @click="onclickSearch(8888)">8888</li>
+          </ul>
+        </div>
+        <div class="footprint">
+          <h3>搜索足迹</h3>
+          <ul>
+            <li
+              v-for="(item, index) in footprintData"
+              :key="index"
+              @click="onclickSearch(item)"
+            >
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="head">
       <div class="locations">
         <img src="../assets/123.png" alt="" />
@@ -7,13 +46,9 @@
       </div>
       <!-- <p class="haoshu">好数智</p> -->
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
-      <input
-        type="text"
-        placeholder="请输入您要搜索的内容"
-        @keyup.enter="onKeyupSearch"
-        v-model="search"
-        maxlength="11"
-      />
+      <i
+        @click="onclickSearchShow"
+        ref="search1">请输入您要搜索的内容</i>
       <img src="../assets/搜索@2x.png" alt="" class="search" />
     </div>
     <div class="heads">
@@ -193,6 +228,9 @@ export default {
       dataList: [],
       search: "",
       dataTj: [],
+      searchShow: false,
+      footprintData: [],
+      searchBtnFlag:false,
     };
   },
   methods: {
@@ -200,13 +238,29 @@ export default {
       this.$router.push({ path: "/screen", query: obj });
     },
     onKeyupSearch() {
+      this.footprintData.push(this.search);
+      localStorage.setItem("footprintData", JSON.stringify(this.footprintData));
       this.$router.push({
         path: "/screen",
         query: { type: 1, search: this.search },
       });
     },
+    onclickSearch(val) {
+      this.search = val;
+      this.onKeyupSearch();
+    },
+    onclickSearchShow() {
+      this.searchShow = true;
+      this.searchBtnFlag = !this.searchBtnFlag;
+      this.$nextTick(function () {
+			document.getElementById("inputVal").focus();
+      })
+    },
   },
   created() {
+    if (localStorage.getItem("footprintData")) {
+      this.footprintData = JSON.parse(localStorage.getItem("footprintData"));
+    }
     this.$axios
       .post("/api/home_page/getNumbers", { operator_id: 1, from: "上海" })
       .then((val) => {
@@ -240,11 +294,87 @@ a {
   text-decoration: none;
   color: #333333;
 }
+
+.searchBox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+.sb_head {
+  width: 750 / @vw / 2;
+  height: 670 / @vw / 2;
+  padding: 15 / @vw;
+  background: #f6f6f6;
+  border-radius: 0px 0px 10 / @vw 10 / @vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.sbh_top {
+  width: 454 / @vw / 2;
+  height: 56 / @vw / 2;
+  margin: 0 auto;
+}
+.sbht_center {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 56 / @vw / 4;
+  z-index: 99999;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.sbh_top input {
+  width: 100%;
+  height: 100%;
+  text-indent: 40 / @vw;
+  background-color: #eee;
+}
+
+.sbh_top img {
+  position: absolute;
+  top: 50%;
+  left: 20 / @vw;
+  transform: translateY(-50%);
+  width: 10 / @vw;
+  height: 10 / @vw;
+}
+.searchBox h3 {
+  margin-bottom: 10 / @vw;
+  font-size: 24 / @vw / 2;
+  font-family: PingFang SC;
+  font-weight: 600;
+  color: #333333;
+  line-height: 60 / @vw / 2;
+}
+.searchBox li {
+  padding: 0 10 / @vw;
+  margin-right: 20 / @vw;
+  margin-bottom: 15 / @vw;
+  font-size: 20 / @vw / 2;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  background: #f2f2f2;
+  border-radius: 4 / @vw;
+  line-height: 50 / @vw / 2;
+}
+.searchBox ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.footprint ul {
+  max-height: 120 / @vw;
+  overflow-y: auto;
+}
 .number {
   color: #333333;
   font-size: 17 / @vw;
   margin-left: 10 / @vw;
-  margin-top: 7/@vw;
+  margin-top: 7 / @vw;
   margin-bottom: 4px;
 }
 .money {
@@ -255,7 +385,7 @@ a {
   margin: 0 10 / @vw;
 }
 .money:last-child {
-  margin-top: 3/@vw;
+  margin-top: 3 / @vw;
 }
 .home {
   width: 100%;
@@ -287,9 +417,11 @@ a {
   width: 100%;
   height: 200 / @vw;
 }
-.head input {
+.head i {
+  display: inline-block;
   width: 227 / @vw;
-  height: 28 / @vw;
+  // height: 28 / @vw;
+  line-height: 26/@vw;
   font-size: 12 / @vw;
   color: #999999;
   position: absolute;
@@ -497,9 +629,9 @@ a {
   width: 38 / @vw;
   height: 51 / @vw;
 }
-.like .shun li:last-child img{
-  width: 24/@vw;
-  height: 50/@vw;
+.like .shun li:last-child img {
+  width: 24 / @vw;
+  height: 50 / @vw;
 }
 .like .shun li .yes {
   margin-right: 16 / @vw;
