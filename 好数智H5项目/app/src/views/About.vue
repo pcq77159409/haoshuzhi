@@ -222,7 +222,7 @@ body {
 .digital li {
   width: 20%;
   // height: 28/@vw;
-  border: 1/@vw solid #999999;
+  border: 1/@vw solid #d3d3d3;
   color: #666666;
   font-weight: 500;
   border-radius: 20/@vw;

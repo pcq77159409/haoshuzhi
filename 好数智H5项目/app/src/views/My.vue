@@ -2,7 +2,6 @@
   <div class="ccccc">
     <div class="my_box">
       <div class="box">
-        <p>我的</p>
         <img src="../assets/bg.png" alt="" class="bg" />
       </div>
       <div class="good">
