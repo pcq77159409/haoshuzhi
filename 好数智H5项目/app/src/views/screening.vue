@@ -1223,20 +1223,22 @@ a {
   align-items: center;
 }
 .Mobile_phone .reds .input_bg .tail .img {
-  width: 12 / @vw;
-  height: 12 / @vw;
+  width: 10 / @vw;
+  height: 10 / @vw;
   margin: 0 10 / @vw 0 15 / @vw;
-  border: #ccc solid 1 / @vw;
   // border-radius: 2/@vw;
   overflow: hidden;
+  background: url('../assets/圆角矩形 2@2x.png') no-repeat;
+  background-size: 10/@vw 10/@vw;
 }
 
 .Mobile_phone .reds .input_bg .tail img {
-  width: 100%;
-  height: 100%;
+  width: 10/@vw;
+  height: 10/@vw;
   // vertical-align: middle;
   // transform: translateY(-5 / @vw);
   display: block;
+  box-sizing: border-box;
 }
 .Mobile_phone .reds .input_bg .tail p {
   font-size: 10 / @vw*1.3;
@@ -1287,7 +1289,6 @@ a {
   width: 22 / @vw;
   height: 26 / @vw;
   text-align: center;
-  font-size: 14 / @vw;
 }
 .Mobile_phone .accurate .phoneNumber li input:focus {
   border: 1 / @vw solid #dc0101;
@@ -1303,6 +1304,7 @@ a {
   outline: none;
   border-radius: 3 / @vw;
   border: 1 / @vw solid #cacaca;
+  font-size: 14/@vw;
 }
 
 .Mobile_phone .accurate p {
@@ -1380,30 +1382,31 @@ a {
   // height: 352 / @vw;
 }
 .Mobile_phone .start {
-  width: 167 / @vw;
-  height: 102 / @vw;
+  width: 170 / @vw;
+   height: 82 / @vw;
   border: 1 / @vw solid #e5e5e5;
   border-radius: 10 / @vw;
   position: relative;
   margin-top: 10 / @vw;
   background-color: #fff;
+  letter-spacing: 1px;
 }
 
 .Mobile_phone .start img {
   position: absolute;
   right: 0;
   top: 0;
-  width: 30 / @vw;
-  height: 18 / @vw;
+   width: 25 / @vw;
+  height: 16 / @vw;
 }
 .Mobile_phone .start h5 {
   font-size: 16 / @vw;
   color: #333333;
   font-weight: bold;
-  margin: 12 / @vw 0 0 10 / @vw;
+  margin: 8 / @vw 0 0 10 / @vw;
 }
 .Mobile_phone .start .commission {
-  margin: 10 / @vw 10 / @vw 0;
+  margin: 6 / @vw 10 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
@@ -1417,7 +1420,7 @@ a {
   font-size: 12 / @vw;
 }
 .Mobile_phone .start .contains {
-  margin: 10 / @vw 6 / @vw 0;
+  margin: 6 / @vw 6 / @vw 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

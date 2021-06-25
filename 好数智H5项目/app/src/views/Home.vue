@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="head">
-      <div @click="citys" class="locations">
+      <div class="locations">
         <img src="../assets/123.png" alt="" />
         <p>上海</p>
       </div>
@@ -196,9 +196,6 @@ export default {
     };
   },
   methods: {
-    citys() {
-      this.$router.push("/citys");
-    },
     onCLickTiao(obj) {
       this.$router.push({ path: "/screen", query: obj });
     },
@@ -443,7 +440,7 @@ a {
 .cap .shit {
   width: 127 / @vw*1.3;
   height: 80 / @vw;
-  border: 0.5 / @vw*1.3 solid #e5e5e5;
+  border: 1 / @vw*1.3 solid #e5e5e5;
   border-radius: 10 / @vw;
   margin-bottom: 10 / @vw;
   // margin-left: 15/@vw;
@@ -497,12 +494,12 @@ a {
   margin-bottom: 10 / @vw;
 }
 .like .shun li img {
-  width: 38 / @vw*1.3;
-  height: 51 / @vw*1.3;
+  width: 38 / @vw;
+  height: 51 / @vw;
 }
 .like .shun li:last-child img{
-  width: 24/@vw *1.3;
-  height: 50/@vw *1.3;
+  width: 24/@vw;
+  height: 50/@vw;
 }
 .like .shun li .yes {
   margin-right: 16 / @vw;
