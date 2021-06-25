@@ -245,21 +245,21 @@ a {
 }
 .number {
   color: #333333;
-  font-size: 19 / @vw;
-  margin-top: 15 / @vw;
+  font-size: 17 / @vw;
   margin-left: 10 / @vw;
   font-weight: 600;
+  margin-top: 7/@vw;
+  margin-bottom: 4px;
 }
 .money {
-  margin-top: 6 / @vw;
-  width: 97%;
+  width: 94%;
   display: flex;
   font-size: 12 / @vw;
   justify-content: space-between;
-  margin-left: 10 / @vw;
+  margin: 0 10 / @vw;
 }
 .money:last-child {
-  margin-top: 2px;
+  margin-top: 3/@vw;
 }
 .home {
   width: 100%;
@@ -423,10 +423,11 @@ a {
   margin-left: -46 / @vw;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 .six img {
-  width: 7 / @vw;
-  height: 7 / @vw;
+  width: 8 / @vw;
+  height: 8 / @vw;
   margin-left: 5 / @vw;
 }
 
@@ -442,7 +443,7 @@ a {
 
 .cap .shit {
   width: 125 / @vw*1.3;
-  height: 75 / @vw*1.3;
+  height: 80 / @vw;
   border: 0.5 / @vw*1.3 solid #e5e5e5;
   border-radius: 10 / @vw;
   margin-bottom: 10 / @vw;
