@@ -247,7 +247,6 @@ a {
   color: #333333;
   font-size: 17 / @vw;
   margin-left: 10 / @vw;
-  font-weight: 600;
   margin-top: 7/@vw;
   margin-bottom: 4px;
 }
@@ -442,7 +441,7 @@ a {
 }
 
 .cap .shit {
-  width: 125 / @vw*1.3;
+  width: 127 / @vw*1.3;
   height: 80 / @vw;
   border: 0.5 / @vw*1.3 solid #e5e5e5;
   border-radius: 10 / @vw;
@@ -466,7 +465,6 @@ a {
 }
 .cap .shit .twietion {
   font-size: 16 / @vw;
-  font-weight: bold;
   color: #dc0101;
   margin-right: 10 / @vw;
 }
@@ -490,14 +488,13 @@ a {
   flex-wrap: wrap;
 }
 .like .shun li {
-  width: 158 / @vw;
+  width: 164 / @vw;
   height: 72 / @vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border: 1 / @vw solid #e5e5e5;
   margin-bottom: 10 / @vw;
-  padding: 9 / @vw 0 / @vw 12 / @vw 0;
 }
 .like .shun li img {
   width: 38 / @vw*1.3;
@@ -508,12 +505,11 @@ a {
   height: 50/@vw *1.3;
 }
 .like .shun li .yes {
-  margin-right: 28 / @vw;
+  margin-right: 16 / @vw;
 }
 .like .shun li .lian {
   font-size: 16 / @vw;
   color: #010101;
-  font-weight: 600;
   margin-bottom: 7 / @vw;
 }
 .like .shun li .of {

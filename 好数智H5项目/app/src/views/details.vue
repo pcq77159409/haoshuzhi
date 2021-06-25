@@ -525,7 +525,7 @@ li {
 }
 .box ul li {
   line-height: 40 / @vw;
-  font-size: 13 / @vw;
+  font-size: 15 / @vw;
   margin: auto 15 / @vw;
 }
 .phone {
