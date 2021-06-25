@@ -235,9 +235,9 @@ html {
   height: 100%;
 }
 .ff-img {
-  width: 16/@vw*1.3;
-  height: 15.5/@vw*1.3;
-  margin-top: 5/@vw;
+  width: 16 / @vw*1.3;
+  height: 15.5 / @vw*1.3;
+  margin-top: 5 / @vw;
 }
 a {
   text-decoration: none;
@@ -245,18 +245,21 @@ a {
 }
 .number {
   color: #333333;
-  font-size: 19/@vw;
-  margin-top: 15/@vw;
-  margin-left: 10/@vw;
+  font-size: 19 / @vw;
+  margin-top: 15 / @vw;
+  margin-left: 10 / @vw;
   font-weight: 600;
 }
 .money {
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
   width: 97%;
   display: flex;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   justify-content: space-between;
-  margin-left: 10/@vw;
+  margin-left: 10 / @vw;
+}
+.money:last-child {
+  margin-top: 2px;
 }
 .home {
   width: 100%;
@@ -267,14 +270,14 @@ a {
 }
 .haed {
   width: 100%;
-  height: 300/@vw;
+  height: 300 / @vw;
 }
 .head p {
   position: absolute;
   left: 50%;
-  top: 25/@vw;
+  top: 25 / @vw;
   color: white;
-  font-size: 17/@vw;
+  font-size: 17 / @vw;
 }
 // .head .haoshu {
 //   position: absolute;
@@ -286,40 +289,40 @@ a {
 // }
 .head .bg_img {
   width: 100%;
-  height: 200/@vw;
+  height: 200 / @vw;
 }
 .head input {
-  width: 227/@vw;
-  height: 28/@vw;
-  font-size: 12/@vw;
+  width: 227 / @vw;
+  height: 28 / @vw;
+  font-size: 12 / @vw;
   color: #999999;
   position: absolute;
   left: 55%;
-  top: 25/@vw;
+  top: 25 / @vw;
   transform: translateX(-50%);
-  border: 1/@vw solid white;
-  border-radius: 20/@vw;
-  text-indent: 55/@vw;
+  border: 1 / @vw solid white;
+  border-radius: 20 / @vw;
+  text-indent: 55 / @vw;
   background-color: #fff;
 }
 .head .locations img {
-  width: 11/@vw;
-  height: 14/@vw;
+  width: 11 / @vw;
+  height: 14 / @vw;
   position: absolute;
-  left: 15/@vw*1.3;
-  top: 24/@vw*1.3;
+  left: 15 / @vw*1.3;
+  top: 24 / @vw*1.3;
 }
 .head .locations p {
   position: absolute;
-  left: 30/@vw*1.3;
-  top: 21/@vw*1.3;
-  font-size: 16/@vw;
+  left: 30 / @vw*1.3;
+  top: 21 / @vw*1.3;
+  font-size: 16 / @vw;
 }
 .heads {
-  width: 340/@vw;
-  height: 120/@vw;
-  margin: -126/@vw auto 0;
-  border-radius: 5/@vw;
+  width: 340 / @vw;
+  height: 120 / @vw;
+  margin: -126 / @vw auto 0;
+  border-radius: 5 / @vw;
   overflow: hidden;
 }
 .heads img {
@@ -329,57 +332,57 @@ a {
 .head .search {
   position: absolute;
   left: 55%;
-  top: 33/@vw;
-  width: 10/@vw*1.3;
-  height: 10/@vw*1.3;
-  margin-left: -90/@vw;
+  top: 33 / @vw;
+  width: 10 / @vw*1.3;
+  height: 10 / @vw*1.3;
+  margin-left: -90 / @vw;
 }
 
 .one {
   display: flex;
   justify-content: space-around;
   width: 95%;
-  height: 90/@vw;
-  margin-top: 10/@vw;
+  height: 90 / @vw;
+  margin-top: 10 / @vw;
   text-align: center;
   margin: 0 auto;
 }
 .one dl dt img {
-  width: 45/@vw*1.3;
-  height: 45/@vw*1.3;
+  width: 45 / @vw*1.3;
+  height: 45 / @vw*1.3;
 }
 
 .one dl dd {
-  margin-left: 2/@vw;
+  margin-left: 2 / @vw;
   color: #333333;
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
 }
 .two {
   display: flex;
   justify-content: space-around;
   width: 95%;
-  height: 90/@vw;
+  height: 90 / @vw;
   margin: 0 auto;
 }
 .two dl dt img {
-  width: 45/@vw*1.3;
-  height: 45/@vw*1.3;
+  width: 45 / @vw*1.3;
+  height: 45 / @vw*1.3;
 }
 
 .two dl dd {
-  margin-left: 2/@vw;
+  margin-left: 2 / @vw;
   color: #333333;
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
 }
 .three {
   width: 100%;
-  height: 90/@vw;
+  height: 90 / @vw;
   position: relative;
   background: white;
 }
 .three img {
-  width: 354/@vw;
-  height: 83/@vw;
+  width: 354 / @vw;
+  height: 83 / @vw;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -393,139 +396,146 @@ a {
 }
 .footer {
   width: 90%;
-  height: 30/@vw;
+  height: 30 / @vw;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  line-height: 30/@vw;
+  line-height: 30 / @vw;
 }
 .footer .five img {
-  width: 14/@vw*1.3;
-  height: 15.5/@vw*1.3;
-  margin-top: 5/@vw;
+  width: 14 / @vw*1.3;
+  height: 15.5 / @vw*1.3;
+  margin-top: 5 / @vw;
 }
 .five {
   display: flex;
 }
 .five p {
-  font-size: 11/@vw*1.3;
+  font-size: 11 / @vw*1.3;
   color: #333333;
   font-weight: bold;
-  margin-left: 5/@vw;
+  margin-left: 5 / @vw;
 }
 
 .six p {
-  font-size: 11/@vw;
+  font-size: 11 / @vw;
   color: #666666;
-  margin-left: -46/@vw;
+  margin-left: -46 / @vw;
+  display: flex;
+  align-items: center;
 }
 .six img {
-  width: 10/@vw;
-  height: 10/@vw;
-  margin-left: 5/@vw;
+  width: 7 / @vw;
+  height: 7 / @vw;
+  margin-left: 5 / @vw;
 }
 
 .cap {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   justify-content: space-between;
-  padding: 0 15/@vw;
+  padding: 0 15 / @vw;
   box-sizing: border-box;
 }
 
 .cap .shit {
-  width: 125/@vw*1.3;
-  height: 75/@vw*1.3;
-  border: 0.5/@vw*1.3 solid #e5e5e5;
-  border-radius: 10/@vw;
-  margin-bottom: 10/@vw;
+  width: 125 / @vw*1.3;
+  height: 75 / @vw*1.3;
+  border: 0.5 / @vw*1.3 solid #e5e5e5;
+  border-radius: 10 / @vw;
+  margin-bottom: 10 / @vw;
   // margin-left: 15/@vw;
+  letter-spacing: 1px;
 }
 .cap .shit img {
   float: right;
-  width: 30/@vw;
-  height: 18/@vw;
+  width: 25 / @vw;
+  height: 16 / @vw;
 }
 .cap .shit .dolor {
-  margin-right: 10/@vw;
+  margin-right: 10 / @vw;
   color: #dd1414;
 }
 .cap .shit .han {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #dd1414;
-  margin-top: 4/@vw;
+  margin-top: 4 / @vw;
 }
 .cap .shit .twietion {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: bold;
   color: #dc0101;
-  margin-right: 10/@vw;
+  margin-right: 10 / @vw;
 }
 .like {
   width: 100%;
-  padding: 0 10/@vw;
+  padding: 0 10 / @vw;
   box-sizing: border-box;
 }
 .like .you {
-  width: 94/@vw;
-  margin: 3/@vw 0 15/@vw -2/@vw;
+  width: 94 / @vw;
+  margin: 3 / @vw 0 15 / @vw -2 / @vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .like .shun {
   width: 100%;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 .like .shun li {
-  width: 164/@vw;
-  height: 72/@vw;
+  width: 158 / @vw;
+  height: 72 / @vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1/@vw solid #e5e5e5;
-  margin-bottom: 10/@vw;
-  padding: 9/@vw 0/@vw 12/@vw 0;
+  border: 1 / @vw solid #e5e5e5;
+  margin-bottom: 10 / @vw;
+  padding: 9 / @vw 0 / @vw 12 / @vw 0;
 }
 .like .shun li img {
-  width: 38/@vw*1.3;
-  height: 51/@vw*1.3;
+  width: 38 / @vw*1.3;
+  height: 51 / @vw*1.3;
+}
+.like .shun li:last-child img{
+  width: 24/@vw *1.3;
+  height: 50/@vw *1.3;
 }
 .like .shun li .yes {
-  margin-right: 28/@vw;
+  margin-right: 28 / @vw;
 }
 .like .shun li .lian {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   color: #010101;
   font-weight: 600;
-  margin-bottom: 7/@vw;
+  margin-bottom: 7 / @vw;
 }
 .like .shun li .of {
-  font-size: 8/@vw*1.3;
+  font-size: 8 / @vw*1.3;
   color: #666666;
   font-weight: 600;
 }
 .like .you img {
-  width: 14/@vw*1.3;
-  height: 14/@vw*1.3;
+  width: 14 / @vw*1.3;
+  height: 14 / @vw*1.3;
 }
 .like .you span {
   display: inline-block;
   color: #333333;
-  margin-left: 6/@vw;
+  margin-left: 6 / @vw;
   font-weight: bold;
-  font-size: 11/@vw*1.3;
+  font-size: 11 / @vw*1.3;
 }
 .lina {
-  padding-bottom: 68/@vw;
+  padding-bottom: 68 / @vw;
 }
 .header {
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
 }
 </style>
 
