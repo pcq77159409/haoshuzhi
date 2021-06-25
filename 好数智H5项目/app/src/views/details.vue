@@ -4,7 +4,7 @@
       <img src="../assets/left.png" class="left" @click="onBack" />
       <p>号码详情</p>
       <div class="kf">
-        <img src="../assets/图层 1@2x (1).png" alt="">
+        <img src="../assets/图层 1@2x (1).png" alt="" />
         <span>联系客服</span>
       </div>
     </div>
@@ -12,7 +12,10 @@
       <div class="totals">
         <div class="address">
           <ul>
-            <li class="number">{{ detailsList.number }} <p>豹子</p></li>
+            <li class="number">
+              {{ detailsList.number }}
+              <p>豹子</p>
+            </li>
             <li class="citys">
               <p class="city">
                 {{ detailsList.location }}
@@ -30,7 +33,10 @@
     <div class="phone">
       <p>
         号码套餐
-        <em v-if="detailsList.numberpackage.length != 0" style="width:10px; font-style: normal;">
+        <em
+          v-if="detailsList.numberpackage.length != 0"
+          style="width: 10px; font-style: normal"
+        >
           <span v-if="detailsList.numberpackage[0].storepackage != null">
             <span
               @click="onClickBack(detailsList.numberpackage[0].storepackage.id)"
@@ -39,7 +45,7 @@
           </span>
         </em>
       </p>
-      <img src="../assets/跳转箭头@2x.png" alt="">
+      <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
     <div class="box">
       <ul>
@@ -115,7 +121,7 @@
       <p>合计:</p>
       <span>￥{{ detailsList.sale_price }}</span>
       <!-- <router-link to="/form_orders_path"> -->
-      <div class="sc">收藏</div>
+      <div class="sc" @click="onclickCollection">收藏</div>
       <div class="now" @click="onclickPurchase">提交订单</div>
       <!-- </router-link> -->
     </div>
@@ -430,6 +436,21 @@ export default {
     onclickPurchase() {
       this.onCreateTheOrders();
     },
+    onclickCollection() {
+      console.log(this.detailsList.id);
+      //收藏
+      this.$get("/api/number/collectnumber", {
+        user_id: localStorage.getItem("user-id"),
+        number_id: this.detailsList.id,
+      }).then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          alert("收藏成功");
+        } else {
+          alert(r.msg);
+        }
+      });
+    },
   },
   created() {
     // 获取手机号信息
@@ -507,14 +528,16 @@ html {
   margin: 0;
 }
 .sc {
-  width: 105/@vw;
+  position: absolute;
+  top: 0;
+  right: 105 / @vw;
+  width: 105 / @vw;
   height: 100%;
   background-color: #bdbdbd;
   color: #fff;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   text-align: center;
-  line-height: 44/@vw;
-  margin-left: 48/@vw;
+  line-height: 44 / @vw;
 }
 li {
   list-style: none;
@@ -527,15 +550,15 @@ li {
   align-items: center;
 }
 .kf img {
-  width: 18/@vw;
-  height: 14/@vw;
-  margin-right: 6/@vw;
+  width: 18 / @vw;
+  height: 14 / @vw;
+  margin-right: 6 / @vw;
 }
 .kf span {
   display: block;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #ffffff;
-  margin-right: 12/@vw;
+  margin-right: 12 / @vw;
 }
 .liji {
   width: 100%;
@@ -584,12 +607,12 @@ li {
   display: inline-block;
   width: 220 / @vw;
   margin-left: 15 / @vw;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .phone img {
-  width: 7/@vw;
-  height: 9/@vw;
-  margin-right: 10/@vw;
+  width: 7 / @vw;
+  height: 9 / @vw;
+  margin-right: 10 / @vw;
 }
 .service {
   position: fixed;
@@ -638,15 +661,15 @@ li {
   display: flex;
   align-items: center;
 }
-.number p{
-  width: 26/@vw *1.3;
-  height: 13/@vw *1.3;
-  background: url('../assets/矩形 3@2x.png') no-repeat;
-  background-size: 26/@vw*1.3 13/@vw*1.3;
+.number p {
+  width: 26 / @vw * 1.3;
+  height: 13 / @vw * 1.3;
+  background: url("../assets/矩形 3@2x.png") no-repeat;
+  background-size: 26 / @vw*1.3 13 / @vw*1.3;
   text-align: center;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #fff;
-  margin-left: 10/@vw;
+  margin-left: 10 / @vw;
 }
 .city {
   font-size: 13 / @vw;

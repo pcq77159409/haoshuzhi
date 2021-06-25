@@ -4,7 +4,7 @@
       <img src="../assets/left.png" class="left" @click="onBack" />
       <p>号码详情</p>
       <div class="kf">
-        <img src="../assets/图层 1@2x (1).png" alt="">
+        <img src="../assets/图层 1@2x (1).png" alt="" />
         <span>联系客服</span>
       </div>
     </div>
@@ -36,8 +36,7 @@
         号码套餐
         <span>{{ pcq.package_name }}</span>
       </p>
-      <img src="../assets/形状 20@2x.png" alt="">
-
+      <img src="../assets/形状 20@2x.png" alt="" />
     </div>
     <div class="box">
       <ul>
@@ -101,7 +100,7 @@
         号码套餐
         <span>{{ tjb.package_name }}</span>
       </p>
-      <img src="../assets/形状 20@2x.png" alt="">
+      <img src="../assets/形状 20@2x.png" alt="" />
     </div>
     <div class="box">
       <ul>
@@ -178,7 +177,7 @@
         <p>合计:</p>
         <span>￥{{ price }}</span>
       </div>
-      <div class="sc">收藏</div>
+      <div class="sc" @click="onclickCollection">收藏</div>
       <div class="now" @click="onClickFarm()">提交订单</div>
     </div>
     <div class="black" v-show="back">
@@ -573,6 +572,22 @@ export default {
     onClickFarm() {
       this.onCreateTheOrders();
     },
+    onclickCollection() {
+      //收藏
+      this.copules.forEach((val) => {
+        this.$get("/api/number/collectnumber", {
+          user_id: localStorage.getItem("user-id"),
+          number_id: val[0].id,
+        }).then((r) => {
+          console.log(r);
+          if (r.code == 200) {
+            alert("收藏成功");
+          } else {
+            alert(r.msg);
+          }
+        });
+      });
+    },
   },
   created() {
     //获取收货地址
@@ -601,6 +616,7 @@ export default {
   mounted() {
     console.log(this.price);
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+      console.log(val);
       this.copules = val.data;
       this.price =
         parseInt(this.copules[0][0].sale_price) +
@@ -638,14 +654,14 @@ html {
   margin: 0;
 }
 .sc {
-  width: 104.5/@vw;
+  width: 104.5 / @vw;
   height: 100%;
   background-color: #bdbdbd;
   color: #fff;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   text-align: center;
-  line-height: 44/@vw;
-  margin-left: 57/@vw;
+  line-height: 44 / @vw;
+  margin-left: 57 / @vw;
 }
 .kf {
   position: absolute;
@@ -655,15 +671,15 @@ html {
   align-items: center;
 }
 .kf img {
-  width: 18/@vw;
-  height: 14/@vw;
-  margin-right: 6/@vw;
+  width: 18 / @vw;
+  height: 14 / @vw;
+  margin-right: 6 / @vw;
 }
 .kf span {
   display: block;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #ffffff;
-  margin-right: 12/@vw;
+  margin-right: 12 / @vw;
 }
 li {
   list-style: none;
@@ -747,9 +763,9 @@ li {
   justify-content: space-between;
 }
 .phone img {
-  width: 7/@vw;
-  height: 9/@vw;
-  margin-right: 10/@vw;
+  width: 7 / @vw;
+  height: 9 / @vw;
+  margin-right: 10 / @vw;
 }
 .phone p {
   margin: auto 15 / @vw;
@@ -806,15 +822,15 @@ li {
   display: flex;
   align-items: center;
 }
-.number p{
-  width: 26/@vw *1.3;
-  height: 13/@vw *1.3;
-  background: url('../assets/矩形 3@2x.png') no-repeat;
-  background-size: 26/@vw*1.3 13/@vw*1.3;
+.number p {
+  width: 26 / @vw * 1.3;
+  height: 13 / @vw * 1.3;
+  background: url("../assets/矩形 3@2x.png") no-repeat;
+  background-size: 26 / @vw*1.3 13 / @vw*1.3;
   text-align: center;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #fff;
-  margin-left: 10/@vw;
+  margin-left: 10 / @vw;
 }
 .city {
   font-size: 13 / @vw;
