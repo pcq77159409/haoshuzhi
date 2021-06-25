@@ -634,7 +634,7 @@ li {
 .number {
   font-size: 18 / @vw;
   font-weight: 600;
-  margin: 21 / @vw 0 0 10 / @vw;
+  margin: 14 / @vw 0 0 10 / @vw;
   display: flex;
   align-items: center;
 }
@@ -651,6 +651,7 @@ li {
 .city {
   font-size: 13 / @vw;
   margin-left: 10 / @vw;
+  color: #999999;
 }
 .city span {
   margin-left: 10 / @vw;
@@ -905,7 +906,7 @@ li {
 }
 .endcsname .mercifully .parameter p {
   color: #666666;
-  font-size: 12 / @vw;
+  font-size: 14 / @vw;
   margin: 17 / @vw 0 0 14 / @vw;
 }
 .endcsname .mercifully .reklameadvice {

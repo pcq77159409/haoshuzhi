@@ -83,7 +83,7 @@ export default {
 .purchase_box .process {
   width: 345/@vw;
   height: 704/@vw;
-  margin: 80/@vw 15/@vw 20/@vw;
+  margin: 70/@vw 15/@vw 20/@vw;
   background-color: #fff;
 }
 .purchase_box .process .network h3 {
