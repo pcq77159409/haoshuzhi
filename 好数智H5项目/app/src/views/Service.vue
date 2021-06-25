@@ -9,7 +9,7 @@
         </div>
        <div class="gos">
             <div class="go">
-            <p>去收藏~</p>
+            <p @click="$router.push('/screen')">去收藏~</p>
         </div>
        
        </div>

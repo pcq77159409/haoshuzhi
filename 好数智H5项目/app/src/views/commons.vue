@@ -10,13 +10,10 @@
           <dd><span>首页</span></dd>
         </dl>
       </li>
-      <li
-        :class="{ current: hover == 2 }"
-        @click="onclickTo('/commons/about', 2)"
-      >
+      <li :class="{ current: hover == 2 }" @click="onClickCnmmb">
         <dl>
-          <dt><i class="el-icon-menu"></i></dt>
-          <dd><span>类别</span></dd>
+          <dt><img :src="src" alt="" /></dt>
+          <dd><span ref="lei">类别</span></dd>
         </dl>
       </li>
       <li
@@ -52,6 +49,7 @@ export default {
   data() {
     return {
       hover: 1,
+      src: require("../assets/lei1.png.png"),
     };
   },
   methods: {
@@ -59,21 +57,28 @@ export default {
       if (this.$route.fullPath != val) {
         this.hover = index;
         this.$router.push(val);
+        this.src = require("../assets/lei1.png.png");
+        this.$refs.lei.style = "color:#666;";
       }
+    },
+    onClickCnmmb() {
+      this.src = require("../assets/分类@2x.png");
+      this.$refs.lei.style = "color:#fe5858;";
+      this.hover = 2;
     },
   },
   mounted() {
     console.log(this.$route.fullPath);
-    if (this.$route.fullPath == '/commons/home/m') {
-      this.hover=1;
-    }else if (this.$route.fullPath == '/commons/about') {
-      this.hover=2;
-    }else if (this.$route.fullPath == '/commons/user') {
-      this.hover=3;
-    }else if (this.$route.fullPath == '/commons/service') {
-      this.hover=4;
-    }else if (this.$route.fullPath == '/commons/my') {
-      this.hover=5;
+    if (this.$route.fullPath == "/commons/home/m") {
+      this.hover = 1;
+    } else if (this.$route.fullPath == "/commons/about") {
+      this.hover = 2;
+    } else if (this.$route.fullPath == "/commons/user") {
+      this.hover = 3;
+    } else if (this.$route.fullPath == "/commons/service") {
+      this.hover = 4;
+    } else if (this.$route.fullPath == "/commons/my") {
+      this.hover = 5;
     }
   },
 };
@@ -103,7 +108,7 @@ html {
 }
 #nav {
   width: 100%;
-  height: 50/@vw;
+  height: 50 / @vw;
   bottom: 0;
   background: white;
   display: flex;
@@ -112,7 +117,7 @@ html {
 
   z-index: 100;
   position: fixed;
-  box-shadow: 2/@vw 2/@vw 8/@vw #ccc;
+  box-shadow: 2 / @vw 2 / @vw 8 / @vw #ccc;
   .current dt {
     color: red;
   }
@@ -120,19 +125,35 @@ html {
     color: red;
   }
   dl dt {
-    font-size: 18/@vw;
-    margin-left: 2/@vw;
-    margin-top: 5/@vw;
+    font-size: 18 / @vw;
+    margin-left: 2 / @vw;
+    margin-top: 5 / @vw;
   }
 
   dl dd {
-    font-size: 12/@vw;
+    font-size: 12 / @vw;
     color: #666666;
+    text-align: center;
   }
 
   a {
     color: #666666;
   }
+}
+#nav li:nth-of-type(2) img {
+  width: 16 / @vw;
+  height: 16 / @vw;
+  margin-left: 2 / @vw;
+}
+#nav li:nth-of-type(2) dt {
+  width: 16 / @vw;
+  height: 16 / @vw;
+  margin-bottom: 7 / @vw;
+}
+#nav li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 

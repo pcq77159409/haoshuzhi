@@ -204,6 +204,9 @@ html {
   justify-content: space-between;
   margin: 14/@vw 12/@vw 0;
 }
+.money span {
+  color: #999999;
+}
 .money p {
   color: #333333;
   display: flex;

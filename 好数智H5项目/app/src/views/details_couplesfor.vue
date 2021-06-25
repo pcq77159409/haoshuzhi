@@ -14,6 +14,7 @@
           <ul>
             <li class="number">
               {{ copules[0][0].number }}
+              <p>情侣</p>
               <!-- <img src="../assets/222.png" alt="" @click="onClickNickname" /> -->
             </li>
             <li class="citys">
@@ -78,6 +79,7 @@
           <ul>
             <li class="number">
               {{ copules[1][0].number }}
+              <p>情侣</p>
               <!-- <img src="../assets/222.png" alt="" @click="onClickNickname" /> -->
             </li>
             <li class="citys">
@@ -677,12 +679,11 @@ li {
   background-color: #ea5656 !important;
 }
 .box {
-  width: 250 / @vw*1.3;
-  height: 180 / @vw*1.3;
-  margin-bottom: 10 / @vw;
+  width: 345 / @vw;
+  height: 186 / @vw*1.3;
   border-radius: 4 / @vw;
   background-color: #fff;
-  margin: 10 / @vw auto;
+  margin: 10 / @vw auto 0;
 }
 .box ul li {
   line-height: 40 / @vw;
@@ -690,7 +691,7 @@ li {
   margin: auto 15 / @vw;
 }
 .endcsname {
-  width: 325 / @vw;
+  width: 345 / @vw;
   height: 68 / @vw;
   background-color: #fff;
   margin: 10 / @vw auto;
@@ -722,7 +723,7 @@ li {
 }
 .endcsname .mercifully .parameter p {
   color: #666666;
-  font-size: 12 / @vw;
+  font-size: 14 / @vw;
   margin: 17 / @vw 0 0 14 / @vw;
 }
 .endcsname .mercifully .reklameadvice {
@@ -734,7 +735,7 @@ li {
   margin: 4 / @vw 0 0 12 / @vw;
 }
 .phone {
-  width: 328 / @vw;
+  width: 345 / @vw;
   height: 44 / @vw;
   margin-bottom: 10 / @vw;
   border-radius: 4 / @vw;
@@ -783,9 +784,8 @@ li {
 }
 
 .totals {
-  width: 250 / @vw*1.3;
-  height: 172 / @vw;
-  margin-bottom: 10 / @vw;
+  width: 345 / @vw;
+  height: 164 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
 }
@@ -797,23 +797,29 @@ li {
   justify-content: space-evenly;
 }
 .facingcouples {
-  margin-top: 30 / @vw;
+  margin-top: 20 / @vw;
 }
 .number {
   font-size: 18 / @vw;
   font-weight: 600;
-  margin: 21 / @vw 0 0 10 / @vw;
+  margin: 14 / @vw 0 0 10 / @vw;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
-.number img {
-  width: 16 / @vw;
-  height: 16 / @vw;
-  margin-right: 10 / @vw;
+.number p{
+  width: 26/@vw *1.3;
+  height: 13/@vw *1.3;
+  background: url('../assets/矩形 3@2x.png') no-repeat;
+  background-size: 26/@vw*1.3 13/@vw*1.3;
+  text-align: center;
+  font-size: 12/@vw;
+  color: #fff;
+  margin-left: 10/@vw;
 }
 .city {
   font-size: 13 / @vw;
   margin-left: 10 / @vw;
+  color: #999999;
 }
 .city span {
   margin-left: 10 / @vw;

@@ -642,13 +642,13 @@ a {
   flex-wrap: wrap;
 }
 .like .shun li {
-  width: 167 / @vw;
+  width: 174 / @vw;
   height: 72 / @vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border: 1 / @vw solid #e5e5e5;
-  margin-bottom: 10 / @vw;
+  margin-bottom: 2/@vw;
 }
 .like .shun li img {
   width: 38 / @vw;

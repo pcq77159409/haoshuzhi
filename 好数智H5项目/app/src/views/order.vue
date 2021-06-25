@@ -383,6 +383,9 @@ export default {
 .yyyyy /deep/ .tabr .el-tabs__nav {
   background-color: transparent;
 }
+.yyyyy /deep/ .el-tabs__header {
+  margin-bottom: 5/@vw;
+}
 body,
 html {
   background-color: #f5f5f5;
