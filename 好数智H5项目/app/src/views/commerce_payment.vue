@@ -71,9 +71,9 @@ export default {
         order_id: this.$route.query.order_id,
         paytype: this.imgShow,
       }).then((r) => {
-        console.log(r);
+        // console.log(r);
         if (r.code == 200) {
-          console.log(this.imgShow);
+          // console.log(this.imgShow);
           if (this.imgShow == 3) {
             this.$refs.box.innerHTML = r.data;
             document.querySelector('.box input[type="submit"]').click();
@@ -141,8 +141,8 @@ export default {
         user_id: localStorage.getItem("user-id"),
         order_id: this.$route.query.order_id,
       }).then((r) => {
-        // console.log(r);
-        if (r.data.status != 1) {
+        console.log(r);
+        if (r.data.status && r.data.status != 1) {
           clearInterval(this.timer);
           this.$router.push({
             path: "/Payload",
@@ -159,7 +159,7 @@ export default {
     this.$get("/api/balance_log/balance", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
+      // console.log(r);
       if (r.code == 200) {
         if (r.data.balance == null) {
           this.balance = 0;
@@ -170,6 +170,13 @@ export default {
         alert(r.msg);
       }
     });
+  },
+  // 路由离开生命周期函数
+  beforeRouteLeave(to, from, next) {
+    to;
+    from;
+    next();
+    clearInterval(this.timer);
   },
 };
 </script> 

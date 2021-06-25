@@ -164,7 +164,7 @@ export default {
           is_default: this.value,
         }).then((val) => {
           console.log(val);
-          this.$router.push("/goAddress");
+          this.$router.go(-1);
           if (val.code != 200) {
             alert(val.msg);
           }
@@ -182,7 +182,7 @@ export default {
           is_default: this.value,
         }).then((val) => {
           console.log(val);
-          this.$router.push("/goAddress");
+          this.$router.go(-1);
           if (val.code != 200) {
             alert(val.msg);
           }

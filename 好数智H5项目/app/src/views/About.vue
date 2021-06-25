@@ -227,7 +227,7 @@ body {
   font-weight: 500;
   border-radius: 20/@vw;
   text-align: center;
-  line-height: 28/@vw;
+  line-height: 26/@vw;
   margin-bottom: 20/@vw;
   font-size: 11/@vw*1.3;
   margin-left: 4%;
