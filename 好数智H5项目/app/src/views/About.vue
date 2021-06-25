@@ -221,7 +221,7 @@ body {
 }
 .digital li {
   width: 20%;
-  height: 28/@vw;
+  // height: 28/@vw;
   border: 1/@vw solid #999999;
   color: #666666;
   font-weight: 500;

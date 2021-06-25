@@ -240,12 +240,12 @@ body {
 }
 .login {
   width: 80 / @vw;
-  height: 24 / @vw;
+  // height: 24 / @vw;
   text-align: center;
   line-height: 24 / @vw;
   border-radius: 12 / @vw;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
   margin-top: 5 / @vw;
   font-size: 14 / @vw;
 }

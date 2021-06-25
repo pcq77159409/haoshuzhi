@@ -14,6 +14,7 @@
               maxlength="11"
               id="inputVal"
             />
+            <span @click="onKeyupSearch">搜索</span>
           </div>
         </div>
         <div class="used">
@@ -26,7 +27,7 @@
           </ul>
         </div>
         <div class="footprint">
-          <h3>搜索足迹</h3>
+          <h3>搜索足迹 <img src="../assets/222.png" alt="" @click="onclickDel" /></h3>
           <ul>
             <li
               v-for="(item, index) in footprintData"
@@ -256,6 +257,10 @@ export default {
 			document.getElementById("inputVal").focus();
       })
     },
+    onclickDel(){
+      this.footprintData=[];
+      localStorage.setItem("footprintData", JSON.stringify(this.footprintData));
+    }
   },
   created() {
     if (localStorage.getItem("footprintData")) {
@@ -314,7 +319,7 @@ a {
   overflow: hidden;
 }
 .sbh_top {
-  width: 454 / @vw / 2;
+  width: 500 / @vw / 2;
   height: 56 / @vw / 2;
   margin: 0 auto;
 }
@@ -327,11 +332,26 @@ a {
   overflow: hidden;
   box-sizing: border-box;
 }
+.sbht_center span{
+  position: absolute;
+  right: 10/@vw;
+  top: -1/@vw;
+  display: inline-block;
+  line-height: 28/@vw;
+  font-size: 13/@vw;
+  color: #FE5858;
+  text-align: center;
+  // box-shadow: -5px 0px 5px 5px #eee inset; 
+  // background-color: #f6f6f6;
+  box-sizing: border-box;
+}
 .sbh_top input {
   width: 100%;
   height: 100%;
   text-indent: 40 / @vw;
-  background-color: #eee;
+  background:#f6f6f6 url('../assets/t_1.png');
+  background-size: 100%;
+  // background-color: rgb(239, 239, 239);
 }
 
 .sbh_top img {
@@ -349,6 +369,11 @@ a {
   font-weight: 600;
   color: #333333;
   line-height: 60 / @vw / 2;
+}
+.searchBox h3 img{
+  width: 12/@vw;
+  height: 12/@vw;
+  margin-left: 260/@vw;
 }
 .searchBox li {
   padding: 0 10 / @vw;
@@ -617,7 +642,7 @@ a {
   flex-wrap: wrap;
 }
 .like .shun li {
-  width: 164 / @vw;
+  width: 167 / @vw;
   height: 72 / @vw;
   display: flex;
   justify-content: space-around;
