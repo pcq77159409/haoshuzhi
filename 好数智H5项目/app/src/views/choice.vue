@@ -766,6 +766,7 @@ html {
   background-color: #ea5656;
   display: flex;
   align-items: center;
+  position: relative; 
 }
 .choice_box .package_box img {
   width: 10/@vw;

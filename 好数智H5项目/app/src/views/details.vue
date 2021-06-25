@@ -1,14 +1,18 @@
 <template>
   <div class="liji">
     <div class="service">
-      <img src="../assets/left.png" alt="" @click="onBack" />
+      <img src="../assets/left.png" class="left" @click="onBack" />
       <p>号码详情</p>
+      <div class="kf">
+        <img src="../assets/图层 1@2x (1).png" alt="">
+        <span>联系客服</span>
+      </div>
     </div>
     <div class="total">
       <div class="totals">
         <div class="address">
           <ul>
-            <li class="number">{{ detailsList.number }}</li>
+            <li class="number">{{ detailsList.number }} <p>豹子</p></li>
             <li class="citys">
               <p class="city">
                 {{ detailsList.location }}
@@ -35,6 +39,7 @@
           </span>
         </em>
       </p>
+      <img src="../assets/跳转箭头@2x.png" alt="">
     </div>
     <div class="box">
       <ul>
@@ -110,6 +115,7 @@
       <p>合计:</p>
       <span>￥{{ detailsList.sale_price }}</span>
       <!-- <router-link to="/form_orders_path"> -->
+      <div class="sc">收藏</div>
       <div class="now" @click="onclickPurchase">提交订单</div>
       <!-- </router-link> -->
     </div>
@@ -500,8 +506,36 @@ html {
   background-color: #f8f8f8;
   margin: 0;
 }
+.sc {
+  width: 105/@vw;
+  height: 100%;
+  background-color: #bdbdbd;
+  color: #fff;
+  font-size: 14/@vw;
+  text-align: center;
+  line-height: 44/@vw;
+  margin-left: 48/@vw;
+}
 li {
   list-style: none;
+}
+.kf {
+  position: absolute;
+  right: 0;
+  // top: 50%;
+  display: flex;
+  align-items: center;
+}
+.kf img {
+  width: 18/@vw;
+  height: 14/@vw;
+  margin-right: 6/@vw;
+}
+.kf span {
+  display: block;
+  font-size: 14/@vw;
+  color: #ffffff;
+  margin-right: 12/@vw;
 }
 .liji {
   width: 100%;
@@ -536,6 +570,9 @@ li {
   background-color: #fff;
   margin: 10 / @vw auto;
   line-height: 44 / @vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .phone p {
   margin: auto 15 / @vw;
@@ -547,7 +584,12 @@ li {
   display: inline-block;
   width: 220 / @vw;
   margin-left: 15 / @vw;
-  font-size: 12px;
+  font-size: 12/@vw;
+}
+.phone img {
+  width: 7/@vw;
+  height: 9/@vw;
+  margin-right: 10/@vw;
 }
 .service {
   position: fixed;
@@ -568,7 +610,7 @@ li {
   text-align: center;
   margin: 0 auto;
 }
-.service img {
+.service .left {
   width: 10 / @vw;
   height: 16 / @vw;
   position: absolute;
@@ -579,7 +621,6 @@ li {
 .totals {
   width: 345 / @vw;
   height: 158 / @vw;
-  margin-bottom: 10 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
 }
@@ -594,6 +635,18 @@ li {
   font-size: 18 / @vw;
   font-weight: 600;
   margin: 21 / @vw 0 0 10 / @vw;
+  display: flex;
+  align-items: center;
+}
+.number p{
+  width: 26/@vw *1.3;
+  height: 13/@vw *1.3;
+  background: url('../assets/矩形 3@2x.png') no-repeat;
+  background-size: 26/@vw*1.3 13/@vw*1.3;
+  text-align: center;
+  font-size: 12/@vw;
+  color: #fff;
+  margin-left: 10/@vw;
 }
 .city {
   font-size: 13 / @vw;

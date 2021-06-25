@@ -1,5 +1,5 @@
 <template>
-  <div class="Mobile_phone">
+  <div class="Mobile_phone" ref="bugun">
     <!-- 头部导航 开始-->
     <div class="reds">
       <div class="moveing">
@@ -147,115 +147,116 @@
 
     <!--手机号 开始-->
     <div class="start_pinoes">
-        <div
-      class="class_box"
-      v-for="(item, index) in love"
-      :key="index"
-      @click="onClickFarm(item)"
-    >
-      <img src="../assets/矩形 47@2x.png" alt="" style="" />
-      <div class="end">
-        <h5 v-html="item[0].number_tag"></h5>
-        <div class="commission">
-          <p>{{ item[0].location }}</p>
-          <span>佣金￥{{ item[0].returned_commission }}</span>
+      <!-- 归属地 开始-->
+      <div class="black"  v-show="flag">
+         <div class="Belonging">
+        <ul class="pro">
+          <li
+            v-for="(item, index) in proList"
+            :key="index"
+            :class="{ current: num == index }"
+            @click="onClickHide(index, item)"
+          >
+            <img src="../assets/right.png" alt="" v-show="num == index" />
+            <p>{{ item }}</p>
+          </li>
+        </ul>
+        <ul class="city">
+          <li
+            v-for="(item, index) in cityList[nums]"
+            :key="index"
+            :class="{ currents: wrap == item }"
+            @click="onClickHided(item)"
+          >
+            <img src="../assets/right.png" alt="" v-show="wrap == item" />
+            <p>{{ item }}</p>
+          </li>
+        </ul>
+      </div>
+      </div>
+      <!-- 归属地 结束-->
+
+      <!-- 运营商 开始-->
+      <div class="opeateing" v-show="cut == true">
+        <ul>
+          <li
+            v-for="(item, index) in chinese"
+            :key="index"
+            :class="{ currents: opList == item.operators_name }"
+            @click="onclickOpeateing(item.operators_name)"
+          >
+            <img
+              src="../assets/right.png"
+              alt=""
+              v-show="opList == item.operators_name"
+            />
+            <p>{{ item.operators_name }}</p>
+          </li>
+        </ul>
+      </div>
+      <!-- 运营商 结束-->
+      <!-- 规律 开始-->
+      <div class="regular" v-show="regulars == true">
+        <ul>
+          <li>
+            <img src="../assets/right.png" alt="" />
+            <p>不限</p>
+          </li>
+          <li>
+            <img src="../assets/right.png" alt="" />
+            <p>不限</p>
+          </li>
+          <li>
+            <img src="../assets/right.png" alt="" />
+            <p>不限</p>
+          </li>
+          <li>
+            <img src="../assets/right.png" alt="" />
+            <p>不限</p>
+          </li>
+          <li>
+            <img src="../assets/right.png" alt="" />
+            <p>不限</p>
+          </li>
+          <li>
+            <img src="../assets/right.png" alt="" />
+            <p>不限</p>
+          </li>
+        </ul>
+      </div>
+      <!-- 规律 结束-->
+      <div
+        class="class_box"
+        v-for="(item, index) in love"
+        :key="index"
+        @click="onClickFarm(item)"
+      >
+        <img src="../assets/矩形 47@2x.png" alt="" style="" />
+        <div class="end">
+          <h5 v-html="item[0].number_tag"></h5>
+          <div class="commission">
+            <p>{{ item[0].location }}</p>
+            <span>佣金￥{{ item[0].returned_commission }}</span>
+          </div>
+          <div class="contains">
+            <p>含通话费{{ item[0].contain_charge }}</p>
+            <span>￥{{ item[0].sale_price }}</span>
+          </div>
         </div>
-        <div class="contains">
-          <p>含通话费{{ item[0].contain_charge }}</p>
-          <span>￥{{ item[0].sale_price }}</span>
+        <span class="line"></span>
+        <div class="end">
+          <h5 v-html="item[1].number_tag"></h5>
+          <div class="commission">
+            <p>{{ item[1].location }}</p>
+          </div>
+          <div class="contains">
+            <p>含通话费{{ item[1].contain_charge }}</p>
+            <span>￥{{ item[1].sale_price }}</span>
+          </div>
         </div>
       </div>
-      <span class="line"></span>
-      <div class="end">
-        <h5 v-html="item[1].number_tag"></h5>
-        <div class="commission">
-          <p>{{ item[1].location }}</p>
-        </div>
-        <div class="contains">
-          <p>含通话费{{ item[1].contain_charge }}</p>
-          <span>￥{{ item[1].sale_price }}</span>
-        </div>
-      </div>
-    </div>
     </div>
     <!--手机号 结束-->
-
-    <!-- 归属地 开始-->
-    <div class="Belonging" v-show="flag">
-      <ul class="pro">
-        <li
-          v-for="(item, index) in proList"
-          :key="index"
-          :class="{ current: num == index }"
-          @click="onClickHide(index, item)"
-        >
-          <img src="../assets/right.png" alt="" v-show="num == index" />
-          <p>{{ item }}</p>
-        </li>
-      </ul>
-      <ul class="city">
-        <li
-          v-for="(item, index) in cityList[nums]"
-          :key="index"
-          :class="{ currents: wrap == item }"
-          @click="onClickHided(item)"
-        >
-          <img src="../assets/right.png" alt="" v-show="wrap == item" />
-          <p>{{ item }}</p>
-        </li>
-      </ul>
-    </div>
-    <!-- 归属地 结束-->
-
-    <!-- 运营商 开始-->
-    <div class="opeateing" v-show="cut == true">
-      <ul>
-        <li
-          v-for="(item, index) in chinese"
-          :key="index"
-          :class="{ currents: opList == item.operators_name }"
-          @click="onclickOpeateing(item.operators_name)"
-        >
-          <img
-            src="../assets/right.png"
-            alt=""
-            v-show="opList == item.operators_name"
-          />
-          <p>{{ item.operators_name }}</p>
-        </li>
-      </ul>
-    </div>
-    <!-- 运营商 结束-->
-    <!-- 规律 开始-->
-    <div class="regular" v-show="regulars == true">
-      <ul>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>不限</p>
-        </li>
-      </ul>
-    </div>
-    <!-- 规律 结束-->
   </div>
 </template>
 <script>
@@ -336,8 +337,10 @@ export default {
     onClickShow(num) {
       if (this.active == num) {
         this.active = null;
+        this.$refs.bugun.style='overflow-y:auto';
       } else {
         this.active = num;
+        this.$refs.bugun.style='overflow-y:hidden';
       }
     },
     onClickDn() {
@@ -440,6 +443,15 @@ export default {
   margin: 0;
   list-style: none;
 }
+.black {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
 .current {
   background-color: #ececec;
 }
@@ -467,36 +479,36 @@ body {
 
 .Mobile_phone .reds {
   width: 100%;
-  height: 122/@vw;
+  height: 122 / @vw;
   background-color: #fe5858;
 }
 .Mobile_phone .start_pinoes {
-  overflow: auto;
-  height: 52%;
+  position: relative;
 }
 .Mobile_phone .reds .moveing {
   display: flex;
+  position: relative;
 }
 .Mobile_phone .reds .moveing img {
-  width: 10/@vw;
-  height: 16/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
-  top: 35/@vw;
+  left: 15 / @vw;
+  top: 35 / @vw;
   pointer-events: auto;
 }
 .Mobile_phone .reds .moveing h3 {
   color: #ffffff;
-  margin: 30/@vw auto 0;
-  font-size: 18/@vw;
+  margin: 30 / @vw auto 0;
+  font-size: 18 / @vw;
   font-weight: 500;
 }
 .Mobile_phone .reds .input_bg {
-  width: 345/@vw;
-  height: 28/@vw;
+  width: 345 / @vw;
+  height: 28 / @vw;
   background: url("../assets/input_bg.png") no-repeat;
-  background-size: 345/@vw 28/@vw;
-  margin: 22/@vw auto 0;
+  background-size: 345 / @vw 28 / @vw;
+  margin: 22 / @vw auto 0;
   display: flex;
 }
 .Mobile_phone .reds .input_bg .tail {
@@ -506,20 +518,20 @@ body {
   align-items: center;
 }
 .Mobile_phone .reds .input_bg .tail img {
-  width: 12/@vw;
-  height: 12/@vw;
-  margin: 0 10/@vw 0 15/@vw;
+  width: 12 / @vw;
+  height: 12 / @vw;
+  margin: 0 10 / @vw 0 15 / @vw;
   vertical-align: middle;
 }
 .Mobile_phone .reds .input_bg .tail p {
-  font-size: 10/@vw*1.3;
+  font-size: 10 / @vw*1.3;
   color: #666666;
-  margin-right: 10/@vw;
-  margin-bottom: 1/@vw;
+  margin-right: 10 / @vw;
+  margin-bottom: 1 / @vw;
 }
 .Mobile_phone .reds .input_bg .tail span {
-  width: 1/@vw;
-  height: 12/@vw;
+  width: 1 / @vw;
+  height: 12 / @vw;
   background-color: #e0e0e0;
 }
 .Mobile_phone .reds .input_bg .searchs {
@@ -533,41 +545,41 @@ body {
   width: 80%;
 }
 .Mobile_phone .reds .input_bg .searchs .want img {
-  width: 10/@vw*1.3;
-  height: 10/@vw*1.3;
-  margin: 0 10/@vw 0 4/@vw;
+  width: 10 / @vw*1.3;
+  height: 10 / @vw*1.3;
+  margin: 0 10 / @vw 0 4 / @vw;
 }
 .Mobile_phone .reds .input_bg .searchs .want input {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #999999;
 }
 .Mobile_phone .reds .input_bg .searchs h4 {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #ffffff;
   font-weight: 500;
-  margin-right: 11/@vw;
-  line-height: 28/@vw;
+  margin-right: 11 / @vw;
+  line-height: 28 / @vw;
 }
 .Mobile_phone .accurate {
   width: 100%;
 }
 .Mobile_phone .accurate .phoneNumber {
   display: flex;
-  margin: 20/@vw 18/@vw 0;
+  margin: 20 / @vw 18 / @vw 0;
   justify-content: space-evenly;
 }
 .Mobile_phone .accurate .phoneNumber li {
-  width: 22/@vw;
-  height: 26/@vw;
+  width: 22 / @vw;
+  height: 26 / @vw;
   text-align: center;
-  border-radius: 3/@vw;
-  font-size: 14/@vw;
+  border-radius: 3 / @vw;
+  font-size: 14 / @vw;
 }
 // .Mobile_phone .accurate .phoneNumber li:hover {
 //   border-color: #dc0101;
 // }
 .Mobile_phone .accurate .phoneNumber li input:focus {
-  border: 1/@vw solid #dc0101;
+  border: 1 / @vw solid #dc0101;
 }
 .Mobile_phone .accurate .phoneNumber li:first-child input {
   color: #333333;
@@ -578,25 +590,25 @@ body {
   text-align: center;
   color: #dc0101;
   outline: none;
-  border: 1/@vw solid #cacaca;
+  border: 1 / @vw solid #cacaca;
 }
 .Mobile_phone .accurate p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #fe5858;
-  margin: 10/@vw 0 0 21/@vw;
+  margin: 10 / @vw 0 0 21 / @vw;
 }
 .Mobile_phone .accurate .reset {
-  margin: 16/@vw 48/@vw 0;
+  margin: 16 / @vw 48 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .accurate .reset li {
-  width: 130/@vw;
-  height: 26/@vw;
+  width: 130 / @vw;
+  height: 26 / @vw;
   text-align: center;
-  line-height: 26/@vw;
-  border-radius: 20/@vw;
-  font-size: 10/@vw*1.3;
+  line-height: 26 / @vw;
+  border-radius: 20 / @vw;
+  font-size: 10 / @vw*1.3;
 }
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;
@@ -608,17 +620,17 @@ body {
 }
 .Mobile_phone .select_change {
   width: 100%;
-  height: 33/@vw;
+  height: 33 / @vw;
   background-color: #fff;
-  margin-top: 20/@vw;
-  border: 1/@vw solid #e5e5e5;
+  margin-top: 20 / @vw;
+  border: 1 / @vw solid #e5e5e5;
 }
 .Mobile_phone .select_change ul {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  line-height: 33/@vw;
+  line-height: 33 / @vw;
 }
 .Mobile_phone .select_change ul li {
   display: flex;
@@ -627,78 +639,78 @@ body {
 }
 .Mobile_phone .select_change ul li .red_triangle {
   position: absolute;
-  right: -4/@vw;
+  right: -4 / @vw;
   top: 44%;
 }
 .Mobile_phone .select_change ul li p {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #666666;
-  margin-right: 9/@vw;
+  margin-right: 9 / @vw;
 }
 .Mobile_phone .select_change ul li img {
-  width: 6/@vw;
-  height: 4/@vw;
+  width: 6 / @vw;
+  height: 4 / @vw;
 }
 .Mobile_phone .class_box {
   display: flex;
-  width: 345/@vw;
-  height: 102/@vw;
+  width: 345 / @vw;
+  height: 102 / @vw;
   margin: 0 auto;
-  border: 1/@vw solid #e5e5e5;
+  border: 1 / @vw solid #e5e5e5;
   background-color: #fff;
-  border-radius: 10/@vw;
-  margin-top: 10/@vw;
+  border-radius: 10 / @vw;
+  margin-top: 10 / @vw;
   position: relative;
 }
 .Mobile_phone .class_box img {
   position: absolute;
   right: 0;
   top: 0;
-  width: 30/@vw;
-  height: 18/@vw;
+ width: 25 / @vw;
+  height: 16 / @vw;
 }
 .Mobile_phone .class_box .line {
   display: inline-block;
-  width: 2/@vw;
-  height: 52/@vw*1.3;
+  width: 2 / @vw;
+  height: 52 / @vw*1.3;
   background-color: #f2f2f2;
-  margin: 16/@vw 7/@vw 0 7/@vw;
+  margin: 16 / @vw 7 / @vw 0 7 / @vw;
 }
 .Mobile_phone .end {
-  width: 167/@vw;
-  height: 102/@vw;
+  width: 167 / @vw;
+  height: 102 / @vw;
   position: relative;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
 }
 .Mobile_phone .end h5 {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   color: #333333;
-  font-weight: bold;
-  margin: 4/@vw 0 0 10/@vw;
+  margin: 4 / @vw 0 0 10 / @vw;
+  letter-spacing: 1px;
 }
 .Mobile_phone .end .commission {
-  margin: 10/@vw 10/@vw 0;
+  margin: 10 / @vw 10 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .end .commission p {
   color: #666666;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .end .commission span,
 .Mobile_phone .end .contains p {
   color: #dd1414;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .end .contains {
-  margin: 10/@vw 10/@vw 0;
+  margin: 10 / @vw 10 / @vw 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .Mobile_phone .end .contains span {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #dc0101;
   font-weight: bold;
 }
@@ -706,11 +718,12 @@ body {
 .Mobile_phone .Belonging,
 .Mobile_phone .regular {
   width: 100%;
-  height: 376/@vw;
+  height: 376 / @vw;
   position: absolute;
   left: 0;
-  top: 291/@vw;
+  top: -10 / @vw;
   display: flex;
+  z-index: 99;
 }
 .Mobile_phone .Belonging .pro {
   width: 40%;
@@ -721,24 +734,24 @@ body {
 .Mobile_phone .Belonging .pro li,
 .Mobile_phone .Belonging .city li {
   width: 100%;
-  height: 45/@vw;
-  border-bottom: 1/@vw solid #ececec;
+  height: 45 / @vw;
+  border-bottom: 1 / @vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .Belonging .pro li p {
   color: #333333;
-  font-size: 10/@vw*1.3;
-  margin-left: 35/@vw;
+  font-size: 10 / @vw*1.3;
+  margin-left: 35 / @vw;
 }
 
 .Mobile_phone .Belonging .pro li img,
 .Mobile_phone .Belonging .city li img {
   position: absolute;
-  left: 15/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
 }
 .Mobile_phone .Belonging .city {
   width: 60%;
@@ -747,45 +760,46 @@ body {
 }
 .Mobile_phone .Belonging .city li p {
   color: #333333;
-  font-size: 10/@vw*1.3;
-  margin-left: 48/@vw;
+  font-size: 10 / @vw*1.3;
+  margin-left: 48 / @vw;
 }
 .Mobile_phone .opeateing {
   width: 100%;
-  height: 376/@vw;
-  background-color: #f8f8f8;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
-  top: 291/@vw;
+  top: -10 / @vw;
   display: flex;
+  z-index: 99;
 }
 .Mobile_phone .opeateing ul {
   width: 100%;
-  height: 88/@vw;
+  height: 88 / @vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 .Mobile_phone .opeateing ul li {
-  width: 187/@vw;
-  height: 43/@vw;
+  width: 187 / @vw;
+  height: 43 / @vw;
   display: flex;
   align-items: center;
-  border-bottom: 1/@vw solid #ececec;
+  border-bottom: 1 / @vw solid #ececec;
   position: relative;
 }
 .Mobile_phone .opeateing ul li img {
   position: absolute;
-  left: 40/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 40 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
   display: none;
 }
 .Mobile_phone .opeateing ul li p {
   color: #333333;
-  font-size: 12/@vw;
-  margin-left: 63/@vw;
+  font-size: 12 / @vw;
+  margin-left: 63 / @vw;
   text-align: center;
 }
 .Mobile_phone .opeateing ul li:hover,
@@ -807,23 +821,23 @@ body {
 }
 .Mobile_phone .regular ul li {
   width: 100%;
-  height: 44/@vw;
-  border-bottom: 1/@vw solid #ececec;
+  height: 44 / @vw;
+  border-bottom: 1 / @vw solid #ececec;
   display: flex;
   align-items: center;
   position: relative;
 }
 .Mobile_phone .regular ul li img {
   position: absolute;
-  left: 15/@vw;
-  width: 10/@vw*1.3;
-  height: 7/@vw*1.3;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
   display: none;
 }
 .Mobile_phone .regular ul li p {
   color: #333333;
-  font-size: 12/@vw;
-  margin-left: 40/@vw;
+  font-size: 12 / @vw;
+  margin-left: 40 / @vw;
 }
 .Mobile_phone .Montmorillonite {
   width: 100%;
@@ -834,59 +848,59 @@ body {
   top: 0;
 }
 .Mobile_phone .Montmorillonite .search_filter {
-  width: 330/@vw;
+  width: 330 / @vw;
   height: 100%;
   background-color: #fff;
-  margin-left: 45/@vw;
+  margin-left: 45 / @vw;
   overflow-y: auto;
 }
 .Mobile_phone .Montmorillonite .search_filter .back {
   width: 100%;
-  height: 40/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  height: 40 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .back img {
-  width: 6/@vw;
-  height: 11/@vw;
-  margin-left: 11/@vw;
+  width: 6 / @vw;
+  height: 11 / @vw;
+  margin-left: 11 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .back p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
-  margin-left: 5/@vw;
+  margin-left: 5 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle {
-  width: 286/@vw;
-  height: 55/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 55 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .handle p {
-  width: 115/@vw;
-  height: 25/@vw;
+  width: 115 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25/@vw;
+  line-height: 25 / @vw;
   color: #999999;
 }
 .Mobile_phone .Montmorillonite .search_filter .price {
-  width: 286/@vw;
-  height: 200/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 200 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .price p {
   position: absolute;
-  left: 184/@vw;
-  top: 157/@vw;
-  font-size: 12/@vw;
+  left: 184 / @vw;
+  top: 157 / @vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .price h5,
@@ -894,9 +908,9 @@ body {
 .Mobile_phone .Montmorillonite .search_filter .contract h5,
 .Mobile_phone .Montmorillonite .search_filter .more_number h5 {
   color: #666666;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   font-weight: 500;
-  margin: 14/@vw 0;
+  margin: 14 / @vw 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul,
 .Mobile_phone .Montmorillonite .search_filter .charge ul,
@@ -910,20 +924,20 @@ body {
 .Mobile_phone .Montmorillonite .search_filter .charge ul li,
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
   position: relative;
-  width: 89/@vw;
-  height: 25/@vw;
+  width: 89 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 25/@vw;
-  margin-bottom: 15/@vw;
-  border-radius: 4/@vw;
-  font-size: 12/@vw;
+  line-height: 25 / @vw;
+  margin-bottom: 15 / @vw;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li span,
 .Mobile_phone .Montmorillonite .search_filter .charge span {
   position: absolute;
-  left: 10/@vw;
+  left: 10 / @vw;
   top: 0;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li input,
@@ -931,7 +945,7 @@ body {
   border: none;
   outline: none;
   background: none;
-  text-indent: 30/@vw;
+  text-indent: 30 / @vw;
   width: 100%;
   height: 100%;
 }
@@ -941,12 +955,12 @@ body {
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:last-child,
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:last-child {
-  width: 85/@vw;
-  margin-left: 8/@vw;
+  width: 85 / @vw;
+  margin-left: 8 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li:nth-of-type(11),
 .Mobile_phone .Montmorillonite .search_filter .charge ul li:nth-of-type(11) {
-  width: 85/@vw;
+  width: 85 / @vw;
 }
 .Mobile_phone
   .Montmorillonite
@@ -962,107 +976,107 @@ body {
   color: #ffffff;
 }
 .Mobile_phone .Montmorillonite .search_filter .charge {
-  width: 286/@vw;
-  height: 160/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 160 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .charge p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
   position: absolute;
-  left: 186/@vw;
-  top: 117/@vw;
+  left: 186 / @vw;
+  top: 117 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract {
-  width: 286/@vw;
-  height: 195/@vw;
-  margin: 0 22/@vw;
-  border-bottom: 1/@vw solid #f2f2f2;
+  width: 286 / @vw;
+  height: 195 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
   position: relative;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .linings {
-  width: 1/@vw;
-  height: 104/@vw;
+  width: 1 / @vw;
+  height: 104 / @vw;
   background-color: #f2f2f2;
   position: absolute;
   left: 50%;
-  top: 74/@vw;
+  top: 74 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december {
   width: 100%;
-  height: 25/@vw;
+  height: 25 / @vw;
   display: flex;
   justify-content: space-around;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .december li {
-  width: 89/@vw;
-  height: 25/@vw;
+  width: 89 / @vw;
+  height: 25 / @vw;
   background-color: #f8f8f8;
   text-align: center;
-  border-radius: 4/@vw;
-  font-size: 12/@vw;
-  line-height: 25/@vw;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
+  line-height: 25 / @vw;
   color: #666666;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change {
   width: 100%;
-  height: 100/@vw;
-  margin-top: 15/@vw;
+  height: 100 / @vw;
+  margin-top: 15 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li {
   width: 100%;
-  height: 25/@vw;
+  height: 25 / @vw;
   display: flex;
-  border-bottom: 1/@vw solid #f2f2f2;
+  border-bottom: 1 / @vw solid #f2f2f2;
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li:first-child {
-  border-top: 1/@vw solid #f2f2f2;
+  border-top: 1 / @vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li h3 {
   font-weight: 500;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .contract .change li p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
   flex: 1;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number {
-  width: 286/@vw;
-  height: 160/@vw;
-  margin: 0 22/@vw;
+  width: 286 / @vw;
+  height: 160 / @vw;
+  margin: 0 22 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-child {
-  margin-right: 98/@vw;
+  margin-right: 98 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure {
   width: 100%;
-  height: 44/@vw;
+  height: 44 / @vw;
   display: flex;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure p {
   width: 50%;
   background-color: #f8f8f8;
   text-align: center;
-  line-height: 44/@vw;
-  font-size: 16/@vw;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
   color: #666666;
-  border-bottom: 1/@vw solid #f2f2f2;
-  border-top: 1/@vw solid #f2f2f2;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  border-top: 1 / @vw solid #f2f2f2;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure span {
   width: 50%;
   background-color: #fe5858;
   text-align: center;
-  line-height: 44/@vw;
-  font-size: 16/@vw;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
   color: #ffffff;
 }
 </style>

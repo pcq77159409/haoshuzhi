@@ -1,8 +1,12 @@
 <template>
   <div class="liji">
     <div class="service">
-      <img src="../assets/left.png" alt="" @click="onBack" />
+      <img src="../assets/left.png" class="left" @click="onBack" />
       <p>号码详情</p>
+      <div class="kf">
+        <img src="../assets/图层 1@2x (1).png" alt="">
+        <span>联系客服</span>
+      </div>
     </div>
     <div class="total">
       <div class="totals">
@@ -172,6 +176,7 @@
         <p>合计:</p>
         <span>￥{{ price }}</span>
       </div>
+      <div class="sc">收藏</div>
       <div class="now" @click="onClickFarm()">提交订单</div>
     </div>
     <div class="black" v-show="back">
@@ -630,6 +635,34 @@ html {
   height: 100%;
   margin: 0;
 }
+.sc {
+  width: 104.5/@vw;
+  height: 100%;
+  background-color: #bdbdbd;
+  color: #fff;
+  font-size: 14/@vw;
+  text-align: center;
+  line-height: 44/@vw;
+  margin-left: 57/@vw;
+}
+.kf {
+  position: absolute;
+  right: 0;
+  // top: 50%;
+  display: flex;
+  align-items: center;
+}
+.kf img {
+  width: 18/@vw;
+  height: 14/@vw;
+  margin-right: 6/@vw;
+}
+.kf span {
+  display: block;
+  font-size: 14/@vw;
+  color: #ffffff;
+  margin-right: 12/@vw;
+}
 li {
   list-style: none;
 }
@@ -732,6 +765,7 @@ li {
   background: #ea5656;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .service p {
   font-size: 16 / @vw;
@@ -742,7 +776,7 @@ li {
   text-align: center;
   margin-left: 132 / @vw;
 }
-.service img {
+.service .left {
   width: 10 / @vw;
   height: 16 / @vw;
   margin-left: 15 / @vw;
