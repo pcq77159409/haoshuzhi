@@ -36,7 +36,7 @@
             <img src="../assets/coupon.png" alt="" />
             <p>优惠劵</p>
           </li>
-          <li @click="$router.push('/integral')">
+          <li @click="onjifen">
             <img src="../assets/integral.png" alt="" />
             <p>积分</p>
           </li>
@@ -62,18 +62,21 @@
           >
             <img src="../assets/pay.png" alt="" />
             <p>待支付</p>
+            <span>{{ status1 }}</span>
           </li>
           <li
             @click="$router.push({ path: '/order', query: { name: 'third' } })"
           >
             <img src="../assets/delivery.png" alt="" />
             <p>待发货</p>
+            <span>{{ status2 }}</span>
           </li>
           <li
             @click="$router.push({ path: '/order', query: { name: 'fourth' } })"
           >
             <img src="../assets/closed.png" alt="" />
             <p>待收货</p>
+            <span>{{ status3 }}</span>
           </li>
           <li
             @click="
@@ -82,10 +85,12 @@
           >
             <img src="../assets/complete.png" alt="" />
             <p>已完成</p>
+            <span>{{ status4 }}</span>
           </li>
           <li @click="$router.push('/aftersale')">
             <img src="../assets/sales.png" alt="" />
             <p>退款/售后</p>
+            <span>{{ status4 }}</span>
           </li>
         </ul>
         <div class="wait" v-if="unapid.id">
@@ -172,6 +177,11 @@ export default {
         updated_at: "2021-06-07 10:49:21",
         user_id: 21,
       },
+      timer: null,
+      status1: "",
+      status2: "",
+      status3: "",
+      status4: "",
     };
   },
   methods: {
@@ -196,10 +206,12 @@ export default {
         },
       });
     },
-    onJin(){
-      alert('该功能暂未开放，敬请期待')
-    }
-
+    onJin() {
+      alert("该功能暂未开放，敬请期待");
+    },
+    onjifen() {
+      alert("该功能暂未开放，敬请期待");
+    },
   },
   mounted() {
     this.loginShow = localStorage.getItem("uuidstatus");
@@ -218,14 +230,63 @@ export default {
     }).then((r) => {
       console.log(r);
       if (r.code == 200) {
-        if (r.data.data.length == 0) {
-          console.log(123);
+        if (r.data.total == 0) {
           this.unapid = {};
+          this.status1 = "";
         } else {
-          this.unapid = r.data.data[0];
+          this.status1 = r.data.total;
+          let num = 0;
+          this.unapid = r.data.data[num];
+          this.timer = setInterval(() => {
+            num++;
+            if (num >= r.data.data.length) {
+              num = 0;
+            }
+            this.unapid = r.data.data[num];
+          }, 10000);
         }
       }
     });
+
+    this.$get("/api/order/getlist", {
+      user_id: localStorage.getItem("user-id"),
+      status: 2,
+    }).then((r) => {
+      if (r.data.total == 0) {
+        this.status2 = "";
+      } else {
+        this.status2 = r.data.total;
+      }
+    });
+    this.$get("/api/order/getlist", {
+      //
+      user_id: localStorage.getItem("user-id"),
+      status: 3,
+    }).then((r) => {
+      if (r.data.total == 0) {
+        this.status3 = "";
+      } else {
+        this.status3 = r.data.total;
+      }
+    });
+    this.$get("/api/order/getlist", {
+      //
+      user_id: localStorage.getItem("user-id"),
+      status: 4,
+    }).then((r) => {
+      if (r.data.total == 0) {
+        this.status4 = "";
+      } else {
+        this.status4 = r.data.total;
+      }
+    });
+  },
+  // 路由离开生命周期函数
+  beforeRouteLeave(to, from, next) {
+    to;
+    from;
+    next();
+    clearInterval(this.timer);
   },
 };
 </script>
@@ -276,14 +337,14 @@ body {
 .box p {
   position: absolute;
   left: 45%;
-  top: 15 / @vw;
+  top: 25 / @vw;
   color: #ffffff;
   font-weight: 500;
 }
 .good {
   position: absolute;
   left: 30 / @vw;
-  top: 60 / @vw;
+  top: 75 / @vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -310,7 +371,7 @@ body {
 }
 .account {
   width: 353 / @vw;
-  height: 100 / @vw*1.3;
+  height: 90 / @vw*1.3;
   background-color: #fff;
   // margin: 0 11/@vw;
   position: absolute;
@@ -351,9 +412,9 @@ body {
   border-radius: 5 / @vw;
   width: 353 / @vw;
   // height: 180/@vw*1.3;
-  padding-bottom: 10 / @vw;
+  padding-bottom: 20 / @vw;
   background-color: #fff;
-  margin: 60 / @vw auto 0;
+  margin: 42 / @vw auto 0;
 }
 .ordering .mine {
   margin: 0 20 / @vw;
@@ -384,12 +445,30 @@ body {
   border-top: 2 / @vw solid #f8f8f8;
 }
 .ordering .finish li {
-  margin-top: 20 / @vw;
+  position: relative;
+  width: 20%;
+  height: 89 / @vw;
+  margin-top: 10 / @vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   vertical-align: bottom;
+}
+.ordering .finish li span {
+  position: absolute;
+  left: 45 / @vw;
+  top: 5 / @vw;
+  padding: 0 6 / @vw;
+  background-color: #ea5656;
+  line-height: 18 / @vw;
+  text-align: center;
+  border-radius: 20 / @vw;
+  font-size: 12 / @vw;
+  color: #fff;
+}
+.ordering .finish li:nth-of-type(1) img {
+  margin-left: 10 / @vw;
 }
 .ordering .finish li p {
   font-size: 13 / @vw;
@@ -426,7 +505,7 @@ body {
   width: 316 / @vw;
   height: 53 / @vw*1.3;
   background-color: #f8f8f8;
-  margin: 12 / @vw auto 0;
+  margin: 0 auto 0;
   display: flex;
   justify-content: space-between;
   border-radius: 5 / @vw;

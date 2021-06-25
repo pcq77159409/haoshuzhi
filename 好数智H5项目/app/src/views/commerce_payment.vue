@@ -274,20 +274,22 @@ export default {
 .ace_jump_search .debugformat .restore img:last-child {
   width: 15 / @vw;
   height: 15 / @vw;
-  // margin-left: 90/@vw;
+  position: absolute;
+  right: 1 / @vw;
 }
 .ace_jump_search .debugformat .restore .xs {
   width: 15 / @vw;
   height: 15 / @vw;
   position: absolute;
   right: 1 / @vw;
+  z-index: 1;
 }
 .ace_jump_search .debugformat .restore p {
   width: 100 / @vw;
   font-size: 15 / @vw;
   color: #333333;
   font-weight: 600;
-  margin-right: 20 / @vw;
+  // margin-right: 20 / @vw;
 }
 .ace_jump_search .debugformat .restore span {
   font-size: 12 / @vw;
