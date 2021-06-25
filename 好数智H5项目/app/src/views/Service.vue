@@ -170,6 +170,9 @@ export default {
   width: 100%;
   height: 100%;
   background: #f9f9f9;
+  box-sizing: border-box;
+  padding-bottom: 65/@vw;
+  overflow: auto;
 }
 .content {
   padding: 0 15 / @vw;
