@@ -301,6 +301,11 @@ const routes = [{
         name: 'authentication',
         component: () =>
             import ('../views/authentication.vue')
+    }, {
+        path: '/fenye',
+        name: 'fenye',
+        component: () =>
+            import ('../views/fenye.vue')
     }
 ]
 

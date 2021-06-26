@@ -69,6 +69,7 @@ export default {
   background-color: #ea5656;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .item_content .package_box img {
   width: 10/@vw;
