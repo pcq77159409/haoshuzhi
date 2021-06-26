@@ -15,7 +15,7 @@
       >
     </div>
     <div class="debugformat">
-      <div class="restore" @click="imgShow = 3">
+      <div class="restore" @click="imgShow = 3" v-show="zfbShow">
         <img src="../assets/1234.png" alt="" />
         <p>支付宝支付</p>
         <!-- <span style="width: 200/@vw">当前余额{{ balance }}元</span> -->
@@ -58,6 +58,8 @@ export default {
       balance: 0,
       imgShow: 2,
       timer: null,
+      zfbShow: true,
+      feedata: {},
     };
   },
   methods: {
@@ -66,26 +68,84 @@ export default {
       this.$router.go(-1);
     },
     onclickPayment() {
+      let number = this.imgShow;
+      if (this.zfbShow == false) {
+        number = 4;
+      }
       this.$post("api/order/mobielpay", {
         user_id: localStorage.getItem("user-id"),
         order_id: this.$route.query.order_id,
-        paytype: this.imgShow,
+        paytype: number,
       }).then((r) => {
         console.log(r);
         if (r.code == 200) {
-          // console.log(this.imgShow);
-          if (this.imgShow == 3) {
+          console.log(r);
+          if (number == 3) {
             this.$refs.box.innerHTML = r.data;
             document.querySelector('.box input[type="submit"]').click();
-          } else if (this.imgShow == 2) {
+          } else if (number == 2) {
             window.location.href = r.data;
+          } else if (number == 4) {
+            console.log(r);
+            this.feedata = r.data.data;
+            this.payment();
           }
         }
       });
       // this.$router.push({path:'/Payload',query:{order_id:this.$route.query.order_id}});
     },
+    payment() {
+      var self = this;
+      if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+          document.addEventListener(
+            "WeixinJSBridgeReady",
+            self.onBridgeReady(self.feedata),
+
+            false
+          );
+        } else if (document.attachEvent) {
+          document.attachEvent(
+            "WeixinJSBridgeReady",
+            self.onBridgeReady(self.feedata)
+          );
+          document.attachEvent(
+            "onWeixinJSBridgeReady",
+            self.onBridgeReady(self.feedata)
+          );
+        }
+      } else {
+        self.onBridgeReady(self.feedata);
+      }
+    },
+    onBridgeReady(data) {
+      let self = this;
+      //挂在window注意
+      window.WeixinJSBridge.invoke(
+        "getBrandWCPayRequest",
+        {
+          appId: data.appId, //公众号名称，由商户传入
+          timeStamp: data.timeStamp, //时间戳，自1970年以来的秒数
+          nonceStr: data.nonceStr, //随机串
+          package: data.package,
+          signType: data.signType, //微信签名方式：
+          paySign: data.paySign, //微信签名
+        },
+        function (res) {
+          if (res.err_msg === "get_brand_wcpay_request:ok") {
+            self.success("支付成功");
+          } else if (res.err_msg === "get_brand_wcpay_request:fail") {
+            self.error("支付失败");
+          }
+        }
+      );
+    },
   },
   mounted() {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+      this.zfbShow = false;
+    }
     // ================ 将时间格式转换成  时间戳===============
     // let date = new Date(data.created_at);
     let date = parseInt(sessionStorage.getItem("time"));
@@ -253,7 +313,7 @@ export default {
 }
 .ace_jump_search .debugformat {
   width: 353 / @vw;
-  height: 109 / @vw;
+  // height: 109 / @vw;
   margin: 45 / @vw auto 227 / @vw;
   background-color: #fff;
   border-radius: 4 / @vw;
@@ -262,7 +322,7 @@ export default {
   display: flex;
   align-items: center;
   width: 325 / @vw;
-  height: 50%;
+  height: 64 / @vw;
   margin: 0 14 / @vw;
   border-bottom: 1 / @vw solid #f8f8f8;
   position: relative;
