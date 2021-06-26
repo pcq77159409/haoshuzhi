@@ -99,7 +99,10 @@
                 class="swiper-slide"
                 v-for="(item, index) in unapid"
                 :key="index"
+                 :data-item="func_str(item)"
               >
+                <!-- @click="onclickFK(item.id, item.price, item.number)" -->
+
                 <div class="payment_box">
                   <img src="../assets/card.png" alt="" />
                   <div>
@@ -107,9 +110,7 @@
                     <p>等待付款</p>
                   </div>
                 </div>
-                <span @click="onclickFK(item.id, item.price, item.number)"
-                  >立即支付</span
-                >
+                <span>立即支付</span>
               </div>
             </div>
           </div>
@@ -200,6 +201,7 @@ export default {
   },
   methods: {
     initSwiper() {
+      let _this = this;
       setTimeout(() => {
         this.mySwiper = new Swiper(".swiper-container", {
           direction: "vertical", // 垂直切换选项
@@ -211,8 +213,23 @@ export default {
           pagination: ".swiper-pagination",
           observer: true, // 启动动态检查器(OB/观众/观看者)
           observeParents: true, // 修改swiper的父元素时，自动初始化swiper
+          onClick: function (swiper) {
+            let item = JSON.parse(
+              swiper.clickedSlide.attributes["data-item"].nodeValue
+            ); //转换为对象
+            item;
+            _this.onclickFK(item.id, item.price, item.number);
+          },
+          onSlideChangeEnd: function (swiper) {
+            //切换结束时，获取slide序号
+            _this.swiperIndex = swiper.realIndex + 1; //realIndex: 当前活动块的索引，与activeIndex不同的是，在loop模式下不会将复制的块的数量计算在内。
+          },
         });
       }, 300);
+    },
+    func_str: function (item) {
+      //将当前的item对象转换为字符串
+      return JSON.stringify(item);
     },
     onCLickadd() {
       this.$router.push("/GoAddress");
@@ -335,7 +352,7 @@ body {
 }
 .login {
   position: absolute;
-  top: 78/@vw;
+  top: 78 / @vw;
   left: 0;
   width: 80 / @vw;
   // height: 24 / @vw;
@@ -392,8 +409,8 @@ body {
   justify-content: space-evenly;
   align-items: center;
 }
-.good .id p{
-  line-height: 25/@vw;
+.good .id p {
+  line-height: 25 / @vw;
 }
 .Head_portrait {
   width: 59 / @vw*1.3;
@@ -423,7 +440,6 @@ body {
   color: #333333;
   margin: 12 / @vw 0 12 / @vw 19 / @vw;
   font-weight: 500;
-
 }
 .account ul {
   display: flex;
@@ -566,8 +582,8 @@ body {
   border: 1 / @vw solid #ff5757;
   border-radius: 8 / @vw;
   text-align: center;
-  height: 20/@vw;
-  line-height: 20/@vw;
+  height: 20 / @vw;
+  line-height: 20 / @vw;
 }
 .ordering .wait .payment_box {
   display: flex;

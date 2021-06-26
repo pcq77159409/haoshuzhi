@@ -121,8 +121,6 @@ if (ua.match(/MicroMessenger/i) == "micromessenger") {
         if (r != null) return unescape(r[2]);
         return null;
     };
-
-
     // 强制关注公众号， 获取openid
     const getCode = function() {
         if (sessionStorage.getItem("code") && sessionStorage.getItem("code") != "undefined") {
@@ -141,25 +139,29 @@ if (ua.match(/MicroMessenger/i) == "micromessenger") {
             // getOpenId(code) //把code传给后台获取用户信息
             console.log(3333, code);
             axios.get('/api/home_page/getOpenid?code=' + code).then((r) => {
-                localStorage.setItem('uuid', r.data.openid);
-                axios.post('api/user/uuidlogin', {}, {
-                    headers: {
-                        token: localStorage.getItem('token'),
-                        user_id: localStorage.getItem('user-id'),
-                        uuid: r.data.openid
-                    }
-                }).then((r) => {
-                    console.log(444, r);
-                    if (r.data.uuidstatus && r.data.uuidstatus != undefined && r.data.uuidstatus != 'undefined') {
-                        if (r.code == 200) {
-                            localStorage.setItem('user-id', r.data.id);
-                            localStorage.setItem('token', r.data.token);
-                            localStorage.setItem('uuidstatus', r.data.uuidstatus);
+                console.log(222222222222222, r);
+                if (r.data.openid && r.data.openid) {
+                    localStorage.setItem('uuid', r.data.openid);
+                    axios.post('api/user/uuidlogin', {}, {
+                        headers: {
+                            token: localStorage.getItem('token'),
+                            user_id: localStorage.getItem('user-id'),
+                            uuid: r.data.openid
                         }
-                    } else {
-                        location.reload();
-                    }
-                })
+                    }).then((r) => {
+                        console.log(444, r);
+                        if (r.code == 200) {
+                            if (r.code == 200) {
+                                localStorage.setItem('user-id', r.data.id);
+                                localStorage.setItem('token', r.data.token);
+                                localStorage.setItem('uuidstatus', r.data.uuidstatus);
+                            }
+                        }
+                    })
+                } else {
+                    // location.reload();
+                }
+
             });
             return false;
         }

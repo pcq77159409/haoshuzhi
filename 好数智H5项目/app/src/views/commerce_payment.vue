@@ -86,7 +86,6 @@ export default {
           } else if (number == 2) {
             window.location.href = r.data;
           } else if (number == 4) {
-            console.log(r);
             this.feedata = r.data.data;
             this.payment();
           }
