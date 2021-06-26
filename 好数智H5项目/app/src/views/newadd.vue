@@ -25,7 +25,10 @@
           <!-- <select id="province" name="province" required></select>
           <select id="city" name="city" required></select>
           <select id="area" name="area" required></select> -->
-          <el-select v-model="prov" style="width: 44.5333vw; margin-right: 6.666vw">
+          <el-select
+            v-model="prov"
+            style="width: 44.5333vw; margin-right: 6.666vw"
+          >
             <el-option
               v-for="(option, index) in arr"
               :value="option.name"
@@ -37,7 +40,10 @@
         </li>
         <li>
           <p>所在城市</p>
-          <el-select v-model="city" style="width: 44.5333vw; margin-right: 6.666vw">
+          <el-select
+            v-model="city"
+            style="width: 44.5333vw; margin-right: 6.666vw"
+          >
             <el-option
               v-for="(option, index) in cityArr"
               :value="option.name"
@@ -49,7 +55,11 @@
         </li>
         <li>
           <p>所在区域</p>
-          <el-select v-model="district" v-if="district" style="width: 44.5333vw">
+          <el-select
+            v-model="district"
+            v-if="district"
+            style="width: 44.5333vw"
+          >
             <el-option
               v-for="(option, index) in districtArr"
               :value="option.name"
@@ -96,6 +106,10 @@ export default {
       district: "区域",
       cityArr: [],
       districtArr: [],
+      numid: 0,
+      cnum: "",
+      dnum: "",
+      index: 0,
     };
   },
 
@@ -105,11 +119,19 @@ export default {
   },
   watch: {
     prov: function () {
+      console.log(123);
       this.updateCity();
       this.updateDistrict();
     },
     city: function () {
+      console.log(456);
       this.updateDistrict();
+      if (this.$route.query.id) {
+        this.index++;
+        if (this.index >= 2) {
+          this.numid = 1;
+        }
+      }
     },
   },
   methods: {
@@ -123,7 +145,12 @@ export default {
           }
         }
       }
-      this.city = this.cityArr[1].name;
+      console.log(this.numid);
+      if (this.numid != 0) {
+        this.city = this.cityArr[1].name;
+      } else {
+        this.city = this.cnum;
+      }
     },
     updateDistrict: function () {
       for (var i in this.cityArr) {
@@ -138,7 +165,11 @@ export default {
         this.districtArr.length > 0 &&
         this.districtArr[1].name
       ) {
+        if (this.numid != 0) {
         this.district = this.districtArr[1].name;
+        } else {
+          this.district = this.dnum;
+        }
       } else {
         this.district = "";
       }
@@ -154,7 +185,7 @@ export default {
         //编辑
         this.$post("/api/address/edit", {
           id: this.$route.query.id,
-          user_id: localStorage.getItem('user-id'),
+          user_id: localStorage.getItem("user-id"),
           mobile: this.way,
           name: this.username,
           province: this.prov,
@@ -172,7 +203,7 @@ export default {
       } else {
         //新增
         this.$post("/api/address/create", {
-          user_id: localStorage.getItem('user-id'),
+          user_id: localStorage.getItem("user-id"),
           mobile: this.way,
           name: this.username,
           province: this.prov,
@@ -191,10 +222,9 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.query.id);
     if (this.$route.query.id) {
       this.$get("/api/address/info", {
-        user_id: localStorage.getItem('user-id'),
+        user_id: localStorage.getItem("user-id"),
         id: this.$route.query.id,
       }).then((r) => {
         console.log(r);
@@ -202,6 +232,10 @@ export default {
           this.username = r.data.name;
           this.way = r.data.mobile;
           this.detailed = r.data.address;
+          this.prov = r.data.province;
+          this.cnum = r.data.city;
+          this.dnum = r.data.area;
+          console.log(this.dis);
           if (r.data.is_default == 1) {
             this.value = true;
           } else {
@@ -211,14 +245,20 @@ export default {
       });
     }
   },
+  created() {
+    if (!this.$route.query.id) {
+      this.numid = 1;
+    }
+    console.log(this.numid);
+  },
 };
 </script>
 
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 
-.new_add  /deep/ .el-select-dropdown__item{
-  padding: 0 20/@vw;
+.new_add /deep/ .el-select-dropdown__item {
+  padding: 0 20 / @vw;
 }
 .new_add {
   width: 100%;
@@ -228,7 +268,7 @@ export default {
 }
 .new_add .jumplabel {
   width: 100%;
-  height: 58/@vw;
+  height: 58 / @vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -238,22 +278,22 @@ export default {
   z-index: 2;
 }
 .new_add .jumplabel img {
-  width: 10/@vw;
-  height: 16/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
+  left: 15 / @vw;
   pointer-events: auto;
 }
 .new_add .jumplabel h4 {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .new_add .huo {
-  width: 345/@vw;
-  height: 315/@vw;
-  margin: 80/@vw auto 0;
+  width: 345 / @vw;
+  height: 315 / @vw;
+  margin: 80 / @vw auto 0;
   background-color: #fff;
 }
 .new_add .huo ul {
@@ -261,40 +301,40 @@ export default {
   height: 100%;
 }
 .new_add .huo ul li {
-  width: 325/@vw;
-  height: 44/@vw;
-  border-bottom: 1/@vw solid #eeeeee;
+  width: 325 / @vw;
+  height: 44 / @vw;
+  border-bottom: 1 / @vw solid #eeeeee;
   display: flex;
   align-items: center;
   margin: 0 auto;
 }
 .new_add .huo ul li input {
-  width: 246/@vw;
+  width: 246 / @vw;
   color: #999;
   background-color: transparent;
 }
 .new_add .huo ul li p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: rgb(70, 63, 63);
-  margin-right: 30/@vw;
+  margin-right: 30 / @vw;
   font-weight: 600;
 }
 .new_add .huo ul li:first-child p {
-  margin-right: 40/@vw;
+  margin-right: 40 / @vw;
 }
 .new_add .huo ul li:last-child {
   justify-content: space-between;
   border: none;
 }
 .new_add .save {
-  width: 345/@vw;
-  height: 44/@vw;
-  margin: 90/@vw auto;
+  width: 345 / @vw;
+  height: 44 / @vw;
+  margin: 90 / @vw auto;
   background-color: #ea5656;
-  border-radius: 25/@vw;
+  border-radius: 25 / @vw;
   color: #fff;
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
   text-align: center;
-  line-height: 44/@vw;
+  line-height: 44 / @vw;
 }
 </style>
