@@ -582,7 +582,7 @@ li {
 }
 .box ul li {
   line-height: 40 / @vw;
-  font-size: 15 / @vw;
+  font-size: 12 / @vw;
   margin: auto 15 / @vw;
 }
 .phone {
@@ -923,7 +923,7 @@ li {
 }
 .endcsname .mercifully .parameter h3 {
   color: #333333;
-  font-size: 15 / @vw;
+  font-size: 14 / @vw;
   font-weight: 500;
   margin: 15 / @vw 0 0 12 / @vw;
 }

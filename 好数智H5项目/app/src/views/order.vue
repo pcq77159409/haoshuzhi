@@ -394,6 +394,7 @@ html {
   display: flex;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 .jian img {
   height: 16/@vw;

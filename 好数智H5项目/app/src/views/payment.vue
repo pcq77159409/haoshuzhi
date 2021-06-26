@@ -56,6 +56,7 @@ export default {
   background-color: #ea5656;
   display: flex;
   align-items: center;
+  position: relative;
 //   position: absolute;
 //   left: 0;
 //   top: 0;

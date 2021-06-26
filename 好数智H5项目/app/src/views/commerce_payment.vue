@@ -206,6 +206,7 @@ export default {
   background-color: #ea5656;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .ace_jump_search .jumplabel img {
   width: 10 / @vw;

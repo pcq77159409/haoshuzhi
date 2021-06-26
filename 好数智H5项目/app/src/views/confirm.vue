@@ -356,6 +356,7 @@ export default {
   background-color: #ea5656;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .comfirm_box .jumplabel img {
   width: 10 / @vw;

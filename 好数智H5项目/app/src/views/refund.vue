@@ -148,6 +148,7 @@ export default {
   background-color: #fe5858;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .back {
   width: 10/@vw;

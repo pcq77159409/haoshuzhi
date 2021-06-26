@@ -144,6 +144,7 @@ export default {
   background-color: #ea5656;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .Integral_subsidiary_box .jumplabel img {
   width: 10/@vw;
