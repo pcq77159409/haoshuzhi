@@ -9,7 +9,7 @@
       />
       <p class="sales">退款/售后</p>
     </div>
-    <div class="orders">
+    <!-- <div class="orders">
       <div class="times">
         <p class="shoping">
           <img
@@ -161,7 +161,7 @@
           </span>
         </el-dialog>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

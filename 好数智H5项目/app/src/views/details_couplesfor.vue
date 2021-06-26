@@ -31,10 +31,14 @@
         </div>
       </div>
     </div>
-    <div class="phone" @click="onClickBack">
+    <div class="phone">
       <p>
         号码套餐
-        <span>{{ pcq.package_name }}</span>
+        <em v-if="copules[1][0].numberpackage.length != 0">
+          <span v-if="copules[1][0].numberpackage[0].storepackage != null">
+            <span  @click="onClickBack">{{ tjb.package_name }}</span>
+          </span>
+        </em>
       </p>
       <img src="../assets/形状 20@2x.png" alt="" />
     </div>
@@ -95,10 +99,14 @@
         </div>
       </div>
     </div>
-    <div class="phone" @click="onClickBack">
+    <div class="phone" >
       <p>
         号码套餐
-        <span>{{ tjb.package_name }}</span>
+        <em v-if="copules[0][0].numberpackage.length != 0">
+          <span v-if="copules[0][0].numberpackage[0].storepackage != null">
+            <span @click="onClickBack">{{ tjb.package_name }}</span>
+          </span>
+        </em>
       </p>
       <img src="../assets/形状 20@2x.png" alt="" />
     </div>
@@ -503,6 +511,15 @@ export default {
     },
     onClickBack() {
       if (this.back == false) {
+        this.$get("/api/number/getNumberInfo", this.$route.query).then(
+          (val) => {
+            console.log(val);
+            this.copules = val.data;
+            this.price =
+              parseInt(this.copules[0][0].sale_price) +
+              parseInt(this.copules[1][0].sale_price);
+          }
+        );
         this.back = true;
       } else {
         this.back = false;
@@ -589,9 +606,9 @@ export default {
         });
       });
     },
-    onClickSure(){
-      window.location.href='tel:18817744333'
-    }
+    onClickSure() {
+      window.location.href = "tel:18817744333";
+    },
   },
   created() {
     //获取收货地址
@@ -617,16 +634,7 @@ export default {
       }
     });
   },
-  mounted() {
-    console.log(this.price);
-    this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
-      console.log(val);
-      this.copules = val.data;
-      this.price =
-        parseInt(this.copules[0][0].sale_price) +
-        parseInt(this.copules[1][0].sale_price);
-    });
-  },
+  // mounted() {},
   filters: {
     operators(val) {
       let str = "";
@@ -1080,7 +1088,7 @@ li {
 .layered .art_publ_time p {
   font-size: 12 / @vw;
   color: #333333;
-  margin: 6 / @vw 0 10/@vw 0;
+  margin: 6 / @vw 0 10 / @vw 0;
 }
 .layered .art_publ_time .measurements {
   width: 100%;

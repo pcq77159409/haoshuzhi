@@ -296,6 +296,11 @@ const routes = [{
         name: 'personmsg',
         component: () =>
             import ('../views/personmsg.vue')
+    }, {
+        path: '/authentication',
+        name: 'authentication',
+        component: () =>
+            import ('../views/authentication.vue')
     }
 ]
 
