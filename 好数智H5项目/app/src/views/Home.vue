@@ -6,7 +6,7 @@
           <div class="sbht_center">
             <img src="../assets/搜索@2x.png" alt="" class="search" />
             <input
-            v-bind:autofocus="!searchBtnFlag"
+              v-bind:autofocus="!searchBtnFlag"
               type="tel"
               placeholder="请输入您要搜索的内容"
               @keyup.enter="onKeyupSearch"
@@ -28,7 +28,9 @@
           </ul>
         </div>
         <div class="footprint">
-          <h3>搜索足迹 <img src="../assets/222.png" alt="" @click="onclickDel" /></h3>
+          <h3>
+            搜索足迹 <img src="../assets/222.png" alt="" @click="onclickDel" />
+          </h3>
           <ul>
             <li
               v-for="(item, index) in footprintData"
@@ -48,9 +50,7 @@
       </div>
       <!-- <p class="haoshu">好数智</p> -->
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
-      <i
-        @click="onclickSearchShow"
-        ref="search1">请输入您要搜索的内容</i>
+      <i @click="onclickSearchShow" ref="search1">请输入您要搜索的内容</i>
       <img src="../assets/搜索@2x.png" alt="" class="search" />
     </div>
     <div class="heads">
@@ -128,7 +128,7 @@
       >
         <div class="shit">
           <img src="../assets/te.png" alt="" />
-          <div class="number" v-html="value.red_number"></div>
+          <div class="number" v-html="value.number_tag"></div>
           <div class="money">
             <p>{{ value.location }}</p>
             <p class="dolor">佣金￥{{ value.returned_commission }}</p>
@@ -205,14 +205,14 @@
       >
         <div class="shit">
           <img src="../assets/te.png" alt="" />
-          <div class="number">{{ item.number }}</div>
+          <div class="number" v-html="item.number_tag"></div>
           <div class="money">
-            <p>{{ item.from }}</p>
-            <!-- <p class="dolor">佣金￥200</p> -->
+            <p>{{ item.location }}</p>
+            <p class="dolor">佣金￥{{ item.returned_commission }}</p>
           </div>
           <div class="money">
-            <!-- <p class="han">含话费￥260</p> -->
-            <p class="twietion">￥{{ item.sale_price }}</p>
+            <p class="han">含话费￥260</p>
+            <p class="twietion">￥{{ item.initial_charge }}</p>
           </div>
         </div>
       </router-link>
@@ -232,7 +232,7 @@ export default {
       dataTj: [],
       searchShow: false,
       footprintData: [],
-      searchBtnFlag:false,
+      searchBtnFlag: false,
     };
   },
   methods: {
@@ -255,30 +255,32 @@ export default {
       this.searchShow = true;
       this.searchBtnFlag = !this.searchBtnFlag;
       this.$nextTick(function () {
-			document.getElementById("inputVal").focus();
-      })
+        document.getElementById("inputVal").focus();
+      });
     },
-    onclickDel(){
-      this.footprintData=[];
+    onclickDel() {
+      this.footprintData = [];
       localStorage.setItem("footprintData", JSON.stringify(this.footprintData));
-    }
+    },
   },
   created() {
     if (localStorage.getItem("footprintData")) {
       this.footprintData = JSON.parse(localStorage.getItem("footprintData"));
     }
     this.$axios
-      .post("/api/home_page/getNumbers", { operator_id: 1, from: "上海" })
+      .post("/api/home_page/getNumList", { recommend: 2, from: "上海" })
       .then((val) => {
-        console.log(val.data);
-        this.dataList = val.data;
+        if (val.code == 200) {
+          this.dataList = val.data.data;
+        }
       });
-    this.$get("/api/number/getHotNumber").then((val) => {
-      console.log(val);
-      if (val.code == 200) {
-        this.dataTj = val.data;
-      }
-    });
+    this.$axios
+      .post("/api/home_page/getNumList", { recommend: 1, from: "上海" })
+      .then((val) => {
+        if (val.code == 200) {
+          this.dataTj = val.data.data;
+        }
+      });
   },
 };
 </script>
@@ -333,16 +335,16 @@ a {
   overflow: hidden;
   box-sizing: border-box;
 }
-.sbht_center span{
+.sbht_center span {
   position: absolute;
-  right: 10/@vw;
-  top: -1/@vw;
+  right: 10 / @vw;
+  top: -1 / @vw;
   display: inline-block;
-  line-height: 28/@vw;
-  font-size: 13/@vw;
-  color: #FE5858;
+  line-height: 28 / @vw;
+  font-size: 13 / @vw;
+  color: #fe5858;
   text-align: center;
-  // box-shadow: -5px 0px 5px 5px #eee inset; 
+  // box-shadow: -5px 0px 5px 5px #eee inset;
   // background-color: #f6f6f6;
   box-sizing: border-box;
 }
@@ -350,7 +352,7 @@ a {
   width: 100%;
   height: 100%;
   text-indent: 40 / @vw;
-  background:#f6f6f6 url('../assets/t_1.png');
+  background: #f6f6f6 url("../assets/t_1.png");
   background-size: 100%;
   // background-color: rgb(239, 239, 239);
 }
@@ -371,16 +373,16 @@ a {
   color: #333333;
   line-height: 60 / @vw / 2;
 }
-.searchBox h3 img{
-  width: 12/@vw *1.3;
-  height: 12/@vw *1.3;
-  margin-left: 260/@vw;
+.searchBox h3 img {
+  width: 12 / @vw * 1.3;
+  height: 12 / @vw * 1.3;
+  margin-left: 260 / @vw;
 }
 .searchBox li {
   padding: 0 10 / @vw;
   margin-right: 20 / @vw;
   margin-bottom: 15 / @vw;
-  font-size: 14 / @vw ;
+  font-size: 14 / @vw;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
@@ -447,7 +449,7 @@ a {
   display: inline-block;
   width: 227 / @vw;
   // height: 28 / @vw;
-  line-height: 26/@vw;
+  line-height: 26 / @vw;
   font-size: 12 / @vw;
   color: #999999;
   position: absolute;
@@ -649,7 +651,7 @@ a {
   justify-content: space-around;
   align-items: center;
   border: 1 / @vw solid #e5e5e5;
-  margin-bottom: 2/@vw;
+  margin-bottom: 2 / @vw;
 }
 .like .shun li img {
   width: 38 / @vw;

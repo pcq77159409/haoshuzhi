@@ -112,7 +112,7 @@
     <div class="select_change">
       <ul>
         <li @click="onClickShow(0)">
-          <p @click="onClickDn">归属地</p>
+          <p @click="onClickDn" ref="gsd">归属地</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
           <img
             src="../assets/red_triangle.png"
@@ -122,7 +122,7 @@
           />
         </li>
         <li @click="onClickShow(1)">
-          <p @click="onClickOperating">运营商</p>
+          <p @click="onClickOperating" ref="yys">运营商</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 1" />
           <img
             src="../assets/red_triangle.png"
@@ -132,7 +132,7 @@
           />
         </li>
         <li @click="onClickShow(2)">
-          <p @click="onClickRegular">规律</p>
+          <p @click="onClickRegular" ref="rule">规律</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 2" />
           <img
             src="../assets/red_triangle.png"
@@ -148,36 +148,36 @@
     <!--手机号 开始-->
     <div class="start_pinoes">
       <!-- 归属地 开始-->
-      <div class="black"  v-show="flag">
-         <div class="Belonging">
-        <ul class="pro">
-          <li
-            v-for="(item, index) in proList"
-            :key="index"
-            :class="{ current: num == index }"
-            @click="onClickHide(index, item)"
-          >
-            <img src="../assets/right.png" alt="" v-show="num == index" />
-            <p>{{ item }}</p>
-          </li>
-        </ul>
-        <ul class="city">
-          <li
-            v-for="(item, index) in cityList[nums]"
-            :key="index"
-            :class="{ currents: wrap == item }"
-            @click="onClickHided(item)"
-          >
-            <img src="../assets/right.png" alt="" v-show="wrap == item" />
-            <p>{{ item }}</p>
-          </li>
-        </ul>
-      </div>
+      <div class="black" v-show="active == 0">
+        <div class="Belonging">
+          <ul class="pro">
+            <li
+              v-for="(item, index) in proList"
+              :key="index"
+              :class="{ current: num == index }"
+              @click="onClickHide(index, item)"
+            >
+              <img src="../assets/right.png" alt="" v-show="num == index" />
+              <p>{{ item }}</p>
+            </li>
+          </ul>
+          <ul class="city">
+            <li
+              v-for="(item, index) in cityList[nums]"
+              :key="index"
+              :class="{ currents: wrap == item }"
+              @click="onClickHided(item)"
+            >
+              <img src="../assets/right.png" alt="" v-show="wrap == item" />
+              <p>{{ item }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
       <!-- 归属地 结束-->
 
       <!-- 运营商 开始-->
-      <div class="opeateing" v-show="cut == true">
+      <div class="opeateing" v-show="active == 1">
         <ul>
           <li
             v-for="(item, index) in chinese"
@@ -196,31 +196,15 @@
       </div>
       <!-- 运营商 结束-->
       <!-- 规律 开始-->
-      <div class="regular" v-show="regulars == true">
+      <div class="regular" v-show="active == 2">
         <ul>
-          <li>
-            <img src="../assets/right.png" alt="" />
-            <p>不限</p>
+          <li @click="onclickRule(2)">
+            <img src="../assets/right.png" alt="" v-show="ruleDui == 2" />
+            <p>尾号不同</p>
           </li>
-          <li>
-            <img src="../assets/right.png" alt="" />
-            <p>不限</p>
-          </li>
-          <li>
-            <img src="../assets/right.png" alt="" />
-            <p>不限</p>
-          </li>
-          <li>
-            <img src="../assets/right.png" alt="" />
-            <p>不限</p>
-          </li>
-          <li>
-            <img src="../assets/right.png" alt="" />
-            <p>不限</p>
-          </li>
-          <li>
-            <img src="../assets/right.png" alt="" />
-            <p>不限</p>
+          <li @click="onclickRule(1)">
+            <img src="../assets/right.png" alt="" v-show="ruleDui == 1" />
+            <p>号段不同</p>
           </li>
         </ul>
       </div>
@@ -265,6 +249,7 @@ export default {
     return {
       active: null,
       proList: [],
+      ruleDui: 1,
       cityList: [
         {
           src: require("../assets/right.png"),
@@ -315,6 +300,7 @@ export default {
   methods: {
     onclickOpeateing(index) {
       let id = 0;
+      this.$refs.yys.innerText = index;
       if (index == "中国移动") {
         id = 1;
       } else if (index == "中国联通") {
@@ -328,19 +314,18 @@ export default {
       this.opList = index;
       this.active = -1;
       this.parameter.operator = id;
-      console.log(index);
       this.onclickQuery();
     },
     onClickGo() {
-      this.$router.go(-1);
+      this.$router.push("/commons/home/m");
     },
     onClickShow(num) {
       if (this.active == num) {
         this.active = null;
-        this.$refs.bugun.style='overflow-y:auto';
+        this.$refs.bugun.style = "overflow-y:auto";
       } else {
         this.active = num;
-        this.$refs.bugun.style='overflow-y:hidden';
+        this.$refs.bugun.style = "overflow-y:hidden";
       }
     },
     onClickDn() {
@@ -357,10 +342,25 @@ export default {
       this.wrap = "";
     },
     onClickHided(val) {
+      this.$refs.gsd.innerText = val;
       this.wrap = val;
       this.flag = false;
       this.active = -1;
       this.parameter.from = val;
+      localStorage.setItem("from", val);
+      this.onclickQuery();
+    },
+    onclickRule(val) {
+      if (val == 1) {
+        this.$refs.rule.innerText = "号段不同";
+      } else if (val == 2) {
+        this.$refs.rule.innerText = "尾数不同";
+      }
+      this.ruleDui = val;
+      this.active = null;
+      console.log(val);
+      // this.require = false;
+      this.parameter.type = val;
       this.onclickQuery();
     },
     onClickOperating() {
@@ -396,6 +396,20 @@ export default {
           query: this.parameter,
         });
         console.log(this.$route.query);
+        if (localStorage.getItem("from")) {
+          this.$route.query.from = localStorage.getItem("from");
+        } else {
+          this.$route.query.from = "上海市";
+        }
+        if (!this.$route.query.limit) {
+          this.$route.query.limit = 20;
+        }
+        if (!this.$route.query.page) {
+          this.$route.query.page = 1;
+        }
+        if (!this.$route.query.type) {
+          this.$route.query.type = 1;
+        }
         this.$axios
           .post("/api/home_page/loveNumber", this.$route.query)
           .then((val) => {
@@ -415,6 +429,22 @@ export default {
     },
   },
   created() {
+    if (localStorage.getItem("from")) {
+      this.$route.query.from = localStorage.getItem("from");
+    } else {
+      this.$route.query.from = "上海市";
+    }
+    if (!this.$route.query.limit) {
+      this.$route.query.limit = 20;
+    }
+    if (!this.$route.query.page) {
+      this.$route.query.page = 1;
+    }
+    if (!this.$route.query.type) {
+      this.$route.query.type = 1;
+    } else {
+      this.ruleDui = this.$route.query.type;
+    }
     this.$axios
       .post("/api/home_page/loveNumber", this.$route.query)
       .then((val) => {
@@ -666,7 +696,7 @@ body {
   position: absolute;
   right: 0;
   top: 0;
- width: 25 / @vw;
+  width: 25 / @vw;
   height: 16 / @vw;
 }
 .Mobile_phone .class_box .line {
@@ -832,7 +862,7 @@ body {
   left: 15 / @vw;
   width: 10 / @vw*1.3;
   height: 7 / @vw*1.3;
-  display: none;
+  // display: none;
 }
 .Mobile_phone .regular ul li p {
   color: #333333;

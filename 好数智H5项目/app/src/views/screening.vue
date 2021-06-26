@@ -125,7 +125,7 @@
       <div class="select_change">
         <ul>
           <li @click="onClickShow(0)">
-            <p @click="onClickDn">归属地</p>
+            <p @click="onClickDn" ref="gsd">归属地</p>
             <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
             <img
               src="../assets/red_triangle.png"
@@ -135,7 +135,7 @@
             />
           </li>
           <li @click="onClickShow(1)">
-            <p @click="onClickOperating">运营商</p>
+            <p @click="onClickOperating" ref="yys">运营商</p>
             <img src="../assets/triangle.png" alt="" v-show="active !== 1" />
             <img
               src="../assets/red_triangle.png"
@@ -145,7 +145,7 @@
             />
           </li>
           <li @click="onClickShow(2)">
-            <p @click="onClickRegular">规律</p>
+            <p @click="onClickRegular" ref="rule">规律</p>
             <img src="../assets/triangle.png" alt="" v-show="active !== 2" />
             <img
               src="../assets/red_triangle.png"
@@ -214,19 +214,19 @@
       <!-- 运营商 结束-->
 
       <!-- 规律 开始-->
-        <div class="regular" v-show="active == 2">
-          <ul>
-            <li
-              v-for="(item, index) in rule"
-              :key="index"
-              :class="{ currents: regList == index }"
-              @click="onclickRegList(index, item.id)"
-            >
-              <img src="../assets/right.png" alt="" v-show="regList == index" />
-              <p>{{ item.name }}</p>
-            </li>
-          </ul>
-        </div>
+      <div class="regular" v-show="active == 2">
+        <ul>
+          <li
+            v-for="(item, index) in rule"
+            :key="index"
+            :class="{ currents: regList == index }"
+            @click="onclickRegList(index, item.id, item.name)"
+          >
+            <img src="../assets/right.png" alt="" v-show="regList == index" />
+            <p>{{ item.name }}</p>
+          </li>
+        </ul>
+      </div>
       <!-- 规律 结束-->
 
       <!--暂无搜索内容 开始-->
@@ -728,7 +728,9 @@ export default {
       this.wrap = val;
       this.flag = false;
       this.active = -1;
+      this.$refs.gsd.innerText = val;
       this.parameter.from = val;
+      localStorage.setItem("from", val);
       this.onclickQuery();
     },
     onClickOperating() {
@@ -887,7 +889,8 @@ export default {
 
       this.searchFilter.type = 1;
       this.parameter = this.searchFilter;
-
+      this.parameter.from = localStorage.getItem("from");
+      console.log(11111111111);
       this.onclickQuery();
     },
     onTab(index) {
@@ -920,6 +923,7 @@ export default {
       // this.active=-1;
     },
     onSearch() {
+      this.onclickResetInput();
       this.parameter = {};
       if (this.typed) {
         this.parameter.type = 1;
@@ -927,6 +931,7 @@ export default {
         this.parameter.type = 0;
       }
       this.parameter.search = this.searchInput;
+      this.parameter.from = localStorage.getItem("from");
       this.onclickQuery();
     },
     onFen(id) {
@@ -937,6 +942,7 @@ export default {
         });
     },
     onclickOpeateing(index) {
+      this.$refs.yys.innerText = index;
       let id = 0;
       if (index == "中国移动") {
         id = 1;
@@ -953,8 +959,9 @@ export default {
       this.parameter.operator_id = id;
       this.onclickQuery();
     },
-    onclickRegList(index, id) {
-      this.parameter = {};
+    onclickRegList(index, id, name) {
+      this.$refs.rule.innerText = name;
+      // this.parameter = {};
       this.regList = index;
       this.regulars = false;
       this.active = -1;
@@ -984,6 +991,7 @@ export default {
     onclickAccurateSearch() {
       var number = document.querySelectorAll(".number");
       let str = "";
+      this.searchInput = "";
       number.forEach((val) => {
         if (val.value == "") {
           str += "_";
@@ -993,6 +1001,7 @@ export default {
       });
       this.parameter = {};
       this.parameter.accurate = str;
+      this.parameter.from = localStorage.getItem("from");
       this.onclickQuery();
     },
     onclickResetInput() {
@@ -1017,7 +1026,11 @@ export default {
           flag = true;
         }
       }
-
+      // if (localStorage.getItem("from")) {
+      //   this.parameter.from = localStorage.getItem("from");
+      // } else {
+      //   this.parameter.from = "上海";
+      // }
       if (flag) {
         console.log(this.parameter);
         this.$router.push({
@@ -1036,6 +1049,12 @@ export default {
     },
   },
   mounted() {
+    if (localStorage.getItem("from")) {
+      this.$route.query.from = localStorage.getItem("from");
+    } else {
+      this.$route.query.from = "上海市";
+    }
+    console.log(this.$route.query);
     this.$axios
       .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
@@ -1447,6 +1466,7 @@ a {
 .Mobile_phone .opeateing {
   width: 100%;
   height: 100%;
+  min-height: 360 / @vw;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;

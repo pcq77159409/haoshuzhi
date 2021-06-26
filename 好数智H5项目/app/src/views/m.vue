@@ -3,7 +3,7 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="item in bannerList" :key="item.id">
-            <img :src="item.image" alt="">
+          <img :src="item.image" alt="" />
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -26,7 +26,7 @@ export default {
       this.initSwiper();
     });
 
-    this.$axios.get("/api/home_page/getBanner").then((r) => {
+    this.$axios.get("/api/home_page/getBanner", { type: 2 }).then((r) => {
       console.log(r);
       this.bannerList = r.data;
     });
@@ -56,16 +56,16 @@ export default {
 .swiper-container {
   width: 100%;
   height: 100%;
-  border-radius: 6/@vw;
+  border-radius: 6 / @vw;
 }
-.m-box img{
+.m-box img {
   width: 100%;
   height: 100%;
-  border-radius: 6/@vw;
+  border-radius: 6 / @vw;
 }
 .swiper-slide {
   text-align: center;
-  font-size: 18/@vw;
+  font-size: 18 / @vw;
   background: #fff;
 
   /* Center slide text vertically */
@@ -85,18 +85,18 @@ export default {
 .swiper-container {
   --swiper-theme-color: #ff6600; /* 设置Swiper风格 */
   --swiper-navigation-color: #00ff33; /* 单独设置按钮颜色 */
-  --swiper-navigation-size: 30/@vw; /* 设置按钮大小 */
+  --swiper-navigation-size: 30 / @vw; /* 设置按钮大小 */
 }
-.m-box /deep/ .swiper-pagination .swiper-pagination-bullet-active{
+.m-box /deep/ .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #fff !important;
 }
-.m-box /deep/ .swiper-pagination-bullet{
+.m-box /deep/ .swiper-pagination-bullet {
   background: transparent;
-  border: 1/@vw solid #fff;
+  border: 1 / @vw solid #fff;
   box-sizing: border-box;
   opacity: 1;
 }
 .mybox {
-  margin: -20/@vw 0;
+  margin: -20 / @vw 0;
 }
 </style>
