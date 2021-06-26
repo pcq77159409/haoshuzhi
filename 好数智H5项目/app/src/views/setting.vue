@@ -34,6 +34,10 @@
       </ul>
     </div>
     <i>* 显示佣金默认关闭 ： 实力买家可开启佣金显示</i>
+    <div class="person_massage" @click="$router.push('/personmsg')">
+      <p>个人信息</p>
+      <img src="../assets/跳转箭头@2x.png" alt="">
+    </div>
     <div class="show">
       <ul>
         <li>
@@ -150,9 +154,28 @@ export default {
 }
 .set_box i {
   display: inline-block;
-  margin: 10/@vw 0 20/@vw 15/@vw;
+  margin: 10/@vw 0 4/@vw 15/@vw;
   font-size: 12/@vw;
   color: #999999;
+}
+.set_box .person_massage{
+  width: 100%;
+  height: 54/@vw;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15/@vw;
+}
+.set_box .person_massage p {
+  font-size: 14/@vw;
+  color: #333333;
+  margin-left: 15/@vw;
+}
+.set_box .person_massage img {
+  width: 8/@vw;
+  height: 14/@vw;
+  margin-right: 15/@vw;
 }
 .set_box .clear {
   width: 100%;
