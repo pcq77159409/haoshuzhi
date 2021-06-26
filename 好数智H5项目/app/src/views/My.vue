@@ -562,10 +562,12 @@ body {
   color: #ff5757;
   font-size: 12 / @vw;
   width: 72 / @vw;
-  margin: 46 / @vw 6 / @vw 6 / @vw 0;
+  margin: 40 / @vw 6 / @vw 6 / @vw 0;
   border: 1 / @vw solid #ff5757;
   border-radius: 8 / @vw;
   text-align: center;
+  height: 20/@vw;
+  line-height: 20/@vw;
 }
 .ordering .wait .payment_box {
   display: flex;

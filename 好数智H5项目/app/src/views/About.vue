@@ -189,7 +189,7 @@ body {
   width: 100%;
   height: 25/@vw*1.3;
   color: #666666;
-  font-size: 12/@vw*1.3;
+  font-size: 14/@vw;
   line-height: 25/@vw*1.3;
 }
 .roughly {
@@ -229,7 +229,7 @@ body {
   text-align: center;
   line-height: 26/@vw;
   margin-bottom: 20/@vw;
-  font-size: 11/@vw*1.3;
+  font-size: 12/@vw;
   margin-left: 4%;
   box-sizing: border-box;
 }
@@ -249,7 +249,7 @@ body {
   text-align: center;
   line-height: 28/@vw;
   margin-bottom: 15/@vw*1.3;
-  font-size: 11/@vw*1.3;
+  font-size: 12/@vw;
   margin-left: 4%;
   box-sizing: border-box;
 }

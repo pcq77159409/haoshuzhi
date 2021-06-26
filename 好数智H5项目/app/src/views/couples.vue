@@ -640,6 +640,9 @@ body {
   border-radius: 20 / @vw;
   font-size: 10 / @vw*1.3;
 }
+.Mobile_phone .accurate .reset li:hover{
+  background-color: skyblue !important;
+}
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;
   color: #666666;

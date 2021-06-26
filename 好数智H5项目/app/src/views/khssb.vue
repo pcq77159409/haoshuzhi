@@ -4,16 +4,15 @@
       <img src="../assets/left.png" alt="" @click="onClickTo"/>
       <h4>套餐详情</h4>
     </div>
-    <img src="../assets/taos.png" alt="" class="taos" />
+    <img :src="taco.head_image" alt="" class="taos" />
     <div class="ninteen">
       <div class="movement">
-        <h6>移动小魔卡</h6>
+        <h6>{{taco.package_name}}</h6>
         <div class="tea">
-          <p>上海</p>
-          <span>移动</span>
+          <p>{{taco.from}}</p>
         </div>
       </div>
-      <p class="voice">套餐特征: 流量+语音畅享套餐</p>
+      <p class="voice">套餐特征: {{taco.package_describe}}</p>
       <div class="champion">
         <p>销量:808</p>
         <span>￥90.00</span>
@@ -21,12 +20,12 @@
     </div>
     <div class="gchoose">
       <p>已选资费</p>
-      <span>18元套餐</span>
+      <span>{{taco.month_charge}}元套餐</span>
       <img src="../assets/timeRight.png" alt="" />
     </div>
     <div class="havepackage">
       <p>套餐详情</p>
-      <img src="../assets/图层 2@2x.png" alt="" />
+      <img :src="taco.main_image" alt="" />
     </div>
     <div class="lofoot">
       <div class="sidebar-home">
@@ -45,6 +44,7 @@
 export default {
   data() {
     return {
+      taco:[]
     };
   },
   methods: {
@@ -52,6 +52,12 @@ export default {
       this.$router.go(-1)
     },
   },
+  created(){
+    this.$get('/api/order/packageDetail',this.$route.query).then(val=>{
+      this.taco=val.data
+      console.log(this.taco);
+    })
+  }
 };
 </script>
 

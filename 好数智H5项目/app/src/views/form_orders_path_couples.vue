@@ -469,6 +469,8 @@ export default {
   height: 100%;
   background-color: #f8f8f8;
   overflow: auto;
+  padding-top: 54/@vw;
+  box-sizing: border-box;
 }
 .fileImg {
   position: absolute;
@@ -521,7 +523,7 @@ export default {
 .drawBoundingBox .gooddata {
   width: 345/@vw;
   height: 44/@vw;
-  margin: 15/@vw auto 10/@vw;
+  margin: 15/@vw auto;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -553,7 +555,7 @@ export default {
   width: 345/@vw;
   height: 83/@vw;
   background-color: #fff;
-  margin: 10/@vw auto;
+  margin: 15/@vw auto;
   border-radius: 4/@vw;
 }
 .drawBoundingBox .reali .multreal {
@@ -597,7 +599,7 @@ export default {
   width: 345/@vw;
   height: 304/@vw;
   background-color: #fff;
-  margin: 10/@vw auto;
+  margin: 15/@vw auto;
   padding: 15/@vw 0;
   border-radius: 4/@vw;
 }

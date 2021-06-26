@@ -673,7 +673,7 @@ html {
   font-size: 14 / @vw;
   text-align: center;
   line-height: 44 / @vw;
-  margin-left: 57 / @vw;
+  margin-left: 97 / @vw;
 }
 .kf {
   position: absolute;
@@ -718,44 +718,46 @@ li {
   font-size: 12 / @vw;
   margin: auto 15 / @vw;
 }
+
 .endcsname {
   width: 345 / @vw;
-  height: 68 / @vw;
+  height: 72 / @vw;
   background-color: #fff;
-  margin: 10 / @vw auto;
+  margin: 15 / @vw 15 / @vw 0 / @vw;
   display: flex;
-  border-radius: 4 / @vw;
+  align-items: center;
 }
-
 .endcsname img:first-child {
   width: 20 / @vw;
   height: 29 / @vw;
-  margin: 20 / @vw 0 0 20 / @vw;
+  margin: 0 / @vw 0 0 20 / @vw;
 }
 .endcsname img:last-child {
   width: 8 / @vw;
   height: 14 / @vw;
-  margin: 29 / @vw 0 0 10 / @vw;
+  margin: 0 / @vw 0 0 10 / @vw;
 }
 .endcsname .mercifully {
   width: 80%;
 }
 .endcsname .mercifully .parameter {
   display: flex;
+  margin-top: 6/@vw;
 }
 .endcsname .mercifully .parameter h3 {
   color: #333333;
   font-size: 14 / @vw;
   font-weight: 500;
-  margin: 15 / @vw 0 0 12 / @vw;
+  margin-left: 12 / @vw;
 }
 .endcsname .mercifully .parameter p {
   color: #666666;
   font-size: 14 / @vw;
-  margin: 17 / @vw 0 0 14 / @vw;
+  margin-left: 14 / @vw;
 }
 .endcsname .mercifully .reklameadvice {
   display: flex;
+  margin-top: 6/@vw;
 }
 .endcsname .mercifully .reklameadvice p {
   font-size: 12 / @vw;
@@ -768,7 +770,7 @@ li {
   margin-bottom: 10 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
-  margin: 10 / @vw auto;
+  margin: 15 / @vw auto;
   line-height: 44 / @vw;
   display: flex;
   align-items: center;

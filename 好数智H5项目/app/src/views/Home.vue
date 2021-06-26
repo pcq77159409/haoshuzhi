@@ -410,10 +410,11 @@ a {
   display: flex;
   font-size: 12 / @vw;
   justify-content: space-between;
+  align-items: center;
   margin: 0 10 / @vw;
 }
 .money:last-child {
-  margin-top: 3 / @vw;
+  margin-top: 6 / @vw;
 }
 .home {
   width: 100%;
@@ -618,10 +619,10 @@ a {
 .cap .shit .han {
   font-size: 12 / @vw;
   color: #dd1414;
-  margin-top: 4 / @vw;
+  // margin-top: 4 / @vw;
 }
 .cap .shit .twietion {
-  font-size: 16 / @vw;
+  font-size: 14 / @vw;
   color: #dc0101;
   margin-right: 10 / @vw;
 }

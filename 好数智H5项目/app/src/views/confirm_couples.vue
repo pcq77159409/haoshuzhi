@@ -353,43 +353,45 @@ export default {
   color: #fff;
   font-weight: 500;
 }
-.comfirm_box .endcsname {
-  width: 345/@vw;
-  height: 68/@vw;
+.endcsname {
+  width: 345 / @vw;
+  height: 72 / @vw;
   background-color: #fff;
-  margin: 10/@vw auto;
+  margin: 15 / @vw 15 / @vw 10 / @vw;
   display: flex;
-  border-radius: 4/@vw;
+  align-items: center;
 }
-.comfirm_box .endcsname img:first-child {
-  width: 20/@vw;
-  height: 29/@vw;
-  margin: 20/@vw 0 0 20/@vw;
+.endcsname img:first-child {
+  width: 20 / @vw;
+  height: 29 / @vw;
+  margin: 0 / @vw 0 0 20 / @vw;
 }
-.comfirm_box .endcsname img:last-child {
-  width: 8/@vw;
-  height: 14/@vw;
-  margin: 29/@vw 0 0 10/@vw;
+.endcsname img:last-child {
+  width: 8 / @vw;
+  height: 14 / @vw;
+  margin: 0 / @vw 0 0 10 / @vw;
 }
-.comfirm_box .endcsname .mercifully {
+.endcsname .mercifully {
   width: 80%;
 }
-.comfirm_box .endcsname .mercifully .parameter {
+.endcsname .mercifully .parameter {
   display: flex;
+  margin-top: 6/@vw;
 }
-.comfirm_box .endcsname .mercifully .parameter h3 {
+.endcsname .mercifully .parameter h3 {
   color: #333333;
-  font-size: 15/@vw;
+  font-size: 14 / @vw;
   font-weight: 500;
-  margin: 15/@vw 0 0 12/@vw;
+  margin-left: 12 / @vw;
 }
-.comfirm_box .endcsname .mercifully .parameter p {
+.endcsname .mercifully .parameter p {
   color: #666666;
-  font-size: 12/@vw;
-  margin: 17/@vw 0 0 14/@vw;
+  font-size: 14 / @vw;
+  margin-left: 14 / @vw;
 }
-.comfirm_box .endcsname .mercifully .reklameadvice {
+.endcsname .mercifully .reklameadvice {
   display: flex;
+  margin-top: 6/@vw;
 }
 .comfirm_box .endcsname .mercifully .reklameadvice p {
   font-size: 12/@vw;

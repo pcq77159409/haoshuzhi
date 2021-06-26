@@ -115,7 +115,7 @@
         </ul>
         <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
         <ul class="reset">
-          <li @click="onclickResetInput">重置</li>
+          <li @click="onclickResetInput" >重置</li>
           <li @click="onclickAccurateSearch">精准搜索</li>
         </ul>
       </div>
@@ -1306,6 +1306,9 @@ a {
   line-height: 26 / @vw;
   border-radius: 20 / @vw;
   font-size: 10 / @vw*1.3;
+}
+.Mobile_phone .accurate .reset li:hover{
+  background-color: skyblue !important;
 }
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;

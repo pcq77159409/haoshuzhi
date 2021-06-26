@@ -3,7 +3,7 @@
     <div class="service">
       <img src="../assets/left.png" class="left" @click="onBack" />
       <p>号码详情</p>
-      <div class="kf">
+      <div class="kf" @click="onClickNickname">
         <img src="../assets/图层 1@2x (1).png" alt="" />
         <span>联系客服</span>
       </div>
@@ -197,6 +197,16 @@
         </div>
       </div>
     </div>
+    <div class="layered" v-show="metric">
+      <div class="art_publ_time">
+        <h4>拨打电话</h4>
+        <p>18817744333</p>
+        <div class="measurements">
+          <p @click="onClickNickname">取消</p>
+          <span @click="onClickSure">确定</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -207,6 +217,7 @@ export default {
       back: false,
       taocan: "",
       taocanXZ: -1,
+      metric:false,
       shdz: [
         {
           id: 1,
@@ -451,6 +462,16 @@ export default {
         }
       });
     },
+    onClickSure() {
+      window.location.href = "tel:18817744333";
+    },
+    onClickNickname() {
+      if (this.metric == false) {
+        this.metric = true;
+      } else {
+        this.metric = false;
+      }
+    },
   },
   created() {
     // 获取手机号信息
@@ -591,7 +612,7 @@ li {
   margin-bottom: 10 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
-  margin: 10 / @vw auto;
+  margin: 15 / @vw auto;
   line-height: 44 / @vw;
   display: flex;
   align-items: center;
@@ -900,40 +921,43 @@ li {
 
 .endcsname {
   width: 345 / @vw;
-  height: 68 / @vw;
+  height: 72 / @vw;
   background-color: #fff;
-  margin: 10 / @vw 15 / @vw 0 / @vw;
+  margin: 15 / @vw 15 / @vw 0 / @vw;
   display: flex;
+  align-items: center;
 }
 .endcsname img:first-child {
   width: 20 / @vw;
   height: 29 / @vw;
-  margin: 20 / @vw 0 0 20 / @vw;
+  margin: 0 / @vw 0 0 20 / @vw;
 }
 .endcsname img:last-child {
   width: 8 / @vw;
   height: 14 / @vw;
-  margin: 29 / @vw 0 0 10 / @vw;
+  margin: 0 / @vw 0 0 10 / @vw;
 }
 .endcsname .mercifully {
   width: 80%;
 }
 .endcsname .mercifully .parameter {
   display: flex;
+  margin-top: 6/@vw;
 }
 .endcsname .mercifully .parameter h3 {
   color: #333333;
   font-size: 14 / @vw;
   font-weight: 500;
-  margin: 15 / @vw 0 0 12 / @vw;
+  margin-left: 12 / @vw;
 }
 .endcsname .mercifully .parameter p {
   color: #666666;
   font-size: 14 / @vw;
-  margin: 17 / @vw 0 0 14 / @vw;
+  margin-left: 14 / @vw;
 }
 .endcsname .mercifully .reklameadvice {
   display: flex;
+  margin-top: 6/@vw;
 }
 .endcsname .mercifully .reklameadvice p {
   font-size: 12 / @vw;
@@ -951,6 +975,58 @@ li {
 .endcsname.endcsname_sh p {
   flex: 1;
   line-height: 68 / @vw;
+  font-size: 14 / @vw;
+}
+.layered {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.layered .art_publ_time {
+  width: 267 / @vw;
+  height: 124 / @vw;
+  background-color: #fff;
+  border-radius: 10 / @vw;
+  text-align: center;
+}
+.layered .art_publ_time h4 {
+  font-size: 12 / @vw;
+  color: #333333;
+  font-weight: 500;
+  margin-top: 30 / @vw;
+}
+.layered .art_publ_time p {
+  font-size: 12 / @vw;
+  color: #333333;
+  margin: 6 / @vw 0 10 / @vw 0;
+}
+.layered .art_publ_time .measurements {
+  width: 100%;
+  height: 44 / @vw;
+  border-top: 1 / @vw solid #d2d2d2;
+  display: flex;
+  // margin-top: 29 / @vw;
+  justify-content: center;
+  line-height: 44 / @vw;
+}
+.layered .art_publ_time .measurements p {
+  width: 50%;
+  height: 100%;
+  border-right: 1 / @vw solid #d2d2d2;
+  color: #0443d1;
+  font-size: 14 / @vw;
+  margin: 0;
+}
+.layered .art_publ_time .measurements span {
+  width: 50%;
+  height: 100%;
+  color: #0443d1;
   font-size: 14 / @vw;
 }
 </style>

@@ -127,7 +127,7 @@ export default {
 @import "../assets/css/base.less";
 .service {
   width: 100%;
-  height: 64 / @vw;
+  height: 58 / @vw;
   background: #ea5656;
 }
 .service p {
@@ -135,7 +135,7 @@ export default {
   color: white;
   font-family: PingFang-SC-Medium;
   font-weight: Medium;
-  line-height: 65 / @vw;
+  line-height: 58 / @vw;
   text-align: center;
 }
 .Collection {

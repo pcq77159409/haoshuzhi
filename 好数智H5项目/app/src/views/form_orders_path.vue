@@ -245,13 +245,13 @@ export default {
   width: 345/@vw;
   height: 68/@vw;
   background-color: rgba(250, 202, 207, 0.2);
-  margin: 74/@vw 15/@vw 10/@vw;
+  margin: 74/@vw 15/@vw 15/@vw;
   display: flex;
   color: #fe5858;
   padding: 10/@vw;
   box-sizing: border-box;
   border-radius: 5/@vw;
-  font-size: 13/@vw;
+  font-size: 12/@vw;
 }
 .drawBoundingBox .endcsname img:first-child {
   width: 20/@vw;
@@ -303,7 +303,7 @@ export default {
   width: 345/@vw;
   height: 83/@vw;
   background-color: #fff;
-  margin: 10/@vw 15/@vw;
+  margin:15/@vw;
 }
 .drawBoundingBox .reali .multreal {
   display: flex;
@@ -341,7 +341,7 @@ export default {
   width: 345/@vw;
   height: 285/@vw;
   background-color: #fff;
-  margin: 10/@vw 15/@vw;
+  margin: 15/@vw;
   padding: 15/@vw 0;
 }
 .drawBoundingBox .box_header ul {
