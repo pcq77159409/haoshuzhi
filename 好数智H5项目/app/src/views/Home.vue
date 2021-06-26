@@ -580,7 +580,6 @@ a {
 .five p {
   font-size: 11 / @vw*1.3;
   color: #333333;
-  font-weight: bold;
   margin-left: 5 / @vw;
 }
 
@@ -684,7 +683,6 @@ a {
 .like .shun li .of {
   font-size: 8 / @vw*1.3;
   color: #666666;
-  font-weight: 600;
 }
 .like .you img {
   width: 14 / @vw*1.3;
@@ -694,7 +692,6 @@ a {
   display: inline-block;
   color: #333333;
   margin-left: 6 / @vw;
-  font-weight: bold;
   font-size: 11 / @vw*1.3;
 }
 .lina {
