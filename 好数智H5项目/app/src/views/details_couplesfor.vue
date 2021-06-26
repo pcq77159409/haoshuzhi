@@ -590,7 +590,7 @@ export default {
       });
     },
     onClickSure(){
-      window.location.href='tle:18817744333'
+      window.location.href='tel:18817744333'
     }
   },
   created() {
