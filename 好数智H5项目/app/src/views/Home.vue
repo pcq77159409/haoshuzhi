@@ -7,12 +7,13 @@
             <img src="../assets/搜索@2x.png" alt="" class="search" />
             <input
             v-bind:autofocus="!searchBtnFlag"
-              type="text"
+              type="tel"
               placeholder="请输入您要搜索的内容"
               @keyup.enter="onKeyupSearch"
               v-model="search"
               maxlength="11"
               id="inputVal"
+              autocomplete="off"
             />
             <span @click="onKeyupSearch">搜索</span>
           </div>

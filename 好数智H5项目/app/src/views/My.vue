@@ -7,16 +7,16 @@
       <div class="good">
         <div class="user_name">
           <img src="../assets/Head_portrait.png" alt="" class="Head_portrait" />
+          <div
+            class="login"
+            v-if="loginShow == 1"
+            @click="$router.push('/login')"
+          >
+            手机号登录
+          </div>
           <div class="id">
             <p>{{ user.username }}</p>
             <p>ID:{{ user.id }}</p>
-            <div
-              class="login"
-              v-if="loginShow == 1"
-              @click="$router.push('/login')"
-            >
-              手机号登录
-            </div>
           </div>
         </div>
         <div @click="onClickOpen">
@@ -92,17 +92,27 @@
             <span>{{ status4 }}</span>
           </li>
         </ul>
-        <div class="wait" v-if="unapid.id">
-          <div class="payment_box">
-            <img src="../assets/card.png" alt="" />
-            <div>
-              <p>手机靓号:{{ unapid.orderdetail[0].phonenumber }}</p>
-              <p>等待付款</p>
+        <div class="wait" v-if="unapid.length != 0">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide"
+                v-for="(item, index) in unapid"
+                :key="index"
+              >
+                <div class="payment_box">
+                  <img src="../assets/card.png" alt="" />
+                  <div>
+                    <p>手机靓号:{{ item.orderdetail[0].phonenumber }}</p>
+                    <p>等待付款</p>
+                  </div>
+                </div>
+                <span @click="onclickFK(item.id, item.price, item.number)"
+                  >立即支付</span
+                >
+              </div>
             </div>
           </div>
-          <span @click="onclickFK(unapid.id, unapid.price, unapid.number)"
-            >立即支付</span
-          >
         </div>
       </div>
       <div class="road">
@@ -139,43 +149,48 @@
 </template>
 
 <script>
+import Swiper from "swiper";
+import "swiper/dist/css/swiper.min.css";
 export default {
   data() {
     return {
+      mySwiper: null,
       flag: false,
       loginShow: null,
       user: [],
-      unapid: {
-        address: "asgag",
-        area: "沙坪坝区",
-        city: "重庆市",
-        code_url: "",
-        com: "",
-        created_at: "2021-06-07 10:49:21",
-        delivery: "送货上门",
-        delivery_time: "不限时间",
-        express_number: null,
-        finishtime: "1970-01-01 08:00:00",
-        id: 92,
-        info: null,
-        mobile: "15197911446",
-        name: "65872",
-        number: "SJ20210607104921578341391",
-        orderdetail: [
-          {
-            phonenumber: "13554888999",
-          },
-        ],
-        pay_money: null,
-        pay_time: "1970-01-01 08:00:00",
-        paytype: 0,
-        price: "150.00",
-        province: "重庆市",
-        remarks: null,
-        status: 1,
-        updated_at: "2021-06-07 10:49:21",
-        user_id: 21,
-      },
+      unapid: [
+        {
+          address: "asgag",
+          area: "沙坪坝区",
+          city: "重庆市",
+          code_url: "",
+          com: "",
+          created_at: "2021-06-07 10:49:21",
+          delivery: "送货上门",
+          delivery_time: "不限时间",
+          express_number: null,
+          finishtime: "1970-01-01 08:00:00",
+          id: 92,
+          info: null,
+          mobile: "15197911446",
+          name: "65872",
+          number: "SJ20210607104921578341391",
+          orderdetail: [
+            {
+              phonenumber: "13554888999",
+            },
+          ],
+          pay_money: null,
+          pay_time: "1970-01-01 08:00:00",
+          paytype: 0,
+          price: "150.00",
+          province: "重庆市",
+          remarks: null,
+          status: 1,
+          updated_at: "2021-06-07 10:49:21",
+          user_id: 21,
+        },
+      ],
       timer: null,
       status1: "",
       status2: "",
@@ -184,6 +199,21 @@ export default {
     };
   },
   methods: {
+    initSwiper() {
+      setTimeout(() => {
+        this.mySwiper = new Swiper(".swiper-container", {
+          direction: "vertical", // 垂直切换选项
+          loopAdditionalSlides: 3,
+          loop: true,
+          speed: 500,
+          autoplay: 3000,
+          autoplayDisableOnInteraction: false,
+          pagination: ".swiper-pagination",
+          observer: true, // 启动动态检查器(OB/观众/观看者)
+          observeParents: true, // 修改swiper的父元素时，自动初始化swiper
+        });
+      }, 300);
+    },
     onCLickadd() {
       this.$router.push("/GoAddress");
     },
@@ -213,6 +243,10 @@ export default {
     },
   },
   mounted() {
+    this.$nextTick(() => {
+      this.initSwiper();
+    });
+
     this.loginShow = localStorage.getItem("uuidstatus");
     this.$get("/api/user/getinfo", {
       user_id: localStorage.getItem("user-id"),
@@ -230,19 +264,20 @@ export default {
       console.log(r);
       if (r.code == 200) {
         if (r.data.total == 0) {
-          this.unapid = {};
+          this.unapid = [];
           this.status1 = "";
         } else {
           this.status1 = r.data.total;
-          let num = 0;
-          this.unapid = r.data.data[num];
-          this.timer = setInterval(() => {
-            num++;
-            if (num >= r.data.data.length) {
-              num = 0;
-            }
-            this.unapid = r.data.data[num];
-          }, 10000);
+          // let num = 0;
+          this.unapid = r.data.data;
+          // console.log(this.unapid);
+          // this.timer = setInterval(() => {
+          //   num++;
+          //   if (num >= r.data.data.length) {
+          //     num = 0;
+          //   }
+          //   this.unapid = r.data.data[num];
+          // }, 10000);
         }
       }
     });
@@ -281,12 +316,12 @@ export default {
     });
   },
   // 路由离开生命周期函数
-  beforeRouteLeave(to, from, next) {
-    to;
-    from;
-    next();
-    clearInterval(this.timer);
-  },
+  // beforeRouteLeave(to, from, next) {
+  //   to;
+  //   from;
+  //   next();
+  //   clearInterval(this.timer);
+  // },
 };
 </script>
 
@@ -299,6 +334,9 @@ body {
   background-color: #f5f5f5;
 }
 .login {
+  position: absolute;
+  top: 78/@vw;
+  left: 0;
   width: 80 / @vw;
   // height: 24 / @vw;
   text-align: center;
@@ -343,7 +381,7 @@ body {
 .good {
   position: absolute;
   left: 30 / @vw;
-  top: 75 / @vw;
+  top: 50 / @vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -353,6 +391,9 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+.good .id p{
+  line-height: 25/@vw;
 }
 .Head_portrait {
   width: 59 / @vw*1.3;
@@ -456,8 +497,8 @@ body {
 }
 .ordering .finish li span {
   position: absolute;
-  left: 45 / @vw;
-  top: 5 / @vw;
+  left: 40 / @vw;
+  top: 10 / @vw;
   padding: 0 6 / @vw;
   background-color: #ea5656;
   line-height: 18 / @vw;
@@ -505,9 +546,16 @@ body {
   height: 53 / @vw*1.3;
   background-color: #f8f8f8;
   margin: 0 auto 0;
+
+  border-radius: 5 / @vw;
+}
+.ccccc /deep/ .swiper-slide {
   display: flex;
   justify-content: space-between;
-  border-radius: 5 / @vw;
+}
+.ccccc /deep/ .swiper-container {
+  width: 100%;
+  height: 100%;
 }
 .ordering .wait span {
   display: inline-block;
