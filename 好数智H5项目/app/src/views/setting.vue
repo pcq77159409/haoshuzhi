@@ -8,20 +8,21 @@
       <ul>
         <li>
           <p>显示价格</p>
-          <div>
-            <span>开启</span>
+          <div @click="onClickClose">
+            <span ref="jia">{{open}}</span>
             <el-switch
               v-model="value"
               active-color="#fe5858"
               inactive-color="#ccc"
+              
             >
             </el-switch>
           </div>
         </li>
         <li>
           <p>显示佣金</p>
-          <div>
-            <span>开启</span>
+          <div @click="onClickClose">
+            <span ref="yon">{{close}}</span>
             <el-switch
               v-model="actives"
               active-color="#fe5858"
@@ -57,10 +58,27 @@
 export default {
   data() {
     return {
-      value: false,
+      value: true,
       actives: false,
+      close:'关闭',
+      open:'开启',
     };
   },
+  methods:{
+    onClickClose(){
+      console.log(111);
+    if(this.value==true){
+      this.$refs.jia.innerText = this.open;
+    }else {
+      this.$refs.jia.innerText = this.close;
+    }
+    if(this.actives==true){
+      this.$refs.yon.innerText = this.open
+    }else {
+      this.$refs.yon.innerText = this.close
+    }
+  }
+  }
 };
 </script>
 

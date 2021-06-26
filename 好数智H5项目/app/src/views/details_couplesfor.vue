@@ -3,7 +3,7 @@
     <div class="service">
       <img src="../assets/left.png" class="left" @click="onBack" />
       <p>号码详情</p>
-      <div class="kf">
+      <div class="kf" @click="onClickNickname">
         <img src="../assets/图层 1@2x (1).png" alt="" />
         <span>联系客服</span>
       </div>
@@ -256,10 +256,11 @@
     </div>
     <div class="layered" v-show="metric">
       <div class="art_publ_time">
-        <h4>请问您是否确认删除此号码?</h4>
+        <h4>拨打电话</h4>
+        <p>18817744333</p>
         <div class="measurements">
           <p @click="onClickNickname">取消</p>
-          <span>确定</span>
+          <span @click="onClickSure">确定</span>
         </div>
       </div>
     </div>
@@ -588,6 +589,9 @@ export default {
         });
       });
     },
+    onClickSure(){
+      window.location.href='tle:18817744333'
+    }
   },
   created() {
     //获取收货地址
@@ -1071,14 +1075,19 @@ li {
   font-size: 12 / @vw;
   color: #333333;
   font-weight: 500;
-  margin-top: 34 / @vw;
+  margin-top: 30 / @vw;
+}
+.layered .art_publ_time p {
+  font-size: 12 / @vw;
+  color: #333333;
+  margin: 6 / @vw 0 10/@vw 0;
 }
 .layered .art_publ_time .measurements {
   width: 100%;
   height: 44 / @vw;
   border-top: 1 / @vw solid #d2d2d2;
   display: flex;
-  margin-top: 29 / @vw;
+  // margin-top: 29 / @vw;
   justify-content: center;
   line-height: 44 / @vw;
 }
@@ -1088,6 +1097,7 @@ li {
   border-right: 1 / @vw solid #d2d2d2;
   color: #0443d1;
   font-size: 14 / @vw;
+  margin: 0;
 }
 .layered .art_publ_time .measurements span {
   width: 50%;

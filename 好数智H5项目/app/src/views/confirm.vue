@@ -67,7 +67,7 @@
         <p>使用积分</p>
         <h5>当前积分160可抵用1.60元</h5>
         <span>选择抵用</span>
-        <el-switch v-model="value" active-color="#ff4949" inactive-color="#ccc">
+        <el-switch v-model="value" active-color="#ff4949" inactive-color="#ccc" disabled>
         </el-switch>
       </div>
       <div class="im_rest">
