@@ -1385,24 +1385,24 @@ a {
   height: 16 / @vw;
 }
 .Mobile_phone .start h5 {
-  font-size: 16 / @vw;
+  font-size: 15 / @vw;
   color: #333333;
-  font-weight: bold;
   margin: 8 / @vw 0 0 10 / @vw;
+  font-weight: 500;
 }
 .Mobile_phone .start .commission {
-  margin: 6 / @vw 10 / @vw 0;
+  margin: 10 / @vw 10 / @vw 0;
   display: flex;
   justify-content: space-between;
 }
 .Mobile_phone .start .commission p {
   color: #666666;
-  font-size: 12 / @vw;
+  font-size: 10 / @vw;
 }
 .Mobile_phone .start .commission span,
 .Mobile_phone .start .contains p {
   color: #dd1414;
-  font-size: 12 / @vw;
+  font-size: 10 / @vw;
 }
 .Mobile_phone .start .contains {
   margin: 6 / @vw 6 / @vw 0;
@@ -1412,9 +1412,8 @@ a {
 }
 
 .Mobile_phone .start .contains span {
-  font-size: 14 / @vw;
+  font-size: 10 / @vw;
   color: #dc0101;
-  font-weight: bold;
 }
 
 .Mobile_phone .Belonging,

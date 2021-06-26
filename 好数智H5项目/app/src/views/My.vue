@@ -419,11 +419,11 @@ body {
   border-radius: 5 / @vw;
 }
 .account h3 {
-  font-size: 16 / @vw;
-  font-weight: bold;
+  font-size: 14 / @vw;
   color: #333333;
-  font-family: PingFang-SC-Medium;
   margin: 12 / @vw 0 12 / @vw 19 / @vw;
+  font-weight: 500;
+
 }
 .account ul {
   display: flex;
@@ -463,11 +463,11 @@ body {
   align-items: center;
 }
 .ordering .mine h3 {
-  font-size: 16 / @vw;
-  font-weight: bold;
+  font-size: 14 / @vw;
   color: #333333;
   font-family: PingFang-SC-Medium;
   margin: 12 / @vw 0;
+  font-weight: 500;
 }
 .ordering .mine .all img {
   width: 6 / @vw*1.3;
@@ -647,7 +647,6 @@ body {
 .signs .white h4 {
   font-size: 12 / @vw*1.3;
   color: #333333;
-  font-weight: bold;
   margin-bottom: 11 / @vw;
 }
 .signs .white p {

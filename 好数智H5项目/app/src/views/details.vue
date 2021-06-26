@@ -584,7 +584,7 @@ li {
 .liji {
   width: 100%;
   /* height: 100%; */
-  padding: 65 / @vw 0 60 / @vw;
+  padding: 65 / @vw 0 100 / @vw;
   background-color: #f8f8f8;
   overflow: auto;
   box-sizing: border-box;
@@ -622,7 +622,6 @@ li {
   margin: auto 15 / @vw;
   color: #333333;
   font-size: 14 / @vw;
-  font-weight: bold;
 }
 .phone p span {
   display: inline-block;
@@ -960,7 +959,7 @@ li {
   margin-top: 6/@vw;
 }
 .endcsname .mercifully .reklameadvice p {
-  font-size: 12 / @vw;
+  font-size: 14 / @vw;
   color: #333333;
   margin: 4 / @vw 0 0 12 / @vw;
 }

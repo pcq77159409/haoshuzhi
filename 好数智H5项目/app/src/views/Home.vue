@@ -407,7 +407,7 @@ a {
 }
 .number {
   color: #333333;
-  font-size: 17 / @vw;
+  font-size: 15 / @vw;
   margin-left: 10 / @vw;
   margin-top: 7 / @vw;
   margin-bottom: 4px;
@@ -422,6 +422,9 @@ a {
 }
 .money:last-child {
   margin-top: 6 / @vw;
+}
+.money p {
+  font-size: 10/@vw;
 }
 .home {
   width: 100%;
@@ -622,6 +625,7 @@ a {
 .cap .shit .dolor {
   margin-right: 10 / @vw;
   color: #dd1414;
+  font-size: 10/@vw;
 }
 .cap .shit .han {
   font-size: 10 / @vw;
@@ -629,7 +633,7 @@ a {
   // margin-top: 4 / @vw;
 }
 .cap .shit .twietion {
-  font-size: 14 / @vw;
+  font-size: 10 / @vw;
   color: #dc0101;
   margin-right: 10 / @vw;
 }

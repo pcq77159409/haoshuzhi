@@ -415,7 +415,6 @@ html {
   text-align: center;
   border-radius: 15/@vw;
   color: #fe5858;
-  font-weight: 600;
   padding: 0 18/@vw;
   font-size: 12/@vw;
 }
@@ -426,7 +425,6 @@ html {
 }
 .needsed {
   margin: 0 5/@vw;
-  font-weight: bold;
   font-size: 14/@vw;
   color: #333333;
 }
@@ -445,7 +443,6 @@ html {
 }
 .phonenumber {
   font-size: 16/@vw;
-  font-weight: bold;
   color: #333333;
 }
 .shops {
@@ -455,8 +452,9 @@ html {
 }
 .shoping {
   font-size: 15/@vw;
-  font-weight: bold;
   margin-top: 10/@vw;
+  display: flex;
+  align-items: center;
 }
 .this {
   margin-left: 5/@vw;
@@ -483,7 +481,6 @@ html {
   text-align: center;
   border-radius: 15/@vw;
   color: #333333;
-  font-weight: 600;
   padding: 0 8/@vw;
   font-size: 12/@vw;
 }

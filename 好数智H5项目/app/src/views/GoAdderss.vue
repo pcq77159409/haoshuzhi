@@ -171,7 +171,7 @@ html {
   margin: 15/@vw 0 0 15/@vw;
 }
 .number p:first-child {
-  font-size: 16/@vw;
+  font-size: 14/@vw;
 }
 .number p:last-child {
   font-size: 14/@vw;
@@ -211,6 +211,7 @@ html {
   color: #333333;
   display: flex;
   align-items: center;
+  font-size: 14/@vw;
 }
 .home {
   width: 100%;
