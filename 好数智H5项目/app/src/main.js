@@ -112,11 +112,23 @@ if (localStorage.getItem('user-id') == null && localStorage.getItem('token') == 
     localStorage.setItem('user-id', '');
     localStorage.setItem('token', '');
 }
+var ua = navigator.userAgent.toLowerCase();
 
-const uuid = require('uuid')
-if (localStorage.getItem('uuid') == null) {
-    localStorage.setItem('uuid', uuid.v1());
+if (ua.match(/MicroMessenger/i) == "micromessenger") {
+    alert('true');
+    axios.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx979caaad1131e6c2&redirect_uri=http%3A%2F%2Fhaoshuzhi.cn%2Findex.php%2Fapi%2Fhome_page%2FgetOpenid&response_type=code&scope=snsapi_base&state=123#wechat_redirect').then((r) => {
+        console.log(r.data);
+        alert(r.data.openid);
+    });
+} else {
+    console.log(false);
+    alert('false');
+    const uuid = require('uuid')
+    if (localStorage.getItem('uuid') == null) {
+        localStorage.setItem('uuid', uuid.v1());
+    }
 }
+
 // console.log(localStorage.getItem('user-id'));
 // console.log(localStorage.getItem('token'));
 // console.log(localStorage.getItem('uuid'));

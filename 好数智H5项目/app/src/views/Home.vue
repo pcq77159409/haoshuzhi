@@ -21,10 +21,10 @@
         <div class="used">
           <h3>常用搜索</h3>
           <ul>
-            <li @click="onclickSearch(666)">666</li>
-            <li @click="onclickSearch(888)">888</li>
-            <li @click="onclickSearch(999)">999</li>
-            <li @click="onclickSearch(8888)">8888</li>
+            <li @click="onclickSearch('666')">666</li>
+            <li @click="onclickSearch('888')">888</li>
+            <li @click="onclickSearch('999')">999</li>
+            <li @click="onclickSearch('8888')">8888</li>
           </ul>
         </div>
         <div class="footprint">
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="head">
-      <div class="locations">
+      <div class="locations" @click="$router.push('/citys')">
         <img src="../assets/123.png" alt="" />
         <p>上海</p>
       </div>
@@ -240,7 +240,14 @@ export default {
       this.$router.push({ path: "/screen", query: obj });
     },
     onKeyupSearch() {
-      this.footprintData.push(this.search);
+      if (this.search.trim() != "") {
+        if (this.footprintData.indexOf(this.search) == -1) {
+          this.footprintData.unshift(this.search);
+        }else{
+          this.footprintData.splice(this.footprintData.indexOf(this.search),1);
+          this.footprintData.unshift(this.search);
+        }
+      }
       localStorage.setItem("footprintData", JSON.stringify(this.footprintData));
       this.$router.push({
         path: "/screen",
@@ -314,7 +321,7 @@ a {
 }
 .sb_head {
   width: 750 / @vw / 2;
-  height: 670 / @vw / 2;
+  // height: 670 / @vw / 2;
   padding: 15 / @vw;
   background: #f6f6f6;
   border-radius: 0px 0px 10 / @vw 10 / @vw;
@@ -338,7 +345,7 @@ a {
 .sbht_center span {
   position: absolute;
   right: 10 / @vw;
-  top: -1 / @vw;
+  top: 0 / @vw;
   display: inline-block;
   line-height: 28 / @vw;
   font-size: 13 / @vw;
@@ -362,8 +369,8 @@ a {
   top: 50%;
   left: 20 / @vw;
   transform: translateY(-50%);
-  width: 10 / @vw;
-  height: 10 / @vw;
+  width: 12 / @vw;
+  height: 12 / @vw;
 }
 .searchBox h3 {
   margin-bottom: 10 / @vw;
@@ -374,8 +381,8 @@ a {
   line-height: 60 / @vw / 2;
 }
 .searchBox h3 img {
-  width: 12 / @vw * 1.3;
-  height: 12 / @vw * 1.3;
+  width: 11 / @vw * 1.2;
+  height: 12 / @vw * 1.2;
   margin-left: 260 / @vw;
 }
 .searchBox li {
@@ -616,7 +623,7 @@ a {
   color: #dd1414;
 }
 .cap .shit .han {
-  font-size: 12 / @vw;
+  font-size: 10 / @vw;
   color: #dd1414;
   margin-top: 4 / @vw;
 }

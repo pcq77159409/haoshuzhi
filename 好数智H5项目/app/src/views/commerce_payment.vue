@@ -71,7 +71,7 @@ export default {
         order_id: this.$route.query.order_id,
         paytype: this.imgShow,
       }).then((r) => {
-        // console.log(r);
+        console.log(r);
         if (r.code == 200) {
           // console.log(this.imgShow);
           if (this.imgShow == 3) {
@@ -141,7 +141,7 @@ export default {
         user_id: localStorage.getItem("user-id"),
         order_id: this.$route.query.order_id,
       }).then((r) => {
-        console.log(r);
+        // console.log(r);
         if (r.data.status && r.data.status != 1) {
           clearInterval(this.timer);
           this.$router.push({
