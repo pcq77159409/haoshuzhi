@@ -48,7 +48,7 @@
           <span></span>
         </div>
         <ul class="card" v-if="arrTao.length != 0">
-          <li v-for="(item, index) in arrTao" :key="index">
+          <li v-for="(item, index) in arrTao" :key="index" @click="ClickOnTao(item.id)">
             {{ item.name }}
           </li>
           <!-- <li>39元小魔卡</li>
@@ -90,7 +90,6 @@ export default {
     onClickTab(v, id) {
       this.flag = v;
       this.$get("/api/home_page/getChildCategory", { id: id }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           if (r.data.length == 0) {
             this.arrs = r.data;
@@ -104,10 +103,17 @@ export default {
         }
       });
     },
+    ClickOnTao(id){
+      this.$router.push({
+        path:'/khssb',
+        query:{
+          id:id
+        }
+      })
+    }
   },
   mounted() {
     this.$axios.get("/api/home_page/getCategory").then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.arrList = r.data;
         this.onClickTab(0, r.data[0].id);

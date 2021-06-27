@@ -2,7 +2,7 @@
 module.exports = {
     devServer: {
         // vue项目启动时的ip地址和端口
-        host: '192.168.0.144',
+        host: 'localhost',
         port: 8080,
         proxy: {
             // 匹配所有以 /api 开头的url

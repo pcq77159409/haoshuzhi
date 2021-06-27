@@ -39,7 +39,7 @@
         v-for="(item, index) in taocany"
         :key="index"
       >
-        <img :src="'http://digital.haoshuzhi.cn/'+item.main_image" alt="" class="tao" />
+        <img :src="item.main_image" alt="" class="tao" />
         <div>
           <div class="movement">
             <h6>{{ item.package_name }}</h6>
@@ -535,6 +535,8 @@ html {
 .choice_box .mocha .Characteristics .movement h6 {
   color: #333333;
   font-size: 13 / @vw;
+  margin-top: 6/@vw;
+  font-weight: 500;
 }
 .choice_box .mocha .Characteristics .movement .tea {
   display: flex;
@@ -544,18 +546,19 @@ html {
   font-size: 13 / @vw;
   color: #666666;
   margin-right: 6 / @vw;
+  margin-top: 6/@vw;
 }
 .choice_box .mocha .Characteristics .voice {
   font-size: 12 / @vw;
   color: #666666;
-  margin: 2 / @vw 0 0 16 / @vw;
+  margin: 15 / @vw 0 0 16 / @vw;
 }
 .choice_box .mocha .Characteristics .amount {
   width: 202 / @vw;
   display: flex;
   margin-left: 16 / @vw;
   justify-content: flex-start;
-  margin-top: 6 / @vw;
+  margin-top: 10 / @vw;
 }
 .choice_box .mocha .Characteristics .amount li {
   display: flex;

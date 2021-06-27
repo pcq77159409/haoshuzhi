@@ -13,10 +13,6 @@
         </div>
       </div>
       <p class="voice">套餐特征: {{taco.package_describe}}</p>
-      <div class="champion">
-        <p>销量:808</p>
-        <span>￥90.00</span>
-      </div>
     </div>
     <div class="gchoose">
       <p>已选资费</p>
@@ -32,7 +28,7 @@
         <img src="../assets/shou2.png.png" alt="" />
         <p>首页</p>
       </div>
-      <div class="sidebar-home">
+      <div class="sidebar-home" @click="$router.push('/commons/home/m')">
         <img src="../assets/cang1.png.png" alt="" />
         <p>收藏</p>
       </div>
@@ -96,10 +92,11 @@ export default {
 }
 .item_content .ninteen {
   width: 345/@vw;
-  height: 97/@vw;
   background-color: #fff;
   margin: 10/@vw 0 0 15/@vw;
   border-radius: 4/@vw;
+  padding-bottom: 10/@vw;
+  box-sizing: border-box;
 }
 .item_content .ninteen .movement {
   width: 325/@vw;
@@ -112,6 +109,7 @@ export default {
 .item_content .movement h6 {
   color: #333333;
   font-size: 13/@vw;
+  font-weight: 500;
 }
 .item_content .movement .tea {
   display: flex;
@@ -150,21 +148,6 @@ export default {
   font-size: 12/@vw;
   color: #666666;
 }
-.item_content .champion {
-  width: 320/@vw;
-  display: flex;
-  margin-left: 16/@vw;
-  margin-top: 12/@vw;
-  justify-content: space-between;
-}
-.item_content .champion p {
-  font-size: 12/@vw;
-  color: #666666;
-}
-.item_content .champion span {
-  font-size: 12/@vw;
-  color: #ea5656;
-}
 .item_content .gchoose {
   width: 345/@vw;
   height: 40/@vw;
@@ -190,9 +173,8 @@ export default {
 }
 .item_content .havepackage {
   width: 345/@vw;
-  height: 1245/@vw;
   background-color: #fff;
-  margin: 6/@vw 0 0 15/@vw;
+  margin: 6/@vw 0 15/@vw 15/@vw;
 }
 .item_content .havepackage p {
   width: 100%;
@@ -205,7 +187,6 @@ export default {
 }
 .item_content .havepackage img {
   width: 345/@vw;
-  height: 1194/@vw;
   margin-top: 10/@vw;
 }
 .item_content .lofoot {
