@@ -675,8 +675,7 @@ li {
   justify-content: space-evenly;
 }
 .number {
-  font-size: 18 / @vw;
-  font-weight: 600;
+  font-size: 16 / @vw;
   margin: 14 / @vw 0 0 10 / @vw;
   display: flex;
   align-items: center;

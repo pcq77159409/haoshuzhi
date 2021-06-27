@@ -66,7 +66,7 @@
       <div class="email">
         <p>使用积分</p>
         <h5>当前积分160可抵用1.60元</h5>
-        <span>选择抵用</span>
+        <span>不可抵用</span>
         <el-switch v-model="value" active-color="#ff4949" inactive-color="#ccc" disabled>
         </el-switch>
       </div>
@@ -452,9 +452,8 @@ export default {
   justify-content: space-between;
 }
 .comfirm_box .store .number_box p {
-  font-size: 18 / @vw;
+  font-size: 16 / @vw;
   color: #333333;
-  font-weight: 600;
 }
 .comfirm_box .store .number_box span {
   color: #ea5656;
@@ -481,7 +480,6 @@ export default {
 .comfirm_box .store .mobiles span {
   font-size: 14 / @vw;
   color: #333333;
-  font-weight: 600;
 }
 .comfirm_box .store .mobiles span i {
   color: #ea5656;
