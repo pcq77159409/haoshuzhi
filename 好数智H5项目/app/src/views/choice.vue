@@ -39,7 +39,7 @@
         v-for="(item, index) in taocany"
         :key="index"
       >
-        <img :src="item.main_image" alt="" class="tao" />
+        <img :src="'http://digital.haoshuzhi.cn/'+item.main_image" alt="" class="tao" />
         <div>
           <div class="movement">
             <h6>{{ item.package_name }}</h6>
@@ -56,18 +56,18 @@
 
             <li>
               <img src="../assets/liu.png" alt="" />
-              <p>{{item.general_flow}}G</p>
+              <p>{{item.directional_flow}}G</p>
             </li>
 
             <li>
               <img src="../assets/qan.png" alt="" />
-              <p>0</p>
+              <p>{{item.month_charge}}</p>
             </li>
           </ul>
-          <div class="champion">
+          <!-- <div class="champion">
             <p>销量:808</p>
             <span>￥90.00</span>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

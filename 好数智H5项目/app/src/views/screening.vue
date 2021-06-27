@@ -1,5 +1,5 @@
 <template>
-  <div class="Mobile_phone" ref="bugun">
+  <div class="Mobile_phone" ref="bugun" @scroll="scrollBox($event)">
     <div class="bb">
       <!-- 头部导航 开始-->
       <div class="reds">
@@ -115,7 +115,7 @@
         </ul>
         <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
         <ul class="reset">
-          <li @click="onclickResetInput" >重置</li>
+          <li @click="onclickResetInput">重置</li>
           <li @click="onclickAccurateSearch">精准搜索</li>
         </ul>
       </div>
@@ -164,7 +164,7 @@
     </div>
 
     <!--手机号 开始-->
-    <div class="class_name">
+    <div class="class_name" ref="scroll-box">
       <div class="black" v-show="active == 0">
         <!-- 归属地 开始-->
         <div class="Belonging">
@@ -387,6 +387,7 @@
 export default {
   data() {
     return {
+      numbers: 1,
       active: null,
       proList: [],
       cityList: [],
@@ -698,6 +699,18 @@ export default {
     };
   },
   methods: {
+    scrollBox(e) {
+      console.log(1111111111);
+      // console.log(e.target.scrollTop);
+      // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
+      // 如果滚动的位置为2100加载
+      // 并且到每次滚动的位置一定与2100有关
+      if (e.target.scrollTop >= 2100 * this.num) {
+        // this.rember();
+      console.log(this.num);
+        this.num += 1.2;
+      }
+    },
     onClickGo() {
       this.$router.push("/commons/home/m");
     },
@@ -1307,7 +1320,7 @@ a {
   border-radius: 20 / @vw;
   font-size: 10 / @vw*1.3;
 }
-.Mobile_phone .accurate .reset li:hover{
+.Mobile_phone .accurate .reset li:hover {
   background-color: skyblue !important;
 }
 .Mobile_phone .accurate .reset li:first-child {
