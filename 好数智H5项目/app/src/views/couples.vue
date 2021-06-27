@@ -1,5 +1,5 @@
 <template>
-  <div class="Mobile_phone" ref="bugun">
+  <div class="Mobile_phone" ref="bugun" @scroll="scrollBox($event)">
     <!-- 头部导航 开始-->
     <div class="reds">
       <div class="moveing">
@@ -239,6 +239,7 @@
           </div>
         </div>
       </div>
+      <div class="botttomjz" ref="bjz">已经到底了</div>
     </div>
     <!--手机号 结束-->
   </div>
@@ -295,9 +296,40 @@ export default {
       type: "",
       nums: "",
       opList: -1,
+      numbers:1,
+      numbers1:1,
+      sumsid:0,
+      pList:{}
     };
   },
   methods: {
+        scrollBox(e) {
+      // console.log(e.target.scrollTop);
+      // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
+      // 如果滚动的位置为2100加载
+      // 并且到每次滚动的位置一定与2100有关
+      if (e.target.scrollTop >= 1600 * this.numbers) {
+        // this.rember();
+        if (this.numbers1 < this.sumsid - 2) {
+          this.numbers += 1.2;
+          this.numbers1++;
+          console.log(this.numbers1);
+          this.pList.page = this.numbers;
+          this.$axios
+            .post("/api/home_page/loveNumber", this.$route.query)
+            .then((val) => {
+              console.log(val);
+              val.data.data.forEach((i) => {
+                this.love.push(i);
+              });
+            });
+          this.$refs.bjz.innerText = "加载中...";
+        } else {
+          console.log(123);
+          this.$refs.bjz.innerText = "已经到底了";
+        }
+      }
+    },
     onclickOpeateing(index) {
       let id = 0;
       this.$refs.yys.innerText = index;
@@ -445,6 +477,7 @@ export default {
     } else {
       this.ruleDui = this.$route.query.type;
     }
+    this.pList = this.$route.query;
     this.$axios
       .post("/api/home_page/loveNumber", this.$route.query)
       .then((val) => {
@@ -468,6 +501,11 @@ export default {
 </script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
+.botttomjz {
+  width: 100%;
+  line-height: 40 / @vw;
+  text-align: center;
+}
 * {
   padding: 0;
   margin: 0;

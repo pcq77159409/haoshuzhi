@@ -254,6 +254,8 @@
           </div>
         </div>
       </router-link>
+
+      <div class="botttomjz" ref="bjz" v-show="!isShow">加载中...</div>
     </div>
     <!--手机号 结束-->
 
@@ -388,6 +390,8 @@ export default {
   data() {
     return {
       numbers: 1,
+      numbers1: 1,
+      sumsid: 0,
       active: null,
       proList: [],
       cityList: [],
@@ -696,19 +700,35 @@ export default {
       lowPinListed: false,
       isShow: false,
       title: "移动号码",
+      pList: {},
     };
   },
   methods: {
     scrollBox(e) {
-      console.log(1111111111);
       // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
-      if (e.target.scrollTop >= 2100 * this.num) {
+      if (e.target.scrollTop >= 1600 * this.numbers) {
         // this.rember();
-      console.log(this.num);
-        this.num += 1.2;
+        if (this.numbers1 < this.sumsid - 2) {
+          this.numbers += 1.2;
+          this.numbers1++;
+          console.log(this.numbers1);
+          this.pList.page = this.numbers;
+          this.$axios
+            .post("/api/home_page/getNumList", this.$route.query)
+            .then((val) => {
+              console.log(val);
+              val.data.data.forEach((i) => {
+                this.list.push(i);
+              });
+            });
+          this.$refs.bjz.innerText = "加载中...";
+        } else {
+          console.log(123);
+          this.$refs.bjz.innerText = "已经到底了";
+        }
       }
     },
     onClickGo() {
@@ -1067,12 +1087,13 @@ export default {
     } else {
       this.$route.query.from = "上海市";
     }
-    console.log(this.$route.query);
+    this.pList = this.$route.query;
     this.$axios
       .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
         console.log(val);
         this.list = val.data.data;
+        this.sumsid = val.data.last_page;
       });
     this.$axios.get("api/home_page/getLocation").then((val) => {
       this.nums = Object.keys(val.data)[0];
@@ -1368,6 +1389,11 @@ a {
 .Mobile_phone .select_change ul li:last-child img {
   width: 10 / @vw;
   height: 9 / @vw;
+}
+.botttomjz {
+  width: 100%;
+  line-height: 40 / @vw;
+  text-align: center;
 }
 .Mobile_phone .class_name {
   position: relative;
