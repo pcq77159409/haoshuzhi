@@ -5,7 +5,7 @@
       <h4>套餐资费</h4>
     </div>
     <!-- 下拉选择 开始-->
-    <div class="select_change">
+    <!-- <div class="select_change">
       <ul>
         <li @click="onClickShow(0)">
           <p @click="onClickDn">归属地</p>
@@ -28,7 +28,7 @@
           />
         </li>
       </ul>
-    </div>
+    </div> -->
     <!-- 下拉选择 结束-->
 
     <!-- 小魔卡 开始-->
@@ -74,7 +74,7 @@
     <!-- 小魔卡 结束-->
 
     <!-- 归属地 开始-->
-    <div class="Belonging" v-show="flag">
+    <!-- <div class="Belonging" v-show="flag">
       <ul class="pro">
         <li
           v-for="(item, index) in proList"
@@ -97,11 +97,11 @@
           <p>{{ item.username }}</p>
         </li>
       </ul>
-    </div>
+    </div> -->
     <!-- 归属地 结束-->
 
     <!-- 运营商 开始-->
-    <div class="opeateing" v-show="cut">
+    <!-- <div class="opeateing" v-show="cut">
       <ul>
         <li>
           <img src="../assets/right.png" alt="" />
@@ -120,7 +120,7 @@
           <p>虚拟号码</p>
         </li>
       </ul>
-    </div>
+    </div> -->
     <!-- 运营商 结束-->
   </div>
 </template>
