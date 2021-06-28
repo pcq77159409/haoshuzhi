@@ -21,10 +21,10 @@
         <div class="used">
           <h3>常用搜索</h3>
           <ul>
-            <li @click="onclickSearch('AAA')">AAA</li>
-            <li @click="onclickSearch('BBB')">BBB</li>
-            <li @click="onclickSearch('ABAB')">ABAB</li>
-            <li @click="onclickSearch('ABCD')">ABCD</li>
+            <li @click="onclickSearch('666')">666</li>
+            <li @click="onclickSearch('888')">888</li>
+            <li @click="onclickSearch('520')">520</li>
+            <li @click="onclickSearch('1314')">1314</li>
           </ul>
         </div>
         <div class="footprint">
@@ -131,11 +131,15 @@
           <div class="number" v-html="value.number_tag"></div>
           <div class="money">
             <p>{{ value.location }}</p>
-            <p class="dolor">佣金￥{{ value.returned_commission }}</p>
+            <p class="dolor" v-show="commissionShow">
+              佣金￥{{ value.returned_commission }}
+            </p>
           </div>
           <div class="money">
             <p class="han">含话费￥260</p>
-            <p class="twietion">￥{{ value.initial_charge }}</p>
+            <p class="twietion" v-show="priceShow">
+              ￥{{ value.initial_charge }}
+            </p>
           </div>
         </div>
       </router-link>
@@ -208,11 +212,13 @@
           <div class="number" v-html="item.number_tag"></div>
           <div class="money">
             <p>{{ item.location }}</p>
-            <p class="dolor">佣金￥{{ item.returned_commission }}</p>
+            <p class="dolor" v-show="commissionShow">
+              佣金￥{{ item.returned_commission }}
+            </p>
           </div>
           <div class="money">
             <p class="han">含话费￥260</p>
-            <p class="twietion">￥{{ item.initial_charge }}</p>
+            <p class="twietion" v-show="priceShow">￥{{ item.initial_charge }}</p>
           </div>
         </div>
       </router-link>
@@ -233,6 +239,8 @@ export default {
       searchShow: false,
       footprintData: [],
       searchBtnFlag: false,
+      commissionShow: false,
+      priceShow: true,
     };
   },
   methods: {
@@ -243,8 +251,8 @@ export default {
       if (this.search.trim() != "") {
         if (this.footprintData.indexOf(this.search) == -1) {
           this.footprintData.unshift(this.search);
-        }else{
-          this.footprintData.splice(this.footprintData.indexOf(this.search),1);
+        } else {
+          this.footprintData.splice(this.footprintData.indexOf(this.search), 1);
           this.footprintData.unshift(this.search);
         }
       }
@@ -271,6 +279,21 @@ export default {
     },
   },
   created() {
+    if (localStorage.getItem("priceShow")) {
+      if (localStorage.getItem("priceShow") == "true") {
+        this.priceShow = true;
+      } else {
+        this.priceShow = false;
+      }
+    }
+    if (localStorage.getItem("commissionShow")) {
+      if (localStorage.getItem("commissionShow") == "true") {
+        this.commissionShow = true;
+      } else {
+        this.commissionShow = false;
+      }
+    }
+
     if (localStorage.getItem("footprintData")) {
       this.footprintData = JSON.parse(localStorage.getItem("footprintData"));
     }
@@ -373,7 +396,7 @@ a {
   height: 12 / @vw;
 }
 .searchBox h3 {
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   margin-bottom: 10 / @vw;
   font-size: 14 / @vw;
   font-family: PingFang SC;
@@ -424,7 +447,7 @@ a {
   margin-top: 6 / @vw;
 }
 .money p {
-  font-size: 10/@vw;
+  font-size: 10 / @vw;
 }
 .home {
   width: 100%;
@@ -624,7 +647,7 @@ a {
 .cap .shit .dolor {
   margin-right: 10 / @vw;
   color: #dd1414;
-  font-size: 10/@vw;
+  font-size: 10 / @vw;
 }
 .cap .shit .han {
   font-size: 10 / @vw;

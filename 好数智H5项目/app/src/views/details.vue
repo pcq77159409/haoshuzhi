@@ -65,9 +65,9 @@
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          登记方式<span style="margin-left: 8vw; color: #666666"
-            >线上实名制办理</span
-          >
+          登记方式<span style="margin-left: 8vw; color: #666666">{{
+            detailsList.handle_type | handle_types
+          }}</span>
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
@@ -210,6 +210,7 @@
   </div>
 </template>
 <script>
+// import router from "../router";
 export default {
   data() {
     return {
@@ -376,7 +377,8 @@ export default {
       this.$router.go(-1);
     },
     onClickTo() {
-      this.back = false;
+      // this.back = false;
+      this.$router.go(-1);
     },
     onClickBack(id) {
       console.log(id);
@@ -384,6 +386,7 @@ export default {
         this.$get("/api/order/packageDetail", { id: id }).then((r) => {
           if (r.code == 200) {
             this.packagDetail = r.data;
+            this.$router.push("/details");
             console.log(r.data);
           } else if (r.code == 700) {
             this.$router.push("/login");
@@ -477,7 +480,13 @@ export default {
       }
     },
   },
-  created() {
+  created() {},
+  mounted() {
+    console.log(this.$route.query['ids[]']);
+    if (!this.$route.query['ids[]']) {
+      this.$router.push('/commons/home/m');
+      return;
+    }
     // 获取手机号信息
     this.$get("/api/number/getNumberInfo", this.$route.query).then((r) => {
       console.log(r);
@@ -520,7 +529,6 @@ export default {
       }
     });
   },
-  mounted() {},
   filters: {
     operators(val) {
       let str = "";
@@ -535,6 +543,36 @@ export default {
       }
       return str;
     },
+    handle_types(val) {
+      if (val == 1) {
+        return "线上实名制办理";
+      } else {
+        return "线下营业厅办理";
+      }
+    },
+  },
+  // beforeRouteEnter(to, from, next) {
+  //   to;
+  //   from;
+  //   next();
+  //   console.log(to);
+  //   console.log(from);
+  //   // console.log(this);
+  //   if (to.fullPath == "/details") {
+  //     router.go(-1);
+  //   }
+  // },
+  beforeRouteUpdate(to, from, next) {
+    // console.log(to);
+    // console.log(from);
+    to;
+    from;
+    next();
+    if (to.fullPath == "/details") {
+      this.back = true;
+    } else {
+      this.back = false;
+    }
   },
 };
 </script>

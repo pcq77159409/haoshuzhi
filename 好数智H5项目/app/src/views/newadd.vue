@@ -93,7 +93,6 @@
 <script>
 import area from "../assets/js/area.js";
 export default {
-  name: "Cselect",
   data() {
     return {
       value: false,

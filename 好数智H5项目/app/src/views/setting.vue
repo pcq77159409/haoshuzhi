@@ -26,6 +26,7 @@
               v-model="actives"
               active-color="#fe5858"
               inactive-color="#ccc"
+              :disabled="type != 1"
             >
             </el-switch>
           </div>
@@ -65,6 +66,7 @@ export default {
       actives: false,
       close: "关闭",
       open: "开启",
+      type: 0,
     };
   },
   watch: {
@@ -77,16 +79,17 @@ export default {
   },
   methods: {
     onClickClose() {
-      console.log(111);
       if (this.value == true) {
         this.$refs.jia.innerText = this.open;
       } else {
         this.$refs.jia.innerText = this.close;
       }
-      if (this.actives == true) {
-        this.$refs.yon.innerText = this.open;
-      } else {
-        this.$refs.yon.innerText = this.close;
+      if (this.type != 1) {
+        if (this.actives == true) {
+          this.$refs.yon.innerText = this.open;
+        } else {
+          this.$refs.yon.innerText = this.close;
+        }
       }
     },
     onclickLogin() {
@@ -113,20 +116,28 @@ export default {
   },
   mounted() {
     if (localStorage.getItem("priceShow")) {
-      if (localStorage.getItem("priceShow") == 'true') {
+      if (localStorage.getItem("priceShow") == "true") {
         this.value = true;
       } else {
         this.value = false;
       }
     }
     if (localStorage.getItem("commissionShow")) {
-      if (localStorage.getItem("commissionShow") == 'true') {
+      if (localStorage.getItem("commissionShow") == "true") {
         this.actives = true;
       } else {
         this.actives = false;
       }
     }
     this.onClickClose();
+
+    this.$get("/api/user/getinfo", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      if (r.code == 200) {
+        this.type = r.data.type;
+      }
+    });
   },
 };
 </script>
