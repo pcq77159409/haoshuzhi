@@ -121,7 +121,7 @@
       <p>合计:</p>
       <span>￥{{ detailsList.sale_price }}</span>
       <!-- <router-link to="/form_orders_path"> -->
-      <div class="sc" @click="onclickCollection">收藏</div>
+      <div class="sc" @click="onclickCollection" ref="shou">收藏</div>
       <div class="now" @click="onclickPurchase">提交订单</div>
       <!-- </router-link> -->
     </div>
@@ -217,7 +217,7 @@ export default {
       back: false,
       taocan: "",
       taocanXZ: -1,
-      metric:false,
+      metric: false,
       shdz: [
         {
           id: 1,
@@ -461,6 +461,10 @@ export default {
           alert(r.msg);
         }
       });
+      this.$refs.shou.style = "background:#b0b0b0";
+      setTimeout(() => {
+        this.$refs.shou.style = "background:#bdbdbd";
+      }, 360);
     },
     onClickSure() {
       window.location.href = "tel:18817744333";
@@ -940,7 +944,7 @@ li {
 }
 .endcsname .mercifully .parameter {
   display: flex;
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
 }
 .endcsname .mercifully .parameter h3 {
   color: #333333;
@@ -955,7 +959,7 @@ li {
 }
 .endcsname .mercifully .reklameadvice {
   display: flex;
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
 }
 .endcsname .mercifully .reklameadvice p {
   font-size: 14 / @vw;

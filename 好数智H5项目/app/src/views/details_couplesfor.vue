@@ -36,7 +36,7 @@
         号码套餐
         <em v-if="copules[1][0].numberpackage.length != 0">
           <span v-if="copules[1][0].numberpackage[0].storepackage != null">
-            <span  @click="onClickBack">{{ tjb.package_name }}</span>
+            <span @click="onClickBack">{{ tjb.package_name }}</span>
           </span>
         </em>
       </p>
@@ -99,7 +99,7 @@
         </div>
       </div>
     </div>
-    <div class="phone" >
+    <div class="phone">
       <p>
         号码套餐
         <em v-if="copules[0][0].numberpackage.length != 0">
@@ -185,7 +185,7 @@
         <p>合计:</p>
         <span>￥{{ price }}</span>
       </div>
-      <div class="sc" @click="onclickCollection">收藏</div>
+      <div class="sc" @click="onclickCollection" ref="shou">收藏</div>
       <div class="now" @click="onClickFarm()">提交订单</div>
     </div>
     <div class="black" v-show="back">
@@ -605,12 +605,23 @@ export default {
           }
         });
       });
+      this.$refs.shou.style = "background:#b0b0b0";
+      setTimeout(() => {
+        this.$refs.shou.style = "background:#bdbdbd";
+      }, 360);
     },
     onClickSure() {
       window.location.href = "tel:18817744333";
     },
   },
   created() {
+    this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
+      console.log(val);
+      this.copules = val.data;
+      this.price =
+        parseInt(this.copules[0][0].sale_price) +
+        parseInt(this.copules[1][0].sale_price);
+    });
     //获取收货地址
     this.$get("/api/address/getlist", {
       user_id: localStorage.getItem("user-id"),
@@ -673,7 +684,6 @@ html {
   font-size: 14 / @vw;
   text-align: center;
   line-height: 44 / @vw;
-  margin-left: 97 / @vw;
 }
 .kf {
   position: absolute;
@@ -742,7 +752,7 @@ li {
 }
 .endcsname .mercifully .parameter {
   display: flex;
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
 }
 .endcsname .mercifully .parameter h3 {
   color: #333333;
@@ -757,7 +767,7 @@ li {
 }
 .endcsname .mercifully .reklameadvice {
   display: flex;
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
 }
 .endcsname .mercifully .reklameadvice p {
   font-size: 12 / @vw;
@@ -913,6 +923,8 @@ li {
 .bottom .tan {
   display: flex;
   align-items: center;
+  width: 166/@vw;
+  height: 100%;
 }
 .black {
   width: 100%;

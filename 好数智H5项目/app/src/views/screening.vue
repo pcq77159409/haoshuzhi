@@ -115,8 +115,8 @@
         </ul>
         <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
         <ul class="reset">
-          <li @click="onclickResetInput">重置</li>
-          <li @click="onclickAccurateSearch">精准搜索</li>
+          <li @click="onclickResetInput" ref="cz">重置</li>
+          <li @click="onclickAccurateSearch" ref="jz">精准搜索</li>
         </ul>
       </div>
       <!-- 搜索号码 结束-->
@@ -376,7 +376,7 @@
 
         <!-- 按钮 开始-->
         <div class="sure">
-          <p @click="onClickReset">重置</p>
+          <p @click="onClickReset" ref="clear">重置</p>
           <span @click="onClickTo">确定</span>
         </div>
         <!-- 按钮 结束-->
@@ -954,6 +954,11 @@ export default {
       this.maxNumber = "";
       this.contractListed = false;
       this.lowPinListed = false;
+      this.$refs.clear.style='background:#dddddd'
+      setTimeout(()=>{
+        this.$refs.clear.style='background:#f0eeee'
+
+      },360)
       // this.active=-1;
     },
     onSearch() {
@@ -1033,6 +1038,11 @@ export default {
           str += val.value;
         }
       });
+      this.$refs.jz.style='background:#e12c2c'
+      setTimeout(()=>{
+        this.$refs.jz.style='background:#fe5858'
+
+      },360)
       this.parameter = {};
       this.parameter.accurate = str;
       this.parameter.from = localStorage.getItem("from");
@@ -1051,6 +1061,11 @@ export default {
       });
       str;
       this.parameter = { accurate: "" };
+        this.$refs.cz.style='background:#dddddd'
+      setTimeout(()=>{
+        this.$refs.cz.style='background:#f0eeee'
+
+      },360)
       this.onclickQuery();
     },
     onclickQuery() {
@@ -1368,9 +1383,7 @@ a {
   border-radius: 20 / @vw;
   font-size: 10 / @vw*1.3;
 }
-.Mobile_phone .accurate .reset li:hover {
-  background-color: skyblue !important;
-}
+
 .Mobile_phone .accurate .reset li:first-child {
   background-color: #f0eeee;
   color: #666666;

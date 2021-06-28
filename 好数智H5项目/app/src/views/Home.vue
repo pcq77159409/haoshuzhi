@@ -21,10 +21,10 @@
         <div class="used">
           <h3>常用搜索</h3>
           <ul>
-            <li @click="onclickSearch('666')">666</li>
-            <li @click="onclickSearch('888')">888</li>
-            <li @click="onclickSearch('999')">999</li>
-            <li @click="onclickSearch('8888')">8888</li>
+            <li @click="onclickSearch('AAA')">AAA</li>
+            <li @click="onclickSearch('BBB')">BBB</li>
+            <li @click="onclickSearch('ABAB')">ABAB</li>
+            <li @click="onclickSearch('ABCD')">ABCD</li>
           </ul>
         </div>
         <div class="footprint">
@@ -373,10 +373,10 @@ a {
   height: 12 / @vw;
 }
 .searchBox h3 {
+  margin-top: 10/@vw;
   margin-bottom: 10 / @vw;
   font-size: 14 / @vw;
   font-family: PingFang SC;
-  font-weight: 600;
   color: #333333;
   line-height: 60 / @vw / 2;
 }
