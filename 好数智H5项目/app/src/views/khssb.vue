@@ -21,17 +21,9 @@
     </div>
     <div class="havepackage">
       <p>套餐详情</p>
-      <img :src="taco.main_image" alt="" />
+      <img :src="item" alt="" v-for="(item,index) in taco.detail_image" :key="index"/>
     </div>
     <div class="lofoot">
-      <div class="sidebar-home">
-        <img src="../assets/shou2.png.png" alt="" />
-        <p>首页</p>
-      </div>
-      <div class="sidebar-home" @click="$router.push('/commons/home/m')">
-        <img src="../assets/cang1.png.png" alt="" />
-        <p>收藏</p>
-      </div>
       <div class="immediately">立即选号</div>
     </div>
   </div>
@@ -64,10 +56,12 @@ export default {
   height: 100%;
   background-color: #f5f5f5;
   overflow-y: auto;
+  padding-bottom: 50/@vw;
+  box-sizing: border-box;
 }
 .item_content .package_box {
   width: 100%;
-  height: 64/@vw;
+  height: 58/@vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -88,7 +82,6 @@ export default {
 }
 .item_content .taos {
   width: 100%;
-  height: 300/@vw;
 }
 .item_content .ninteen {
   width: 345/@vw;
@@ -195,6 +188,7 @@ export default {
   background-color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-top: 1/@vw solid #e5e5e5;
   position: fixed;
   bottom: 0;
@@ -225,6 +219,6 @@ export default {
   font-size: 14/@vw;
   text-align: center;
   line-height: 33/@vw;
-  margin-left: 64/@vw;
+  margin-right: 10/@vw;
 }
 </style>

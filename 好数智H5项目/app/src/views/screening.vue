@@ -954,15 +954,25 @@ export default {
       this.maxNumber = "";
       this.contractListed = false;
       this.lowPinListed = false;
-      this.$refs.clear.style='background:#dddddd'
-      setTimeout(()=>{
-        this.$refs.clear.style='background:#f0eeee'
-
-      },360)
-      // this.active=-1;
+      this.$refs.clear.style = "background:#dddddd";
+      setTimeout(() => {
+        this.$refs.clear.style = "background:#f0eeee";
+      }, 360);
+      this.active = -1;
     },
     onSearch() {
-      this.onclickResetInput();
+      var number = document.querySelectorAll(".number");
+      let str = "";
+      number.forEach((val, index) => {
+        if (index != 0) {
+          val.value = "";
+          str += "_";
+        } else {
+          str += val.value;
+        }
+      });
+      str;
+      this.parameter = { accurate: "" };
       this.parameter = {};
       if (this.typed) {
         this.parameter.type = 1;
@@ -1038,11 +1048,10 @@ export default {
           str += val.value;
         }
       });
-      this.$refs.jz.style='background:#e12c2c'
-      setTimeout(()=>{
-        this.$refs.jz.style='background:#fe5858'
-
-      },360)
+      this.$refs.jz.style = "background:#e12c2c";
+      setTimeout(() => {
+        this.$refs.jz.style = "background:#fe5858";
+      }, 360);
       this.parameter = {};
       this.parameter.accurate = str;
       this.parameter.from = localStorage.getItem("from");
