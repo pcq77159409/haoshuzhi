@@ -709,9 +709,9 @@ export default {
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
-      if (e.target.scrollTop >= 1600 * this.numbers) {
+      if (e.target.scrollTop >= 1400 * this.numbers) {
         // this.rember();
-        if (this.numbers1 < this.sumsid - 2) {
+        if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
           console.log(this.numbers1);
@@ -725,8 +725,10 @@ export default {
               });
             });
           this.$refs.bjz.innerText = "加载中...";
+          if (this.numbers1 == this.sumsid) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
         } else {
-          console.log(123);
           this.$refs.bjz.innerText = "已经到底了";
         }
       }
@@ -794,7 +796,7 @@ export default {
     onClickTo() {
       this.back = false;
       this.active = -1;
-      this.parameter = {};
+      // this.parameter = {};
       if (this.tranges === null) {
         this.searchFilter.handle_type = "";
       } else if (this.tranges === true) {
@@ -923,7 +925,6 @@ export default {
       this.searchFilter.type = 1;
       this.parameter = this.searchFilter;
       this.parameter.from = localStorage.getItem("from");
-      console.log(11111111111);
       this.onclickQuery();
     },
     onTab(index) {
@@ -1072,11 +1073,23 @@ export default {
         });
         console.log(this.parameter);
         console.log(this.$route.query);
+
+        this.pList = this.$route.query;
         this.$axios
           .post("/api/home_page/getNumList", this.$route.query)
           .then((val) => {
             console.log(val);
-            this.list = val.data.data;
+            if (val.code == 200) {
+              this.list = val.data.data;
+              this.sumsid = val.data.last_page;
+              this.numbers = 1;
+              this.numbers1 = 1;
+              if (this.sumsid == 1) {
+                this.$refs.bjz.innerText = "已经到底了";
+              }
+            } else {
+              alert(val.msg);
+            }
           });
       }
     },
@@ -1092,8 +1105,15 @@ export default {
       .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
         console.log(val);
-        this.list = val.data.data;
-        this.sumsid = val.data.last_page;
+        if (val.code == 200) {
+          this.list = val.data.data;
+          this.sumsid = val.data.last_page;
+          if (this.sumsid == 1) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
+        } else {
+          alert(val.msg);
+        }
       });
     this.$axios.get("api/home_page/getLocation").then((val) => {
       this.nums = Object.keys(val.data)[0];
@@ -1152,6 +1172,13 @@ export default {
         this.title = "电信号码";
       } else if (val == "虚拟运营商") {
         this.title = "虚拟号码";
+      }
+    },
+    active(val) {
+      if (val == null || val == -1) {
+        this.$refs.bugun.style = "overflow:auto";
+      } else {
+        this.$refs.bugun.style = "overflow:hidden";
       }
     },
   },

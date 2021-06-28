@@ -239,7 +239,7 @@
           </div>
         </div>
       </div>
-      <div class="botttomjz" ref="bjz">已经到底了</div>
+      <div class="botttomjz" ref="bjz">加载中...</div>
     </div>
     <!--手机号 结束-->
   </div>
@@ -296,21 +296,22 @@ export default {
       type: "",
       nums: "",
       opList: -1,
-      numbers:1,
-      numbers1:1,
-      sumsid:0,
-      pList:{}
+      numbers: 1,
+      numbers1: 1,
+      sumsid: 0,
+      pList: {},
     };
   },
   methods: {
-        scrollBox(e) {
+    scrollBox(e) {
       // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
-      if (e.target.scrollTop >= 1600 * this.numbers) {
+      console.log(this.numbers);
+      if (e.target.scrollTop >= 500 * this.numbers) {
         // this.rember();
-        if (this.numbers1 < this.sumsid - 2) {
+        if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
           console.log(this.numbers1);
@@ -324,8 +325,10 @@ export default {
               });
             });
           this.$refs.bjz.innerText = "加载中...";
+          if (this.numbers1 == this.sumsid) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
         } else {
-          console.log(123);
           this.$refs.bjz.innerText = "已经到底了";
         }
       }
@@ -445,7 +448,15 @@ export default {
         this.$axios
           .post("/api/home_page/loveNumber", this.$route.query)
           .then((val) => {
-            this.love = val.data.data;
+            if (val.code == 200) {
+              this.love = val.data.data;
+              this.sumsid = val.data.last_page;
+              if (this.sumsid == 1) {
+                this.$refs.bjz.innerText = "已经到底了";
+              }
+            } else {
+              alert(val.msg);
+            }
           });
       }
     },
@@ -482,7 +493,15 @@ export default {
       .post("/api/home_page/loveNumber", this.$route.query)
       .then((val) => {
         console.log(val);
-        this.love = val.data.data;
+        if (val.code == 200) {
+          this.love = val.data.data;
+          this.sumsid = val.data.last_page;
+          if (this.sumsid == 1 || this.sumsid == 0) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
+        } else {
+          alert(val.msg);
+        }
       });
   },
   mounted() {
@@ -496,6 +515,15 @@ export default {
     this.$axios.get("/api/home_page/getOperator").then((val) => {
       this.chinese = val.data;
     });
+  },
+  watch: {
+    active(val) {
+      if (val == null || val == -1) {
+        this.$refs.bugun.style = "overflow:auto";
+      } else {
+        this.$refs.bugun.style = "overflow:hidden";
+      }
+    },
   },
 };
 </script>
@@ -678,7 +706,7 @@ body {
   border-radius: 20 / @vw;
   font-size: 10 / @vw*1.3;
 }
-.Mobile_phone .accurate .reset li:hover{
+.Mobile_phone .accurate .reset li:hover {
   background-color: skyblue !important;
 }
 .Mobile_phone .accurate .reset li:first-child {
