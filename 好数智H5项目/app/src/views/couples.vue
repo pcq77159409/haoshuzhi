@@ -220,11 +220,11 @@
           <h5 v-html="item[0].number_tag"></h5>
           <div class="commission">
             <p>{{ item[0].location }}</p>
-            <span>佣金￥{{ item[0].returned_commission }}</span>
+            <span v-show="commissionShow">佣金￥{{ item[0].returned_commission }}</span>
           </div>
           <div class="contains">
             <p>含通话费{{ item[0].contain_charge }}</p>
-            <span>￥{{ item[0].sale_price }}</span>
+            <span v-show="priceShow">￥{{ item[0].sale_price }}</span>
           </div>
         </div>
         <span class="line"></span>
@@ -232,10 +232,11 @@
           <h5 v-html="item[1].number_tag"></h5>
           <div class="commission">
             <p>{{ item[1].location }}</p>
+            <span v-show="commissionShow">佣金￥{{ item[1].returned_commission }}</span>
           </div>
           <div class="contains">
             <p>含通话费{{ item[1].contain_charge }}</p>
-            <span>￥{{ item[1].sale_price }}</span>
+            <span v-show="priceShow">￥{{ item[1].sale_price }}</span>
           </div>
         </div>
       </div>
@@ -248,6 +249,8 @@
 export default {
   data() {
     return {
+      commissionShow: false,
+      priceShow: true,
       active: null,
       proList: [],
       ruleDui: 1,
@@ -472,6 +475,21 @@ export default {
     },
   },
   created() {
+    if (localStorage.getItem("priceShow")) {
+      if (localStorage.getItem("priceShow") == "true") {
+        this.priceShow = true;
+      } else {
+        this.priceShow = false;
+      }
+    }
+    if (localStorage.getItem("commissionShow")) {
+      if (localStorage.getItem("commissionShow") == "true") {
+        this.commissionShow = true;
+      } else {
+        this.commissionShow = false;
+      }
+    }
+
     if (localStorage.getItem("from")) {
       this.$route.query.from = localStorage.getItem("from");
     } else {

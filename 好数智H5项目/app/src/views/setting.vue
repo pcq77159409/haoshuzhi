@@ -33,9 +33,9 @@
       </ul>
     </div>
     <i>* 显示佣金默认关闭 ： 实力买家可开启佣金显示</i>
-        <div class="person_massage" @click="$router.push('/personmsg')">
+    <div class="person_massage" @click="$router.push('/personmsg')">
       <p>个人信息</p>
-      <img src="../assets/跳转箭头@2x.png" alt="">
+      <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
     <div class="show">
       <ul>
@@ -67,13 +67,13 @@ export default {
       open: "开启",
     };
   },
-  watch:{
-    value(val){
-      localStorage.setItem('priceShow',val);
+  watch: {
+    value(val) {
+      localStorage.setItem("priceShow", val);
     },
-    actives(val){
-      localStorage.setItem('commissionShow',val);
-    }
+    actives(val) {
+      localStorage.setItem("commissionShow", val);
+    },
   },
   methods: {
     onClickClose() {
@@ -106,10 +106,27 @@ export default {
             localStorage.setItem("user-id", r.data.id);
             localStorage.setItem("token", r.data.token);
             localStorage.setItem("uuidstatus", r.data.uuidstatus);
-            this.$router.push('/commons/home/m');
+            this.$router.push("/commons/home/m");
           }
         });
     },
+  },
+  mounted() {
+    if (localStorage.getItem("priceShow")) {
+      if (localStorage.getItem("priceShow") == 'true') {
+        this.value = true;
+      } else {
+        this.value = false;
+      }
+    }
+    if (localStorage.getItem("commissionShow")) {
+      if (localStorage.getItem("commissionShow") == 'true') {
+        this.actives = true;
+      } else {
+        this.actives = false;
+      }
+    }
+    this.onClickClose();
   },
 };
 </script>
@@ -186,24 +203,24 @@ export default {
   font-size: 12 / @vw;
   color: #999999;
 }
-.set_box .person_massage{
+.set_box .person_massage {
   width: 100%;
-  height: 54/@vw;
+  height: 54 / @vw;
   background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 15/@vw;
+  margin-top: 15 / @vw;
 }
 .set_box .person_massage p {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #333333;
-  margin-left: 15/@vw;
+  margin-left: 15 / @vw;
 }
 .set_box .person_massage img {
-  width: 8/@vw;
-  height: 14/@vw;
-  margin-right: 15/@vw;
+  width: 8 / @vw;
+  height: 14 / @vw;
+  margin-right: 15 / @vw;
 }
 .set_box .clear {
   width: 100%;

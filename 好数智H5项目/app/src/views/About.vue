@@ -48,7 +48,11 @@
           <span></span>
         </div>
         <ul class="card" v-if="arrTao.length != 0">
-          <li v-for="(item, index) in arrTao" :key="index" @click="ClickOnTao(item.id)">
+          <li
+            v-for="(item, index) in arrTao"
+            :key="index"
+            @click="ClickOnTao(item.id)"
+          >
             {{ item.name }}
           </li>
           <!-- <li>39元小魔卡</li>
@@ -90,27 +94,37 @@ export default {
     onClickTab(v, id) {
       this.flag = v;
       this.$get("/api/home_page/getChildCategory", { id: id }).then((r) => {
+        console.log(r);
         if (r.code == 200) {
           if (r.data.length == 0) {
             this.arrs = r.data;
             this.arrTao = r.data;
           } else {
+            let jlf=true;
+            r.data.forEach((item) => {
+              if (item.name == "套餐") {
+                jlf=false;
+                this.arrTao = r.data[1].child;
+              }
+            });
+            if (jlf) {
+                this.arrTao = [];
+            }
             this.arrs = r.data[0].child;
-            this.arrTao = r.data[1].child;
           }
         } else {
           alert(r.msg);
         }
       });
     },
-    ClickOnTao(id){
+    ClickOnTao(id) {
       this.$router.push({
-        path:'/khssb',
-        query:{
-          id:id
-        }
-      })
-    }
+        path: "/khssb",
+        query: {
+          id: id,
+        },
+      });
+    },
   },
   mounted() {
     this.$axios.get("/api/home_page/getCategory").then((r) => {
@@ -129,11 +143,11 @@ export default {
 
 .digital :hover {
   color: red;
-  border: 1/@vw solid #fe5858;
+  border: 1 / @vw solid #fe5858;
 }
 .card :hover {
   color: red;
-  border: 1/@vw solid #fe5858;
+  border: 1 / @vw solid #fe5858;
 }
 html,
 body {
@@ -141,7 +155,7 @@ body {
   height: 100%;
 }
 .current {
-  border-left: 2/@vw solid #fe5858;
+  border-left: 2 / @vw solid #fe5858;
   color: #fe5858 !important;
 }
 .about {
@@ -152,22 +166,22 @@ body {
 }
 .header {
   width: 100%;
-  height: 58/@vw;
+  height: 58 / @vw;
   background: #fe5858;
   display: flex;
   align-items: center;
 }
 .header p {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   color: white;
-  line-height: 64/@vw;
+  line-height: 64 / @vw;
   text-align: center;
   margin: 0 auto;
 }
 .header img {
-  width: 10/@vw;
-  height: 16/@vw;
-  margin-left: 15/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
+  margin-left: 15 / @vw;
 }
 .move {
   width: 100%;
@@ -186,32 +200,32 @@ body {
 }
 .move .pag li {
   width: 100%;
-  height: 50/@vw*1.3;
+  height: 50 / @vw*1.3;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .move .pag li p {
   width: 100%;
-  height: 25/@vw*1.3;
+  height: 25 / @vw*1.3;
   color: #666666;
-  font-size: 14/@vw;
-  line-height: 25/@vw*1.3;
+  font-size: 14 / @vw;
+  line-height: 25 / @vw*1.3;
 }
 .roughly {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 24/@vw;
-  height: 18/@vw;
+  margin-top: 24 / @vw;
+  height: 18 / @vw;
 }
 .roughly h5 {
   color: #666;
   font-weight: 500;
 }
 .roughly span {
-  width: 86/@vw;
-  height: 1/@vw;
+  width: 86 / @vw;
+  height: 1 / @vw;
   background-color: #eeecec;
 }
 .digital {
@@ -220,7 +234,7 @@ body {
   flex-wrap: wrap;
   // height: 190/@vw;
   // justify-content: space-evenly;
-  margin-top: 24/@vw;
+  margin-top: 24 / @vw;
   overflow: auto;
   // padding-right: 4%;
   box-sizing: border-box;
@@ -228,14 +242,14 @@ body {
 .digital li {
   width: 20%;
   // height: 28/@vw;
-  border: 1/@vw solid #d3d3d3;
+  border: 1 / @vw solid #d3d3d3;
   color: #666666;
   font-weight: 500;
-  border-radius: 20/@vw;
+  border-radius: 20 / @vw;
   text-align: center;
-  line-height: 26/@vw;
-  margin-bottom: 20/@vw;
-  font-size: 12/@vw;
+  line-height: 26 / @vw;
+  margin-bottom: 20 / @vw;
+  font-size: 12 / @vw;
   margin-left: 4%;
   box-sizing: border-box;
 }
@@ -243,19 +257,19 @@ body {
   display: flex;
   flex-wrap: wrap;
   // justify-content: space-evenly;
-  margin-top: 24/@vw;
+  margin-top: 24 / @vw;
 }
 .card li {
   width: 44%;
-  height: 28/@vw;
-  border: 1/@vw solid #d3d3d3;
+  height: 28 / @vw;
+  border: 1 / @vw solid #d3d3d3;
   color: #666666;
   font-weight: 500;
-  border-radius: 20/@vw;
+  border-radius: 20 / @vw;
   text-align: center;
-  line-height: 28/@vw;
-  margin-bottom: 15/@vw*1.3;
-  font-size: 12/@vw;
+  line-height: 28 / @vw;
+  margin-bottom: 15 / @vw*1.3;
+  font-size: 12 / @vw;
   margin-left: 4%;
   box-sizing: border-box;
 }
