@@ -196,6 +196,9 @@ export default {
   display: flex;
   align-items: center;
   border-top: 1/@vw solid #e5e5e5;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 .item_content .lofoot .sidebar-home {
   display: flex;
