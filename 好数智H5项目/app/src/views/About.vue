@@ -36,7 +36,7 @@
             v-for="(val, index) in arrs"
             :key="index"
             @click="
-              $router.push({ path: '/screen', query: { haoduan: val.name } })
+              $router.push({ path: '/commons/home/m', query: { haoduan: val.name } })
             "
           >
             {{ val.name }}
@@ -269,7 +269,7 @@ body {
   text-align: center;
   line-height: 28 / @vw;
   margin-bottom: 15 / @vw*1.3;
-  font-size: 12 / @vw;
+  font-size: 10 / @vw;
   margin-left: 4%;
   box-sizing: border-box;
 }

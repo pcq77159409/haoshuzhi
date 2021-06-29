@@ -26,17 +26,6 @@ const routes = [{
             component: () =>
                 import ('../views/My.vue')
         }, {
-            path: '/commons/home_trill',
-            name: 'home_trill',
-            component: () =>
-                import ('../views/home_trill.vue'),
-            children: [{
-                path: '/commons/home_trill/m',
-                name: 'm',
-                component: () =>
-                    import ('../views/m.vue')
-            }]
-        }, {
             path: '/commons/home',
             name: 'Home',
             component: () =>

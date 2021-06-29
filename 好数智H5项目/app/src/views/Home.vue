@@ -1,727 +1,1892 @@
 <template>
-  <div class="home">
-    <div class="searchBox" v-show="searchShow" @click="searchShow = false">
-      <div class="sb_head" @click.stop="searchShow = true">
-        <div class="sbh_top">
-          <div class="sbht_center">
-            <img src="../assets/搜索@2x.png" alt="" class="search" />
-            <input
-              v-bind:autofocus="!searchBtnFlag"
-              type="tel"
-              placeholder="请输入您要搜索的内容"
-              @keyup.enter="onKeyupSearch"
-              v-model="search"
-              maxlength="11"
-              id="inputVal"
-              autocomplete="off"
-            />
-            <span @click="onKeyupSearch">搜索</span>
+  <div class="Mobile_phone" ref="m">
+    <!-- 头部导航 开始-->
+    <div class="reds">
+      <div class="moveing">
+        <img src="../assets/left.png" alt="" @click="onClickGo" />
+        <h3>好数智靓号商城</h3>
+      </div>
+    </div>
+    <!-- 头部导航 结束-->
+
+    <!-- banner 开始-->
+    <div class="banner_box">
+      <router-view></router-view>
+    </div>
+    <!-- banner 结束-->
+
+    <!-- 搜索号码 开始-->
+    <div class="accurate">
+      <ul class="searchelephone">
+        <li
+          v-for="(item, index) in arr"
+          :key="index"
+          :class="{ achode: id == item.id }"
+          @click="onccasd(item.id)"
+        >
+          {{ item.name }}
+        </li>
+      </ul>
+      <div v-show="numid == 2">
+        <div class="input_bg">
+          <div class="searchs">
+            <div class="want sou">
+              <img src="../assets/搜索@2x.png" alt="" />
+              <input
+                type="text"
+                placeholder="搜索你想要的号码"
+                v-model="searchInput"
+                @keyup.enter="onSearch"
+              />
+            </div>
+            <h4 @click="onSearch" class="hf">搜索</h4>
           </div>
         </div>
-        <div class="used">
-          <h3>常用搜索</h3>
-          <ul>
-            <li @click="onclickSearch('666')">666</li>
-            <li @click="onclickSearch('888')">888</li>
-            <li @click="onclickSearch('520')">520</li>
-            <li @click="onclickSearch('1314')">1314</li>
-          </ul>
+        <p class="ge">* 请在输入框内填写任意数字进行搜索</p>
+      </div>
+      <div v-show="numid == 3">
+        <div class="input_bg">
+          <div class="tail" @click="onclickTyped">
+            <div class="img">
+              <img src="../assets/yes.png" alt="" v-show="typed == 0" />
+            </div>
+            <p>尾号</p>
+            <span></span>
+          </div>
+          <div class="searchs">
+            <div class="want">
+              <img src="../assets/搜索@2x.png" alt="" />
+              <input
+                type="text"
+                placeholder="搜索你想要的号码"
+                v-model="searchInput"
+                @keyup.enter="onSearch"
+              />
+            </div>
+            <h4 @click="onSearch">搜索</h4>
+          </div>
         </div>
-        <div class="footprint">
-          <h3>
-            搜索足迹 <img src="../assets/222.png" alt="" @click="onclickDel" />
-          </h3>
-          <ul>
+        <p class="ge">* 请在输入框内填写末尾数字进行搜索</p>
+      </div>
+
+      <div v-show="numid == 1">
+        <ul class="phoneNumber">
+          <li>
+            <input
+              type="number"
+              value="1"
+              @keyup="onkeyupInputSearch(0)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(1)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(2)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(3)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(4)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(5)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(6)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(7)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(8)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(9)"
+              class="number"
+            />
+          </li>
+          <li>
+            <input
+              type="number"
+              @keyup="onkeyupInputSearch(10)"
+              class="number"
+            />
+          </li>
+        </ul>
+        <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
+        <ul class="reset">
+          <li @click="onclickResetInput">重置</li>
+          <li @click="onclickAccurateSearch">精准搜索</li>
+        </ul>
+      </div>
+    </div>
+    <!-- 搜索号码 结束-->
+
+    <!-- 下拉选择 开始-->
+    <div class="select_change">
+      <ul class="area">
+        <li @click="onClickShow(0)">
+          <p @click="onClickDn">归属地</p>
+          <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
+          <img
+            src="../assets/red_triangle.png"
+            alt=""
+            class="red_triangle"
+            v-show="active == 0"
+          />
+        </li>
+        <li @click="onClickShow(2)">
+          <p @click="onClickRegular">规律</p>
+          <img src="../assets/triangle.png" alt="" v-show="active !== 2" />
+          <img
+            src="../assets/red_triangle.png"
+            alt=""
+            class="red_triangle"
+            v-show="active == 2"
+          />
+        </li>
+        <li @click="onClickBack">
+          <p>筛选</p>
+          <img src="../assets/filter.png" alt="" />
+        </li>
+      </ul>
+      <!-- 规律 结束-->
+    </div>
+    <!-- 下拉选择 结束-->
+
+    <!--手机号 开始-->
+    <div class="class_name">
+      <!--暂无搜索内容 开始-->
+      <div class="available" v-show="isShow">
+        <img src="../assets/sou.png" alt="" />
+        <p>暂无搜索内容</p>
+      </div>
+      <!--暂无搜索内容 结束-->
+
+      <router-link
+        :to="{ path: '/details', query: { 'ids[]': val.id } }"
+        v-for="(val, index) in list"
+        :key="index"
+      >
+        <div class="start">
+          <img src="../assets/矩形 47@2x.png" alt="" style="" />
+          <h5 v-html="val.number_tag"></h5>
+          <div class="commission">
+            <p>{{ val.location }}</p>
+            <span>佣金{{ val.returned_commission }}</span>
+          </div>
+          <div class="contains">
+            <p>含通话费{{ val.contain_charge }}</p>
+            <span>￥{{ val.sale_price }}</span>
+          </div>
+        </div>
+      </router-link>
+
+       <!-- 归属地 开始-->
+      <div class="black" v-show="flag">
+        <div class="Belonging">
+          <ul class="pro">
             <li
-              v-for="(item, index) in footprintData"
+              v-for="(item, index) in proList"
               :key="index"
-              @click="onclickSearch(item)"
+              :class="{ current: num == index }"
+              @click="onClickHide(index, item)"
             >
-              {{ item }}
+              <img src="../assets/right.png" alt="" v-show="num == index" />
+              <p>{{ item }}</p>
+            </li>
+          </ul>
+          <ul class="city">
+            <li
+              v-for="(item, index) in cityList[nums]"
+              :key="index"
+              :class="{ currents: wrap == item }"
+              @click="onClickHided(item)"
+            >
+              <img src="../assets/right.png" alt="" v-show="wrap == item" />
+              <p>{{ item }}</p>
             </li>
           </ul>
         </div>
       </div>
-    </div>
-    <div class="head">
-      <div class="locations" @click="$router.push('/citys')">
-        <img src="../assets/123.png" alt="" />
-        <p>上海</p>
-      </div>
-      <!-- <p class="haoshu">好数智</p> -->
-      <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
-      <i @click="onclickSearchShow" ref="search1">请输入您要搜索的内容</i>
-      <img src="../assets/搜索@2x.png" alt="" class="search" />
-    </div>
-    <div class="heads">
-      <!-- <img src="../assets/banner@2x.png" alt="" /> -->
-      <router-view></router-view>
-    </div>
-
-    <div class="header">
-      <div class="one">
-        <dl @click="onCLickTiao({ operator_id: 1 })">
-          <dt><img src="../assets/组 36@2x(5).png" alt="" /></dt>
-          <dd>移动号码</dd>
-        </dl>
-        <dl @click="onCLickTiao({ operator_id: 2 })">
-          <dt><img src="../assets/组 22@2x.png" alt="" /></dt>
-          <dd>联通号码</dd>
-        </dl>
-        <dl @click="onCLickTiao({ operator_id: 3 })">
-          <dt><img src="../assets/组 23@2x.png" alt="" /></dt>
-          <dd>电信号码</dd>
-        </dl>
-        <dl @click="onCLickTiao({ operator_id: 4 })">
-          <dt><img src="../assets/组 36@2x(1).png" alt="" /></dt>
-          <dd>虚拟号码</dd>
-        </dl>
-      </div>
-      <div class="two">
-        <dl @click="onCLickTiao({ tag: 44 })">
-          <dt><img src="../assets/组 36@2x(1).png" alt="" /></dt>
-          <dd>生日号码</dd>
-        </dl>
-        <router-link to="/couples">
-          <dl>
-            <dt><img src="../assets/组 36@2x(2).png" alt="" /></dt>
-            <dd>情侣号码</dd>
-          </dl>
-        </router-link>
-        <router-link to="/choice">
-          <dl>
-            <dt><img src="../assets/组 36@2x(3).png" alt="" /></dt>
-            <dd>套餐介绍</dd>
-          </dl>
-        </router-link>
-        <router-link to="">
-          <dl>
-            <dt><img src="../assets/组 36@2x(4).png" alt="" /></dt>
-            <dd>业务办理</dd>
-          </dl>
-        </router-link>
-      </div>
-    </div>
-    <div class="three">
-      <img src="../assets/卡片@2x.png" alt="" />
-    </div>
-    <div class="four">
-      <img src="../assets/矩形 31 拷贝 3@2x_proc.jpg" alt="" />
-    </div>
-    <!-- 特价专场 -->
-    <div class="footer">
-      <div class="five">
-        <img src="../assets/时间表@2x.png" alt="" />
-        <p>特价专场</p>
-      </div>
-      <div class="six">
-        <p @click="$router.push('/screen')">
-          更多<img src="../assets/形状 20@2x.png" alt="" />
-        </p>
-      </div>
-    </div>
-    <div class="cap">
-      <router-link
-        :to="{ path: '/details', query: { 'ids[]': value.id } }"
-        v-for="(value, index) in dataList"
-        :key="index"
-      >
-        <div class="shit">
-          <img src="../assets/te.png" alt="" />
-          <div class="number" v-html="value.number_tag"></div>
-          <div class="money">
-            <p>{{ value.location }}</p>
-            <p class="dolor" v-show="commissionShow">
-              佣金￥{{ value.returned_commission }}
-            </p>
-          </div>
-          <div class="money">
-            <p class="han">含话费￥260</p>
-            <p class="twietion" v-show="priceShow">
-              ￥{{ value.initial_charge }}
-            </p>
-          </div>
+      <!-- 归属地 结束-->
+      <!-- 规律 开始-->
+      <div class="black" v-show="regulars">
+        <div class="regular">
+          <ul>
+            <li
+              v-for="(item, index) in rule"
+              :key="index"
+              :class="{ currents: regList == index }"
+              @click="onclickRegList(index, item.id)"
+            >
+              <img src="../assets/right.png" alt="" v-show="regList == index" />
+              <p>{{ item.name }}</p>
+            </li>
+          </ul>
         </div>
-      </router-link>
-    </div>
-    <!-- 特价专场 -->
+      </div>
 
-    <!-- 猜你喜欢 -->
-    <div class="four">
-      <img src="../assets/矩形 31 拷贝 3@2x_proc.jpg" alt="" />
     </div>
-    <div class="like">
-      <div class="you">
-        <img src="../assets/love.png.png" alt="" />
-        <span>猜你喜欢</span>
-      </div>
-      <ul class="shun">
-        <li>
-          <img src="../assets/p_1.png.png" alt="" />
-          <div>
-            <p class="lian">顺子靓号</p>
-            <p class="of">属于你的生日号码</p>
-          </div>
-        </li>
-        <li>
-          <img src="../assets/p_2.png.png" alt="" />
-          <div>
-            <p class="lian">豹子靓号</p>
-            <p class="of">好的号码彰显身份</p>
-          </div>
-        </li>
-        <li>
-          <img src="../assets/p_3.png.png" alt="" />
-          <div class="yes">
-            <p class="lian">连对靓号</p>
-            <p class="of">靓号对对碰</p>
-          </div>
-        </li>
-        <li>
-          <img src="../assets/p_4.png.png" alt="" />
-          <div class="yes">
-            <p class="lian">个性靓号</p>
-            <p class="of">专属个性靓号</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="four">
-      <img src="../assets/矩形 31 拷贝 3@2x_proc.jpg" alt="" />
-    </div>
-    <!-- 靓号推荐 -->
-    <div class="footer">
-      <div class="five">
-        <img src="../assets/形状 8@2x.png" alt="" class="ff-img" />
-        <p>靓号推荐</p>
-      </div>
-      <div class="six">
-        <p @click="$router.push('/screen')">
-          更多<img src="../assets/形状 20@2x.png" alt="" />
-        </p>
-      </div>
-    </div>
-    <div class="cap lina">
-      <router-link
-        :to="{ path: '/details', query: { 'ids[]': item.id } }"
-        v-for="(item, index) in dataTj"
-        :key="index"
-      >
-        <div class="shit">
-          <img src="../assets/te.png" alt="" />
-          <div class="number" v-html="item.number_tag"></div>
-          <div class="money">
-            <p>{{ item.location }}</p>
-            <p class="dolor" v-show="commissionShow">
-              佣金￥{{ item.returned_commission }}
-            </p>
-          </div>
-          <div class="money">
-            <p class="han">含话费￥260</p>
-            <p class="twietion" v-show="priceShow">￥{{ item.initial_charge }}</p>
-          </div>
+    <!--手机号 结束-->
+
+    <!-- 搜索筛选 开始-->
+    <div class="Montmorillonite" v-show="back">
+      <div class="search_filter animate__animated animate__fadeInRight">
+        <!-- 返回按钮 -->
+        <div class="back">
+          <img src="../assets/back.png" alt="" @click="back = false" />
+          <p @click="back = false">筛选</p>
         </div>
-      </router-link>
+        <!-- 返回按钮 -->
+
+        <!-- 办理 -->
+        <div class="handle">
+          <p :class="{ wrok: tranges == true }" @click="tranges = true">
+            线上实名制办理
+          </p>
+          <p :class="{ wrok: tranges == false }" @click="tranges = false">
+            线下营业厅办理
+          </p>
+        </div>
+        <!-- 办理 -->
+
+        <!-- 价格筛选 -->
+        <div class="price">
+          <h5>价格筛选</h5>
+          <ul>
+            <li
+              v-for="(item, index) in dataList"
+              :key="index"
+              @click="onTab(index)"
+              :class="{ active: went == index }"
+            >
+              {{ item.name }}
+            </li>
+            <li><span>￥</span> <input type="number" v-model="minNumber" /></li>
+            <li><span>￥</span> <input type="number" v-model="maxNumber" /></li>
+          </ul>
+          <p>到</p>
+        </div>
+        <!-- 价格筛选 -->
+
+        <!-- 话费筛选 -->
+        <div class="charge">
+          <h5>话费筛选</h5>
+          <ul>
+            <li
+              v-for="(item, index) in itemList"
+              :key="index"
+              @click="onClickOne(index)"
+              :class="{ active: cont == index }"
+            >
+              {{ item.val }}
+            </li>
+            <!-- <li><span>￥</span> <input type="number" /></li>
+            <li><span>￥</span> <input type="number" /></li> -->
+          </ul>
+          <!-- <p>到</p> -->
+        </div>
+        <!-- 话费筛选 -->
+
+        <!-- 合约筛选 开始-->
+        <div class="contract">
+          <h5>合约筛选</h5>
+          <ul class="december">
+            <li
+              :class="{ active: one == 0 }"
+              @click="(one = 0), (contractListed = 0), (lowPinListed = 0)"
+            >
+              不限
+            </li>
+            <li
+              :class="{ active: one == 1 }"
+              @click="(one = 1), (contractListed = null), (lowPinListed = null)"
+            >
+              无合约
+            </li>
+            <li
+              :class="{ active: one == 2 }"
+              @click="(one = 2), (contractListed = 0), (lowPinListed = 0)"
+            >
+              含合约
+            </li>
+          </ul>
+          <!-- <span class="linings"></span> -->
+        </div>
+        <!-- 合约筛选 结束-->
+
+        <!-- 较多数字 开始-->
+        <div class="more_number">
+          <h5>较多数字</h5>
+          <ul>
+            <li
+              v-for="(item, index) in wrapList"
+              :key="index"
+              @click="onClickTwo(index)"
+              :class="{ active: two == index }"
+            >
+              {{ item.name }}
+            </li>
+          </ul>
+        </div>
+        <!-- 较多数字 结束-->
+
+        <!-- 不含数字 开始-->
+        <div class="more_number none">
+          <h5>不含数字</h5>
+          <ul>
+            <li
+              v-for="(item, index) in arrList"
+              :key="index"
+              @click="onClickThree(item.num)"
+              :class="{ active: three.includes(item.num) }"
+            >
+              {{ item.name }}
+            </li>
+          </ul>
+        </div>
+        <!-- 不含数字 结束-->
+
+        <!-- 运营商 开始-->
+        <div class="yuny">
+          <h5>运营商</h5>
+          <ul>
+            <li
+              v-for="(item, index) in chinese"
+              :key="index"
+              :class="{ active: opList == item.operators_name }"
+              @click="onclickOpeateing(item.operators_name)"
+            >
+              <p>{{ item.operators_name }}</p>
+            </li>
+          </ul>
+        </div>
+        <!-- 运营商 结束-->
+
+        <!-- 按钮 开始-->
+        <div class="sure">
+          <p @click="onClickReset">重置</p>
+          <span @click="onClickTo">确定</span>
+        </div>
+        <!-- 按钮 结束-->
+      </div>
     </div>
-    <!-- 靓号推荐 -->
+    <!-- 搜索筛选 结束-->
   </div>
 </template>
-
 <script>
-// import axios from "axios";
-
 export default {
   data() {
     return {
-      dataList: [],
-      search: "",
-      dataTj: [],
-      searchShow: false,
-      footprintData: [],
-      searchBtnFlag: false,
-      commissionShow: false,
-      priceShow: true,
+      active: null,
+      proList: [],
+      cityList: [],
+      chinese: [],
+      rule: [
+        {
+          id: 37,
+          name: "中间AAAA",
+        },
+        {
+          id: 38,
+          name: "中间AAAAA",
+        },
+        {
+          id: 39,
+          name: "中间AAAAAA",
+        },
+        {
+          id: 42,
+          name: "中间AAAB",
+        },
+        {
+          id: 35,
+          name: "中间AABB",
+        },
+        {
+          id: 36,
+          name: "中间ABAB",
+        },
+        {
+          id: 40,
+          name: "中间ABBA",
+        },
+        {
+          id: 41,
+          name: "中间ABBB",
+        },
+        {
+          id: 43,
+          name: "中间ABCDE",
+        },
+        {
+          id: 33,
+          name: "*ABC*ABC",
+        },
+        {
+          id: 25,
+          name: "AA",
+        },
+        {
+          id: 1,
+          name: "AAA",
+        },
+        {
+          id: 17,
+          name: "AAA*BBB*",
+        },
+        {
+          id: 2,
+          name: "AAAA",
+        },
+        {
+          id: 3,
+          name: "AAAAA",
+        },
+        {
+          id: 4,
+          name: "AAAAAA",
+        },
+        {
+          id: 12,
+          name: "AAAAAB",
+        },
+        {
+          id: 13,
+          name: "AAAAB",
+        },
+        {
+          id: 29,
+          name: "AAAABB",
+        },
+        {
+          id: 5,
+          name: "AAAABBBB",
+        },
+        {
+          id: 14,
+          name: "AAAB",
+        },
+        {
+          id: 21,
+          name: "AAABAAAB",
+        },
+        {
+          id: 27,
+          name: "AAABB",
+        },
+        {
+          id: 6,
+          name: "AAABBB",
+        },
+        {
+          id: 9,
+          name: "AABB",
+        },
+        {
+          id: 24,
+          name: "AABBB",
+        },
+        {
+          id: 8,
+          name: "AABBCC",
+        },
+        {
+          id: 34,
+          name: "AABBCC*",
+        },
+        {
+          id: 7,
+          name: "AABBCCDD",
+        },
+        {
+          id: 16,
+          name: "ABAB",
+        },
+        {
+          id: 15,
+          name: "ABABAB",
+        },
+        {
+          id: 32,
+          name: "ABABAB*",
+        },
+        {
+          id: 20,
+          name: "ABABCCDD",
+        },
+        {
+          id: 22,
+          name: "ABBA",
+        },
+      ],
+      dataList: [
+        {
+          name: "全部价格",
+        },
+        {
+          name: "价格从高到低",
+        },
+        {
+          name: "价格从低到高",
+        },
+        {
+          name: "0-500元",
+        },
+        {
+          name: "500-1000元",
+        },
+        {
+          name: "1000-2000元",
+        },
+        {
+          name: "2000-5000元",
+        },
+        {
+          name: "5000-1万元",
+        },
+        {
+          name: "1万-2万元",
+        },
+        {
+          name: "2万已上价格",
+        },
+      ],
+      itemList: [
+        {
+          val: "不限",
+        },
+        {
+          val: "无话费",
+        },
+        {
+          val: "含话费",
+        },
+        // {
+        //   val: "含30元",
+        // },
+        // {
+        //   val: "含50元",
+        // },
+        // {
+        //   val: "含100元",
+        // },
+        // {
+        //   val: "含300元",
+        // },
+      ],
+      wrapList: [
+        {
+          name: "不限",
+        },
+        {
+          name: "0较多",
+        },
+        {
+          name: "1较多",
+        },
+        {
+          name: "2较多",
+        },
+        {
+          name: "3较多",
+        },
+        {
+          name: "4较多",
+        },
+        {
+          name: "5较多",
+        },
+        {
+          name: "6较多",
+        },
+        {
+          name: "7较多",
+        },
+        {
+          name: "8较多",
+        },
+        {
+          name: "9较多",
+        },
+      ],
+      arrList: [
+        {
+          name: "不含0",
+          num: "0",
+        },
+        {
+          name: "不含2",
+          num: "2",
+        },
+        {
+          name: "不含3",
+          num: "3",
+        },
+        {
+          name: "不含4",
+          num: "4",
+        },
+        {
+          name: "不含5",
+          num: "5",
+        },
+        {
+          name: "不含6",
+          num: "6",
+        },
+        {
+          name: "不含7",
+          num: "7",
+        },
+        {
+          name: "不含8",
+          num: "8",
+        },
+        {
+          name: "不含9",
+          num: "9",
+        },
+      ],
+      list: [],
+      arr: [
+        {
+          name: "精准搜号",
+          id: 1,
+        },
+        {
+          name: "任意搜号",
+          id: 2,
+        },
+        {
+          name: "末位搜号",
+          id: 3,
+        },
+      ],
+      num: null,
+      wrap: null,
+      flag: false,
+      cut: false,
+      regulars: false,
+      back: false,
+      tranges: null,
+      went: false,
+      cont: false,
+      one: false,
+      two: false,
+      three: [],
+      nums: "",
+      opList: -1,
+      regList: -1,
+      typed: 1,
+      parameter: {},
+      minNumber: "",
+      maxNumber: "",
+      searchInput: "",
+      searchFilter: {
+        handle_type: "", //办理方式 1 线上 2线下
+        sort_price: "", //价格排序 1递增 2递减
+        min_price: "", //	最小价格
+        max_price: "", //	最大价格
+        prepaid_charge: "", //预存话费 空为不限 无话费为0 有话费传1
+        contract: "", //	合约期
+        min_charge: "", //月低消
+        include: "", //数字较多
+        no_include: "", //不含数字
+      },
+      contractList: [],
+      lowPinList: [],
+      contractListed: false,
+      lowPinListed: false,
+      isShow: false,
+      title: "移动号码",
+      id: 1,
+      numid: 1,
     };
   },
   methods: {
-    onCLickTiao(obj) {
-      this.$router.push({ path: "/screen", query: obj });
+    onClickGo() {
+      this.$router.push("/commons/home/m");
     },
-    onKeyupSearch() {
-      if (this.search.trim() != "") {
-        if (this.footprintData.indexOf(this.search) == -1) {
-          this.footprintData.unshift(this.search);
+    onClickShow(num) {
+      if (this.active == num) {
+        this.active = null;
+      } else {
+        this.active = num;
+      }
+    },
+    onClickDn() {
+      if (this.flag == false) {
+        this.flag = true;
+        this.cut = false;
+        this.regulars = false;
+        this.$refs.m.style = "overflow:hidden";
+      } else {
+        this.flag = false;
+        this.$refs.m.style = "overflow:auto";
+      }
+    },
+    onClickHide(val, v) {
+      this.num = val;
+      this.nums = v;
+      this.wrap = "";
+    },
+    onClickHided(val) {
+      this.wrap = val;
+      this.flag = false;
+      this.active = -1;
+      this.parameter.from = val;
+      this.onclickQuery();
+    },
+    onClickOperating() {
+      if (this.cut == false) {
+        this.cut = true;
+        this.flag = false;
+        this.regulars = false;
+      } else {
+        this.cut = false;
+      }
+    },
+    onClickRegular() {
+      if (this.regulars == false) {
+        this.regulars = true;
+        this.flag = false;
+        this.cut = false;
+        this.$refs.m.style = "overflow:hidden";
+      } else {
+        this.regulars = false;
+        this.$refs.m.style = "overflow:auto";
+      }
+    },
+    onClickBack() {
+      if (this.back == false) {
+        this.back = true;
+      } else {
+        this.back = false;
+      }
+      this.flag = false;
+      this.regulars = false;
+    },
+    onClickTo() {
+      this.back = false;
+      this.parameter = {};
+      if (this.tranges === null) {
+        this.searchFilter.handle_type = "";
+      } else if (this.tranges === true) {
+        this.searchFilter.handle_type = 1;
+      } else {
+        this.searchFilter.handle_type = 2;
+      }
+
+      switch (this.went) {
+        case 0:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "";
+          this.searchFilter.max_price = "";
+          break;
+        case 1:
+          this.searchFilter.sort_price = 2;
+          this.searchFilter.min_price = "";
+          this.searchFilter.max_price = "";
+          break;
+        case 2:
+          this.searchFilter.sort_price = 1;
+          this.searchFilter.min_price = "";
+          this.searchFilter.max_price = "";
+          break;
+        case 3:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "1";
+          this.searchFilter.max_price = "500";
+          break;
+        case 4:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "500";
+          this.searchFilter.max_price = "1000";
+          break;
+        case 5:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "1000";
+          this.searchFilter.max_price = "2000";
+          break;
+        case 6:
+          this.searchFilter.sort_price = 1;
+          this.searchFilter.min_price = "2000";
+          this.searchFilter.max_price = "5000";
+          break;
+        case 7:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "5000";
+          this.searchFilter.max_price = "10000";
+          break;
+        case 8:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "10000";
+          this.searchFilter.max_price = "20000";
+          break;
+        case 9:
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "20000";
+          this.searchFilter.max_price = "1000000000";
+          break;
+        default:
+          break;
+      }
+
+      if (this.maxNumber != "") {
+        if (this.minNumber == "" || this.minNumber == 0) {
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = "1";
+          this.searchFilter.max_price = this.maxNumber;
         } else {
-          this.footprintData.splice(this.footprintData.indexOf(this.search), 1);
-          this.footprintData.unshift(this.search);
+          this.searchFilter.sort_price = "";
+          this.searchFilter.min_price = this.minNumber;
+          this.searchFilter.max_price = this.maxNumber;
         }
       }
-      localStorage.setItem("footprintData", JSON.stringify(this.footprintData));
-      this.$router.push({
-        path: "/screen",
-        query: { type: 1, search: this.search },
+
+      if (this.cont == 0 || this.cont == false) {
+        this.searchFilter.prepaid_charge = "";
+      } else if (this.cont == 1) {
+        this.searchFilter.prepaid_charge = 0;
+      } else {
+        this.searchFilter.prepaid_charge = 1;
+      }
+
+      if (this.one == 0 || this.one == false) {
+        this.searchFilter.contract = this.contractListed;
+        this.searchFilter.min_charge = this.lowPinListed;
+      } else if (this.one == 1) {
+        this.searchFilter.contract = "";
+        this.searchFilter.min_charge = "";
+      } else if (this.one == 2) {
+        this.searchFilter.contract = this.contractListed;
+        this.searchFilter.min_charge = this.lowPinListed;
+      }
+
+      if (this.contractListed == 0 || this.contractListed == null) {
+        this.searchFilter.contract = "";
+      }
+
+      if (this.lowPinListed == 0 || this.lowPinListed == null) {
+        this.searchFilter.min_charge = "";
+      }
+
+      if (this.two - 1 == -1) {
+        this.searchFilter.include = "";
+      } else {
+        this.searchFilter.include = this.two - 1;
+      }
+
+      // if (this.three - 1 == -1) {
+      //   this.searchFilter.no_include = "";
+      // } else {
+      // this.searchFilter.no_include = this.three - 1;
+      // }
+      this.searchFilter.no_include = "";
+      this.three.forEach((val, index) => {
+        console.log(val);
+        if (this.three.length - 1 == index) {
+          this.searchFilter.no_include += val;
+        } else {
+          this.searchFilter.no_include += val + ",";
+        }
       });
+
+      console.log(this.searchFilter.no_include);
+
+      this.searchFilter.type = 1;
+      this.parameter = this.searchFilter;
+
+      this.onclickQuery();
     },
-    onclickSearch(val) {
-      this.search = val;
-      this.onKeyupSearch();
+    onTab(index) {
+      this.went = index;
     },
-    onclickSearchShow() {
-      this.searchShow = true;
-      this.searchBtnFlag = !this.searchBtnFlag;
-      this.$nextTick(function () {
-        document.getElementById("inputVal").focus();
+    onClickOne(index) {
+      this.cont = index;
+    },
+    onClickTwo(index) {
+      this.two = index;
+    },
+    onClickThree(index) {
+      if (this.three.includes(index)) {
+        this.three = this.three.filter((val) => val != index);
+      } else {
+        this.three.push(index);
+      }
+    },
+    onClickReset() {
+      this.tranges = null;
+      this.went = false;
+      this.cont = false;
+      this.one = false;
+      this.two = false;
+      this.three = [];
+      this.minNumber = "";
+      this.maxNumber = "";
+      this.contractListed = false;
+      this.lowPinListed = false;
+    },
+    onSearch() {
+      this.parameter = {};
+      if (this.typed) {
+        this.parameter.type = 1;
+      } else {
+        this.parameter.type = 0;
+      }
+      this.parameter.search = this.searchInput;
+      this.onclickQuery();
+    },
+    onFen(id) {
+      this.$axios
+        .get("/api/home_page/getChildCategory?id=" + id)
+        .then((val) => {
+          this.rule = val.data;
+        });
+    },
+    onclickOpeateing(index) {
+      let id = 0;
+      if (index == "中国移动") {
+        id = 1;
+      } else if (index == "中国联通") {
+        id = 2;
+      } else if (index == "中国电信") {
+        id = 3;
+      } else {
+        id = 4;
+      }
+      this.cut = false;
+      this.opList = index;
+      this.active = -1;
+      this.parameter.operator_id = id;
+      this.onclickQuery();
+    },
+    onclickRegList(index, id) {
+      this.parameter = {};
+      this.regList = index;
+      this.regulars = false;
+      this.active = -1;
+      this.parameter.tag = id;
+      this.onclickQuery();
+    },
+    onclickTyped() {
+      this.typed = !this.typed;
+    },
+    onkeyupInputSearch(index) {
+      var number = document.querySelectorAll(".number");
+
+      var words = number[index].value.replace(/\D+/g, "");
+      words = words.substring(words.length - 1, words.length);
+      number[index].value = words;
+
+      if (event.code == "Backspace") {
+        if (index >= 1) {
+          number[index - 1].focus();
+        }
+      } else {
+        if (index < number.length - 1) {
+          number[index + 1].focus();
+        }
+      }
+    },
+    onclickAccurateSearch() {
+      var number = document.querySelectorAll(".number");
+      let str = "";
+      number.forEach((val) => {
+        if (val.value == "") {
+          str += "_";
+        } else {
+          str += val.value;
+        }
       });
+      this.parameter = {};
+      this.parameter.accurate = str;
+      this.onclickQuery();
     },
-    onclickDel() {
-      this.footprintData = [];
-      localStorage.setItem("footprintData", JSON.stringify(this.footprintData));
+    onclickResetInput() {
+      var number = document.querySelectorAll(".number");
+      let str = "";
+      number.forEach((val, index) => {
+        if (index != 0) {
+          val.value = "";
+          str += "_";
+        } else {
+          str += val.value;
+        }
+      });
+      this.parameter.accurate = str;
+      this.onclickQuery();
+    },
+    onclickQuery() {
+      let flag = false;
+      for (var k in this.parameter) {
+        if (this.parameter[k] != this.$route.query[k]) {
+          flag = true;
+        }
+      }
+
+      if (flag) {
+        console.log(this.parameter);
+        this.$router.push({
+          path: "/commons/home/m",
+          query: this.parameter,
+        });
+        console.log(this.parameter);
+        console.log(this.$route.query);
+        this.$axios
+          .post("/api/home_page/getNumList", this.$route.query)
+          .then((val) => {
+            console.log(val);
+            this.list = val.data.data;
+          });
+      }
+    },
+    onccasd(index) {
+      this.id = index;
+      this.numid = index;
     },
   },
-  created() {
-    if (localStorage.getItem("priceShow")) {
-      if (localStorage.getItem("priceShow") == "true") {
-        this.priceShow = true;
-      } else {
-        this.priceShow = false;
-      }
-    }
-    if (localStorage.getItem("commissionShow")) {
-      if (localStorage.getItem("commissionShow") == "true") {
-        this.commissionShow = true;
-      } else {
-        this.commissionShow = false;
-      }
-    }
-
-    if (localStorage.getItem("footprintData")) {
-      this.footprintData = JSON.parse(localStorage.getItem("footprintData"));
-    }
+  mounted() {
     this.$axios
-      .post("/api/home_page/getNumList", { recommend: 2, from: "上海" })
+      .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
-        if (val.code == 200) {
-          this.dataList = val.data.data;
+        console.log(val);
+        this.list = val.data.data;
+      });
+    this.$axios.get("api/home_page/getLocation").then((val) => {
+      this.nums = Object.keys(val.data)[0];
+      for (var k in val.data) {
+        this.proList.push(k);
+      }
+      this.cityList = val.data;
+    });
+    this.$axios.get("/api/home_page/getOperator").then((val) => {
+      this.chinese = val.data;
+    });
+    this.$axios.get("/api/low_consumption/index").then((r) => {
+      r.data.forEach((val) => {
+        if (val.type == 1) {
+          this.contractList.push(val.name);
+        } else if (val.type == 2) {
+          this.lowPinList.push(val.name);
         }
       });
-    this.$axios
-      .post("/api/home_page/getNumList", { recommend: 1, from: "上海" })
-      .then((val) => {
-        if (val.code == 200) {
-          this.dataTj = val.data.data;
-        }
-      });
+    });
+    // console.log(this.$route.query);
+    if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
+      this.title = "移动号码";
+    } else if (
+      this.$route.query.operator_id &&
+      this.$route.query.operator_id == 2
+    ) {
+      this.title = "联通号码";
+    } else if (
+      this.$route.query.operator_id &&
+      this.$route.query.operator_id == 3
+    ) {
+      this.title = "电信号码";
+    } else if (
+      this.$route.query.operator_id &&
+      this.$route.query.operator_id == 4
+    ) {
+      this.title = "虚拟号码";
+    }
+  },
+  updated() {
+    if (this.list.length == 0) {
+      this.isShow = true;
+    } else {
+      this.isShow = false;
+    }
+  },
+  watch: {
+    opList(val) {
+      console.log(val);
+      if (val == "中国移动") {
+        this.title = "移动号码";
+      } else if (val == "中国联通") {
+        this.title = "联通号码";
+      } else if (val == "中国电信") {
+        this.title = "电信号码";
+      } else if (val == "虚拟运营商") {
+        this.title = "虚拟号码";
+      }
+    },
   },
 };
 </script>
-
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 
-body,
-html {
-  width: 100%;
-  height: 100%;
-}
-.ff-img {
-  width: 16 / @vw*1.3;
-  height: 15.5 / @vw*1.3;
-  margin-top: 5 / @vw;
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 a {
   text-decoration: none;
-  color: #333333;
 }
-
-.searchBox {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
+.black {
+  width: 345 / @vw;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-}
-.sb_head {
-  width: 750 / @vw / 2;
-  // height: 670 / @vw / 2;
-  padding: 15 / @vw;
-  background: #f6f6f6;
-  border-radius: 0px 0px 10 / @vw 10 / @vw;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-.sbh_top {
-  width: 500 / @vw / 2;
-  height: 56 / @vw / 2;
-  margin: 0 auto;
-}
-.sbht_center {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 56 / @vw / 4;
-  z-index: 99999;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-.sbht_center span {
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
-  right: 10 / @vw;
+  left: 15 / @vw;
   top: 0 / @vw;
-  display: inline-block;
-  line-height: 28 / @vw;
-  font-size: 13 / @vw;
-  color: #fe5858;
-  text-align: center;
-  // box-shadow: -5px 0px 5px 5px #eee inset;
-  // background-color: #f6f6f6;
-  box-sizing: border-box;
+  z-index: 9;
 }
-.sbh_top input {
+.Mobile_phone .active {
+  background-color: #ea5656 !important;
+  color: #ffffff !important;
+}
+.current {
+  background-color: #ececec;
+}
+.current p {
+  color: #dc0101 !important;
+}
+.currents p {
+  color: #dc0101 !important;
+}
+.wrok {
+  background: url("../assets/white_bg.png");
+  background-size: 115 / @vw 25 / @vw;
+  color: #fe5858;
+}
+.achode {
+  width: 100 / @vw;
+  background-color: #fff !important;
+  border-bottom: 2px solid #fe5858;
+}
+.Mobile_phone {
   width: 100%;
   height: 100%;
-  text-indent: 40 / @vw;
-  background: #f6f6f6 url("../assets/t_1.png");
-  background-size: 100%;
-  // background-color: rgb(239, 239, 239);
+  background-color: #f8f8f8;
+  overflow-x: hidden;
 }
-
-.sbh_top img {
-  position: absolute;
-  top: 50%;
-  left: 20 / @vw;
-  transform: translateY(-50%);
+.Mobile_phone .reds {
+  width: 100%;
+  height: 234 / @vw;
+  background: url("../assets/矩形 12@2x.png") no-repeat;
+  background-size: 100% 234 / @vw;
+}
+.Mobile_phone .reds .moveing {
+  display: flex;
+}
+.Mobile_phone .reds .moveing img {
+  width: 10 / @vw;
+  height: 16 / @vw;
+  margin: 35 / @vw 0 0 15 / @vw;
+  pointer-events: auto;
+}
+.Mobile_phone .reds .moveing h3 {
+  color: #ffffff;
+  margin: 30 / @vw auto 0;
+  font-size: 16 / @vw;
+  font-weight: 500;
+}
+.Mobile_phone .banner_box {
+  width: 352 / @vw;
+  height: 134 / @vw;
+  margin: -121 / @vw auto;
+  border-radius: 6 / @vw;
+}
+.Mobile_phone .banner_box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 6 / @vw;
+}
+.Mobile_phone .accurate .input_bg {
+  width: 328 / @vw;
+  height: 28 / @vw;
+  background: url("../assets/input_bg_hui.png") no-repeat;
+  background-size: 328 / @vw 28 / @vw;
+  margin: 22 / @vw*1.3 auto 0;
+  display: flex;
+}
+.Mobile_phone .accurate .ge {
+  font-size: 12 / @vw;
+  color: #fe5858;
+  margin-top: 20 / @vw;
+}
+.Mobile_phone .accurate .input_bg .tail {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.Mobile_phone .accurate .input_bg .tail .img {
   width: 12 / @vw;
   height: 12 / @vw;
-}
-.searchBox h3 {
-  margin-top: 10 / @vw;
-  margin-bottom: 10 / @vw;
-  font-size: 14 / @vw;
-  font-family: PingFang SC;
-  color: #333333;
-  line-height: 60 / @vw / 2;
-}
-.searchBox h3 img {
-  width: 11 / @vw * 1.2;
-  height: 12 / @vw * 1.2;
-  margin-left: 260 / @vw;
-}
-.searchBox li {
-  padding: 0 10 / @vw;
-  margin-right: 20 / @vw;
-  margin-bottom: 15 / @vw;
-  font-size: 14 / @vw;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-  background: #f2f2f2;
-  border-radius: 4 / @vw;
-  line-height: 50 / @vw / 2;
-}
-.searchBox ul {
-  display: flex;
-  flex-wrap: wrap;
-}
-.footprint ul {
-  max-height: 120 / @vw;
-  overflow-y: auto;
-}
-.number {
-  color: #333333;
-  font-size: 15 / @vw;
-  margin-left: 10 / @vw;
-  margin-top: 7 / @vw;
-  margin-bottom: 4px;
-}
-.money {
-  width: 94%;
-  display: flex;
-  font-size: 12 / @vw;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 10 / @vw;
-}
-.money:last-child {
-  margin-top: 6 / @vw;
-}
-.money p {
-  font-size: 10 / @vw;
-}
-.home {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  position: relative;
-  background-color: #fff;
-}
-.haed {
-  width: 100%;
-  height: 300 / @vw;
-}
-.head p {
-  position: absolute;
-  left: 50%;
-  top: 25 / @vw;
-  color: white;
-  font-size: 17 / @vw;
-}
-// .head .haoshu {
-//   position: absolute;
-//   left: 50%;
-//   top: 25/@vw;
-//   transform: translateX(-50%);
-//   color: white;
-//   font-size: 17/@vw;
-// }
-.head .bg_img {
-  width: 100%;
-  height: 200 / @vw;
-}
-.head i {
-  display: inline-block;
-  width: 227 / @vw;
-  // height: 28 / @vw;
-  line-height: 26 / @vw;
-  font-size: 12 / @vw;
-  color: #999999;
-  position: absolute;
-  left: 55%;
-  top: 25 / @vw;
-  transform: translateX(-50%);
-  border: 1 / @vw solid white;
-  border-radius: 20 / @vw;
-  text-indent: 55 / @vw;
-  background-color: #fff;
-}
-.head .locations img {
-  width: 11 / @vw;
-  height: 14 / @vw;
-  position: absolute;
-  left: 15 / @vw*1.3;
-  top: 24 / @vw*1.3;
-}
-.head .locations p {
-  position: absolute;
-  left: 30 / @vw*1.3;
-  top: 21 / @vw*1.3;
-  font-size: 16 / @vw;
-}
-.heads {
-  width: 340 / @vw;
-  height: 120 / @vw;
-  margin: -126 / @vw auto 0;
-  border-radius: 5 / @vw;
+  margin: 0 10 / @vw 0 15 / @vw;
+  border: #ccc solid 1 / @vw;
+  // border-radius: 2/@vw;
   overflow: hidden;
 }
-.heads img {
+
+.Mobile_phone .accurate .input_bg .tail img {
+  width: 100%;
+  height: 100%;
+  // vertical-align: middle;
+  transform: translateY(-5 / @vw);
+}
+.Mobile_phone .accurate .input_bg .tail p {
+  font-size: 12 / @vw;
+  color: #666666;
+  margin: 0 10 / @vw 1 / @vw 0;
+}
+.Mobile_phone .accurate .input_bg .tail span {
+  width: 1 / @vw;
+  height: 12 / @vw;
+  background-color: #e0e0e0;
+}
+.Mobile_phone .accurate .input_bg .searchs {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+.Mobile_phone .accurate .input_bg .searchs .sou img {
+  width: 10 / @vw*1.3;
+  height: 10 / @vw*1.3;
+  margin: 0 10 / @vw 0 18 / @vw !important;
+}
+.Mobile_phone .accurate .input_bg .searchs .want {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+.Mobile_phone .accurate .input_bg .searchs .want img {
+  width: 10 / @vw*1.3;
+  height: 10 / @vw*1.3;
+  margin: 0 10 / @vw 0 4 / @vw;
+}
+.Mobile_phone .accurate .input_bg .searchs .want input {
+  font-size: 12 / @vw;
+  color: #999999;
+  background: transparent;
+}
+.Mobile_phone .accurate .input_bg .searchs h4 {
+  font-size: 12 / @vw;
+  color: #ffffff;
+  font-weight: 500;
+  margin-right: 11 / @vw;
+  line-height: 28 / @vw;
+}
+.Mobile_phone .accurate .input_bg .searchs .hf {
+  margin-right: 0;
+  position: absolute;
+  right: 35 / @vw;
+}
+.Mobile_phone .accurate {
+  width: 345 / @vw;
+  height: 176 / @vw;
+  background-color: #fff;
+  margin: 0 auto;
+  padding-top: 10 / @vw;
+  box-sizing: border-box;
+  margin-top: 134 / @vw;
+}
+.Mobile_phone .accurate .phoneNumber {
+  display: flex;
+  margin: 10 / @vw 18 / @vw 0;
+  justify-content: space-evenly;
+}
+.Mobile_phone .accurate .phoneNumber li {
+  width: 22 / @vw;
+  height: 26 / @vw;
+  text-align: center;
+  font-size: 14 / @vw;
+}
+.Mobile_phone .accurate .phoneNumber li input:focus {
+  border: 1 / @vw solid #dc0101;
+}
+.Mobile_phone .accurate .phoneNumber li:first-child input {
+  color: #333333;
+}
+.Mobile_phone .accurate .phoneNumber li input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #dc0101;
+  outline: none;
+  border-radius: 3 / @vw;
+  border: 1 / @vw solid #cacaca;
+}
+
+.Mobile_phone .accurate p {
+  font-size: 12 / @vw;
+  color: #fe5858;
+  margin: 10 / @vw 0 0 21 / @vw;
+}
+.Mobile_phone .accurate .reset {
+  margin: 16 / @vw 48 / @vw 0;
+  display: flex;
+  justify-content: space-between;
+}
+.Mobile_phone .accurate .reset li {
+  width: 130 / @vw;
+  height: 26 / @vw;
+  text-align: center;
+  line-height: 26 / @vw;
+  border-radius: 20 / @vw;
+  font-size: 12 / @vw;
+  margin-right: 20 / @vw;
+}
+.Mobile_phone .accurate .reset li:first-child {
+  background-color: #f0eeee;
+  color: #666666;
+}
+.Mobile_phone .accurate .reset li:last-child {
+  background-color: #fe5858;
+  color: #ffffff;
+}
+.Mobile_phone .searchelephone {
+  display: flex;
+  width: 100%;
+  height: 39 / @vw;
+  margin-top: 10 / @vw;
+}
+.Mobile_phone .searchelephone li {
+  width: 121 / @vw;
+  height: 100%;
+  background-color: #efefef;
+  text-align: center;
+  line-height: 39 / @vw;
+  color: #666666;
+  font-size: 10 / @vw*1.3;
+}
+.Mobile_phone .select_change {
+  width: 345 / @vw;
+  height: 43 / @vw;
+  background-color: #fff;
+  margin: 10 / @vw auto 0;
+  border: 1 / @vw solid #e5e5e5;
+  position: relative;
+}
+.Mobile_phone .select_change .area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  line-height: 33 / @vw;
+}
+.Mobile_phone .select_change .area li {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.Mobile_phone .select_change .area li :first-child {
+  margin-left: 10 / @vw;
+}
+
+.Mobile_phone .select_change .area li :last-child {
+  margin-right: 10 / @vw;
+}
+.Mobile_phone .select_change .area li .red_triangle {
+  position: absolute;
+  right: -18 / @vw;
+  top: 45.4%;
+}
+.Mobile_phone .select_change .area li p {
+  font-size: 14 / @vw;
+  color: #666666;
+  margin-right: 9 / @vw;
+}
+.Mobile_phone .select_change .area li img {
+  width: 6 / @vw;
+  height: 4 / @vw;
+}
+.Mobile_phone .select_change .area li:last-child img {
+  width: 10 / @vw;
+  height: 9 / @vw;
+}
+.Mobile_phone .class_name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: auto;
+  padding: 0 15 / @vw;
+  box-sizing: border-box;
+  margin-bottom: 60 / @vw;
+  position: relative;
+}
+.Mobile_phone .start {
+  width: 167 / @vw;
+  height: 102 / @vw;
+  border: 1 / @vw solid #e5e5e5;
+  border-radius: 10 / @vw;
+  position: relative;
+  margin-top: 10 / @vw;
+  background-color: #fff;
+}
+
+.Mobile_phone .start img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30 / @vw;
+  height: 18 / @vw;
+}
+.Mobile_phone .start h5 {
+  font-size: 16 / @vw;
+  color: #333333;
+  font-weight: bold;
+  margin: 12 / @vw 0 0 10 / @vw;
+}
+.Mobile_phone .start .commission {
+  margin: 10 / @vw 10 / @vw 0;
+  display: flex;
+  justify-content: space-between;
+}
+.Mobile_phone .start .commission p {
+  color: #666666;
+  font-size: 12 / @vw;
+}
+.Mobile_phone .start .commission span,
+.Mobile_phone .start .contains p {
+  color: #dd1414;
+  font-size: 12 / @vw;
+}
+.Mobile_phone .start .contains {
+  margin: 10 / @vw 6 / @vw 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Mobile_phone .start .contains span {
+  font-size: 14 / @vw;
+  color: #dc0101;
+  font-weight: bold;
+}
+.Mobile_phone  .regular {
+  width: 345 / @vw;
+  height: 365 / @vw;
+  position: absolute;
+  left: -1 / @vw;
+  top: 0 / @vw;
+  display: flex;
+  z-index: 2;
+  align-content: space-between;
+  border-left: 1 / @vw solid #ececec;
+  border-right: 1 / @vw solid #ececec;
+}
+.Mobile_phone .Belonging {
+  width: 345 / @vw;
+  height: 365 / @vw;
+  position: absolute;
+  left: -1 / @vw;
+  top: -1 / @vw;
+  display: flex;
+  z-index: 2;
+  align-content: space-between;
+  border-left: 1 / @vw solid #ececec;
+  border-right: 1 / @vw solid #ececec;
+}
+.Mobile_phone .Belonging .pro {
+  width: 40%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.Mobile_phone .Belonging .pro li,
+.Mobile_phone .Belonging .city li {
+  width: 100%;
+  height: 45 / @vw;
+  border-bottom: 1 / @vw solid #ececec;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.Mobile_phone .Belonging .pro li p {
+  color: #333333;
+  font-size: 10 / @vw*1.3;
+  margin-left: 35 / @vw;
+}
+
+.Mobile_phone .Belonging .pro li img,
+.Mobile_phone .Belonging .city li img {
+  position: absolute;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3 !important;
+  height: 7 / @vw*1.3 !important;
+}
+.Mobile_phone .Belonging .city {
+  width: 60%;
+  height: 100%;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}
+.Mobile_phone .Belonging .city li p {
+  color: #333333;
+  font-size: 10 / @vw*1.3;
+  margin-left: 48 / @vw;
+}
+
+.Mobile_phone .regular .currents {
+  background-color: #ececec;
+}
+.Mobile_phone .regular ul li:hover p {
+  color: #fe5858;
+}
+.Mobile_phone .regular ul {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  overflow: auto;
+}
+.Mobile_phone .regular ul li {
+  width: 100%;
+  height: 44 / @vw;
+  border-bottom: 1 / @vw solid #ececec;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.Mobile_phone .regular ul li img {
+  position: absolute;
+  left: 15 / @vw;
+  width: 10 / @vw*1.3;
+  height: 7 / @vw*1.3;
+  // display: none;
+}
+.Mobile_phone .regular ul li p {
+  color: #333333;
+  font-size: 12 / @vw;
+  margin-left: 40 / @vw;
+}
+.Mobile_phone .Montmorillonite {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+.Mobile_phone .Montmorillonite .search_filter {
+  width: 330 / @vw;
+  height: 100%;
+  background-color: #fff;
+  margin-left: 45 / @vw;
+  overflow-y: auto;
+}
+.Mobile_phone .Montmorillonite .search_filter .back {
+  width: 100%;
+  height: 40 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  display: flex;
+  align-items: center;
+}
+.Mobile_phone .Montmorillonite .search_filter .back img {
+  width: 6 / @vw;
+  height: 11 / @vw;
+  margin-left: 11 / @vw;
+}
+.Mobile_phone .Montmorillonite .search_filter .back p {
+  font-size: 12 / @vw;
+  color: #666666;
+  margin-left: 5 / @vw;
+}
+.Mobile_phone .Montmorillonite .search_filter .handle {
+  width: 286 / @vw;
+  height: 55 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 12 / @vw;
+}
+.Mobile_phone .Montmorillonite .search_filter .handle p {
+  width: 115 / @vw;
+  height: 25 / @vw;
+  background-color: #f8f8f8;
+  text-align: center;
+  line-height: 25 / @vw;
+  color: #999999;
+}
+
+.Mobile_phone .Montmorillonite .search_filter .price {
+  width: 286 / @vw;
+  height: 200 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  position: relative;
+}
+.Mobile_phone .Montmorillonite .search_filter .price p {
+  position: absolute;
+  left: 184 / @vw;
+  top: 157 / @vw;
+  font-size: 12 / @vw;
+  color: #666666;
+}
+.Mobile_phone .Montmorillonite .search_filter .price h5,
+.Mobile_phone .Montmorillonite .search_filter .charge h5,
+.Mobile_phone .Montmorillonite .search_filter .contract h5,
+.Mobile_phone .Montmorillonite .search_filter .more_number h5 {
+  color: #666666;
+  font-size: 14 / @vw;
+  font-weight: 500;
+  margin: 14 / @vw 0;
+}
+.Mobile_phone .Montmorillonite .search_filter .price ul,
+.Mobile_phone .Montmorillonite .search_filter .charge ul,
+.Mobile_phone .Montmorillonite .search_filter .more_number ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.Mobile_phone .Montmorillonite .search_filter .price ul li,
+.Mobile_phone .Montmorillonite .search_filter .charge ul li,
+.Mobile_phone .Montmorillonite .search_filter .more_number ul li {
+  position: relative;
+  width: 89 / @vw;
+  height: 25 / @vw;
+  background-color: #f8f8f8;
+  text-align: center;
+  line-height: 25 / @vw;
+  margin-bottom: 15 / @vw;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
+  color: #666666;
+}
+.Mobile_phone .Montmorillonite .search_filter .more_number ul li {
+  width: 68 / @vw;
+}
+
+.Mobile_phone .Montmorillonite .search_filter .price ul li span,
+.Mobile_phone .Montmorillonite .search_filter .charge span {
+  position: absolute;
+  left: 10 / @vw;
+  top: 0;
+}
+.Mobile_phone .Montmorillonite .search_filter .price ul li input,
+.Mobile_phone .Montmorillonite .search_filter .charge ul li input {
+  border: none;
+  outline: none;
+  background: none;
+  text-indent: 30 / @vw;
   width: 100%;
   height: 100%;
 }
-.head .search {
-  position: absolute;
-  left: 55%;
-  top: 33 / @vw;
-  width: 10 / @vw*1.3;
-  height: 10 / @vw*1.3;
-  margin-left: -90 / @vw;
-}
-
-.one {
-  display: flex;
-  justify-content: space-around;
-  width: 95%;
-  height: 90 / @vw;
-  margin-top: 10 / @vw;
-  text-align: center;
-  margin: 0 auto;
-}
-.one dl dt img {
-  width: 45 / @vw*1.3;
-  height: 45 / @vw*1.3;
-}
-
-.one dl dd {
-  margin-left: 2 / @vw;
-  color: #333333;
-  font-size: 13 / @vw;
-}
-.two {
-  display: flex;
-  justify-content: space-around;
-  width: 95%;
-  height: 90 / @vw;
-  margin: 0 auto;
-}
-.two dl dt img {
-  width: 45 / @vw*1.3;
-  height: 45 / @vw*1.3;
-}
-
-.two dl dd {
-  margin-left: 2 / @vw;
-  color: #333333;
-  font-size: 13 / @vw;
-}
-.three {
-  width: 100%;
-  height: 90 / @vw;
-  position: relative;
-  background: white;
-}
-.three img {
-  width: 354 / @vw;
-  height: 83 / @vw;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.four img {
-  width: 100%;
-}
-.footer {
-  width: 90%;
-  height: 30 / @vw;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  line-height: 30 / @vw;
-}
-.footer .five img {
-  width: 14 / @vw*1.3;
-  height: 15.5 / @vw*1.3;
-  margin-top: 5 / @vw;
-}
-.five {
-  display: flex;
-}
-.five p {
-  font-size: 11 / @vw*1.3;
-  color: #333333;
-  margin-left: 5 / @vw;
-}
-
-.six p {
-  font-size: 11 / @vw;
+.Mobile_phone .Montmorillonite .search_filter .price ul li:last-child:hover {
   color: #666666;
-  margin-left: -46 / @vw;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  background-color: #f8f8f8;
 }
-.six img {
-  width: 8 / @vw;
-  height: 8 / @vw;
-  margin-left: 5 / @vw;
+.Mobile_phone .Montmorillonite .search_filter .price ul li:last-child,
+.Mobile_phone .Montmorillonite .search_filter .charge ul li:last-child {
+  width: 85 / @vw;
+  margin-left: 8 / @vw;
+}
+.Mobile_phone .Montmorillonite .search_filter .price ul li:nth-of-type(11),
+.Mobile_phone .Montmorillonite .search_filter .charge ul li:nth-of-type(11) {
+  width: 85 / @vw;
+}
+.Mobile_phone
+  .Montmorillonite
+  .search_filter
+  .price
+  ul
+  li:nth-of-type(11):hover {
+  color: #666666;
+  background-color: #f8f8f8;
 }
 
-.cap {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10 / @vw;
-  justify-content: space-between;
-  padding: 0 15 / @vw;
-  box-sizing: border-box;
-}
-
-.cap .shit {
-  width: 127 / @vw*1.3;
+.Mobile_phone .Montmorillonite .search_filter .charge {
+  width: 286 / @vw;
   height: 80 / @vw;
-  border: 1 / @vw*1.3 solid #e5e5e5;
-  border-radius: 10 / @vw;
-  margin-bottom: 10 / @vw;
-  // margin-left: 15/@vw;
-  letter-spacing: 1px;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  position: relative;
 }
-.cap .shit img {
-  float: right;
-  width: 25 / @vw;
-  height: 16 / @vw;
+.Mobile_phone .Montmorillonite .search_filter .charge p {
+  font-size: 12 / @vw;
+  color: #666666;
+  position: absolute;
+  left: 186 / @vw;
+  top: 117 / @vw;
 }
-.cap .shit .dolor {
-  margin-right: 10 / @vw;
-  color: #dd1414;
-  font-size: 10 / @vw;
+.Mobile_phone .Montmorillonite .search_filter .contract {
+  width: 286 / @vw;
+  height: 80 / @vw;
+  margin: 0 22 / @vw;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  position: relative;
 }
-.cap .shit .han {
-  font-size: 10 / @vw;
-  color: #dd1414;
-  // margin-top: 4 / @vw;
+.Mobile_phone .Montmorillonite .search_filter .contract .linings {
+  width: 1 / @vw;
+  height: 104 / @vw;
+  background-color: #f2f2f2;
+  position: absolute;
+  left: 50%;
+  top: 74 / @vw;
 }
-.cap .shit .twietion {
-  font-size: 10 / @vw;
-  color: #dc0101;
-  margin-right: 10 / @vw;
-}
-.like {
+.Mobile_phone .Montmorillonite .search_filter .contract .december {
   width: 100%;
-  padding: 0 10 / @vw;
-  box-sizing: border-box;
-}
-.like .you {
-  width: 94 / @vw;
-  margin: 3 / @vw 0 15 / @vw -2 / @vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.like .shun {
-  width: 100%;
-  margin-top: 10 / @vw;
+  height: 25 / @vw;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
 }
-.like .shun li {
-  width: 174 / @vw;
-  height: 72 / @vw;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border: 1 / @vw solid #e5e5e5;
-  margin-bottom: 2 / @vw;
-}
-.like .shun li img {
-  width: 38 / @vw;
-  height: 51 / @vw;
-}
-.like .shun li:last-child img {
-  width: 24 / @vw;
-  height: 50 / @vw;
-}
-.like .shun li .yes {
-  margin-right: 16 / @vw;
-}
-.like .shun li .lian {
-  font-size: 16 / @vw;
-  color: #010101;
-  margin-bottom: 7 / @vw;
-}
-.like .shun li .of {
-  font-size: 8 / @vw*1.3;
+.Mobile_phone .Montmorillonite .search_filter .contract .december li {
+  width: 89 / @vw;
+  height: 25 / @vw;
+  background-color: #f8f8f8;
+  text-align: center;
+  border-radius: 4 / @vw;
+  font-size: 12 / @vw;
+  line-height: 25 / @vw;
   color: #666666;
 }
-.like .you img {
-  width: 14 / @vw*1.3;
-  height: 14 / @vw*1.3;
+.Mobile_phone .Montmorillonite .search_filter .contract .change {
+  width: 100%;
+  height: 100 / @vw;
+  margin-top: 15 / @vw;
 }
-.like .you span {
-  display: inline-block;
-  color: #333333;
-  margin-left: 6 / @vw;
-  font-size: 11 / @vw*1.3;
+.Mobile_phone .Montmorillonite .search_filter .contract .change li {
+  width: 100%;
+  height: 25 / @vw;
+  display: flex;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
-.lina {
-  padding-bottom: 68 / @vw;
+.Mobile_phone .Montmorillonite .search_filter .contract .change li:first-child {
+  border-top: 1 / @vw solid #f2f2f2;
 }
-.header {
-  margin-top: 10 / @vw;
+.Mobile_phone .Montmorillonite .search_filter .contract .change li h3 {
+  font-weight: 500;
+  font-size: 14 / @vw;
+  color: #666666;
+  flex: 1;
+}
+.Mobile_phone .Montmorillonite .search_filter .contract .change li p {
+  font-size: 12 / @vw;
+  color: #666666;
+  flex: 1;
+}
+.Mobile_phone .Montmorillonite .search_filter .more_number {
+  width: 286 / @vw;
+  height: 160 / @vw;
+  margin: 0 22 / @vw;
+}
+// .Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-child {
+//   margin-right: 142/@vw;
+// }
+.Mobile_phone .Montmorillonite .search_filter .none ul li:last-child {
+  margin-right: 214 / @vw;
+}
+.Mobile_phone .Montmorillonite .search_filter .sure {
+  width: 100%;
+  height: 44 / @vw;
+  display: flex;
+  margin-bottom: 52 / @vw;
+  margin-top: 54 / @vw;
+}
+.Mobile_phone .Montmorillonite .search_filter .sure p {
+  width: 50%;
+  background-color: #f8f8f8;
+  text-align: center;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
+  color: #666666;
+  border-bottom: 1 / @vw solid #f2f2f2;
+  border-top: 1 / @vw solid #f2f2f2;
+}
+.Mobile_phone .Montmorillonite .search_filter .sure span {
+  width: 50%;
+  background-color: #fe5858;
+  text-align: center;
+  line-height: 44 / @vw;
+  font-size: 16 / @vw;
+  color: #ffffff;
+}
+.Mobile_phone .Montmorillonite .search_filter .contract .change .actives {
+  color: #ea5656;
+}
+.Mobile_phone .available {
+  width: 137 / @vw;
+  margin: 46 / @vw auto;
+  text-align: center;
+}
+.Mobile_phone .available img {
+  width: 100%;
+  height: 100 / @vw;
+}
+.Mobile_phone .available p {
+  color: #999999;
+  font-size: 12 / @vw;
+  margin-top: 17 / @vw;
+}
+.Montmorillonite .search_filter .yuny {
+  width: 213 / @vw;
+  height: 91 / @vw;
+  margin-left: 22 / @vw;
+}
+.Montmorillonite .search_filter .yuny h5 {
+  font-size: 14 / @vw;
+  color: #666666;
+  font-weight: 500;
+  margin-bottom: 14 / @vw;
+}
+.Montmorillonite .search_filter .yuny ul {
+  width: 100%;
+  height: 65 / @vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.Montmorillonite .search_filter .yuny ul li {
+  width: 99 / @vw;
+  height: 25 / @vw;
+  background: #f8f8f8;
+  color: #666666;
+  font-size: 12 / @vw;
+  text-align: center;
+  line-height: 25 / @vw;
+  border-radius: 4 / @vw;
+  margin-bottom: 15 / @vw;
 }
 </style>
-
