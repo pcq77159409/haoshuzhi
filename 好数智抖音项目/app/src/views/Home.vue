@@ -766,6 +766,7 @@ export default {
     scrollBox(e) {
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
+      
       // 并且到每次滚动的位置一定与2100有关
       if (e.target.scrollTop >= 1100 * this.numbers) {
         // this.rember();
