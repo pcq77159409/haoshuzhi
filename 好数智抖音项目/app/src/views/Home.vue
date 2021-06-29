@@ -766,7 +766,7 @@ export default {
     scrollBox(e) {
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
-      
+
       // 并且到每次滚动的位置一定与2100有关
       if (e.target.scrollTop >= 1100 * this.numbers) {
         // this.rember();
@@ -1476,11 +1476,12 @@ a {
 .Mobile_phone .searchelephone li {
   width: 118 / @vw;
   height: 100%;
-  background-color: #efefef;
+  background-color: #f8f8f8;
   text-align: center;
   line-height: 39 / @vw;
   color: #666666;
   font-size: 10 / @vw*1.3;
+  border-right:1px solid #efefef;
 }
 .Mobile_phone .searchelephone li:nth-of-type(3) {
   border-right: none;
