@@ -48,7 +48,7 @@ Vue.prototype.$get = function(url, val) {
         if (r.code == 700 || r.code == 600) {
             Vue.$router.push('/login');
         } else if (r.code == 601) {
-            axios.post('api/user/uuidlogin', '', {
+            axios.post('/api/user/uuidlogin', '', {
                 headers: {
                     token: localStorage.getItem('token'),
                     user_id: localStorage.getItem('user-id'),
@@ -78,7 +78,7 @@ Vue.prototype.$post = function(url, val) {
         if (r.code == 700 || r.code == 600) {
             Vue.$router.push('/login');
         } else if (r.code == 601) {
-            axios.post('api/user/uuidlogin', {}, {
+            axios.post('/api/user/uuidlogin', {}, {
                 headers: {
                     token: localStorage.getItem('token'),
                     user_id: localStorage.getItem('user-id'),
