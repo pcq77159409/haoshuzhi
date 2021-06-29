@@ -10,12 +10,12 @@
           <dd><span>首页</span></dd>
         </dl>
       </li>
-      <li :class="{ current: hover == 2 }" @click="onClickCnmmb">
+      <!-- <li :class="{ current: hover == 2 }" @click="onClickCnmmb">
         <dl>
           <dt><img :src="src" alt="" /></dt>
           <dd><span ref="lei">类别</span></dd>
         </dl>
-      </li>
+      </li> -->
       <li
         :class="{ current: hover == 3 }"
         @click="onclickTo('/commons/user', 3)"

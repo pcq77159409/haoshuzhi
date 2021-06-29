@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        redirect: '/commons/home_trill/m'
+        redirect: '/commons/home/m'
     },
     {
         path: '/comcmons',

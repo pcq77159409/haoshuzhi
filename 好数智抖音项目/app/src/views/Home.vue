@@ -1,5 +1,5 @@
 <template>
-  <div class="Mobile_phone" ref="m">
+  <div class="Mobile_phone" ref="m" @scroll="scrollBox($event)">
     <!-- 头部导航 开始-->
     <div class="reds">
       <div class="moveing">
@@ -46,27 +46,20 @@
       </div>
       <div v-show="numid == 3">
         <div class="input_bg">
-          <div class="tail" @click="onclickTyped">
-            <div class="img">
-              <img src="../assets/yes.png" alt="" v-show="typed == 0" />
-            </div>
-            <p>尾号</p>
-            <span></span>
-          </div>
           <div class="searchs">
-            <div class="want">
+            <div class="want sou">
               <img src="../assets/搜索@2x.png" alt="" />
               <input
                 type="text"
                 placeholder="搜索你想要的号码"
                 v-model="searchInput"
-                @keyup.enter="onSearch"
+                @keyup.enter="onSearchs"
               />
             </div>
-            <h4 @click="onSearch">搜索</h4>
+            <h4 @click="onSearchs" class="hf">搜索</h4>
           </div>
         </div>
-        <p class="ge">* 请在输入框内填写末尾数字进行搜索</p>
+        <p class="ge">* 请在输入框内填写任意数字进行搜索</p>
       </div>
 
       <div v-show="numid == 1">
@@ -218,8 +211,9 @@
           </div>
         </div>
       </router-link>
+      <div class="botttomjz" ref="bjz" v-show="!isShow">加载中...</div>
 
-       <!-- 归属地 开始-->
+      <!-- 归属地 开始-->
       <div class="black" v-show="flag">
         <div class="Belonging">
           <ul class="pro">
@@ -263,7 +257,6 @@
           </ul>
         </div>
       </div>
-
     </div>
     <!--手机号 结束-->
 
@@ -740,9 +733,43 @@ export default {
       title: "移动号码",
       id: 1,
       numid: 1,
+      numbers: 1,
+      numbers1: 1,
+      sumsid: 0,
+      pList: {},
+      
     };
   },
   methods: {
+    scrollBox(e) {
+      // console.log(e.target.scrollTop);
+      // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
+      // 如果滚动的位置为2100加载
+      // 并且到每次滚动的位置一定与2100有关
+      if (e.target.scrollTop >= 1100 * this.numbers) {
+        // this.rember();
+        if (this.numbers1 <= this.sumsid - 1) {
+          this.numbers += 1.2;
+          this.numbers1++;
+          console.log(this.numbers1);
+          this.pList.page = this.numbers;
+          this.$axios
+            .post("/api/home_page/getNumList", this.$route.query)
+            .then((val) => {
+              console.log(val);
+              val.data.data.forEach((i) => {
+                this.list.push(i);
+              });
+            });
+          this.$refs.bjz.innerText = "加载中...";
+          if (this.numbers1 == this.sumsid) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
+        } else {
+          this.$refs.bjz.innerText = "已经到底了";
+        }
+      }
+    },
     onClickGo() {
       this.$router.push("/commons/home/m");
     },
@@ -976,6 +1003,12 @@ export default {
       this.parameter.search = this.searchInput;
       this.onclickQuery();
     },
+    onSearchs() {
+      this.parameter = {};
+      this.parameter.type = 0;
+      this.parameter.search = this.searchInput;
+      this.onclickQuery();
+    },
     onFen(id) {
       this.$axios
         .get("/api/home_page/getChildCategory?id=" + id)
@@ -1086,12 +1119,6 @@ export default {
     },
   },
   mounted() {
-    this.$axios
-      .post("/api/home_page/getNumList", this.$route.query)
-      .then((val) => {
-        console.log(val);
-        this.list = val.data.data;
-      });
     this.$axios.get("api/home_page/getLocation").then((val) => {
       this.nums = Object.keys(val.data)[0];
       for (var k in val.data) {
@@ -1099,6 +1126,20 @@ export default {
       }
       this.cityList = val.data;
     });
+    this.$axios
+      .post("/api/home_page/getNumList", this.$route.query)
+      .then((val) => {
+        console.log(val);
+        if (val.code == 200) {
+          this.list = val.data.data;
+          this.sumsid = val.data.last_page;
+          if (this.sumsid == 1) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
+        } else {
+          alert(val.msg);
+        }
+      });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
       this.chinese = val.data;
     });
@@ -1205,9 +1246,9 @@ a {
 }
 .Mobile_phone .reds {
   width: 100%;
-  height: 234 / @vw;
-  background: url("../assets/矩形 12@2x.png") no-repeat;
-  background-size: 100% 234 / @vw;
+  height: 200 / @vw;
+  background: url("../assets/矩形 12@s2x.png") no-repeat;
+  background-size: 100% 200 / @vw;
 }
 .Mobile_phone .reds .moveing {
   display: flex;
@@ -1227,7 +1268,7 @@ a {
 .Mobile_phone .banner_box {
   width: 352 / @vw;
   height: 134 / @vw;
-  margin: -121 / @vw auto;
+  margin: -128 / @vw auto 0;
   border-radius: 6 / @vw;
 }
 .Mobile_phone .banner_box img {
@@ -1267,7 +1308,7 @@ a {
   width: 100%;
   height: 100%;
   // vertical-align: middle;
-  transform: translateY(-5 / @vw);
+  display: block;
 }
 .Mobile_phone .accurate .input_bg .tail p {
   font-size: 12 / @vw;
@@ -1323,7 +1364,7 @@ a {
   margin: 0 auto;
   padding-top: 10 / @vw;
   box-sizing: border-box;
-  margin-top: 134 / @vw;
+  margin-top: 20 / @vw;
 }
 .Mobile_phone .accurate .phoneNumber {
   display: flex;
@@ -1386,13 +1427,17 @@ a {
   margin-top: 10 / @vw;
 }
 .Mobile_phone .searchelephone li {
-  width: 121 / @vw;
+  width: 118 / @vw;
   height: 100%;
   background-color: #efefef;
   text-align: center;
   line-height: 39 / @vw;
   color: #666666;
   font-size: 10 / @vw*1.3;
+  border-right: 1px solid #ccc;
+}
+.Mobile_phone .searchelephone li:nth-of-type(3){
+  border-right: none;
 }
 .Mobile_phone .select_change {
   width: 345 / @vw;
@@ -1498,7 +1543,7 @@ a {
   color: #dc0101;
   font-weight: bold;
 }
-.Mobile_phone  .regular {
+.Mobile_phone .regular {
   width: 345 / @vw;
   height: 365 / @vw;
   position: absolute;

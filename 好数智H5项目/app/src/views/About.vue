@@ -117,6 +117,7 @@ export default {
         }
       });
     },
+
     ClickOnTao(id) {
       this.$router.push({
         path: "/khssb",
@@ -269,7 +270,7 @@ body {
   text-align: center;
   line-height: 28 / @vw;
   margin-bottom: 15 / @vw*1.3;
-  font-size: 12 / @vw;
+  font-size: 10 / @vw;
   margin-left: 4%;
   box-sizing: border-box;
 }

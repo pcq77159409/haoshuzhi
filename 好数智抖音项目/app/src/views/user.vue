@@ -20,34 +20,87 @@
           <p>电话咨询</p>
         </div>
         <ul>
-          <li>
-            <img src="../assets/webp.webp@2x.png" alt="" />
-            <p>客服娇娇</p>
-          </li>
-          <li>
-            <img src="../assets/webp.webp (1)@2x.png" alt="" />
-            <p>客服媛媛</p>
-          </li>
-          <li>
-            <img src="../assets/webp.webp (2)@2x.png" alt="" />
-            <p>客服谈谈</p>
-          </li>
-          <li>
-            <img src="../assets/webp.webp (3)@2x.png" alt="" />
-            <p>客服晗晗</p>
+          <li v-for="(item,index) in arr" :key="index" @click="onClickk(item)">
+            <img :src="item.src" alt="" />
+            <p>{{item.name}}</p>
           </li>
         </ul>
         <h5>请选择客服，点击保存微信二维码添加</h5>
       </div>
-      <div class="black_bg">
-          <div class="tanc">
-              <p>×</p>
-              <img src="../assets/娇娇@2x.png" alt="">
-          </div>
+      <div class="black_bg" v-show="ke">
+        <div class="tanc">
+          <p @click="onClickk">×</p>
+          <img :src="src" alt="" />
+          <span>微信扫一扫添加谈谈二维码</span>
+          <div class="bao" @click="saveImg">保存图中二维码</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      arr:[{
+        src:require("../assets/webp.webp@2x.png"),
+        srcs:require("../assets/娇娇@2x.png"),
+        name:'客服娇娇',
+        id:1
+      },{
+        src:require("../assets/webp.webp (1)@2x.png"),
+        srcs:require("../assets/媛媛@2x.png"),
+        name:'客服媛媛',
+        id:2
+      },{
+        src:require("../assets/webp.webp (2)@2x.png"),
+        srcs:require("../assets/谈谈@2x.png"),
+        name:'客服谈谈',
+        id:3
+      },{
+        src:require("../assets/webp.webp (3)@2x.png"),
+        srcs:require("../assets/娇娇@2x.png"),
+        name:'客服晗晗',
+        id:4
+      }],
+      ke:null,
+      src:''
+    };
+  },
+  methods:{
+    downloadIamge: function(imgsrc, name) {
+      let image = new Image();
+      image.setAttribute("crossOrigin", "anonymous");
+      image.onload = function() {
+        let canvas = document.createElement("canvas");
+        canvas.width = image.width;
+        canvas.height = image.height;
+        let context = canvas.getContext("2d");
+        context.drawImage(image, 0, 0, image.width, image.height);
+        let url = canvas.toDataURL("image/png"); //得到图片的base64编码数据
+        let a = document.createElement("a"); // 生成一个a元素
+        let event = new MouseEvent("click"); // 创建一个单击事件
+        a.download = name || "海报"; // 设置图片名称没有设置则为默认
+        a.href = url; // 将生成的URL设置为a.href属性
+        a.dispatchEvent(event); // 触发a的单击事件
+      };
+      image.src = imgsrc;
+    },
+    saveImg: function() {
+      this.downloadIamge(this.ResImgUrl, 'result');
+      //this.ResImgUrl：图片地址，result：图片名称
+    },
+    onClickk(id){
+     if(this.ke==false){
+       this.ke=true
+     }else{
+       this.ke=false
+     }
+      this.src = id.srcs
+    }
+  }
+}
+</script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 .user_box {
@@ -167,29 +220,51 @@
         text-align: center;
       }
     }
-    .black_bg{
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, .4);
-        .tanc{
-            width: 175/@vw*1.3;
-            height: 229/@vw*1.3;
-            background-color: #fff;
-            img{
-                width: 129/@vw*1.3;
-                height: 148/@vw*1.3;
-                margin-top: 34/@vw;
-            }
-            p{
-                font-size: 20/@vw;
-                text-align: right;
-                padding: 10/@vw 10/@vw 0 0;
-                box-sizing: border-box;
-            }
+    .black_bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .tanc {
+        width: 175 / @vw*1.3;
+        height: 249 / @vw*1.3;
+        background-color: #fff;
+        img {
+          width: 129 / @vw*1.3;
+          height: 148 / @vw*1.3;
+          margin: 0 30 / @vw;
         }
+        p {
+          font-size: 20 / @vw;
+          text-align: right;
+          padding: 10 / @vw 10 / @vw 0 0;
+          box-sizing: border-box;
+        }
+        span {
+          text-align: center;
+          font-size: 12 / @vw;
+          color: #666;
+          width: 100%;
+          height: 15 / @vw;
+          display: block;
+        }
+        .bao {
+          width: 126 / @vw*1.3;
+          height: 32 / @vw;
+          background-color: #fe5858;
+          text-align: center;
+          line-height: 32 / @vw;
+          color: #fff;
+          font-size: 14 / @vw;
+          border-radius: 25 / @vw;
+          margin: 20 / @vw auto;
+        }
+      }
     }
   }
 }
