@@ -1,7 +1,7 @@
 <template>
   <div class="Mobile_phone" ref="m" @scroll="scrollBox($event)">
     <!-- 头部导航 开始-->
-    <div class="reds">
+    <div class="reds" id="scroll">
       <div class="moveing">
         <img src="../assets/left.png" alt="" @click="onClickGo" />
         <h3>好数智靓号商城</h3>
@@ -153,7 +153,7 @@
     <!-- 搜索号码 结束-->
 
     <!-- 下拉选择 开始-->
-    <div class="select_change">
+    <div class="select_change" ref="aa">
       <ul class="area">
         <li @click="onClickShow(0)">
           <p @click="onClickDn">归属地</p>
@@ -203,11 +203,13 @@
           <h5 v-html="val.number_tag"></h5>
           <div class="commission">
             <p>{{ val.location }}</p>
-            <span>佣金{{ val.returned_commission }}</span>
+            <span v-show="commissionShow"
+              >佣金{{ val.returned_commission }}</span
+            >
           </div>
           <div class="contains">
             <p>含通话费{{ val.contain_charge }}</p>
-            <span>￥{{ val.sale_price }}</span>
+            <span v-show="priceShow">￥{{ val.sale_price }}</span>
           </div>
         </div>
       </router-link>
@@ -403,12 +405,19 @@
       </div>
     </div>
     <!-- 搜索筛选 结束-->
+
+    <!-- 回到顶部 开始-->
+    <div class="top" v-show="topFlag" @click="onClickBackTop">▲</div>
+    <!-- 回到顶部 结束-->
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      topFlag: false,
+      priceShow: true,
+      commissionShow: false,
       active: null,
       proList: [],
       cityList: [],
@@ -737,12 +746,24 @@ export default {
       numbers1: 1,
       sumsid: 0,
       pList: {},
-      
+      scrollTop: 0
     };
   },
   methods: {
+    // 回到顶部
+    onClickBackTop: function () {
+      document.querySelector("#scroll").scrollIntoView(true);
+    },
+    handleScrollx(e) {
+      this.scrollTop = e.target.scrollTop // 滚动条偏移量
+      var midHeight = this.$refs.aa.offsetTop;
+      if (this.scrollTop > midHeight) {
+        this.topFlag = true;
+      } else {
+        this.topFlag = false;
+      }
+    },
     scrollBox(e) {
-      // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
@@ -751,7 +772,6 @@ export default {
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
-          console.log(this.numbers1);
           this.pList.page = this.numbers;
           this.$axios
             .post("/api/home_page/getNumList", this.$route.query)
@@ -1119,6 +1139,21 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener('scroll',this.handleScrollx,true)
+    if (localStorage.getItem("priceShow")) {
+      if (localStorage.getItem("priceShow") == "true") {
+        this.priceShow = true;
+      } else {
+        this.priceShow = false;
+      }
+    }
+    if (localStorage.getItem("commissionShow")) {
+      if (localStorage.getItem("commissionShow") == "true") {
+        this.commissionShow = true;
+      } else {
+        this.commissionShow = false;
+      }
+    }
     this.$axios.get("api/home_page/getLocation").then((val) => {
       this.nums = Object.keys(val.data)[0];
       for (var k in val.data) {
@@ -1197,7 +1232,18 @@ export default {
 </script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
-
+.top {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 40 / @vw;
+  height: 40 / @vw;
+  background-color: #fe5858;
+  color: #fff;
+  font-size: 12 / @vw;
+  text-align: center;
+  line-height: 40 / @vw;
+}
 * {
   padding: 0;
   margin: 0;
@@ -1434,9 +1480,8 @@ a {
   line-height: 39 / @vw;
   color: #666666;
   font-size: 10 / @vw*1.3;
-  border-right: 1px solid #ccc;
 }
-.Mobile_phone .searchelephone li:nth-of-type(3){
+.Mobile_phone .searchelephone li:nth-of-type(3) {
   border-right: none;
 }
 .Mobile_phone .select_change {

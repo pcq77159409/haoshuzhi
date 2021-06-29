@@ -10,14 +10,14 @@
           <p>电话咨询</p>
         </div>
         <div class="boda">
-          <p>拨打客服电话</p>
+          <p @click="bo">拨打客服电话</p>
         </div>
         <h5>*下单后半小时内客服会一对一电话沟通为您服务</h5>
       </div>
       <div class="wechat">
         <div class="wechating">
           <img src="../assets/矩形 6@2x.png" alt="" />
-          <p>电话咨询</p>
+          <p>微信咨询</p>
         </div>
         <ul>
           <li v-for="(item,index) in arr" :key="index" @click="onClickk(item)">
@@ -32,7 +32,7 @@
           <p @click="onClickk">×</p>
           <img :src="src" alt="" />
           <span>微信扫一扫添加谈谈二维码</span>
-          <div class="bao" @click="saveImg">保存图中二维码</div>
+          <div class="bao">长按保存图中二维码</div>
         </div>
       </div>
     </div>
@@ -68,28 +68,6 @@ export default {
     };
   },
   methods:{
-    downloadIamge: function(imgsrc, name) {
-      let image = new Image();
-      image.setAttribute("crossOrigin", "anonymous");
-      image.onload = function() {
-        let canvas = document.createElement("canvas");
-        canvas.width = image.width;
-        canvas.height = image.height;
-        let context = canvas.getContext("2d");
-        context.drawImage(image, 0, 0, image.width, image.height);
-        let url = canvas.toDataURL("image/png"); //得到图片的base64编码数据
-        let a = document.createElement("a"); // 生成一个a元素
-        let event = new MouseEvent("click"); // 创建一个单击事件
-        a.download = name || "海报"; // 设置图片名称没有设置则为默认
-        a.href = url; // 将生成的URL设置为a.href属性
-        a.dispatchEvent(event); // 触发a的单击事件
-      };
-      image.src = imgsrc;
-    },
-    saveImg: function() {
-      this.downloadIamge(this.ResImgUrl, 'result');
-      //this.ResImgUrl：图片地址，result：图片名称
-    },
     onClickk(id){
      if(this.ke==false){
        this.ke=true
@@ -97,6 +75,9 @@ export default {
        this.ke=false
      }
       this.src = id.srcs
+    },
+    bo(){
+      window.location.href = "tel:18817744333";
     }
   }
 }
