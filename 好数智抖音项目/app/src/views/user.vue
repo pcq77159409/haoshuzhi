@@ -20,9 +20,9 @@
           <p>微信咨询</p>
         </div>
         <ul>
-          <li v-for="(item,index) in arr" :key="index" @click="onClickk(item)">
+          <li v-for="(item, index) in arr" :key="index" @click="onClickk(item)">
             <img :src="item.src" alt="" />
-            <p>{{item.name}}</p>
+            <p>{{ item.name }}</p>
           </li>
         </ul>
         <h5>请选择客服，点击保存微信二维码添加</h5>
@@ -42,48 +42,58 @@
 export default {
   data() {
     return {
-      arr:[{
-        src:require("../assets/webp.webp@2x.png"),
-        srcs:require("../assets/娇娇@2x.png"),
-        name:'客服娇娇',
-        id:1
-      },{
-        src:require("../assets/webp.webp (1)@2x.png"),
-        srcs:require("../assets/媛媛@2x.png"),
-        name:'客服媛媛',
-        id:2
-      },{
-        src:require("../assets/webp.webp (2)@2x.png"),
-        srcs:require("../assets/谈谈@2x.png"),
-        name:'客服谈谈',
-        id:3
-      },{
-        src:require("../assets/webp.webp (3)@2x.png"),
-        srcs:require("../assets/娇娇@2x.png"),
-        name:'客服晗晗',
-        id:4
-      }],
-      ke:null,
-      src:''
+      arr: [
+        {
+          src: require("../assets/webp.webp@2x.png"),
+          srcs: require("../assets/娇娇@2x.png"),
+          name: "客服娇娇",
+          id: 1,
+        },
+        {
+          src: require("../assets/webp.webp (1)@2x.png"),
+          srcs: require("../assets/媛媛@2x.png"),
+          name: "客服媛媛",
+          id: 2,
+        },
+        {
+          src: require("../assets/webp.webp (2)@2x.png"),
+          srcs: require("../assets/谈谈@2x.png"),
+          name: "客服谈谈",
+          id: 3,
+        },
+        {
+          src: require("../assets/webp.webp (3)@2x.png"),
+          srcs: require("../assets/伊伊@2x.png"),
+          name: "客服伊伊",
+          id: 4,
+        },
+      ],
+      ke: null,
+      src: "",
     };
   },
-  methods:{
-    onClickk(id){
-     if(this.ke==false){
-       this.ke=true
-     }else{
-       this.ke=false
-     }
-      this.src = id.srcs
+  methods: {
+    onClickk(id) {
+      if (this.ke == false) {
+        this.ke = true;
+      } else {
+        this.ke = false;
+      }
+      this.src = id.srcs;
     },
-    bo(){
+    bo() {
       window.location.href = "tel:18817744333";
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
 .user_box {
   width: 100%;
   height: 100%;
@@ -247,6 +257,68 @@ export default {
         }
       }
     }
+  }
+}
+@media screen and(min-height:320px) {
+  .user-bg {
+    padding-bottom: 20 / @vw;
+  }
+}
+@media screen and(min-height:360px) {
+  .user-bg {
+    padding-bottom: 20 / @vw;
+  }
+}
+@media screen and(min-height:375px) {
+  .user-bg {
+    padding-bottom: 20 / @vw;
+  }
+}
+@media screen and(min-height:384px) {
+  .user-bg {
+    padding-bottom: 40 / @vw;
+  }
+}
+
+@media screen and(min-height:400px) {
+  .user-bg {
+    padding-bottom: 60 / @vw;
+  }
+}
+@media screen and(min-height:414px) {
+  .user-bg {
+    padding-bottom: 80 / @vw;
+  }
+}
+
+@media screen and(min-height:424px) {
+  .user-bg {
+    padding-bottom: 100 / @vw;
+  }
+}
+@media screen and(min-height:480px) {
+  .user-bg {
+    padding-bottom: 120 / @vw;
+  }
+}
+@media screen and(min-height:540px) {
+  .user-bg {
+    padding-bottom: 20 / @vw;
+  }
+}
+@media screen and(min-height:720px) {
+  .user-bg {
+    padding-bottom: 40 / @vw;
+  }
+}
+@media screen and(min-height:750px) {
+  .user-bg {
+    padding-bottom: 160 / @vw;
+  }
+}
+@media screen and(min-height:820px) {
+  .user-bg {
+    padding-bottom: 120 / @vw;
   }
 }
 </style>

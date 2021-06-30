@@ -1155,6 +1155,7 @@ export default {
     },
   },
   mounted() {
+    console.log(111);
     window.addEventListener("scroll", this.handleScrollx, true);
     if (localStorage.getItem("priceShow")) {
       if (localStorage.getItem("priceShow") == "true") {
