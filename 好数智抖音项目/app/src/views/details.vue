@@ -374,7 +374,7 @@ export default {
   },
   methods: {
     onBack() {
-      this.$router.back();
+      this.$router.go(-1);
     },
     onClickTo() {
       // this.back = false;
