@@ -926,7 +926,7 @@ li {
   width: 310 / @vw;
   /* height: 63/@vw; */
   background-color: #f5f5f5;
-  margin: 15 / @vw 10 / @vw 0;
+  margin: 15 / @vw 10 / @vw 60/@vw;
   font-size: 13 / @vw;
   color: #666666;
   padding: 8 / @vw 15 / @vw 8 / @vw 10 / @vw;
@@ -934,10 +934,10 @@ li {
   line-height: 24 / @vw;
 }
 .black .consumption .cancel {
-  position: absolute;
-  left: 0;
+  position: fixed;
+  left: 45/@vw;
   bottom: 0;
-  width: 100%;
+  width: 330/@vw;
   height: 45 / @vw;
   display: flex;
   text-align: center;

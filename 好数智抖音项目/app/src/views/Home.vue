@@ -145,8 +145,8 @@
         </ul>
         <p>* 请在指定位置上填写数字，无要求的位置可留空</p>
         <ul class="reset">
-          <li @click="onclickResetInput">重置</li>
-          <li @click="onclickAccurateSearch">精准搜索</li>
+          <li @click="onclickResetInput" ref="cz">重置</li>
+          <li @click="onclickAccurateSearch" ref="jz">精准搜索</li>
         </ul>
       </div>
     </div>
@@ -213,7 +213,6 @@
           </div>
         </div>
       </router-link>
-      <div class="botttomjz" ref="bjz" v-show="!isShow">加载中...</div>
 
       <!-- 归属地 开始-->
       <div class="black" v-show="flag">
@@ -261,12 +260,14 @@
       </div>
     </div>
     <!--手机号 结束-->
-
+    <div class="botttomjz" ref="bjz" v-show="!isShow" style="margin: 0 auto">
+      加载中...
+    </div>
     <!-- 搜索筛选 开始-->
     <div class="Montmorillonite" v-show="back">
       <div class="search_filter animate__animated animate__fadeInRight">
         <!-- 返回按钮 -->
-        <div class="back">
+        <div class="back" @click="onBack">
           <img src="../assets/back.png" alt="" @click="back = false" />
           <p @click="back = false">筛选</p>
         </div>
@@ -746,7 +747,7 @@ export default {
       numbers1: 1,
       sumsid: 0,
       pList: {},
-      scrollTop: 0
+      scrollTop: 0,
     };
   },
   methods: {
@@ -755,7 +756,7 @@ export default {
       document.querySelector("#scroll").scrollIntoView(true);
     },
     handleScrollx(e) {
-      this.scrollTop = e.target.scrollTop // 滚动条偏移量
+      this.scrollTop = e.target.scrollTop; // 滚动条偏移量
       var midHeight = this.$refs.aa.offsetTop;
       if (this.scrollTop > midHeight) {
         this.topFlag = true;
@@ -777,7 +778,6 @@ export default {
           this.$axios
             .post("/api/home_page/getNumList", this.$route.query)
             .then((val) => {
-              console.log(val);
               val.data.data.forEach((i) => {
                 this.list.push(i);
               });
@@ -852,6 +852,10 @@ export default {
       }
       this.flag = false;
       this.regulars = false;
+    },
+    onBack() {
+      this.back = false;
+      this.$refs.m.style = "overflow:auto";
     },
     onClickTo() {
       this.back = false;
@@ -971,15 +975,12 @@ export default {
       // }
       this.searchFilter.no_include = "";
       this.three.forEach((val, index) => {
-        console.log(val);
         if (this.three.length - 1 == index) {
           this.searchFilter.no_include += val;
         } else {
           this.searchFilter.no_include += val + ",";
         }
       });
-
-      console.log(this.searchFilter.no_include);
 
       this.searchFilter.type = 1;
       this.parameter = this.searchFilter;
@@ -1072,7 +1073,17 @@ export default {
       words = words.substring(words.length - 1, words.length);
       number[index].value = words;
 
-      if (event.code == "Backspace") {
+      // if (event.code == "Backspace") {
+      //   if (index >= 1) {
+      //     number[index - 1].focus();
+      //   }
+      // } else {
+      //   if (index < number.length - 1) {
+      //     number[index + 1].focus();
+      //   }
+      // }
+
+      if (event.keyCode == 8) {
         if (index >= 1) {
           number[index - 1].focus();
         }
@@ -1092,6 +1103,10 @@ export default {
           str += val.value;
         }
       });
+      this.$refs.jz.style = "background:#e12c2c";
+      setTimeout(() => {
+        this.$refs.jz.style = "background:#fe5858";
+      }, 360);
       this.parameter = {};
       this.parameter.accurate = str;
       this.onclickQuery();
@@ -1107,6 +1122,10 @@ export default {
           str += val.value;
         }
       });
+      this.$refs.cz.style = "background:#dddddd";
+      setTimeout(() => {
+        this.$refs.cz.style = "background:#f0eeee";
+      }, 360);
       this.parameter.accurate = str;
       this.onclickQuery();
     },
@@ -1119,17 +1138,13 @@ export default {
       }
 
       if (flag) {
-        console.log(this.parameter);
         this.$router.push({
           path: "/commons/home/m",
           query: this.parameter,
         });
-        console.log(this.parameter);
-        console.log(this.$route.query);
         this.$axios
           .post("/api/home_page/getNumList", this.$route.query)
           .then((val) => {
-            console.log(val);
             this.list = val.data.data;
           });
       }
@@ -1140,7 +1155,7 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('scroll',this.handleScrollx,true)
+    window.addEventListener("scroll", this.handleScrollx, true);
     if (localStorage.getItem("priceShow")) {
       if (localStorage.getItem("priceShow") == "true") {
         this.priceShow = true;
@@ -1165,7 +1180,6 @@ export default {
     this.$axios
       .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
-        console.log(val);
         if (val.code == 200) {
           this.list = val.data.data;
           this.sumsid = val.data.last_page;
@@ -1188,7 +1202,6 @@ export default {
         }
       });
     });
-    // console.log(this.$route.query);
     if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
       this.title = "移动号码";
     } else if (
@@ -1217,7 +1230,6 @@ export default {
   },
   watch: {
     opList(val) {
-      console.log(val);
       if (val == "中国移动") {
         this.title = "移动号码";
       } else if (val == "中国联通") {
@@ -1255,7 +1267,7 @@ a {
 }
 .black {
   width: 345 / @vw;
-  height: 100%;
+  height: 500 / @vw;
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 15 / @vw;
@@ -1481,7 +1493,7 @@ a {
   line-height: 39 / @vw;
   color: #666666;
   font-size: 10 / @vw*1.3;
-  border-right:1px solid #efefef;
+  border-right: 1px solid #efefef;
 }
 .Mobile_phone .searchelephone li:nth-of-type(3) {
   border-right: none;

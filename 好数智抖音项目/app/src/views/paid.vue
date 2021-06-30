@@ -250,7 +250,7 @@ export default {
       });
     },
     onclickQxdd() {
-      this.$post("/api/order/orderquxiao", {
+      this.$get("/api/order/orderquxiao", {
         user_id: localStorage.getItem("user-id"),
         id: this.$route.query.id,
         status:1
@@ -287,7 +287,7 @@ export default {
   border-radius: 6 / @vw;
 }
 .A /deep/ .el-dialog--center .el-dialog__body {
-  padding: 30 / @vw 25 / @vw 0;
+  padding: 60 / @vw 25 / @vw 0;
 }
 .A /deep/ .el-dialog__header {
   padding: 0;

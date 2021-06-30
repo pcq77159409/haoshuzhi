@@ -27,7 +27,6 @@ export default {
     });
 
     this.$axios.get("/api/home_page/getBanner").then((r) => {
-      console.log(r);
       this.bannerList = r.data;
     });
   },
