@@ -1,4 +1,5 @@
 <template>
+
   <div class="choice_box" @scroll="scrollBox($event)">
     <div class="package_box">
       <img src="../assets/left.png" alt="" @click="onClickIntroPara" />

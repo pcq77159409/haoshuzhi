@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" >
     <div class="service">
       <p>收藏</p>
     </div>
@@ -53,6 +53,7 @@
           </v-touch>
         </li>
       </ul>
+      <!-- <div class="botttomjz" ref="bjz">加载中...</div> -->
     </div>
   </div>
 </template>
@@ -63,9 +64,41 @@ export default {
       show: true,
       dataList: [],
       tranShow: -1,
+      numbers: 1,
+      numbers1: 1,
+      sumsid: 0,
     };
   },
   methods: {
+    scrollBox(e) {
+      // console.log(e.target.scrollTop);
+      // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
+      // 如果滚动的位置为2100加载
+      // 并且到每次滚动的位置一定与2100有关
+      if (e.target.scrollTop >= 400 * this.numbers) {
+        // this.rember();
+        if (this.numbers1 <= this.sumsid - 1) {
+          this.numbers += 1.2;
+          this.numbers1++;
+          console.log(this.numbers1);
+          // this.pList.page = this.numbers;
+          this.$get("/api/number/collectlist", {
+            user_id: localStorage.getItem("user-id"),
+          }).then((val) => {
+            console.log(val);
+            val.data.data.forEach((i) => {
+              this.taocany.push(i);
+            });
+          });
+          this.$refs.bjz.innerText = "加载中...";
+          if (this.numbers1 == this.sumsid) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
+        } else {
+          this.$refs.bjz.innerText = "已经到底了";
+        }
+      }
+    },
     swiperleft: function (index) {
       console.log("左划");
       this.tranShow = index;
@@ -114,6 +147,10 @@ export default {
           this.show = true;
         } else {
           this.show = false;
+        }
+        this.sumsid = r.data.last_page;
+        if (this.sumsid == 1) {
+          this.$refs.bjz.innerText = "已经到底了";
         }
       } else {
         alert(r.msg);
@@ -171,7 +208,7 @@ export default {
   height: 100%;
   background: #f9f9f9;
   box-sizing: border-box;
-  padding-bottom: 65/@vw;
+  padding-bottom: 65 / @vw;
   overflow: auto;
 }
 .content {
@@ -238,5 +275,10 @@ export default {
 }
 .content .tran {
   transform: translateX(0 / @vw);
+}
+.botttomjz {
+  width: 100%;
+  line-height: 40 / @vw;
+  text-align: center;
 }
 </style>

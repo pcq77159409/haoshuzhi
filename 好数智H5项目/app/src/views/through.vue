@@ -5,20 +5,20 @@
       <h4>实力买家</h4>
     </div>
     <div class="nav_box">
-      <img src="../assets/圆角矩形 10 副本 3@2x.png" alt="" />
-      <p>审核通过</p>
+      <img src="../assets/shz.png" alt="" />
+      <p>审核中...</p>
     </div>
     <div class="congratulations">
-      <h4>恭喜您审核通过</h4>
+      <h4>提交成功等待后台审核</h4>
       <div class="reading">
-        <img src="../assets/yes.png" alt="" />
-        <p>已阅读并同意遵守</p>
-        <span>【实力买家申请协议】</span>
+        <!-- <img src="../assets/yes.png" alt="" /> -->
+        <p>预计会在一个工作日内审完毕，请您耐心等待</p>
+        <!-- <span>【实力买家申请协议】</span> -->
       </div>
     </div>
-    <div class="jiaona" @click="$router.push('/payment')">
+    <!-- <div class="jiaona" @click="$router.push('/payment')">
         缴纳押金并开启服务
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

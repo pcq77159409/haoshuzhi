@@ -99,7 +99,7 @@
                 class="swiper-slide"
                 v-for="(item, index) in unapid"
                 :key="index"
-                 :data-item="func_str(item)"
+                :data-item="func_str(item)"
               >
                 <!-- @click="onclickFK(item.id, item.price, item.number)" -->
 
@@ -118,7 +118,7 @@
       </div>
       <div class="road">
         <ul>
-          <li @click="$router.push('/apply_for')">
+          <li @click="onclickSczd">
             <img src="../assets/矢量智能对象@2x.png" alt="" />
             <p>生财之道</p>
           </li>
@@ -257,6 +257,15 @@ export default {
     },
     onjifen() {
       alert("该功能暂未开放，敬请期待");
+    },
+    onclickSczd() {
+      if (this.user.type == 1) {
+        this.$router.push("/money_road");
+      } else if (this.user.type == 2) {
+        this.$router.push("/payment");
+      } else {
+        this.$router.push("/apply_for");
+      }
     },
   },
   mounted() {

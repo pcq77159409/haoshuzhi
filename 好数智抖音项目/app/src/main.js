@@ -11,7 +11,8 @@ import axios from "axios";
 import VueTouch from 'vue-touch'
 Vue.use(VueTouch, { name: 'v-touch' })
 
-
+// import getBankcardinfo from 'bankcardinfo'
+// Vue.prototype.$getBankcardinfo = getBankcardinfo
 axios.defaults.baseURL = '/index.php';
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;

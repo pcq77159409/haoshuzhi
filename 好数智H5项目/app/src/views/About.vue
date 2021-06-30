@@ -192,6 +192,7 @@ body {
 .sex {
   width: 78%;
   height: 100%;
+  overflow: auto;
 }
 .move .pag {
   width: 32%;

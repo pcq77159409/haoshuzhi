@@ -22,6 +22,10 @@
                 <p>生日</p>
                 <input type="text" placeholder="请输入出生日期">
             </li>
+                <li>
+                <p>支付宝账号</p>
+                <input type="text" placeholder="请输入支付宝账号">
+            </li>
         </ul>
     </div>
     <div class="authentication" @click="$router.push('/authentication')">
@@ -74,7 +78,7 @@ export default {
 }
 .personmsg_box .replace {
     width: 100%;
-    height: 244/@vw;
+    // height: 244/@vw;
     background-color: #fff;
 }
 .personmsg_box .replace .portrait {
@@ -97,7 +101,7 @@ export default {
 }
 .personmsg_box .replace ul {
     width: 345/@vw;
-    height: 121/@vw;
+    // height: 121/@vw;
     margin: 29/@vw auto 0;
 }
 .personmsg_box .replace ul li {
@@ -106,6 +110,8 @@ export default {
     border-top: 1px solid #f2f2f2;
     display: flex;
     align-items: center;
+}.personmsg_box .replace ul li:last-of-type p{
+     margin-right: 5/@vw;
 }
 .personmsg_box .replace ul li p{
     font-size: 14/@vw;

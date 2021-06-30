@@ -130,7 +130,7 @@ export default {
       buyersDetails: "",
       buyersQd: "",
       buyersDp: "",
-      type:0,
+      type: 0,
     };
   },
   beforeMount() {
@@ -148,7 +148,6 @@ export default {
   },
   methods: {
     onclickSubmit() {
-      //  $router.push('/through')
       if (this.buyersNmae.trim() == "") {
         alert("姓名不能为空");
       } else if (
@@ -173,7 +172,7 @@ export default {
           shop_online: this.buyersDp,
         }).then((r) => {
           if (r.code == 200) {
-            alert("申请成功,等待审核");
+            this.$router.push("/through");
           } else {
             alert(r.msg);
           }

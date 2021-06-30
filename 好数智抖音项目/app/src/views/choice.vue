@@ -1,5 +1,6 @@
 <template>
-  <div class="choice_box">
+
+  <div class="choice_box" @scroll="scrollBox($event)">
     <div class="package_box">
       <img src="../assets/left.png" alt="" @click="onClickIntroPara" />
       <h4>套餐资费</h4>
@@ -51,17 +52,17 @@
           <ul class="amount">
             <li>
               <img src="../assets/phone.png" alt="" />
-              <p>{{item.talk_time}}分钟</p>
+              <p>{{ item.talk_time }}分钟</p>
             </li>
 
             <li>
               <img src="../assets/liu.png" alt="" />
-              <p>{{item.directional_flow}}G</p>
+              <p>{{ item.directional_flow }}G</p>
             </li>
 
             <li>
               <img src="../assets/qan.png" alt="" />
-              <p>{{item.month_charge}}</p>
+              <p>{{ item.month_charge }}</p>
             </li>
           </ul>
           <!-- <div class="champion">
@@ -70,6 +71,7 @@
           </div> -->
         </div>
       </div>
+      <div class="botttomjz" ref="bjz" >加载中...</div>
     </div>
     <!-- 小魔卡 结束-->
 
@@ -128,6 +130,9 @@
 export default {
   data() {
     return {
+      numbers: 1,
+      numbers1: 1,
+      sumsid: 0,
       proList: [
         {
           src: require("../assets/right.png"),
@@ -235,10 +240,44 @@ export default {
       location: "",
       package_name: "",
       page: 1,
-      id:null
+      id: null,
     };
   },
   methods: {
+    scrollBox(e) {
+      // console.log(e.target.scrollTop);
+      // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
+      // 如果滚动的位置为2100加载
+      // 并且到每次滚动的位置一定与2100有关
+      if (e.target.scrollTop >= 400 * this.numbers) {
+        // this.rember();
+        if (this.numbers1 <= this.sumsid - 1) {
+          this.numbers += 1.2;
+          this.numbers1++;
+          console.log(this.numbers1);
+          // this.pList.page = this.numbers;
+          this.$axios
+            .get("/api/package/getPackage", {
+              operator: this.operator,
+              location: this.location,
+              package_name: this.package_name,
+              page: this.page,
+            })
+            .then((val) => {
+              console.log(val);
+              val.data.data.forEach((i) => {
+                this.taocany.push(i);
+              });
+            });
+          this.$refs.bjz.innerText = "加载中...";
+          if (this.numbers1 == this.sumsid) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
+        } else {
+          this.$refs.bjz.innerText = "已经到底了";
+        }
+      }
+    },
     onClickHide(val) {
       this.num = val;
     },
@@ -298,11 +337,11 @@ export default {
     },
     onClickTsao(id) {
       this.$router.push({
-        path:'/khssb',
-        query:{
-          id:id
-        }
-      })
+        path: "/khssb",
+        query: {
+          id: id,
+        },
+      });
     },
   },
   created() {
@@ -315,9 +354,13 @@ export default {
       })
       .then((val) => {
         this.taocany = val.data.data;
-        this.id=this.taocany[0].id
+        this.id = this.taocany[0].id;
         console.log(this.id);
-        console.log(this.taocany);
+        console.log(val.data);
+        this.sumsid = val.data.last_page;
+        if (this.sumsid == 1) {
+          this.$refs.bjz.innerText = "已经到底了";
+        }
       });
   },
 };
@@ -535,7 +578,7 @@ html {
 .choice_box .mocha .Characteristics .movement h6 {
   color: #333333;
   font-size: 13 / @vw;
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
   font-weight: 500;
 }
 .choice_box .mocha .Characteristics .movement .tea {
@@ -546,7 +589,7 @@ html {
   font-size: 13 / @vw;
   color: #666666;
   margin-right: 6 / @vw;
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
 }
 .choice_box .mocha .Characteristics .voice {
   font-size: 12 / @vw;
@@ -591,5 +634,10 @@ html {
 .choice_box .mocha .Characteristics .champion span {
   font-size: 12 / @vw;
   color: #ea5656;
+}
+.botttomjz {
+  width: 100%;
+  line-height: 40 / @vw;
+  text-align: center;
 }
 </style>
