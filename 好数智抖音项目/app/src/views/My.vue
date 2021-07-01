@@ -6,7 +6,7 @@
       </div>
       <div class="good">
         <div class="user_name">
-          <img src="../assets/Head_portrait.png" alt="" class="Head_portrait" />
+          <img src="../assets/Head_portrait.png" alt="" class="Head_portrait" @click="Dian"/>
           <div
             class="login"
             v-if="loginShow == 1"
@@ -197,9 +197,18 @@ export default {
       status2: "",
       status3: "",
       status4: "",
+      dcd:[]
     };
   },
   methods: {
+    Dian(){
+      if(this.loginShow==1){
+        this.$router.push('/login');
+      }else{
+        this.$router.push('/personmsg');
+
+      }
+    },
     initSwiper() {
       let _this = this;
       setTimeout(() => {
@@ -268,6 +277,11 @@ export default {
       }
     },
   },
+  created(){
+    this.$get('/api/user/getinfo',{user_id: localStorage.getItem("user-id"),}).then(val=>{
+      console.log(val);
+    })
+  },
   mounted() {
     this.$nextTick(() => {
       this.initSwiper();
@@ -277,7 +291,6 @@ export default {
     this.$get("/api/user/getinfo", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.user = r.data;
       }
@@ -287,8 +300,8 @@ export default {
       user_id: localStorage.getItem("user-id"),
       status: 1,
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
+        console.log(r);
         if (r.data.total == 0) {
           this.unapid = [];
           this.status1 = "";
@@ -296,6 +309,7 @@ export default {
           this.status1 = r.data.total;
           // let num = 0;
           this.unapid = r.data.data;
+          console.log(this.status1);
           // console.log(this.unapid);
           // this.timer = setInterval(() => {
           //   num++;
@@ -356,7 +370,7 @@ export default {
 @import "../assets/css/base.less";
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f5f5f5;
 }
 .login {
@@ -375,7 +389,6 @@ body {
 }
 .ccccc {
   position: relative;
-  height: 100vh;
   overflow: auto;
 }
 .my_box {

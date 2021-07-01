@@ -802,11 +802,13 @@ export default {
       }
     },
     onClickDn() {
+      var a = document.querySelector(".a");
       if (this.flag == false) {
         this.flag = true;
         this.cut = false;
         this.regulars = false;
         this.$refs.m.style = "overflow:hidden";
+        a.style = "height:100%";
       } else {
         this.flag = false;
         this.$refs.m.style = "overflow:auto";
@@ -834,11 +836,13 @@ export default {
       }
     },
     onClickRegular() {
+      var a = document.querySelector(".a");
       if (this.regulars == false) {
         this.regulars = true;
         this.flag = false;
         this.cut = false;
         this.$refs.m.style = "overflow:hidden";
+        a.style = "height:100%";
       } else {
         this.regulars = false;
         this.$refs.m.style = "overflow:auto";
@@ -854,8 +858,10 @@ export default {
       this.regulars = false;
     },
     onBack() {
+      var a = document.querySelector(".a");
       this.back = false;
       this.$refs.m.style = "overflow:auto";
+      a.style = "height:100%";
     },
     onClickTo() {
       this.back = false;
@@ -1323,7 +1329,7 @@ a {
   color: #ffffff;
   margin: 30 / @vw auto 0;
   font-size: 16 / @vw;
-  font-weight: 500;
+  font-weight: normal;
 }
 .Mobile_phone .banner_box {
   width: 352 / @vw;
@@ -1574,7 +1580,7 @@ a {
 .Mobile_phone .start h5 {
   font-size: 16 / @vw;
   color: #333333;
-  font-weight: bold;
+  font-weight: normal;
   margin: 12 / @vw 0 0 10 / @vw;
 }
 .Mobile_phone .start .commission {
@@ -1601,7 +1607,7 @@ a {
 .Mobile_phone .start .contains span {
   font-size: 14 / @vw;
   color: #dc0101;
-  font-weight: bold;
+  font-weight: normal;
 }
 .Mobile_phone .regular {
   width: 345 / @vw;

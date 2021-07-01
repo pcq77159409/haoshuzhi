@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="a">
     <!--<router-view/>-->
     <!--页面返回不刷新-->
     <keep-alive>
