@@ -78,8 +78,8 @@
                 </p>
                 <p
                   class="payment"
-                  v-if="item.status == 4"
-                  @click.stop="onclickSCDD"
+                  v-if="item.status == 4||item.status==5"
+                  @click.stop="onclickSCDD(item.id)"
                 >
                   删除订单
                 </p>
@@ -135,7 +135,7 @@
             </div>
             <div class="inform">
               <p>支付剩余时间</p>
-              <span>{{ hour }} : {{ minute }} ：{{ second }}</span>
+              <span>{{ min }} ：{{ sec }}</span>
             </div>
           </div>
         </el-tab-pane>
@@ -273,11 +273,11 @@
 export default {
   data() {
     return {
-      hour: 0,
-      minute: 0,
-      second: 0,
+      min: 0,
+      sec: 0,
       activenamed: "second",
       getDataList: [],
+      coco:null
     };
   },
   methods: {
@@ -300,8 +300,16 @@ export default {
       //查看物流
       window.location.href = "https://m.kuaidi100.com/result.jsp?nu=" + id;
     },
-    onclickSCDD() {
+    onclickSCDD(id) {
       //删除订单
+       this.$get("/api/order/orderquxiao", {
+        user_id: localStorage.getItem("user-id"),
+        id: id,
+        status:2
+      }).then((r) => {
+        console.log(r);
+      });
+
     },
     onclickSecond(status, id) {
       //判断订单状态
@@ -344,74 +352,37 @@ export default {
         }
       });
     },
+    //倒计时
+    countdown() {
+      const end = Date.parse(
+        new Date("2021-07-01:11:25:56")
+      ); /* this.getDataList.created_at */
+      const now = Date.parse(new Date());
+      const msec = end - now;
+      if (msec < 0) return;
+
+      let day = parseInt(msec / 1000 / 60 / 60 / 24);
+      let hr = parseInt((msec / 1000 / 60 / 60) % 24);
+      let min = parseInt((msec / 1000 / 60) % 60);
+      let sec = parseInt((msec / 1000) % 60);
+      this.day = day;
+      this.hr = hr > 9 ? hr : "0" + hr;
+      this.min = min > 9 ? min : "0" + min;
+      this.sec = sec > 9 ? sec : "0" + sec;
+      const that = this;
+      if (min >= 0 && sec >= 0) {
+        //倒计时结束关闭订单
+        if (min == 0 && sec == 0) {
+          return;
+        }
+        setTimeout(function () {
+          that.countdown();
+        }, 1000);
+      }
+    },
   },
   mounted() {
-    // ================ 将时间格式转换成  时间戳===============
-    // let date = new Date(data.created_at);
-    let date = parseInt(sessionStorage.getItem("time"));
-    function add0(m) {
-      return m < 10 ? "0" + m : m;
-    }
-    // ================ 将时间戳转换成 时间格式 ===============
-    function format(shijianchuo) {
-      //shijianchuo是整数，否则要parseInt转换
-      var time = new Date(shijianchuo);
-      var y = time.getFullYear();
-      var m = time.getMonth() + 1;
-      var d = time.getDate();
-      var h = time.getHours();
-      var mm = time.getMinutes();
-      var s = time.getSeconds();
-      return (
-        y +
-        "-" +
-        add0(m) +
-        "-" +
-        add0(d) +
-        " " +
-        add0(h) +
-        ":" +
-        add0(mm) +
-        ":" +
-        add0(s)
-      );
-    }
-    // =================倒计时函数===================
-    var showtime = () => {
-      var nowtime = new Date(), //获取当前时间
-        // endtime = new Date(format(date.getTime() + (1000 * 60 * 30))); //定义结束时间
-        endtime = new Date(format(date + 1000 * 60 * 30)); //定义结束时间
-      var lefttime = endtime.getTime() - nowtime.getTime(), //距离结束时间的毫秒数
-        // leftd = Math.floor(lefttime / (1000 * 60 * 60 * 24)), //计算天数
-        lefth = Math.floor((lefttime / (1000 * 60 * 60)) % 24), //计算小时数
-        leftm = Math.floor((lefttime / (1000 * 60)) % 60), //计算分钟数
-        lefts = Math.floor((lefttime / 1000) % 60); //计算秒数
-
-      if (endtime - nowtime <= 0) {
-        clearInterval(this.timer);
-        this.$router.go(-1); //时间到了返回上一个页面
-      }
-      this.hour = lefth;
-      this.minute = leftm;
-      this.second = lefts;
-      // return add0(leftm) + ":" + add0(lefts); //返回倒计时的字符串
-    };
-    this.timer = setInterval(() => {
-      this.$get("/api/order/info", {
-        user_id: localStorage.getItem("user-id"),
-        order_id: this.$route.query.order_id,
-      }).then((r) => {
-        // console.log(r);
-        if (r.data.status && r.data.status != 1) {
-          clearInterval(this.timer);
-          this.$router.push({
-            path: "/Payload",
-            query: { order_id: this.$route.query.order_id },
-          });
-        }
-      });
-      showtime();
-    }, 1000); //反复执行函数本身
+    this.countdown();
     this.activenamed = this.$route.query.name;
     if (this.activenamed == "first") {
       this.getlist(1);
@@ -436,6 +407,8 @@ export default {
         str = "卖家已发货";
       } else if (val == 4) {
         str = "订单已完成";
+      }else{
+        str="交易已关闭"
       }
       return str;
     },
