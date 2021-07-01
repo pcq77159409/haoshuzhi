@@ -17,16 +17,15 @@
         </li>
         <li>
           <p>性别</p>
-          <input type="text" placeholder="男/女" v-model="sex" />
+          <img :src="img" alt="" @click="ji(1)" v-show="show" />
+          <span v-show="show">男</span>
+          <input type="text" placeholder="男/女" v-model="sex" v-show="flag" />
+          <img :src="imgs" alt="" @click="ji(2)" v-show="show" />
+          <span v-show="show">女</span>
         </li>
         <li>
           <p>生日</p>
-          <input
-            type="text"
-            placeholder="请输入出生日期"
-            v-model="birsday"
-            @keyup.enter="onUser"
-          />
+          <input type="text" placeholder="请输入出生日期" v-model="birsday" />
         </li>
         <!-- <li>
           <p>支付宝账号</p>
@@ -38,6 +37,7 @@
       <p>实名认证</p>
       <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
+    <div class="xiu" @click="onUser">确认修改</div>
   </div>
 </template>
 <script>
@@ -47,8 +47,12 @@ export default {
       head_img: "",
       src: require("../assets/矢量智能对象@2x (4).png"),
       username: "",
-      sex: "1",
+      sex: "",
       birsday: "",
+      img: require("../assets/圆角矩形 2@2x.png"),
+      imgs: require("../assets/圆角矩形 2@2x.png"),
+      show: true,
+      flag: false,
     };
   },
   methods: {
@@ -83,11 +87,33 @@ export default {
       this.$post("/api/user/updateinfo", {
         user_id: localStorage.getItem("user-id"),
         username: this.username,
-        sex: 1,
+        sex: this.sex,
         birthday: this.birsday,
       }).then((val) => {
         console.log(val);
+        if (val.code == 200) {
+          this.show = false;
+          this.flag = true;
+          if (this.sex == 1) {
+          this.sex = "男";
+        } else if (this.sex == 2) {
+          this.sex = "女";
+        } else if (this.sex == null) {
+          this.sex = "未知";
+        }
+        }
       });
+    },
+    ji(id) {
+      if (id == 1) {
+        this.img = require("../assets/yes.png");
+        this.imgs = require("../assets/圆角矩形 2@2x.png");
+        this.sex = 1;
+      } else if (id == 2) {
+        this.imgs = require("../assets/yes.png");
+        this.img = require("../assets/圆角矩形 2@2x.png");
+        this.sex = 2;
+      }
     },
     // onSex(){
     //   this.$post("/api/user/updateinfo", {
@@ -123,13 +149,24 @@ export default {
           this.sex = "未知";
         }
       }
-      console.log(val);
+      console.log(val.data.sex);
     });
   },
 };
 </script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
+.xiu {
+  width: 345 / @vw;
+  height: 44 / @vw;
+  text-align: center;
+  line-height: 44 / @vw;
+  color: #fff;
+  background-color: #fe5858;
+  border-radius: 25 / @vw;
+  font-size: 14 / @vw;
+  margin: 20 / @vw auto;
+}
 .personmsg_box {
   width: 100%;
   height: 100vh;
@@ -166,6 +203,18 @@ export default {
   width: 100%;
   // height: 244/@vw;
   background-color: #fff;
+}
+.personmsg_box .replace img {
+  width: 15 / @vw;
+  height: 15 / @vw;
+  margin-right: 6 / @vw;
+  pointer-events: auto;
+}
+.personmsg_box .replace span {
+  font-size: 12 / @vw;
+  color: #999;
+  margin-right: 4 / @vw;
+  display: block;
 }
 .personmsg_box .replace .portrait {
   width: 60 / @vw;
