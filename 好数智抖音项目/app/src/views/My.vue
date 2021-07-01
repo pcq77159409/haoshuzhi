@@ -6,7 +6,7 @@
       </div>
       <div class="good">
         <div class="user_name">
-          <img src="../assets/Head_portrait.png" alt="" class="Head_portrait" @click="Dian"/>
+          <img :src="src" alt="" class="Head_portrait" @click="Dian"/>
           <div
             class="login"
             v-if="loginShow == 1"
@@ -197,7 +197,8 @@ export default {
       status2: "",
       status3: "",
       status4: "",
-      dcd:[]
+      dcd:[],
+      src:require('../assets/Head_portrait.png')
     };
   },
   methods: {
@@ -280,6 +281,7 @@ export default {
   created(){
     this.$get('/api/user/getinfo',{user_id: localStorage.getItem("user-id"),}).then(val=>{
       console.log(val);
+      this.src=val.data.head_img
     })
   },
   mounted() {

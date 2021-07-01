@@ -5,27 +5,33 @@
       <h4>个人信息</h4>
     </div>
     <div class="replace">
-      <div class="portrait">
-        <img src="../assets/矢量智能对象@2x (4).png" alt="" />
+      <div class="portrait" @click="geng">
+        <img :src="src" alt="" />
         <p>更换头像</p>
+        <input type="file" class="fileImg" id="file1" @change="geng('file1')" />
       </div>
       <ul>
         <li>
           <p>昵称更改</p>
-          <input type="text" placeholder="随机生成昵称" />
+          <input type="text" placeholder="随机生成昵称" v-model="username" />
         </li>
         <li>
           <p>性别</p>
-          <input type="text" placeholder="男/女" />
+          <input type="text" placeholder="男/女" v-model="sex" />
         </li>
         <li>
           <p>生日</p>
-          <input type="text" placeholder="请输入出生日期" />
+          <input
+            type="text"
+            placeholder="请输入出生日期"
+            v-model="birsday"
+            @keyup.enter="onUser"
+          />
         </li>
-        <li>
+        <!-- <li>
           <p>支付宝账号</p>
           <input type="text" placeholder="请输入支付宝账号" />
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="authentication" @click="$router.push('/authentication')">
@@ -37,7 +43,88 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      head_img: "",
+      src: require("../assets/矢量智能对象@2x (4).png"),
+      username: "",
+      sex: "1",
+      birsday: "",
+    };
+  },
+  methods: {
+    geng(id) {
+      var oFReader = new FileReader();
+      var file = document.getElementById(id).files[0];
+      console.log(document.getElementById(id).files[0]);
+      oFReader.readAsDataURL(file);
+
+      oFReader.onloadend = (oFRevent) => {
+        var src = oFRevent.target.result;
+        this.src = src;
+      };
+      var formData = new FormData();
+
+      formData.append("file", file);
+      this.$axios.post("/api/upload/upload", formData).then((r) => {
+        if (r.error == 0) {
+          this.head_img = r.url;
+          this.$post("/api/user/updateinfo", {
+            user_id: localStorage.getItem("user-id"),
+            head_img: this.head_img,
+          }).then((val) => {
+            console.log(val);
+          });
+        } else {
+          alert("上传失败");
+        }
+      });
+    },
+    onUser() {
+      this.$post("/api/user/updateinfo", {
+        user_id: localStorage.getItem("user-id"),
+        username: this.username,
+        sex: 1,
+        birthday: this.birsday,
+      }).then((val) => {
+        console.log(val);
+      });
+    },
+    // onSex(){
+    //   this.$post("/api/user/updateinfo", {
+    //     user_id: localStorage.getItem("user-id"),
+    //     sex: this.sex,
+    //   }).then((val) => {
+    //     console.log(val);
+    //   });
+    // },
+    // onbirsday(){
+    //    this.$post("/api/user/updateinfo", {
+    //     user_id: localStorage.getItem("user-id"),
+    //     birsday: this.birsday,
+    //   }).then((val) => {
+    //     console.log(val);
+    //   });
+    // }
+  },
+  mounted() {
+    this.$get("/api/user/getinfo", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((val) => {
+      if (val.data.head_img != null) {
+        this.src = val.data.head_img;
+        this.username = val.data.username;
+        this.sex = val.data.sex;
+        this.birsday = val.data.birthday;
+        if (val.data.sex == 1) {
+          this.sex = "男";
+        } else if (val.data.sex == 2) {
+          this.sex = "女";
+        } else if (val.data.sex == null) {
+          this.sex = "未知";
+        }
+      }
+      console.log(val);
+    });
   },
 };
 </script>
@@ -88,6 +175,15 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: 25 / @vw;
+  position: relative;
+}
+.personmsg_box .replace .portrait .fileImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 .personmsg_box .replace .portrait img {
   width: 52 / @vw;
@@ -109,9 +205,6 @@ export default {
   border-top: 1px solid #f2f2f2;
   display: flex;
   align-items: center;
-}
-.personmsg_box .replace ul li:last-of-type p {
-  margin-right: 5 / @vw;
 }
 .personmsg_box .replace ul li p {
   font-size: 14 / @vw;
