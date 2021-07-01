@@ -198,7 +198,7 @@ export default {
 
 .my_commission {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f8f8f8;
   overflow: auto;
 }

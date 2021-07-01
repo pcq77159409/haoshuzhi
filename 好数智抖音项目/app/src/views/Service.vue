@@ -205,7 +205,7 @@ export default {
 }
 .box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #f9f9f9;
   box-sizing: border-box;
   padding-bottom: 65 / @vw;

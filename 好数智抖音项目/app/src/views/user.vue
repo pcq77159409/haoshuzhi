@@ -96,7 +96,7 @@ html {
 }
 .user_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   .zixun {
     width: 100%;

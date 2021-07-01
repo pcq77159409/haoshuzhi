@@ -135,7 +135,8 @@ export default {
 @import "../assets/css/base.less";
 .Integral_subsidiary_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
 }
 .Integral_subsidiary_box .jumplabel {

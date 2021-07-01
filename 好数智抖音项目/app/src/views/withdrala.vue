@@ -121,7 +121,8 @@ export default {
 @import "../assets/css/base.less";
 .a {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f5f5f5;
 }
 .header {

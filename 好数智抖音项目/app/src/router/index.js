@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        redirect: '/commons/home/m'
+        redirect: '/commons/home'
     },
     {
         path: '/comcmons',
@@ -35,6 +35,9 @@ const routes = [{
                 name: 'm',
                 component: () =>
                     import ('../views/m.vue'),
+                meta: {
+                    keepAlive: true
+                }
             }]
         }, {
             path: '/commons/service',
@@ -81,7 +84,7 @@ const routes = [{
         path: '/details',
         name: 'details',
         component: () =>
-            import ('../views/details.vue'),
+            import ('../views/details.vue')
     }, {
         path: '/order',
         name: 'order',

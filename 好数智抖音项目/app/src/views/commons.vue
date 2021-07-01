@@ -2,8 +2,8 @@
   <div id="app">
     <ul id="nav">
       <li
-        :class="{ current: hover == 1 }"
-        @click="onclickTo('/commons/home/m', 1)"
+        :class="{ current: $route.fullPath == '/commons/home/m' }"
+        @click="onclickTo('/commons/home/m', 2)"
       >
         <dl>
           <dt><i class="el-icon-house"></i></dt>
@@ -17,7 +17,7 @@
         </dl>
       </li> -->
       <li
-        :class="{ current: hover == 3 }"
+        :class="{ current: $route.fullPath == '/commons/user' }"
         @click="onclickTo('/commons/user', 3)"
       >
         <dl>
@@ -26,7 +26,7 @@
         </dl>
       </li>
       <li
-        :class="{ current: hover == 4 }"
+        :class="{ current: $route.fullPath == '/commons/service' }"
         @click="onclickTo('/commons/service', 4)"
       >
         <dl>
@@ -34,7 +34,7 @@
           <dd><span>收藏</span></dd>
         </dl>
       </li>
-      <li :class="{ current: hover == 5 }" @click="onclickTo('/commons/my', 5)">
+      <li :class="{ current: $route.fullPath == '/commons/my' }" @click="onclickTo('/commons/my', 5)">
         <dl>
           <dt><i class="el-icon-user"></i></dt>
           <dd><span>我的</span></dd>
@@ -56,14 +56,15 @@ export default {
     onclickTo(val, index) {
       if (this.$route.fullPath != val) {
         this.hover = index;
+        console.log(this.hover);
         this.$router.push(val);
         this.src = require("../assets/lei1.png.png");
-        this.$refs.lei.style = "color:#666;";
+        // this.$refs.lei.style = "color:#666;";
       }
     },
     onClickCnmmb() {
       this.src = require("../assets/分类@2x.png");
-      this.$refs.lei.style = "color:#fe5858;";
+      // this.$refs.lei.style = "color:#fe5858;";
       this.hover = 2;
       this.$router.push('/commons/about')
     },
@@ -92,6 +93,7 @@ export default {
   padding: 0;
   list-style: none;
 }
+
 li {
   list-style: none;
 }

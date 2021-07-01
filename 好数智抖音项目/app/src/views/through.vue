@@ -34,7 +34,8 @@ export default {
 @import "../assets/css/base.less";
 .through_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background: url("../assets/形状 1@2x.png") no-repeat;
   background-size: 100% 100%;
 }

@@ -35,7 +35,8 @@
 @import "../assets/css/base.less";
 .deposit {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
 }
 .deposit .integral_bg {

@@ -1,7 +1,11 @@
 <template>
   <div class="pay_box">
     <div class="jumplabel">
-      <img src="../assets/left.png" alt="" @click="$router.push('/commons/home/m')"/>
+      <img
+        src="../assets/left.png"
+        alt=""
+        @click="$router.push('/commons/home/m')"
+      />
       <h4>订单支付</h4>
     </div>
     <div class="gou">
@@ -18,9 +22,12 @@ export default {
     return {};
   },
   methods: {
-    onclickDeta(){
-      this.$router.push({path:'/deta',query:{id:this.$route.query.order_id}});
-    }
+    onclickDeta() {
+      this.$router.push({
+        path: "/deta",
+        query: { id: this.$route.query.order_id },
+      });
+    },
   },
 };
 </script> 
@@ -28,24 +35,25 @@ export default {
 @import "../assets/css/base.less";
 .pay_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
 }
 .pay_box .jumplabel {
   width: 100%;
-  height: 58/@vw;
+  height: 58 / @vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
 }
 .pay_box .jumplabel img {
-  width: 10/@vw;
-  height: 16/@vw;
-  margin-left: 15/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
+  margin-left: 15 / @vw;
   pointer-events: auto;
 }
 .pay_box .jumplabel h4 {
-  font-size: 16/@vw;
-  margin-left: 132/@vw;
+  font-size: 16 / @vw;
+  margin-left: 132 / @vw;
   color: #fff;
   font-weight: 500;
 }
@@ -53,33 +61,33 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 58/@vw;
+  margin-top: 58 / @vw;
 }
 .pay_box .gou img {
-  width: 77/@vw;
-  height: 77/@vw;
-  margin-bottom: 26/@vw;
+  width: 77 / @vw;
+  height: 77 / @vw;
+  margin-bottom: 26 / @vw;
 }
 .pay_box .gou p {
-  font-size: 18/@vw;
+  font-size: 18 / @vw;
   color: #333333;
   font-weight: 600;
-  margin-bottom: 20/@vw;
+  margin-bottom: 20 / @vw;
 }
 .pay_box .gou span {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .pay_box .watch {
-    width: 345/@vw;
-    height: 44/@vw;
-    margin: 0 15/@vw;
-    background-color: #ea5656;
-    color: #fff;
-    font-size: 16/@vw;
-    text-align: center;
-    line-height: 44/@vw;
-    border-radius: 25/@vw;
-    margin-top: 43/@vw;
+  width: 345 / @vw;
+  height: 44 / @vw;
+  margin: 0 15 / @vw;
+  background-color: #ea5656;
+  color: #fff;
+  font-size: 16 / @vw;
+  text-align: center;
+  line-height: 44 / @vw;
+  border-radius: 25 / @vw;
+  margin-top: 43 / @vw;
 }
 </style>

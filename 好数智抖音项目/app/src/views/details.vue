@@ -374,7 +374,7 @@ export default {
   },
   methods: {
     onBack() {
-      this.$router.go(-1);
+      this.$router.back();
     },
     onClickTo() {
       // this.back = false;
@@ -612,7 +612,7 @@ li {
 }
 .liji {
   width: 100%;
-  /* height: 100%; */
+   height: 100vh;
   padding: 65 / @vw 0 100 / @vw;
   background-color: #f8f8f8;
   overflow: auto;

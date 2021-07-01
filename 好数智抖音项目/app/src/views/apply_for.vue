@@ -229,9 +229,10 @@ input::-webkit-input-placeholder {
 }
 .apply_for {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f8f8f8;
   padding: 10 / @vw 0 67 / @vw 0;
+  overflow: auto;
 }
 .apply_for /deep/ .el-select {
   margin-left: 15 / @vw;

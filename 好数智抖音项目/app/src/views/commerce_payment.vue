@@ -255,7 +255,8 @@ export default {
 }
 .ace_jump_search {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
 }
 

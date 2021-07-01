@@ -261,7 +261,7 @@ export default {
 }
 .new_add {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f8f8f8;
   overflow: hidden;
 }

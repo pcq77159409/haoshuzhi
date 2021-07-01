@@ -375,6 +375,8 @@ body {
 }
 .ccccc {
   position: relative;
+  height: 100vh;
+  overflow: auto;
 }
 .my_box {
   width: 100%;

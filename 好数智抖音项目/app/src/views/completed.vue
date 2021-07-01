@@ -109,11 +109,9 @@
       </span>
     </el-dialog>
     <div class="delivery">
-        <p
-          @click="$router.push({ path: '/sales', query: { id: dataInfo.id } })"
-        >
-          申请售后
-        </p>
+      <p @click="$router.push({ path: '/sales', query: { id: dataInfo.id } })">
+        申请售后
+      </p>
     </div>
   </div>
 </template>
@@ -214,7 +212,7 @@ export default {
       //退款
       this.$post("/api/order/orderrefund", {
         order_id: id,
-        user_id: localStorage.getItem('user-id'),
+        user_id: localStorage.getItem("user-id"),
       }).then((r) => {
         console.log(r);
         if (r.code == 200) {
@@ -227,7 +225,7 @@ export default {
   },
   mounted() {
     this.$get("/api/order/info", {
-      user_id: localStorage.getItem('user-id'),
+      user_id: localStorage.getItem("user-id"),
       order_id: this.$route.query.id,
     }).then((r) => {
       console.log(r);
@@ -241,15 +239,15 @@ export default {
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 .phonels {
-  margin-left: 42/@vw;
-  margin-bottom: 41/@vw;
-  margin-top: -29/@vw;
+  margin-left: 42 / @vw;
+  margin-bottom: 41 / @vw;
+  margin-top: -29 / @vw;
 }
 .A /deep/ .el-dialog {
-  border-radius: 6/@vw;
+  border-radius: 6 / @vw;
 }
 .A /deep/ .el-dialog--center .el-dialog__body {
-  padding: 30/@vw 25/@vw 0;
+  padding: 30 / @vw 25 / @vw 0;
 }
 .A /deep/ .el-dialog__header {
   padding: 0;
@@ -266,22 +264,22 @@ export default {
 .phonel {
   // margin-left: 65/@vw;
   // margin-bottom: 15/@vw;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   // margin: 0 auto;
   text-align: center;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
 }
 .el-dialog__wrapper {
   position: fixed;
-  top: 132/@vw;
-  right: 0/@vw;
-  bottom: -1/@vw;
+  top: 132 / @vw;
+  right: 0 / @vw;
+  bottom: -1 / @vw;
   left: 0;
   overflow: auto;
   margin: 0;
 }
 .cencl {
-  margin-left: 43/@vw;
+  margin-left: 43 / @vw;
   color: #333333;
   font-weight: bold;
 }
@@ -291,38 +289,38 @@ export default {
   text-align: center;
   color: #333333;
   font-weight: bold;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
 }
 .el-dialog--center .el-dialog__footer {
-  height: 51/@vw;
-  margin-top: -30/@vw;
+  height: 51 / @vw;
+  margin-top: -30 / @vw;
 }
 .xia {
-  width: 295/@vw;
-  height: 1/@vw;
+  width: 295 / @vw;
+  height: 1 / @vw;
   background-color: #f5f5f5;
-  margin-top: 10/@vw;
-  margin-left: -25/@vw;
+  margin-top: 10 / @vw;
+  margin-left: -25 / @vw;
 }
 .que {
-  font-size: 15/@vw;
-  margin-top: 9/@vw;
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
   color: #0443d1;
 }
 .cancal {
-  font-size: 15/@vw;
-  margin-top: 9/@vw;
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
   color: #0443d1;
 }
 .el-dialog--center {
   text-align: center;
-  border-radius: 10/@vw;
+  border-radius: 10 / @vw;
 }
 .rightss {
-  width: 1/@vw;
-  height: 51/@vw;
+  width: 1 / @vw;
+  height: 51 / @vw;
   background-color: #f5f5f5;
-  margin-top: -10/@vw;
+  margin-top: -10 / @vw;
 }
 .buttom {
   display: flex;
@@ -335,7 +333,7 @@ export default {
   white-space: nowrap;
   cursor: pointer;
   background: #fff;
-  border: 1/@vw solid white;
+  border: 1 / @vw solid white;
   color: #409eff;
   -webkit-appearance: none;
   text-align: center;
@@ -344,9 +342,9 @@ export default {
   margin: 0;
   transition: 0.1s;
   font-weight: 500;
-  padding: 12/@vw 20/@vw;
-  font-size: 14/@vw;
-  border-radius: 4/@vw;
+  padding: 12 / @vw 20 / @vw;
+  font-size: 14 / @vw;
+  border-radius: 4 / @vw;
 }
 .el-button--primary:hover {
   background: white;
@@ -360,33 +358,33 @@ export default {
 }
 
 .el-button + .el-button {
-  margin-left: 42/@vw;
+  margin-left: 42 / @vw;
 }
 .cancel {
-  width: 100/@vw;
-  height: 40/@vw;
+  width: 100 / @vw;
+  height: 40 / @vw;
 }
 .cancel p {
   position: absolute;
-  right: 114/@vw;
-  bottom: 13/@vw;
-  border: 1/@vw solid #f5f5f5;
+  right: 114 / @vw;
+  bottom: 13 / @vw;
+  border: 1 / @vw solid #f5f5f5;
   text-align: center;
-  border-radius: 15/@vw;
+  border-radius: 15 / @vw;
   color: #999999;
-  padding: 6/@vw 17/@vw;
-  font-size: 15/@vw;
+  padding: 6 / @vw 17 / @vw;
+  font-size: 15 / @vw;
 }
 .delivery p {
-  border: 1/@vw solid #fe5858;
+  border: 1 / @vw solid #fe5858;
   text-align: center;
-  border-radius: 25/@vw;
+  border-radius: 25 / @vw;
   color: #fe5858;
-  font-size: 14/@vw;
-  width: 112/@vw;
-  height: 30/@vw;
-  line-height: 30/@vw;
-  margin-right: 15/@vw;
+  font-size: 14 / @vw;
+  width: 112 / @vw;
+  height: 30 / @vw;
+  line-height: 30 / @vw;
+  margin-right: 15 / @vw;
 }
 
 .delivery {
@@ -394,29 +392,29 @@ export default {
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  height: 60/@vw;
+  height: 60 / @vw;
   background-color: white;
 }
 .v {
-  width: 20/@vw;
-  height: 20/@vw;
+  width: 20 / @vw;
+  height: 20 / @vw;
 }
 .borders {
-  border-right: 1/@vw solid #ccc;
-  width: 1/@vw;
-  height: 22/@vw;
+  border-right: 1 / @vw solid #ccc;
+  width: 1 / @vw;
+  height: 22 / @vw;
 }
 
 .make {
-  width: 350/@vw;
-  height: 46/@vw;
+  width: 350 / @vw;
+  height: 46 / @vw;
   background-color: white;
-  border-radius: 5/@vw;
+  border-radius: 5 / @vw;
   display: flex;
   color: #666666;
   justify-content: space-evenly;
-  line-height: 46/@vw;
-  margin: 0 auto 15/@vw;
+  line-height: 46 / @vw;
+  margin: 0 auto 15 / @vw;
   align-items: center;
 }
 .make .bo {
@@ -424,48 +422,48 @@ export default {
   align-items: center;
 }
 .make p {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
 }
 .make img {
-  width: 15/@vw;
-  height: 15/@vw;
-  margin-right: 10/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
+  margin-right: 10 / @vw;
 }
 
 .rights {
-  margin-left: 25/@vw;
+  margin-left: 25 / @vw;
 }
 .information {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   font-weight: bold;
-  margin-left: 20/@vw;
-  margin-top: 20/@vw;
-  width: 200/@vw;
-  height: 30/@vw;
-  line-height: 40/@vw;
+  margin-left: 20 / @vw;
+  margin-top: 20 / @vw;
+  width: 200 / @vw;
+  height: 30 / @vw;
+  line-height: 40 / @vw;
 }
 .table {
-  font-size: 12/@vw;
-  line-height: 40/@vw;
+  font-size: 12 / @vw;
+  line-height: 40 / @vw;
 }
 .table li {
   display: flex;
   /* width: 200/@vw; */
-  height: 30/@vw;
-  margin-left: 20/@vw;
-  margin-top: 9/@vw;
+  height: 30 / @vw;
+  margin-left: 20 / @vw;
+  margin-top: 9 / @vw;
 }
 .no {
-  width: 350/@vw;
-  height: 290/@vw;
+  width: 350 / @vw;
+  height: 290 / @vw;
   background-color: white;
-  margin: -7/@vw 13/@vw;
-  border-radius: 5/@vw;
-  font-size: 13/@vw;
-  margin-bottom: 68/@vw;
+  margin: -7 / @vw 13 / @vw;
+  border-radius: 5 / @vw;
+  font-size: 13 / @vw;
+  margin-bottom: 68 / @vw;
 }
 .yes p {
-  line-height: 40/@vw;
+  line-height: 40 / @vw;
   display: flex;
   align-items: center;
 }
@@ -473,133 +471,133 @@ export default {
   color: #fe5858;
 }
 .yes {
-  width: 350/@vw;
-  height: 40/@vw;
+  width: 350 / @vw;
+  height: 40 / @vw;
   background-color: white;
-  margin: 11/@vw 13/@vw;
-  border-radius: 5/@vw;
-  font-size: 13/@vw;
+  margin: 11 / @vw 13 / @vw;
+  border-radius: 5 / @vw;
+  font-size: 13 / @vw;
 }
 .v {
-  width: 20/@vw;
-  height: 20/@vw;
-  margin: 0 14/@vw;
+  width: 20 / @vw;
+  height: 20 / @vw;
+  margin: 0 14 / @vw;
 }
 .redmoney {
   color: #fe5858;
-  font-size: 16/@vw;
-  margin-right: 6/@vw;
+  font-size: 16 / @vw;
+  margin-right: 6 / @vw;
 }
 .heng {
   display: flex;
   justify-content: space-between;
 }
 .this {
-  margin-left: 5/@vw;
+  margin-left: 5 / @vw;
 }
 .moneys {
-  width: 54/@vw;
-  height: 17/@vw;
+  width: 54 / @vw;
+  height: 17 / @vw;
   position: absolute;
-  right: 11/@vw;
-  bottom: 50/@vw;
-  border: 1/@vw solid #999999;
+  right: 11 / @vw;
+  bottom: 50 / @vw;
+  border: 1 / @vw solid #999999;
   text-align: center;
-  border-radius: 15/@vw;
+  border-radius: 15 / @vw;
   color: #666666;
   font-weight: 600;
-  font-size: 12/@vw;
-  line-height: 17/@vw;
-  padding: 2/@vw 0;
+  font-size: 12 / @vw;
+  line-height: 17 / @vw;
+  padding: 2 / @vw 0;
 }
 .pay {
-  margin: -25/@vw 0/@vw -25/@vw 28/@vw;
-  font-size: 16/@vw;
+  margin: -25 / @vw 0 / @vw -25 / @vw 28 / @vw;
+  font-size: 16 / @vw;
   color: #fe5858;
 }
 .need {
   /* margin: 0 255/@vw; */
   /* display: block; */
   font-weight: bold;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #333333;
 }
 .ordertime {
   width: 100%;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   display: flex;
-  margin-top: 5/@vw;
+  margin-top: 5 / @vw;
   justify-content: flex-end;
 }
 .spend {
-  font-size: 12/@vw;
-  margin-top: 5/@vw;
+  font-size: 12 / @vw;
+  margin-top: 5 / @vw;
 }
 .yidong {
-  font-size: 12/@vw;
-  margin-top: 5/@vw;
+  font-size: 12 / @vw;
+  margin-top: 5 / @vw;
 }
 .phonenumber {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: bold;
   color: #333333;
 }
 .xian {
-  width: 330/@vw;
-  height: 1/@vw;
+  width: 330 / @vw;
+  height: 1 / @vw;
   background-color: #f2f2f2;
-  margin: 10/@vw auto;
+  margin: 10 / @vw auto;
 }
 .names {
-  margin: 0 10/@vw;
-  line-height: 25/@vw;
+  margin: 0 10 / @vw;
+  line-height: 25 / @vw;
   color: #666666;
 }
 
 .shoping {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   font-weight: bold;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   display: flex;
   align-items: center;
 }
 .shops {
-  width: 15/@vw;
-  height: 15/@vw;
-  padding: 0/@vw 2/@vw;
-  margin-right: 4/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
+  padding: 0 / @vw 2 / @vw;
+  margin-right: 4 / @vw;
 }
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10/@vw 10/@vw;
+  margin: 10 / @vw 10 / @vw;
 }
 .orders {
-  width: 350/@vw;
-  height: 183/@vw;
+  width: 350 / @vw;
+  height: 183 / @vw;
   background-color: white;
-  margin: 8/@vw 13/@vw;
-  border-radius: 5/@vw;
+  margin: 8 / @vw 13 / @vw;
+  border-radius: 5 / @vw;
   position: relative;
 }
 
 .name {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
   font-weight: bold;
   color: #333333;
-  width: 200/@vw;
-  margin: 10/@vw 45/@vw;
+  width: 200 / @vw;
+  margin: 10 / @vw 45 / @vw;
 }
 .number {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   font-weight: 500;
   color: #333333;
 }
 .add {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   color: #333333;
-  width: 200/@vw;
-  margin: 0 45/@vw;
+  width: 200 / @vw;
+  margin: 0 45 / @vw;
 }
 .A {
   width: 100%;
@@ -615,65 +613,69 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
-  padding: 20/@vw 0 37/@vw 0; 
+  padding: 20 / @vw 0 37 / @vw 0;
 }
 
 .back {
-  width: 10/@vw;
-  height: 16/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
+  left: 15 / @vw;
   pointer-events: auto;
 }
 .detalis {
   margin: 0 auto;
   color: white;
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
   text-align: center;
-  line-height: 30/@vw;
+  line-height: 30 / @vw;
 }
 .total {
   display: flex;
-  padding-bottom: 17/@vw;
+  padding-bottom: 17 / @vw;
   box-sizing: border-box;
   overflow: hidden;
   background-color: #fe5858;
 }
 .delivered {
-  width: 255/@vw;
+  width: 255 / @vw;
 }
 .right {
-  width: 120/@vw;
+  width: 120 / @vw;
 }
 .right img {
-  width: 60/@vw;
-  height: 52/@vw;
-  margin: 0 -9/@vw;
+  width: 60 / @vw;
+  height: 52 / @vw;
+  margin: 0 -9 / @vw;
 }
 .address {
   position: absolute;
-  margin: -27/@vw 13/@vw;
-  width: 350/@vw;
-  height: 80/@vw;
+  margin: -27 / @vw 13 / @vw;
+  width: 350 / @vw;
+  height: 80 / @vw;
   background-color: white;
-  border-radius: 5/@vw;
+  border-radius: 5 / @vw;
 }
 
 .one {
-  width: 100/@vw;
-  height: 35/@vw;
-  font-size: 20/@vw;
+  width: 100 / @vw;
+  height: 35 / @vw;
+  font-size: 20 / @vw;
   color: white;
-  margin-left: 68/@vw;
-  margin-top: 10/@vw;
+  margin-left: 68 / @vw;
+  margin-top: 10 / @vw;
 }
 .two {
-  width: 220/@vw;
-  height: 30/@vw;
-  font-size: 14/@vw;
+  width: 220 / @vw;
+  height: 30 / @vw;
+  font-size: 14 / @vw;
   color: white;
-  margin-left: 42/@vw;
+  margin-left: 42 / @vw;
+}
+.A {
+  height: 100vh;
+  overflow: auto;
 }
 </style>

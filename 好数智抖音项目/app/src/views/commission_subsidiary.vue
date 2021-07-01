@@ -119,7 +119,8 @@ export default {
 @import "../assets/css/base.less";
 .subsudiary {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
   padding-top: 74/@vw;
   overflow: auto;

@@ -253,7 +253,7 @@ export default {
       this.$get("/api/order/orderquxiao", {
         user_id: localStorage.getItem("user-id"),
         id: this.$route.query.id,
-        status:1
+        status: 1,
       }).then((r) => {
         console.log(r);
         if (r.code == 200) {
@@ -630,7 +630,7 @@ export default {
 }
 .A {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #f5f5f5;
   padding-bottom: 50 / @vw;
