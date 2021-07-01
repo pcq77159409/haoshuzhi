@@ -767,7 +767,7 @@ export default {
     scrollBox(e) {
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
-
+      console.log(12);
       // 并且到每次滚动的位置一定与2100有关
       if (e.target.scrollTop >= 1100 * this.numbers) {
         // this.rember();
@@ -1161,7 +1161,6 @@ export default {
     },
   },
   mounted() {
-    console.log(111);
     window.addEventListener("scroll", this.handleScrollx, true);
     if (localStorage.getItem("priceShow")) {
       if (localStorage.getItem("priceShow") == "true") {
@@ -1248,6 +1247,21 @@ export default {
       }
     },
   },
+
+  // //在页面离开时记录滚动位置
+  // beforeRouteLeave(to, from, next) {
+  //   console.log(this.scrollTop);
+  //   this.top = this.$refs.m.scrollTop;
+  //   next();
+  // },
+  // //进入该页面时，用之前保存的滚动位置赋值
+  // beforeRouteEnter(to, from, next) {
+  //   next((vm) => {
+  //     console.log(vm.$refs.m);
+  //     // vm.$refs.m.scrollTop = vm.top;
+  //     console.log(vm.$refs);
+  //   });
+  // },
 };
 </script>
 <style lang="less" scoped>
@@ -1306,7 +1320,7 @@ a {
 }
 .Mobile_phone {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f8f8f8;
   overflow-x: hidden;
 }
