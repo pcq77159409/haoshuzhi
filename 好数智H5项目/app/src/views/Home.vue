@@ -156,7 +156,14 @@
         <span>猜你喜欢</span>
       </div>
       <ul class="shun">
-        <li>
+        <li
+          v-for="(item, index) in likeList"
+          :key="index"
+          @click="onclickToLike(item.url)"
+        >
+          <img :src="item.image" alt="" />
+        </li>
+        <!-- <li>
           <img src="../assets/p_1.png.png" alt="" />
           <div>
             <p class="lian">顺子靓号</p>
@@ -183,7 +190,7 @@
             <p class="lian">个性靓号</p>
             <p class="of">专属个性靓号</p>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="four">
@@ -218,7 +225,9 @@
           </div>
           <div class="money">
             <p class="han">含话费￥260</p>
-            <p class="twietion" v-show="priceShow">￥{{ item.initial_charge }}</p>
+            <p class="twietion" v-show="priceShow">
+              ￥{{ item.initial_charge }}
+            </p>
           </div>
         </div>
       </router-link>
@@ -241,6 +250,7 @@ export default {
       searchBtnFlag: false,
       commissionShow: false,
       priceShow: true,
+      likeList: [],
     };
   },
   methods: {
@@ -277,6 +287,9 @@ export default {
       this.footprintData = [];
       localStorage.setItem("footprintData", JSON.stringify(this.footprintData));
     },
+    onclickToLike(url) {
+      window.location.href = url;
+    },
   },
   created() {
     if (localStorage.getItem("priceShow")) {
@@ -311,6 +324,13 @@ export default {
           this.dataTj = val.data.data;
         }
       });
+
+    this.$post("/api/home_page/cailike").then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        this.likeList = r.data;
+      }
+    });
   },
 };
 </script>
@@ -684,12 +704,16 @@ a {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1 / @vw solid #e5e5e5;
+  // border: 1 / @vw solid #e5e5e5;
   margin-bottom: 2 / @vw;
 }
+// .like .shun li img {
+//   width: 38 / @vw;
+//   height: 51 / @vw;
+// }
 .like .shun li img {
-  width: 38 / @vw;
-  height: 51 / @vw;
+  width: 100%;
+  height: 100%;
 }
 .like .shun li:last-child img {
   width: 24 / @vw;
