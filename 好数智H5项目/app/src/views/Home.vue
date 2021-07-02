@@ -715,10 +715,10 @@ a {
   width: 100%;
   height: 100%;
 }
-.like .shun li:last-child img {
-  width: 24 / @vw;
-  height: 50 / @vw;
-}
+// .like .shun li:last-child img {
+//   width: 24 / @vw;
+//   height: 50 / @vw;
+// }
 .like .shun li .yes {
   margin-right: 16 / @vw;
 }
