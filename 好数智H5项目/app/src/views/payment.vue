@@ -16,19 +16,19 @@
     </div>
     <div class="recommend">
       <h5>支付方式</h5>
-      <div class="wechat_pay" @click="imgShow= 2">
+      <div class="wechat_pay" @click="imgShow = 2">
         <img src="../assets/5678.png" alt="" />
         <p>微信支付</p>
         <img src="../assets/tui.png" alt="" />
-        <img src="../assets/888.png" alt=""  v-if="imgShow == 2"/>
-        <img src="../assets/选择 拷贝 3@2x.png" alt="" v-else>
+        <img src="../assets/888.png" alt="" v-if="imgShow == 2" />
+        <img src="../assets/选择 拷贝 3@2x.png" alt="" v-else />
       </div>
-      <div class="wechat_pay"  @click="imgShow= 3">
+      <div class="wechat_pay" @click="imgShow = 3">
         <img src="../assets/1234.png" alt="" />
         <p>支付宝支付</p>
         <img src="../assets/tui.png" alt="" />
-        <img src="../assets/888.png" alt="" v-if="imgShow == 3"/>
-        <img src="../assets/选择 拷贝 3@2x.png" alt="" v-else>
+        <img src="../assets/888.png" alt="" v-if="imgShow == 3" />
+        <img src="../assets/选择 拷贝 3@2x.png" alt="" v-else />
       </div>
     </div>
     <div class="text">
@@ -148,7 +148,8 @@ export default {
 @import "../assets/css/base.less";
 .payment_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
   //   padding-top: 10/@vw;
   //   overflow: hidden;
@@ -219,7 +220,7 @@ export default {
 }
 .payment_box .recommend {
   width: 345 / @vw;
-  height: 130 / @vw ;
+  height: 130 / @vw;
   background-color: #fff;
   margin: 0 15 / @vw;
 }
@@ -238,7 +239,7 @@ export default {
   margin: 0 10 / @vw;
 }
 .payment_box .recommend .wechat_pay p {
-  width: 60/@vw;
+  width: 60 / @vw;
   font-size: 12 / @vw;
   color: #333333;
 }

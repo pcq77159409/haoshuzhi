@@ -1,7 +1,7 @@
 <template>
   <div class="through_box">
     <div class="head_boxs">
-      <img src="../assets/left.png" alt="" @click="$router.go(-1)" />
+      <img src="../assets/left.png" alt="" @click="$router.push('/commons/home/m')" />
       <h4>实力买家</h4>
     </div>
     <div class="nav_box">
@@ -34,7 +34,8 @@ export default {
 @import "../assets/css/base.less";
 .through_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background: url("../assets/形状 1@2x.png") no-repeat;
   background-size: 100% 100%;
 }

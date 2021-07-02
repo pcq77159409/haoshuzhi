@@ -336,7 +336,8 @@ export default {
 }
 .A {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   position: relative;
   background-color: #f5f5f5;
 }

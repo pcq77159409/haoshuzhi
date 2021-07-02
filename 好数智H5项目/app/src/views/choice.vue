@@ -1,5 +1,4 @@
 <template>
-
   <div class="choice_box" @scroll="scrollBox($event)">
     <div class="package_box">
       <img src="../assets/left.png" alt="" @click="onClickIntroPara" />
@@ -71,7 +70,7 @@
           </div> -->
         </div>
       </div>
-      <div class="botttomjz" ref="bjz" >加载中...</div>
+      <div class="botttomjz" ref="bjz">加载中...</div>
     </div>
     <!-- 小魔卡 结束-->
 
@@ -399,8 +398,9 @@ html {
 }
 .choice_box {
   width: 100%;
-  height: 100%;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: auto;
+  // overflow-x: hidden;
   background-color: #f8f8f8;
 }
 .choice_box .package_box {

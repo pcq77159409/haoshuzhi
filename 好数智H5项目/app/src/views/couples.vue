@@ -586,7 +586,8 @@ body {
 }
 .Mobile_phone {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
   overflow-x: hidden;
 }

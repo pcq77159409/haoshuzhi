@@ -374,7 +374,7 @@ export default {
   },
   methods: {
     onBack() {
-      this.$router.go(-1);
+      this.$router.back();
     },
     onClickTo() {
       // this.back = false;
@@ -480,11 +480,9 @@ export default {
       }
     },
   },
-  created() {},
   mounted() {
-    console.log(this.$route.query['ids[]']);
-    if (!this.$route.query['ids[]']) {
-      this.$router.push('/commons/home/m');
+    if (!this.$route.query["ids[]"]) {
+      this.$router.push("/commons/home/m");
       return;
     }
     // 获取手机号信息
@@ -551,17 +549,6 @@ export default {
       }
     },
   },
-  // beforeRouteEnter(to, from, next) {
-  //   to;
-  //   from;
-  //   next();
-  //   console.log(to);
-  //   console.log(from);
-  //   // console.log(this);
-  //   if (to.fullPath == "/details") {
-  //     router.go(-1);
-  //   }
-  // },
   beforeRouteUpdate(to, from, next) {
     // console.log(to);
     // console.log(from);
@@ -625,7 +612,7 @@ li {
 }
 .liji {
   width: 100%;
-  /* height: 100%; */
+   height: 100vh;
   padding: 65 / @vw 0 100 / @vw;
   background-color: #f8f8f8;
   overflow: auto;
@@ -926,7 +913,7 @@ li {
   width: 310 / @vw;
   /* height: 63/@vw; */
   background-color: #f5f5f5;
-  margin: 15 / @vw 10 / @vw 0;
+  margin: 15 / @vw 10 / @vw 60 / @vw;
   font-size: 13 / @vw;
   color: #666666;
   padding: 8 / @vw 15 / @vw 8 / @vw 10 / @vw;
@@ -934,10 +921,10 @@ li {
   line-height: 24 / @vw;
 }
 .black .consumption .cancel {
-  position: absolute;
-  left: 0;
+  position: fixed;
+  left: 45 / @vw;
   bottom: 0;
-  width: 100%;
+  width: 330 / @vw;
   height: 45 / @vw;
   display: flex;
   text-align: center;

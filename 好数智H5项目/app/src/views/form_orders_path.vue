@@ -91,7 +91,8 @@
         </ul>
       </div>
       <h4 class="sureings">
-        <img src="../assets/hh.png" alt="" />
+        <p><span>注:</span>拍摄时确保身份证边框完整,字体清晰!尺寸最大不超过2m</p>
+        <!-- <img src="../assets/hh.png" alt="" /> -->
       </h4>
       <div class="instructionsare">
         <h4>购号须知</h4>
@@ -208,7 +209,8 @@ export default {
 @import "../assets/css/base.less";
 .cont_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
   overflow: auto;
 }
@@ -294,10 +296,17 @@ export default {
   font-weight: 500;
   margin-left: 15/@vw;
 }
-.drawBoundingBox .sureings img {
-  width: 256/@vw;
-  height: 9/@vw;
+.drawBoundingBox .sureings p{
+  color: #333333;
+  font-size: 12/@vw;
+  font-weight: normal;
+}
+.drawBoundingBox .sureings span {
+  font-size: 12/@vw;
+  color: #e33232;
   margin-left: 15/@vw;
+  margin-right: 4/@vw;
+  font-weight: normal;
 }
 .drawBoundingBox .reali {
   width: 345/@vw;

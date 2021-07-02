@@ -147,7 +147,7 @@ export default {
     }
     // ================ 将时间格式转换成  时间戳===============
     // let date = new Date(data.created_at);
-    let date = parseInt(sessionStorage.getItem("time"));
+
     function add0(m) {
       return m < 10 ? "0" + m : m;
     }
@@ -176,7 +176,8 @@ export default {
       );
     }
     // =================倒计时函数===================
-    var showtime = () => {
+    var showtime = (time) => {
+      let date = +new Date(time);
       var nowtime = new Date(), //获取当前时间
         // endtime = new Date(format(date.getTime() + (1000 * 60 * 30))); //定义结束时间
         endtime = new Date(format(date + 1000 * 60 * 30)); //定义结束时间
@@ -188,19 +189,30 @@ export default {
 
       if (endtime - nowtime <= 0) {
         clearInterval(this.timer);
+        this.$get('/api/order/orderquxiao',{
+          user_id:localStorage.getItem('user-id'),
+          id:this.$route.query.order_id,
+          status:1
+        }).then(r=>{
+          console.log(r);
+        });
         this.$router.go(-1); //时间到了返回上一个页面
       }
       this.hour = lefth;
-      this.minute = leftm;
-      this.second = lefts;
+      this.minute = add0(leftm);
+      this.second = add0(lefts);
       // return add0(leftm) + ":" + add0(lefts); //返回倒计时的字符串
     };
-    this.timer = setInterval(() => {
-      this.$get("/api/order/info", {
-        user_id: localStorage.getItem("user-id"),
-        order_id: this.$route.query.order_id,
-      }).then((r) => {
-        // console.log(r);
+    this.$get("/api/order/info", {
+      user_id: localStorage.getItem("user-id"),
+      order_id: this.$route.query.order_id,
+    }).then((r) => {
+      console.log(r);
+      if (r.code == 200) {
+        this.timer = setInterval(() => {
+          showtime(r.data.created_at);
+        }, 1000); //反复执行函数本身
+
         if (r.data.status && r.data.status != 1) {
           clearInterval(this.timer);
           this.$router.push({
@@ -208,9 +220,8 @@ export default {
             query: { order_id: this.$route.query.order_id },
           });
         }
-      });
-      showtime();
-    }, 1000); //反复执行函数本身
+      }
+    });
 
     this.price = this.$route.query.price;
     this.number = this.$route.query.number;
@@ -255,7 +266,8 @@ export default {
 }
 .ace_jump_search {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
 }
 

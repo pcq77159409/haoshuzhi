@@ -94,7 +94,9 @@
         </li>
       </ul>
       <div class="submit" @click="onclickSubmit">提交申请</div>
-      <div class="powers">
+     
+    </div>
+     <div class="powers">
         <h4>实力买家权益</h4>
         <div class="Become">
           <img src="../assets/1234.png" alt="" />
@@ -111,7 +113,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 <script>
@@ -229,9 +230,10 @@ input::-webkit-input-placeholder {
 }
 .apply_for {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f8f8f8;
-  padding: 10 / @vw 0 67 / @vw 0;
+  padding-top: 10/@vw;
+  overflow: auto;
 }
 .apply_for /deep/ .el-select {
   margin-left: 15 / @vw;
@@ -242,9 +244,10 @@ input::-webkit-input-placeholder {
   background-color: #ea5656;
   display: flex;
   align-items: center;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
+  z-index: 99;
 }
 .apply_for .jumplabel img {
   width: 10 / @vw;
@@ -263,7 +266,7 @@ input::-webkit-input-placeholder {
   width: 345 / @vw;
   // height: 438 / @vw;
   background-color: #fff;
-  margin: 66 / @vw auto;
+  margin: 66 / @vw auto 0;
 }
 .apply_for .realty ul {
   width: 325 / @vw;
@@ -316,13 +319,13 @@ input::-webkit-input-placeholder {
   margin-top: 18 / @vw;
   color: #ffffff;
 }
-.apply_for .realty .powers {
+.apply_for  .powers {
   width: 345 / @vw;
   height: 160 / @vw;
   background-color: #fff;
-  margin-top: 30 / @vw;
+  margin: 10 / @vw auto;
 }
-.apply_for .realty .powers h4 {
+.apply_for  .powers h4 {
   width: 325 / @vw;
   height: 38 / @vw;
   margin: 0 10 / @vw;
@@ -332,21 +335,21 @@ input::-webkit-input-placeholder {
   color: #333333;
   font-size: 12 / @vw;
 }
-.apply_for .realty .powers .Become {
-  display: flex;
+.apply_for .powers .Become {
+  display: flex !important;
   margin-bottom: 10 / @vw;
 }
-.apply_for .realty .powers .Become img {
+.apply_for  .powers .Become img {
   width: 15 / @vw*1.3;
   height: 15 / @vw*1.3;
   margin: 10 / @vw 0 0 10 / @vw;
 }
-.apply_for .realty .powers .Become p {
+.apply_for  .powers .Become p {
   font-size: 14 / @vw;
   color: #333333;
   margin: 10 / @vw 0 0 10 / @vw;
 }
-.apply_for .realty .powers .Become span {
+.apply_for  .powers .Become span {
   font-size: 12 / @vw;
   color: #999999;
   margin: 10 / @vw 0 0 10 / @vw;

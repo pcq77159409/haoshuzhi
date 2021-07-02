@@ -31,7 +31,14 @@
       </div>
       <div class="four">
         <p>支付宝账号</p>
-        <p class="alinumber">{{ alinumber }}</p>
+        <!-- <p class="alinumber">{{ alinumber }}</p> -->
+        <p class="alinumber">
+          <input
+            type="text"
+            v-model="alinumber"
+            placeholder="请输入支付宝账号"
+          />
+        </p>
         <!-- <input
           type="text"
           class="inputss"
@@ -44,14 +51,19 @@
         <input
           type="text"
           class="inputss"
-          placeholder="请输入本人姓名"
+          placeholder="请输入支付宝名称"
           v-model="realname"
         />
       </div>
       <div class="fours">
         <p class="mone">验证软件账号</p>
-        <input type="text" class="inp" placeholder="请输入短信验证码" />
-        <p class="fa">发送验证码</p>
+        <input
+          type="text"
+          class="inp"
+          placeholder="请输入短信验证码"
+          v-model="code"
+        />
+        <button class="fa" @click="onclickYzm"  :disabled="codeDisabled" ref="yan">发送验证码</button>
       </div>
       <i>您绑定的手机号码为：{{ dataList.mobile }}</i>
       <div class="sures" @click="onclickTx">确认提现</div>
@@ -68,23 +80,26 @@ export default {
       cardNum: "",
       realname: "",
       alinumber: "",
+      code: "",
+      // 是否禁用按钮
+      codeDisabled: false,
+      // 倒计时秒数
+      countdown: 60,
+      // 定时器
+      timer: null,
     };
   },
   methods: {
     onclickTx() {
       if (this.num > 0 && this.num <= this.dataList.balance) {
-        if (
-          this.alinumber &&
-          this.alinumber != null &&
-          this.alinumber != "" &&
-          this.alinumber != 0
-        ) {
+        if (this.alinumber && this.alinumber != null && this.alinumber != "") {
           this.$get("/api/commission/withdraw", {
             money: this.num,
             alipay_num: this.alinumber,
             realname: this.realname,
+            code: this.code,
+            mobile: this.dataList.mobile,
           }).then((r) => {
-            console.log(r);
             if (r.code == 200) {
               // this.$router.push({path:"/withdrawal_success",query:{
               //   alinumber:this.alinumber
@@ -95,24 +110,50 @@ export default {
         }
       }
     },
+    onclickYzm() {
+      this.$get("/api/user/getcode", {
+        mobile: this.dataList.mobile,
+      }).then((val) => {
+        if (val.code == 200) {
+          this.$refs.yan.innerText = this.countdown;
+          if (!this.timer) {
+            this.timer = setInterval(() => {
+              if (this.countdown > 0 && this.countdown <= 60) {
+                this.countdown--;
+                this.$refs.yan.innerText = this.countdown;
+                this.codeDisabled = true;
+                if (this.countdown !== 0) {
+                  this.codeMsg = "重新发送(" + this.countdown + ")";
+                } else {
+                  clearInterval(this.timer);
+                  this.$refs.yan.innerText = "验证码";
+                  this.countdown = 60;
+                  this.timer = null;
+                  this.codeDisabled = false;
+                }
+              }
+            }, 1000);
+          }
+        }
+      });
+    },
   },
   created() {
     this.$get("/api/balance_log/balance", {
       user_id: localStorage.getItem("user-id"),
     }).then((val) => {
-      console.log(val);
       this.dataList = val.data;
     });
 
-    this.$get("/api/user/getinfo", {
-      user_id: localStorage.getItem("user-id"),
-    }).then((r) => {
-      if (r.code == 200) {
-        this.alinumber = r.data.alinumber;
-      } else {
-        alert(r.msg);
-      }
-    });
+    // this.$get("/api/user/getinfo", {
+    //   user_id: localStorage.getItem("user-id"),
+    // }).then((r) => {
+    //   if (r.code == 200) {
+    //     // this.alinumber = r.data.alinumber;
+    //   } else {
+    //     alert(r.msg);
+    //   }
+    // });
   },
 };
 </script>
@@ -121,7 +162,8 @@ export default {
 @import "../assets/css/base.less";
 .a {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f5f5f5;
 }
 .header {
@@ -276,12 +318,13 @@ textarea::-webkit-input-placeholder {
 }
 .fours .fa {
   margin-left: 54 / @vw;
-  width: 70 / @vw;
+  width: 85 / @vw;
   height: 19 / @vw;
   border: 1 / @vw solid #fe5858;
   text-align: center;
   line-height: 19 / @vw;
   color: #fe5858;
+  background-color: #fff;
 }
 .fours {
   width: 325 / @vw;

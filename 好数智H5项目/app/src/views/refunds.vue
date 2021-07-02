@@ -49,7 +49,8 @@
 @import "../assets/css/base.less";
 .hui {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f5f5f5;
 }
 .yes p {

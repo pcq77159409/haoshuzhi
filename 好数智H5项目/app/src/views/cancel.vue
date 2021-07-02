@@ -5,20 +5,20 @@
         src="../assets/left.png"
         alt=""
         class="back"
-        @click="$router.go(-1)"
+        @click="$router.push('/order?name=second')"
       />
       <p class="close">取消订单</p>
     </div>
     <div class="banner">
       <img src="../assets/close.png" alt="" />
       <div class="banners">
-        <img src="../assets/111.png" alt="" />
+        <img src="../assets/选择 拷贝 3@2x.png" alt="" />
         <p class="closes">成功取消</p>
         <p class="wen">订单已取消，看看其他的吧</p>
-        <div class="A">
+        <div class="A" @click="$router.push('/commons/home/m')">
           <p>返回首页</p>
         </div>
-        <div class="B">
+        <div class="B" @click="$router.push('/order?name=second')">
           <p>查看订单</p>
         </div>
       </div>
@@ -26,7 +26,7 @@
     <div>
       <p class="jing">精品推荐</p>
       <div class="cap">
-        <router-link to="/screen">
+        <!-- <router-link to="/screen">
           <div class="shit">
             <img src="../assets/te.png" alt="" />
             <div class="number">13133393741</div>
@@ -38,43 +38,26 @@
               <p class="twietion">￥260</p>
             </div>
           </div>
-        </router-link>
-        <router-link to="/screen">
+        </router-link> -->
+        <router-link
+          :to="{ path: '/details', query: { 'ids[]': item.id } }"
+          v-for="(item, index) in dataTj"
+          :key="index"
+        >
           <div class="shit">
             <img src="../assets/te.png" alt="" />
-            <div class="number">13133393741</div>
+            <div class="number" v-html="item.number_tag"></div>
             <div class="money">
-              <p class="one">上海移动</p>
+              <p>{{ item.location }}</p>
+              <p class="dolor" v-show="commissionShow">
+                佣金￥{{ item.returned_commission }}
+              </p>
             </div>
             <div class="money">
               <p class="han">含话费￥260</p>
-              <p class="twietion">￥260</p>
-            </div>
-          </div>
-        </router-link>
-        <router-link to="/screen">
-          <div class="shit">
-            <img src="../assets/te.png" alt="" />
-            <div class="number">13133393741</div>
-            <div class="money">
-              <p class="one">上海移动</p>
-            </div>
-            <div class="money">
-              <p class="han">含话费￥260</p>
-              <p class="twietion">￥260</p>
-            </div>
-          </div>
-        </router-link>
-        <router-link to="/screen">
-          <div class="shit">
-            <img src="../assets/te.png" alt="" />
-            <div class="number">13133393741</div>
-            <div class="money">
-              <p class="one">上海移动</p>
-            </div>
-            <div class="money">
-              <p class="han">含话费￥260</p>
-              <p class="twietion">￥260</p>
+              <p class="twietion" v-show="priceShow">
+                ￥{{ item.initial_charge }}
+              </p>
             </div>
           </div>
         </router-link>
@@ -82,13 +65,47 @@
     </div>
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      dataTj: [],
+      priceShow: true,
+      commissionShow: false,
+    };
+  },
+  created() {
+    if (localStorage.getItem("priceShow")) {
+      if (localStorage.getItem("priceShow") == "true") {
+        this.priceShow = true;
+      } else {
+        this.priceShow = false;
+      }
+    }
+    if (localStorage.getItem("commissionShow")) {
+      if (localStorage.getItem("commissionShow") == "true") {
+        this.commissionShow = true;
+      } else {
+        this.commissionShow = false;
+      }
+    }
+    this.$axios
+      .post("/api/home_page/getNumList", { recommend: 1, from: "上海" })
+      .then((val) => {
+        if (val.code == 200) {
+          this.dataTj = val.data.data;
+        }
+      });
+  },
+};
+</script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 
 .hui {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background: #f5f5f5;
 }
 .header {
@@ -103,7 +120,7 @@
   width: 10 / @vw;
   height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
+  left: 15 / @vw;
   pointer-events: auto;
 }
 .close {
@@ -124,7 +141,7 @@
 .jing {
   color: #333333;
   font-size: 13 / @vw;
-  font-weight: bold;
+  // font-weight: bold;
   margin: 0 15 / @vw;
 }
 a {
@@ -229,8 +246,8 @@ a {
   margin-top: 4 / @vw;
 }
 .cap .shit .twietion {
-  font-size: 17 / @vw;
-  font-weight: bold;
+  font-size: 14 / @vw;
+  // font-weight: bold;
   color: #dc0101;
   margin-right: 10 / @vw;
 }

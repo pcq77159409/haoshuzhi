@@ -137,7 +137,7 @@
           <div class="buttom">
             <div class="cancal" @click="onclickCenel = false">取消</div>
             <div class="rightss"></div>
-            <div class="que" @click="$router.push('/cancel')">确定</div>
+            <div class="que" @click="onclickQxdd">确定</div>
           </div>
         </span>
       </el-dialog>
@@ -249,10 +249,22 @@ export default {
         },
       });
     },
+    onclickQxdd() {
+      this.$get("/api/order/orderquxiao", {
+        user_id: localStorage.getItem("user-id"),
+        id: this.$route.query.id,
+        status: 1,
+      }).then((r) => {
+        console.log(r);
+        if (r.code == 200) {
+          this.$router.push("/cancel");
+        }
+      });
+    },
   },
   mounted() {
     this.$get("/api/order/info", {
-      user_id: localStorage.getItem('user-id'),
+      user_id: localStorage.getItem("user-id"),
       order_id: this.$route.query.id,
     }).then((r) => {
       console.log(r);
@@ -267,15 +279,15 @@ export default {
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 .phonels {
-  margin-left: 42/@vw;
-  margin-bottom: 41/@vw;
-  margin-top: -29/@vw;
+  margin-left: 42 / @vw;
+  margin-bottom: 41 / @vw;
+  margin-top: -29 / @vw;
 }
 .A /deep/ .el-dialog {
-  border-radius: 6/@vw;
+  border-radius: 6 / @vw;
 }
 .A /deep/ .el-dialog--center .el-dialog__body {
-  padding: 30/@vw 25/@vw 0;
+  padding: 60 / @vw 25 / @vw 0;
 }
 .A /deep/ .el-dialog__header {
   padding: 0;
@@ -290,59 +302,59 @@ export default {
   background-color: white;
 }
 .phonel {
-  margin-left: 65/@vw;
-  margin-bottom: 15/@vw;
-  margin-top: 10/@vw;
+  margin-left: 65 / @vw;
+  margin-bottom: 15 / @vw;
+  margin-top: 10 / @vw;
 }
 .el-dialog__wrapper {
   position: fixed;
-  top: 132/@vw;
-  right: 0/@vw;
-  bottom: -1/@vw;
+  top: 132 / @vw;
+  right: 0 / @vw;
+  bottom: -1 / @vw;
   left: 0;
   overflow: auto;
   margin: 0;
 }
 .cencl {
-  margin-left: 43/@vw;
+  margin-left: 43 / @vw;
   color: #333333;
   font-weight: bold;
 }
 .phones {
-  margin-left: 95/@vw;
+  margin-left: 95 / @vw;
   color: #333333;
   font-weight: bold;
 }
 .el-dialog--center .el-dialog__footer {
-  height: 51/@vw;
-  margin-top: -30/@vw;
+  height: 51 / @vw;
+  margin-top: -30 / @vw;
 }
 .xia {
-  width: 295/@vw;
-  height: 1/@vw;
+  width: 295 / @vw;
+  height: 1 / @vw;
   background-color: #f5f5f5;
-  margin-top: 10/@vw;
-  margin-left: -25/@vw;
+  margin-top: 10 / @vw;
+  margin-left: -25 / @vw;
 }
 .que {
-  font-size: 15/@vw;
-  margin-top: 9/@vw;
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
   color: #0443d1;
 }
 .cancal {
-  font-size: 15/@vw;
-  margin-top: 9/@vw;
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
   color: #0443d1;
 }
 .el-dialog--center {
   text-align: center;
-  border-radius: 10/@vw;
+  border-radius: 10 / @vw;
 }
 .rightss {
-  width: 1/@vw;
-  height: 51/@vw;
+  width: 1 / @vw;
+  height: 51 / @vw;
   background-color: #f5f5f5;
-  margin-top: -10/@vw;
+  margin-top: -10 / @vw;
 }
 .buttom {
   display: flex;
@@ -354,7 +366,7 @@ export default {
   white-space: nowrap;
   cursor: pointer;
   background: #fff;
-  border: 1/@vw solid white;
+  border: 1 / @vw solid white;
   color: #409eff;
   -webkit-appearance: none;
   text-align: center;
@@ -363,9 +375,9 @@ export default {
   margin: 0;
   transition: 0.1s;
   font-weight: 500;
-  padding: 12/@vw 20/@vw;
-  font-size: 14/@vw;
-  border-radius: 4/@vw;
+  padding: 12 / @vw 20 / @vw;
+  font-size: 14 / @vw;
+  border-radius: 4 / @vw;
 }
 .el-button--primary:hover {
   background: white;
@@ -379,11 +391,11 @@ export default {
 }
 
 .el-button + .el-button {
-  margin-left: 42/@vw;
+  margin-left: 42 / @vw;
 }
 .cancel {
-  width: 100/@vw;
-  height: 40/@vw;
+  width: 100 / @vw;
+  height: 40 / @vw;
 }
 
 .delivery {
@@ -391,54 +403,54 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60/@vw;
+  height: 60 / @vw;
   background-color: white;
   display: flex;
   align-items: center;
 }
 .delivery p:first-child {
-  margin: 0 25/@vw 0 152/@vw;
-  border: 1/@vw solid #f5f5f5;
+  margin: 0 25 / @vw 0 152 / @vw;
+  border: 1 / @vw solid #f5f5f5;
   text-align: center;
-  border-radius: 15/@vw;
+  border-radius: 15 / @vw;
   color: #999999;
-  font-size: 12/@vw;
-  width: 112/@vw;
-  height: 26/@vw;
-  line-height: 26/@vw;
+  font-size: 12 / @vw;
+  width: 112 / @vw;
+  height: 26 / @vw;
+  line-height: 26 / @vw;
 }
 .delivery p {
-  border: 1/@vw solid #fe5858;
+  border: 1 / @vw solid #fe5858;
   text-align: center;
-  border-radius: 15/@vw;
+  border-radius: 15 / @vw;
   color: #fe5858;
-  font-size: 12/@vw;
-  width: 112/@vw;
-  height: 26/@vw;
-  line-height: 26/@vw;
-  margin-right: 15/@vw;
+  font-size: 12 / @vw;
+  width: 112 / @vw;
+  height: 26 / @vw;
+  line-height: 26 / @vw;
+  margin-right: 15 / @vw;
 }
 .v {
-  width: 20/@vw;
-  height: 20/@vw;
-  margin: 0 14/@vw;
+  width: 20 / @vw;
+  height: 20 / @vw;
+  margin: 0 14 / @vw;
 }
 .borders {
-  border-right: 1/@vw solid #ccc;
-  width: 1/@vw;
-  height: 22/@vw;
+  border-right: 1 / @vw solid #ccc;
+  width: 1 / @vw;
+  height: 22 / @vw;
 }
 .make {
-  width: 350/@vw;
-  height: 46/@vw;
+  width: 350 / @vw;
+  height: 46 / @vw;
   background-color: white;
-  margin: -52/@vw 13/@vw;
-  border-radius: 5/@vw;
+  margin: -52 / @vw 13 / @vw;
+  border-radius: 5 / @vw;
   display: flex;
   color: #666666;
   justify-content: space-evenly;
-  line-height: 46/@vw;
-  margin-bottom: 15/@vw;
+  line-height: 46 / @vw;
+  margin-bottom: 15 / @vw;
   align-items: center;
 }
 .make .bo {
@@ -446,43 +458,43 @@ export default {
   align-items: center;
 }
 .make p {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
 }
 .make img {
-  width: 15/@vw;
-  height: 15/@vw;
-  margin-right: 10/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
+  margin-right: 10 / @vw;
 }
 .rights {
-  margin-left: 25/@vw;
+  margin-left: 25 / @vw;
 }
 .information {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   font-weight: bold;
-  margin-left: 20/@vw;
-  margin-top: 20/@vw;
-  width: 200/@vw;
-  height: 30/@vw;
-  line-height: 40/@vw;
+  margin-left: 20 / @vw;
+  margin-top: 20 / @vw;
+  width: 200 / @vw;
+  height: 30 / @vw;
+  line-height: 40 / @vw;
 }
 .table {
-  font-size: 12/@vw;
-  line-height: 40/@vw;
+  font-size: 12 / @vw;
+  line-height: 40 / @vw;
 }
 .table li {
   display: flex;
   /* width: 200/@vw; */
-  height: 30/@vw;
-  margin-left: 20/@vw;
-  margin-top: 9/@vw;
+  height: 30 / @vw;
+  margin-left: 20 / @vw;
+  margin-top: 9 / @vw;
 }
 .no {
-  width: 350/@vw;
-  height: 125/@vw;
+  width: 350 / @vw;
+  height: 125 / @vw;
   background-color: white;
-  margin: 65/@vw 13/@vw;
-  border-radius: 5/@vw;
-  font-size: 13/@vw;
+  margin: 65 / @vw 13 / @vw;
+  border-radius: 5 / @vw;
+  font-size: 13 / @vw;
 }
 /* .yes p {
   line-height: 40/@vw;
@@ -502,40 +514,40 @@ export default {
 } */
 .redmoney {
   color: #fe5858;
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
 }
 .heng {
   display: flex;
   justify-content: space-between;
 }
 .this {
-  margin-left: 5/@vw;
+  margin-left: 5 / @vw;
 }
 .moneys {
   position: absolute;
-  right: 11/@vw;
-  bottom: 47/@vw;
-  border: 1/@vw solid #666666;
+  right: 11 / @vw;
+  bottom: 47 / @vw;
+  border: 1 / @vw solid #666666;
   text-align: center;
-  border-radius: 15/@vw;
+  border-radius: 15 / @vw;
   color: #666666;
   font-weight: 600;
-  padding: 0 18/@vw;
-  font-size: 12/@vw;
+  padding: 0 18 / @vw;
+  font-size: 12 / @vw;
 }
 .pays {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   color: #fe5858;
 }
 .need {
   display: block;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #333333;
-  margin-top: 10/@vw;
-  margin-left: 231/@vw;
+  margin-top: 10 / @vw;
+  margin-left: 231 / @vw;
 }
 .ordertime {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   display: flex;
   color: #333333;
   font-weight: 600;
@@ -547,81 +559,81 @@ export default {
   justify-content: space-between;
 }
 .spend {
-  font-size: 12/@vw;
-  margin-top: 5/@vw;
+  font-size: 12 / @vw;
+  margin-top: 5 / @vw;
 }
 .yidong {
-  font-size: 12/@vw;
-  margin-top: 5/@vw;
+  font-size: 12 / @vw;
+  margin-top: 5 / @vw;
 }
 .phonenumber {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: bold;
   color: #333333;
 }
 .xian {
-  width: 330/@vw;
-  height: 1/@vw;
+  width: 330 / @vw;
+  height: 1 / @vw;
   background-color: #f2f2f2;
-  margin: 10/@vw auto;
+  margin: 10 / @vw auto;
 }
 .names {
-  margin: 0 10/@vw;
-  line-height: 25/@vw;
+  margin: 0 10 / @vw;
+  line-height: 25 / @vw;
   color: #666666;
 }
 
 .shoping {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
   font-weight: bold;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   display: flex;
   align-items: center;
 }
 .shops {
-  width: 15/@vw;
-  height: 15/@vw;
-  padding: 0/@vw 2/@vw;
-  margin-right: 8/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
+  padding: 0 / @vw 2 / @vw;
+  margin-right: 8 / @vw;
 }
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10/@vw 10/@vw;
+  margin: 10 / @vw 10 / @vw;
 }
 .orders {
-  width: 350/@vw;
-  height: 148/@vw;
+  width: 350 / @vw;
+  height: 148 / @vw;
   background-color: white;
-  margin: 35/@vw auto -54/@vw;
-  border-radius: 5/@vw;
+  margin: 35 / @vw auto -54 / @vw;
+  border-radius: 5 / @vw;
   position: relative;
 }
 
 .name {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
   font-weight: bold;
   color: #333333;
-  width: 200/@vw;
-  margin: 6/@vw 15/@vw;
+  width: 200 / @vw;
+  margin: 6 / @vw 15 / @vw;
 }
 .number {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   font-weight: 500;
   color: #333333;
 }
 .add {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   color: #333333;
   /* width: 200/@vw; */
-  margin: 0 15/@vw;
+  margin: 0 15 / @vw;
 }
 .A {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #f5f5f5;
-  padding-bottom:50/@vw ;
+  padding-bottom: 50 / @vw;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
@@ -632,72 +644,72 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
-  padding: 20/@vw 0 37/@vw 0; 
+  padding: 20 / @vw 0 37 / @vw 0;
 }
 
 .back {
-  width: 10/@vw;
-  height: 16/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
+  left: 15 / @vw;
   pointer-events: auto;
 }
 .detalis {
   margin: 0 auto;
   color: white;
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
   text-align: center;
-  line-height: 30/@vw;
+  line-height: 30 / @vw;
 }
 .total {
   display: flex;
 }
 .delivered {
-  width: 255/@vw;
-  height: 95/@vw;
+  width: 255 / @vw;
+  height: 95 / @vw;
   background-color: #fe5858;
 }
 .right {
-  width: 120/@vw;
-  height: 95/@vw;
+  width: 120 / @vw;
+  height: 95 / @vw;
   background-color: #fe5858;
 }
 .right img {
-  width: 43/@vw;
-  height: 45/@vw;
-  margin: 0 29/@vw;
+  width: 43 / @vw;
+  height: 45 / @vw;
+  margin: 0 29 / @vw;
 }
 .address {
   position: relative;
-  margin: -27/@vw 13/@vw;
-  width: 350/@vw;
-  height: 80/@vw;
+  margin: -27 / @vw 13 / @vw;
+  width: 350 / @vw;
+  height: 80 / @vw;
   background-color: white;
-  border-radius: 5/@vw;
+  border-radius: 5 / @vw;
   display: flex;
   align-items: center;
 }
 .address img {
-  width: 20/@vw;
-  height: 30/@vw;
-  margin-left: 20/@vw;
-  margin-top: 8/@vw;
+  width: 20 / @vw;
+  height: 30 / @vw;
+  margin-left: 20 / @vw;
+  margin-top: 8 / @vw;
 }
 .one {
-  width: 100/@vw;
-  height: 35/@vw;
-  font-size: 20/@vw;
+  width: 100 / @vw;
+  height: 35 / @vw;
+  font-size: 20 / @vw;
   font-weight: bold;
   color: white;
-  margin-left: 40/@vw;
+  margin-left: 40 / @vw;
 }
 .two {
-  width: 220/@vw;
-  height: 30/@vw;
-  font-size: 14/@vw;
+  width: 220 / @vw;
+  height: 30 / @vw;
+  font-size: 14 / @vw;
   color: white;
-  margin-left: 42/@vw;
+  margin-left: 42 / @vw;
 }
 </style>

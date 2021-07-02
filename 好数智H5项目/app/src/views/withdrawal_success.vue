@@ -39,7 +39,8 @@
 @import "../assets/css/base.less";
 .withdrala_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #fff;
   padding-top: 64/@vw;
   box-sizing: border-box;

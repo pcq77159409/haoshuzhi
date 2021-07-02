@@ -41,7 +41,7 @@
         </li>
       </ul>
     </div>
-    <div class="commit">提交</div>
+    <div class="commit" @click="onclickSubmit">提交</div>
   </div>
 </template>
 <script>
@@ -100,6 +100,41 @@ export default {
         }
       });
     },
+    onclickSubmit() {
+      console.log(this.card_front);
+      console.log(this.card_face);
+      console.log(this.card_back);
+      if (
+        this.card_front != "" &&
+        this.card_face != "" &&
+        this.card_back != ""
+      ) {
+        this.$post("/api/user/updatesfz", {
+          user_id: localStorage.getItem("user-id"),
+          sfz_img:
+            this.card_back + "," + this.card_front + "," + this.card_face,
+        }).then((r) => {
+          console.log(r);
+        });
+      } else {
+        alert("请将信息填写完整");
+      }
+    },
+  },
+  mounted() {
+    this.$get("/api/user/getinfo", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((r) => {
+      console.log(r);
+      if (r.data.sfz_img != "" || r.data.sfz_img.length != 0) {
+        this.card_back = r.data.sfz_img[0];
+        this.card_front = r.data.sfz_img[1];
+        this.card_face = r.data.sfz_img[2];
+        this.imgSrc1 = r.data.sfz_img[0];
+        this.imgSrc2 = r.data.sfz_img[1];
+        this.imgSrc3 = r.data.sfz_img[2];
+      }
+    });
   },
 };
 </script>
@@ -107,7 +142,8 @@ export default {
 @import "../assets/css/base.less";
 .authentication_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
   padding-top: 68 / @vw;
   box-sizing: border-box;
@@ -185,14 +221,14 @@ export default {
   opacity: 0;
 }
 .authentication_box .commit {
-    width: 345/@vw;
-    height: 44/@vw;
-    background-color: #ea5656;
-    text-align: center;
-    line-height: 44/@vw;
-    color: #fff;
-    font-size: 14/@vw;
-    margin: 40/@vw auto;
-    border-radius: 25/@vw;
+  width: 345 / @vw;
+  height: 44 / @vw;
+  background-color: #ea5656;
+  text-align: center;
+  line-height: 44 / @vw;
+  color: #fff;
+  font-size: 14 / @vw;
+  margin: 40 / @vw auto;
+  border-radius: 25 / @vw;
 }
 </style>

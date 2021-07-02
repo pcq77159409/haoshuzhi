@@ -70,6 +70,7 @@
         </li> -->
       </ul>
     </div>
+    <div v-if="dataList.length == 0" class="bottomShow">暂时没有数据</div>
     <!-- <h4>2021年2月</h4> -->
     <!-- <div class="incomes in">
       <ul>
@@ -158,11 +159,9 @@ export default {
     };
   },
   created() {
-    console.log(this.dataList);
     this.$post("/api/commission/commission_list", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.dataList = r.data.data;
       }
@@ -171,7 +170,6 @@ export default {
     this.$get("/api/balance_log/balance", {
       user_id: localStorage.getItem("user-id"),
     }).then((val) => {
-      // console.log(val);
       if (val.code == 200) {
         this.balance = val.data.balance;
       }
@@ -183,10 +181,10 @@ export default {
 @import "../assets/css/base.less";
 .new_box {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f8f8f8;
   padding-top: 64 / @vw;
-  overflow: auto;
   box-sizing: border-box;
 }
 .new_box .jumplabel {
@@ -264,5 +262,9 @@ export default {
 }
 .new_box .incomes ul li .yi span {
   color: #333333;
+}
+.bottomShow {
+  line-height: 50 / @vw;
+  text-align: center;
 }
 </style>

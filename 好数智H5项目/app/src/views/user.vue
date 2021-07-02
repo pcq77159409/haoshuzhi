@@ -10,19 +10,19 @@
           <p>电话咨询</p>
         </div>
         <div class="boda">
-          <p>拨打客服电话</p>
+          <p @click="bo">拨打客服电话</p>
         </div>
         <h5>*下单后半小时内客服会一对一电话沟通为您服务</h5>
       </div>
       <div class="wechat">
         <div class="wechating">
           <img src="../assets/矩形 6@2x.png" alt="" />
-          <p>电话咨询</p>
+          <p>微信咨询</p>
         </div>
         <ul>
-          <li v-for="(item,index) in arr" :key="index" @click="onClickk(item)">
+          <li v-for="(item, index) in arr" :key="index" @click="onClickk(item)">
             <img :src="item.src" alt="" />
-            <p>{{item.name}}</p>
+            <p>{{ item.name }}</p>
           </li>
         </ul>
         <h5>请选择客服，点击保存微信二维码添加</h5>
@@ -32,7 +32,7 @@
           <p @click="onClickk">×</p>
           <img :src="src" alt="" />
           <span>微信扫一扫添加谈谈二维码</span>
-          <div class="bao" @click="saveImg">保存图中二维码</div>
+          <div class="bao">长按保存图中二维码</div>
         </div>
       </div>
     </div>
@@ -42,70 +42,61 @@
 export default {
   data() {
     return {
-      arr:[{
-        src:require("../assets/webp.webp@2x.png"),
-        srcs:require("../assets/娇娇@2x.png"),
-        name:'客服娇娇',
-        id:1
-      },{
-        src:require("../assets/webp.webp (1)@2x.png"),
-        srcs:require("../assets/媛媛@2x.png"),
-        name:'客服媛媛',
-        id:2
-      },{
-        src:require("../assets/webp.webp (2)@2x.png"),
-        srcs:require("../assets/谈谈@2x.png"),
-        name:'客服谈谈',
-        id:3
-      },{
-        src:require("../assets/webp.webp (3)@2x.png"),
-        srcs:require("../assets/娇娇@2x.png"),
-        name:'客服晗晗',
-        id:4
-      }],
-      ke:null,
-      src:''
+      arr: [
+        {
+          src: require("../assets/webp.webp@2x.png"),
+          srcs: require("../assets/娇娇@2x.png"),
+          name: "客服娇娇",
+          id: 1,
+        },
+        {
+          src: require("../assets/webp.webp (1)@2x.png"),
+          srcs: require("../assets/媛媛@2x.png"),
+          name: "客服媛媛",
+          id: 2,
+        },
+        {
+          src: require("../assets/webp.webp (2)@2x.png"),
+          srcs: require("../assets/谈谈@2x.png"),
+          name: "客服谈谈",
+          id: 3,
+        },
+        {
+          src: require("../assets/webp.webp (3)@2x.png"),
+          srcs: require("../assets/伊伊@2x.png"),
+          name: "客服伊伊",
+          id: 4,
+        },
+      ],
+      ke: null,
+      src: "",
     };
   },
-  methods:{
-    downloadIamge: function(imgsrc, name) {
-      let image = new Image();
-      image.setAttribute("crossOrigin", "anonymous");
-      image.onload = function() {
-        let canvas = document.createElement("canvas");
-        canvas.width = image.width;
-        canvas.height = image.height;
-        let context = canvas.getContext("2d");
-        context.drawImage(image, 0, 0, image.width, image.height);
-        let url = canvas.toDataURL("image/png"); //得到图片的base64编码数据
-        let a = document.createElement("a"); // 生成一个a元素
-        let event = new MouseEvent("click"); // 创建一个单击事件
-        a.download = name || "海报"; // 设置图片名称没有设置则为默认
-        a.href = url; // 将生成的URL设置为a.href属性
-        a.dispatchEvent(event); // 触发a的单击事件
-      };
-      image.src = imgsrc;
+  methods: {
+    onClickk(id) {
+      if (this.ke == false) {
+        this.ke = true;
+      } else {
+        this.ke = false;
+      }
+      this.src = id.srcs;
     },
-    saveImg: function() {
-      this.downloadIamge(this.ResImgUrl, 'result');
-      //this.ResImgUrl：图片地址，result：图片名称
+    bo() {
+      window.location.href = "tel:18817744333";
     },
-    onClickk(id){
-     if(this.ke==false){
-       this.ke=true
-     }else{
-       this.ke=false
-     }
-      this.src = id.srcs
-    }
-  }
-}
+  },
+};
 </script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
-.user_box {
+body,
+html {
   width: 100%;
   height: 100%;
+}
+.user_box {
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
   .zixun {
     width: 100%;
@@ -268,4 +259,5 @@ export default {
     }
   }
 }
+
 </style>

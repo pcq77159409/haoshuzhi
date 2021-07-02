@@ -53,9 +53,9 @@ export default {
 @import "../assets/css/base.less";
 .item_content {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   background-color: #f5f5f5;
-  overflow-y: auto;
   padding-bottom: 50/@vw;
   box-sizing: border-box;
 }

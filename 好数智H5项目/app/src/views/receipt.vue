@@ -627,7 +627,7 @@ export default {
 }
 .A {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;

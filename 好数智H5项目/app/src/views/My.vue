@@ -6,7 +6,7 @@
       </div>
       <div class="good">
         <div class="user_name">
-          <img src="../assets/Head_portrait.png" alt="" class="Head_portrait" />
+          <img :src="src" alt="" class="Head_portrait" @click="Dian" />
           <div
             class="login"
             v-if="loginShow == 1"
@@ -197,9 +197,18 @@ export default {
       status2: "",
       status3: "",
       status4: "",
+      dcd: [],
+      src: require("../assets/Head_portrait.png"),
     };
   },
   methods: {
+    Dian() {
+      if (this.loginShow == 1) {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/personmsg");
+      }
+    },
     initSwiper() {
       let _this = this;
       setTimeout(() => {
@@ -259,14 +268,28 @@ export default {
       alert("该功能暂未开放，敬请期待");
     },
     onclickSczd() {
-      if (this.user.type == 1) {
-        this.$router.push("/money_road");
-      } else if (this.user.type == 2) {
-        this.$router.push("/payment");
+      if (this.loginShow == 1) {
+        this.$router.push("/login");
       } else {
-        this.$router.push("/apply_for");
+        if (this.user.type == 1) {
+          this.$router.push("/money_road");
+        } else if (this.user.type == 2) {
+          this.$router.push("/payment");
+        } else {
+          this.$router.push("/apply_for");
+        }
       }
     },
+  },
+  created() {
+    this.$get("/api/user/getinfo", {
+      user_id: localStorage.getItem("user-id"),
+    }).then((val) => {
+      console.log(val);
+      if (val.data.head_img != null) {
+        this.src = val.data.head_img;
+      }
+    });
   },
   mounted() {
     this.$nextTick(() => {
@@ -277,7 +300,6 @@ export default {
     this.$get("/api/user/getinfo", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.user = r.data;
       }
@@ -287,8 +309,8 @@ export default {
       user_id: localStorage.getItem("user-id"),
       status: 1,
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
+        console.log(r);
         if (r.data.total == 0) {
           this.unapid = [];
           this.status1 = "";
@@ -296,6 +318,7 @@ export default {
           this.status1 = r.data.total;
           // let num = 0;
           this.unapid = r.data.data;
+          console.log(this.status1);
           // console.log(this.unapid);
           // this.timer = setInterval(() => {
           //   num++;
@@ -356,7 +379,7 @@ export default {
 @import "../assets/css/base.less";
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f5f5f5;
 }
 .login {
@@ -375,6 +398,7 @@ body {
 }
 .ccccc {
   position: relative;
+  overflow: auto;
 }
 .my_box {
   width: 100%;
@@ -425,6 +449,7 @@ body {
   width: 59 / @vw*1.3;
   height: 59 / @vw*1.3;
   margin-right: 20 / @vw;
+  border-radius: 50%;
 }
 .id p {
   color: #ffffff;
@@ -653,6 +678,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 .signs .white {
   width: 247 / @vw;
