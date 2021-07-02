@@ -6,11 +6,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import { Swipe, SwipeItem } from 'vant';
 import axios from "axios";
-
-
 import VueTouch from 'vue-touch'
 Vue.use(VueTouch, { name: 'v-touch' })
-
+import QRCode from 'qrcode' //定义生成二维码组件
+QRCode;
 // import getBankcardinfo from 'bankcardinfo'
 // Vue.prototype.$getBankcardinfo = getBankcardinfo
 axios.defaults.baseURL = '/index.php';

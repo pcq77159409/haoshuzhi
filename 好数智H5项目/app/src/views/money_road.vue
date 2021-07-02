@@ -6,7 +6,10 @@
     </div>
     <div class="the_layer"></div>
     <div class="qrcode">
-      <img src="../assets/组 27@2x (3).png" alt="" />
+      <!-- <img src="../assets/组 27@2x (3).png" alt="" /> -->
+      <div id="code">
+        <canvas id="canvas"></canvas>
+      </div>
       <img src="../assets/now.png" alt="" @click="flag = true" />
       <p>——保存二维码并分享——</p>
     </div>
@@ -49,10 +52,11 @@
       </div>
     </div>
     <!-- 蒙层 -->
-    <div class="mongolia" v-show="flag" @click="flag=false">
-      <div class="stratum"  @click.stop>
+    <div class="mongolia" v-show="flag" @click="flag = false">
+      <img :src="codeSrc" alt="" class="codeimg">
+      <div class="stratum" @click.stop>
         <div class="long">
-          <img src="../assets/组 27@2x (3).png" alt="" />
+          <img :src="codeSrc" alt="" />
         </div>
         <img src="../assets/组 6@2x.png" alt="" />
       </div>
@@ -60,13 +64,39 @@
   </div>
 </template>
 <script>
+import QRCode from "qrcode"; //定义生成二维码组件
+QRCode;
 export default {
   data() {
     return {
       flag: false,
+      codeSrc: "../assets/组 27@2x (3).png",
     };
   },
-  methods: {},
+  // components: {
+  //   QRcode: QRCode, //注册组件
+  // },
+  methods: {
+    getUrl(xxx) {
+      var canvas = document.getElementById("canvas"); //获取到canvas
+      var code = document.getElementById("code"); //获取到code容器
+      QRCode.toCanvas(canvas, xxx, (error) => {
+        if (error) console.error(error);
+        console.log("success!");
+      });
+      var image = new Image(); //实例一个img
+      image.src = canvas.toDataURL("image/png"); //转换成base64格式路径的png图片
+      image.style.width = "100%"; //设置样式
+      // image.style = "border-radius: 50%;";
+      code.appendChild(image); //添加到code 容器中
+      this.codeSrc = image.src;
+      canvas.style.display = "none"; //隐藏掉canvas
+    },
+  },
+  mounted() {
+    var xxx = "http://haoshuzhi.cn";
+    this.getUrl(xxx);
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -74,19 +104,31 @@ export default {
 img {
   pointer-events: auto;
 }
+#code {
+  width: 116 / @vw;
+  height: 113 / @vw;
+  margin-top: 15 / @vw;
+}
+.codeimg{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  opacity: 0;
+}
 .money_road {
   width: 100%;
   height: 100vh;
   overflow: auto;
   background-color: #fd2352;
   background-size: 100% 100%;
-  padding-top: 64/@vw;
+  padding-top: 64 / @vw;
   box-sizing: border-box;
   overflow: auto;
 }
 .money_road .jumplabel {
   width: 100%;
-  height: 58/@vw;
+  height: 58 / @vw;
   background-color: #ea5656;
   display: flex;
   align-items: center;
@@ -96,62 +138,62 @@ img {
   z-index: 2;
 }
 .money_road .jumplabel img {
-  width: 10/@vw;
-  height: 16/@vw;
-  margin-left: 15/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
+  margin-left: 15 / @vw;
 }
 .money_road .jumplabel h4 {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   margin: 0 auto;
   color: #fff;
   font-weight: 500;
 }
 .money_road .the_layer {
   width: 100%;
-  height: 454/@vw;
+  height: 454 / @vw;
   background: url("../assets/图层 0@2x.png") no-repeat;
-  background-size: 100% 454/@vw;
+  background-size: 100% 454 / @vw;
 }
 .money_road .qrcode {
-  width: 330/@vw;
-  height: 195/@vw;
+  width: 330 / @vw;
+  height: 195 / @vw;
   background: url("../assets/组 27@2x.png") no-repeat;
-  background-size: 330/@vw 195/@vw;
-  margin: -118/@vw auto 0;
+  background-size: 330 / @vw 195 / @vw;
+  margin: -118 / @vw auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .money_road .qrcode img:first-child {
-  width: 116/@vw;
-  height: 113/@vw;
-  margin-top: 8/@vw;
+  width: 116 / @vw;
+  height: 113 / @vw;
+  margin-top: 8 / @vw;
 }
 .money_road .qrcode img {
-  width: 137/@vw;
-  height: 27/@vw;
+  width: 137 / @vw;
+  height: 27 / @vw;
 }
 .money_road .qrcode p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #999999;
-  margin-top: 8/@vw;
+  margin-top: 8 / @vw;
 }
 .money_road .two_box {
-  width: 330/@vw;
-  height: 166/@vw;
-  margin: 10/@vw auto;
+  width: 330 / @vw;
+  height: 166 / @vw;
+  margin: 10 / @vw auto;
   background: url("../assets/组 27@2x (1).png") no-repeat;
-  background-size: 330/@vw 166/@vw;
+  background-size: 330 / @vw 166 / @vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .money_road .two_box .pink_box {
-  width: 195/@vw;
-  height: 73/@vw;
+  width: 195 / @vw;
+  height: 73 / @vw;
   background: url("../assets/pink.png") no-repeat;
-  background-size: 195/@vw 73/@vw;
-  margin-top: 27/@vw;
+  background-size: 195 / @vw 73 / @vw;
+  margin-top: 27 / @vw;
   display: flex;
 }
 .money_road .two_box .pink_box .zero {
@@ -162,59 +204,59 @@ img {
   align-items: center;
 }
 .money_road .two_box .pink_box del {
-  width: 1/@vw;
-  height: 50/@vw;
+  width: 1 / @vw;
+  height: 50 / @vw;
   background-color: #fa95d3;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
 }
 .money_road .two_box .pink_box .zero p {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   color: #ea5656;
-  margin-top: 6/@vw;
+  margin-top: 6 / @vw;
 }
 .money_road .two_box .pink_box .zero p i {
-  font-size: 30/@vw;
+  font-size: 30 / @vw;
 }
 .money_road .two_box .pink_box .zero span {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
 }
 .money_road .two_box .jin {
-  width: 137/@vw;
-  height: 27/@vw;
-  margin-top: 13/@vw;
+  width: 137 / @vw;
+  height: 27 / @vw;
+  margin-top: 13 / @vw;
 }
 .money_road .three_box {
-  width: 330/@vw;
-  height: 233/@vw;
+  width: 330 / @vw;
+  height: 233 / @vw;
   background: url("../assets/组 27@2x (2).png") no-repeat;
-  background-size: 330/@vw 233/@vw;
-  margin: 0 auto 20/@vw;
+  background-size: 330 / @vw 233 / @vw;
+  margin: 0 auto 20 / @vw;
   display: flex;
   flex-direction: column;
 }
 .money_road .three_box .qing {
   align-items: flex-start;
   display: flex;
-  padding: 10/@vw 0 0 31/@vw;
+  padding: 10 / @vw 0 0 31 / @vw;
 }
 .money_road .three_box .qing:first-child {
-  padding: 60/@vw 0 0 31/@vw;
+  padding: 60 / @vw 0 0 31 / @vw;
 }
 .money_road .three_box .qing p {
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   color: #666666;
-  margin-right: 30/@vw;
+  margin-right: 30 / @vw;
 }
 .money_road .three_box .qing span {
   color: #ea5656;
   font-weight: 600;
-  margin-right: 10/@vw;
+  margin-right: 10 / @vw;
 }
 .money_road .three_box .rule {
-  width: 113/@vw;
-  height: 16/@vw;
-  margin: 30/@vw auto 0;
+  width: 113 / @vw;
+  height: 16 / @vw;
+  margin: 30 / @vw auto 0;
 }
 .money_road .mongolia {
   width: 100%;
@@ -231,10 +273,10 @@ img {
 .money_road .mongolia .stratum {
   position: absolute;
   z-index: 44;
-  width: 254/@vw;
-  height: 384/@vw;
+  width: 254 / @vw;
+  height: 384 / @vw;
   background: url("../assets/百万靓号“大放送”@2x.png") no-repeat;
-  background-size: 254/@vw 384/@vw;
+  background-size: 254 / @vw 384 / @vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -242,22 +284,22 @@ img {
   // margin: 0 auto;
 }
 .money_road .mongolia .stratum img {
-  width: 177/@vw;
-  height: 40/@vw;
-  margin-top: 30/@vw;
+  width: 177 / @vw;
+  height: 40 / @vw;
+  margin-top: 30 / @vw;
 }
 .money_road .mongolia .stratum .long {
-  width: 152/@vw;
-  height: 180/@vw;
+  width: 152 / @vw;
+  height: 180 / @vw;
   background: url("../assets/红包@2x.png") no-repeat;
-  background-size: 152/@vw 180/@vw;
+  background-size: 152 / @vw 180 / @vw;
   display: flex;
   justify-content: center;
-  margin-top: 60/@vw;
+  margin-top: 60 / @vw;
 }
 .money_road .mongolia .stratum .long img {
-  width: 93/@vw;
-  height: 91/@vw;
-  margin-top: 10/@vw;
+  width: 93 / @vw;
+  height: 91 / @vw;
+  margin-top: 10 / @vw;
 }
 </style>
