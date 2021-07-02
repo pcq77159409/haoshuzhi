@@ -823,6 +823,7 @@ export default {
       this.wrap = val;
       this.flag = false;
       this.active = -1;
+      this.$refs.m.style = "overflow:auto";
       this.parameter.from = val;
       this.onclickQuery();
     },
@@ -1064,6 +1065,7 @@ export default {
     onclickRegList(index, id) {
       this.parameter = {};
       this.regList = index;
+      this.$refs.m.style = "overflow:auto";
       this.regulars = false;
       this.active = -1;
       this.parameter.tag = id;
