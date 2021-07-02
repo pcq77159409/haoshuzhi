@@ -171,7 +171,9 @@ export default {
       onclickCenel: false,
     };
   },
-  methods: {},
+  methods: {
+    
+  },
 };
 </script>
 

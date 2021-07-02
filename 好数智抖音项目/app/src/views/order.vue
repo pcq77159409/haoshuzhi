@@ -62,12 +62,9 @@
                 >
                   付款
                 </p>
-                <p
-                  class="payment"
-                  v-if="item.status == 2"
-                  @click.stop="onclickXGDZ"
-                >
-                  修改地址
+                <p class="payment" v-if="item.status == 2">
+                  <!-- @click.stop="onclickXGDZ" -->
+                  查看详情
                 </p>
                 <p
                   class="payment"
@@ -181,7 +178,7 @@
                 >
               </p>
               <div class="moneyed">
-                <p class="moneyeds">修改地址</p>
+                <p class="moneyeds">查看详情</p>
               </div>
             </div>
           </div>
@@ -266,7 +263,9 @@
                 >
               </p>
               <div class="moneyed">
-                <p class="moneyeds">删除订单</p>
+                <p class="moneyeds" @click.stop="onclickSCDD(item.id)">
+                  删除订单
+                </p>
               </div>
             </div>
           </div>
@@ -320,7 +319,7 @@ export default {
         status: 2,
       }).then((r) => {
         console.log(r);
-        if (r.code==200) {
+        if (r.code == 200) {
           location.reload();
         }
       });
@@ -429,11 +428,11 @@ export default {
                     showtime(val.created_at, index, val.id);
                   }, 1000),
                 });
-              }else{
+              } else {
                 this.coco.push({
-                  timer:null,
-                  fen:null,
-                  miao:null
+                  timer: null,
+                  fen: null,
+                  miao: null,
                 });
               }
             });
