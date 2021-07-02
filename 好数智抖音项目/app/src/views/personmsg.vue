@@ -237,6 +237,7 @@ export default {
 .personmsg_box .replace .portrait img {
   width: 52 / @vw;
   height: 52 / @vw;
+  border-radius: 50%;
 }
 .personmsg_box .replace .portrait p {
   font-size: 12 / @vw;

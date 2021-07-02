@@ -155,8 +155,8 @@
     <!-- 下拉选择 开始-->
     <div class="select_change" ref="aa">
       <ul class="area">
-        <li @click="onClickShow(0)">
-          <p @click="onClickDn">归属地</p>
+        <li @click="onClickDn(0)">
+          <p>归属地</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
           <img
             src="../assets/red_triangle.png"
@@ -165,8 +165,8 @@
             v-show="active == 0"
           />
         </li>
-        <li @click="onClickShow(2)">
-          <p @click="onClickRegular">规律</p>
+        <li @click="onClickRegular(2)">
+          <p>规律</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 2" />
           <img
             src="../assets/red_triangle.png"
@@ -801,7 +801,7 @@ export default {
         this.active = num;
       }
     },
-    onClickDn() {
+    onClickDn(val) {
       var a = document.querySelector(".a");
       if (this.flag == false) {
         this.flag = true;
@@ -813,6 +813,7 @@ export default {
         this.flag = false;
         this.$refs.m.style = "overflow:auto";
       }
+      this.onClickShow(val);
     },
     onClickHide(val, v) {
       this.num = val;
@@ -836,7 +837,7 @@ export default {
         this.cut = false;
       }
     },
-    onClickRegular() {
+    onClickRegular(val) {
       var a = document.querySelector(".a");
       if (this.regulars == false) {
         this.regulars = true;
@@ -848,6 +849,7 @@ export default {
         this.regulars = false;
         this.$refs.m.style = "overflow:auto";
       }
+      this.onClickShow(val);
     },
     onClickBack() {
       if (this.back == false) {
@@ -857,6 +859,7 @@ export default {
       }
       this.flag = false;
       this.regulars = false;
+      this.active = -1;
     },
     onBack() {
       var a = document.querySelector(".a");

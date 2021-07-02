@@ -268,12 +268,16 @@ export default {
       alert("该功能暂未开放，敬请期待");
     },
     onclickSczd() {
-      if (this.user.type == 1) {
-        this.$router.push("/money_road");
-      } else if (this.user.type == 2) {
-        this.$router.push("/payment");
+      if (this.loginShow == 1) {
+        this.$router.push("/login");
       } else {
-        this.$router.push("/apply_for");
+        if (this.user.type == 1) {
+          this.$router.push("/money_road");
+        } else if (this.user.type == 2) {
+          this.$router.push("/payment");
+        } else {
+          this.$router.push("/apply_for");
+        }
       }
     },
   },
@@ -445,6 +449,7 @@ body {
   width: 59 / @vw*1.3;
   height: 59 / @vw*1.3;
   margin-right: 20 / @vw;
+  border-radius: 50%;
 }
 .id p {
   color: #ffffff;
@@ -673,7 +678,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index:999;
+  z-index: 999;
 }
 .signs .white {
   width: 247 / @vw;
