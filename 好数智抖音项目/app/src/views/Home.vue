@@ -424,6 +424,10 @@ export default {
       chinese: [],
       rule: [
         {
+          id:'',
+          name:'不限'
+        },
+        {
           id: 37,
           name: "中间AAAA",
         },
@@ -1659,7 +1663,8 @@ a {
 }
 .Mobile_phone .regular {
   width: 345 / @vw;
-  height: 360 / @vw;
+  // height: 360 / @vw;
+  height: 25vh;
   position: absolute;
   left: -1 / @vw;
   top: 0 / @vw;
