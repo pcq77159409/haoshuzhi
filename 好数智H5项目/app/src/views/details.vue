@@ -14,7 +14,7 @@
           <ul>
             <li class="number">
               {{ detailsList.number }}
-              <p>豹子</p>
+              <p>靓号</p>
             </li>
             <li class="citys">
               <p class="city">
