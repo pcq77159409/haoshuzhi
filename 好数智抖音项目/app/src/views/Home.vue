@@ -252,7 +252,7 @@
             >
           </div>
           <div class="contains">
-            <p>含通话费{{ val.contain_charge }}</p>
+            <p>含话费{{ val.contain_charge }}</p>
             <span v-show="priceShow">￥{{ val.sale_price }}</span>
           </div>
         </div>

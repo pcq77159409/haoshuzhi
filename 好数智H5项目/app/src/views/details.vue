@@ -71,7 +71,7 @@
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
-            >{{ detailsList.contract }}/月</span
+            >{{ detailsList.contract }}/年</span
           >
         </li>
         <li style="color: #999999">
@@ -692,7 +692,7 @@ li {
 
 .totals {
   width: 345 / @vw;
-  height: 158 / @vw;
+  // height: 158 / @vw;
   border-radius: 4 / @vw;
   background-color: #fff;
 }
@@ -740,7 +740,7 @@ li {
 }
 .nums {
   width: 325 / @vw;
-  height: 62 / @vw;
+  // height: 62 / @vw;
   background: url("../assets/plpur.png");
   background-size: 312 / @vw 65 / @vw;
   margin: 0 auto;
@@ -748,7 +748,7 @@ li {
 .nums p {
   font-size: 12 / @vw;
   margin: 10 / @vw 10 / @vw;
-  padding-top: 10 / @vw;
+  padding: 10 / @vw 0;
   color: #666666;
 }
 .nums span {
@@ -994,10 +994,10 @@ li {
 .endcsname.endcsname_sh img:nth-of-type(1) {
   width: 20 / @vw;
   height: 29 / @vw;
-  margin: 0 15 / @vw 0 20 / @vw;
+  margin: 20 / @vw 15 / @vw 0 20 / @vw;
 }
 .endcsname.endcsname_sh img:nth-of-type(2) {
-  margin: 0 15 / @vw 0 20 / @vw;
+  margin: 25 / @vw 15 / @vw 0 20 / @vw;
 }
 .endcsname.endcsname_sh p {
   flex: 1;
