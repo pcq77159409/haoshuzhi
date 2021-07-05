@@ -52,7 +52,7 @@
               <input
                 type="text"
                 placeholder="搜索你想要的号码"
-                v-model="searchInput"
+                v-model="searchInputs"
                 @keyup.enter="onSearchs"
               />
             </div>
@@ -156,7 +156,7 @@
     <div class="select_change" ref="aa">
       <ul class="area">
         <li @click="onClickDn(0)">
-          <p>归属地</p>
+          <p ref="gsd">归属地</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
           <img
             src="../assets/red_triangle.png"
@@ -166,7 +166,7 @@
           />
         </li>
         <li @click="onClickRegular(2)">
-          <p>规律</p>
+          <p ref="rule">规律</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 2" />
           <img
             src="../assets/red_triangle.png"
@@ -180,41 +180,7 @@
           <img src="../assets/filter.png" alt="" />
         </li>
       </ul>
-      <!-- 规律 结束-->
-    </div>
-    <!-- 下拉选择 结束-->
-
-    <!--手机号 开始-->
-    <div class="class_name">
-      <!--暂无搜索内容 开始-->
-      <div class="available" v-show="isShow">
-        <img src="../assets/sou.png" alt="" />
-        <p>暂无搜索内容</p>
-      </div>
-      <!--暂无搜索内容 结束-->
-
-      <router-link
-        :to="{ path: '/details', query: { 'ids[]': val.id } }"
-        v-for="(val, index) in list"
-        :key="index"
-      >
-        <div class="start">
-          <img src="../assets/矩形 47@2x.png" alt="" style="" />
-          <h5 v-html="val.number_tag"></h5>
-          <div class="commission">
-            <p>{{ val.location }}</p>
-            <span v-show="commissionShow"
-              >佣金{{ val.returned_commission }}</span
-            >
-          </div>
-          <div class="contains">
-            <p>含通话费{{ val.contain_charge }}</p>
-            <span v-show="priceShow">￥{{ val.sale_price }}</span>
-          </div>
-        </div>
-      </router-link>
-
-      <!-- 归属地 开始-->
+         <!-- 归属地 开始-->
       <div class="black" v-show="flag">
         <div class="Belonging">
           <ul class="pro">
@@ -250,7 +216,7 @@
               v-for="(item, index) in rule"
               :key="index"
               :class="{ currents: regList == index }"
-              @click="onclickRegList(index, item.id)"
+              @click="onclickRegList(index, item.id,item.name)"
             >
               <img src="../assets/right.png" alt="" v-show="regList == index" />
               <p>{{ item.name }}</p>
@@ -258,6 +224,39 @@
           </ul>
         </div>
       </div>
+      <!-- 规律 结束-->
+    </div>
+    <!-- 下拉选择 结束-->
+  
+    <!--手机号 开始-->
+    <div class="class_name">
+      <!--暂无搜索内容 开始-->
+      <div class="available" v-show="isShow">
+        <img src="../assets/sou.png" alt="" />
+        <p>暂无搜索内容</p>
+      </div>
+      <!--暂无搜索内容 结束-->
+
+      <router-link
+        :to="{ path: '/details', query: { 'ids[]': val.id } }"
+        v-for="(val, index) in list"
+        :key="index"
+      >
+        <div class="start">
+          <img src="../assets/矩形 47@2x.png" alt="" style="" />
+          <h5 v-html="val.number_tag"></h5>
+          <div class="commission">
+            <p>{{ val.location }}</p>
+            <span v-show="commissionShow"
+              >佣金{{ val.returned_commission }}</span
+            >
+          </div>
+          <div class="contains">
+            <p>含通话费{{ val.contain_charge }}</p>
+            <span v-show="priceShow">￥{{ val.sale_price }}</span>
+          </div>
+        </div>
+      </router-link>
     </div>
     <!--手机号 结束-->
     <div class="botttomjz" ref="bjz" v-show="!isShow" style="margin: 0 auto">
@@ -752,6 +751,7 @@ export default {
       minNumber: "",
       maxNumber: "",
       searchInput: "",
+      searchInputs: "",
       searchFilter: {
         handle_type: "", //办理方式 1 线上 2线下
         sort_price: "", //价格排序 1递增 2递减
@@ -795,7 +795,6 @@ export default {
     scrollBox(e) {
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
-      console.log(12);
       // 并且到每次滚动的位置一定与2100有关
       if (e.target.scrollTop >= 1100 * this.numbers) {
         // this.rember();
@@ -853,6 +852,7 @@ export default {
       this.flag = false;
       this.active = -1;
       this.$refs.m.style = "overflow:auto";
+      this.$refs.gsd.innerText = val;
       this.parameter.from = val;
       this.onclickQuery();
     },
@@ -1055,18 +1055,16 @@ export default {
     },
     onSearch() {
       this.parameter = {};
-      if (this.typed) {
-        this.parameter.type = 1;
-      } else {
-        this.parameter.type = 0;
-      }
+      this.parameter.type = 1;
+      this.parameter.from = '上海';
       this.parameter.search = this.searchInput;
       this.onclickQuery();
     },
     onSearchs() {
       this.parameter = {};
       this.parameter.type = 0;
-      this.parameter.search = this.searchInput;
+      this.parameter.from = '上海';
+      this.parameter.search = this.searchInputs;
       this.onclickQuery();
     },
     onFen(id) {
@@ -1093,10 +1091,11 @@ export default {
       this.parameter.operator_id = id;
       this.onclickQuery();
     },
-    onclickRegList(index, id) {
+    onclickRegList(index, id,name) {
       this.parameter = {};
       this.regList = index;
       this.$refs.m.style = "overflow:auto";
+      this.$refs.rule.innerText = name;
       this.regulars = false;
       this.active = -1;
       this.parameter.tag = id;
@@ -1324,8 +1323,8 @@ a {
   height: 500 / @vw;
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
-  left: 15 / @vw;
-  top: 0 / @vw;
+  left: 0 / @vw;
+  top: 46 / @vw;
   z-index: 9;
 }
 .Mobile_phone .active {
@@ -1396,6 +1395,7 @@ a {
   background-size: 328 / @vw 28 / @vw;
   margin: 22 / @vw*1.3 auto 0;
   display: flex;
+  position: relative;
 }
 .Mobile_phone .accurate .ge {
   font-size: 12 / @vw;
@@ -1468,7 +1468,7 @@ a {
 .Mobile_phone .accurate .input_bg .searchs .hf {
   margin-right: 0;
   position: absolute;
-  right: 35 / @vw;
+  right: 10 / @vw;
 }
 .Mobile_phone .accurate {
   width: 345 / @vw;
@@ -1566,6 +1566,7 @@ a {
   display: flex;
   justify-content: space-between;
   line-height: 33 / @vw;
+  position: relative;
 }
 .Mobile_phone .select_change .area li {
   display: flex;
@@ -1658,7 +1659,7 @@ a {
 }
 .Mobile_phone .regular {
   width: 345 / @vw;
-  height: 365 / @vw;
+  height: 360 / @vw;
   position: absolute;
   left: -1 / @vw;
   top: 0 / @vw;

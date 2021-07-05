@@ -5,7 +5,7 @@
       <p>收货地址</p>
     </div>
     <div class="total">
-      <div class="totals" v-for="(item, index) in editor" :key="index">
+      <div class="totals" v-for="(item, index) in editor" :key="index" @click="onclickDefault(item)">
         <div class="number">
           <p>{{ item.name }}</p>
           <p>{{ item.mobile }}</p>
@@ -22,7 +22,6 @@
               type="radio"
               style="margintop:0.533vw"
               name="default"
-              @click="onclickDefault(item)"
               :checked="item.is_default == 1"
             />
             <p style="fontsize: 2.1333vw; color: #333333; margin-left: 1.6vw">
@@ -72,6 +71,7 @@ export default {
             user_id: localStorage.getItem('user-id'),
           }).then((val) => {
             this.editor = val.data;
+            this.$router.go(-1)
             console.log(this.editor);
             val.data.forEach((val) => {
               this.id = val.id;
