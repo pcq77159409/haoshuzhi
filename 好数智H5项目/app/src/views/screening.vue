@@ -246,7 +246,9 @@
           <h5 v-html="val.number_tag"></h5>
           <div class="commission">
             <p>{{ val.location }}</p>
-            <span v-show="commissionShow">佣金{{ val.returned_commission }}</span>
+            <span v-show="commissionShow"
+              >佣金{{ val.returned_commission }}</span
+            >
           </div>
           <div class="contains">
             <p>含通话费{{ val.contain_charge }}</p>
@@ -400,6 +402,10 @@ export default {
       chinese: [],
       rule: [
         {
+          id: "",
+          name: "不限",
+        },
+        {
           id: 37,
           name: "中间AAAA",
         },
@@ -534,28 +540,35 @@ export default {
         {
           id: 22,
           name: "ABBA",
-        }, {
-            id: 28,
-            name: "ABBABB"
-        }, {
-            id: 19,
-            name: "ABC"
-        }, {
-            id: 18,
-            name: "ABCABC"
-        }, {
-            id: 10,
-            name: "ABCD"
-        }, {
-            id: 23,
-            name: "ABCDABCD"
-        }, {
-            id: 11,
-            name: "ABCDE"
-        }, {
-            id: 26,
-            name: "AABBAABB"
-        }
+        },
+        {
+          id: 28,
+          name: "ABBABB",
+        },
+        {
+          id: 19,
+          name: "ABC",
+        },
+        {
+          id: 18,
+          name: "ABCABC",
+        },
+        {
+          id: 10,
+          name: "ABCD",
+        },
+        {
+          id: 23,
+          name: "ABCDABCD",
+        },
+        {
+          id: 11,
+          name: "ABCDE",
+        },
+        {
+          id: 26,
+          name: "AABBAABB",
+        },
       ],
       dataList: [
         {
@@ -977,11 +990,14 @@ export default {
       this.maxNumber = "";
       this.contractListed = false;
       this.lowPinListed = false;
+      this.min_price = "";
+      this.max_price = "";
       this.$refs.clear.style = "background:#dddddd";
       setTimeout(() => {
         this.$refs.clear.style = "background:#f0eeee";
       }, 360);
       this.active = -1;
+      this.onClickTo();
     },
     onSearch() {
       var number = document.querySelectorAll(".number");
@@ -1022,8 +1038,10 @@ export default {
         id = 2;
       } else if (index == "中国电信") {
         id = 3;
-      } else {
+      } else if (index == "虚拟运营商") {
         id = 4;
+      } else {
+        id = "";
       }
       this.cut = false;
       this.opList = index;
@@ -1158,8 +1176,10 @@ export default {
 
     if (localStorage.getItem("from")) {
       this.$route.query.from = localStorage.getItem("from");
+      this.$refs.gsd.innerText = localStorage.getItem("from");
     } else {
       this.$route.query.from = "上海市";
+      this.$refs.gsd.innerText = "上海市";
     }
     this.pList = this.$route.query;
     this.$axios
@@ -1184,7 +1204,11 @@ export default {
       this.cityList = val.data;
     });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
+      console.log(val);
       this.chinese = val.data;
+      this.chinese.push({
+        operators_name: "不限",
+      });
     });
     this.$axios.get("/api/low_consumption/index").then((r) => {
       r.data.forEach((val) => {
@@ -1213,6 +1237,8 @@ export default {
       this.$route.query.operator_id == 4
     ) {
       this.title = "虚拟号码";
+    } else if (this.$route.query.tag == 44) {
+      this.title = "生日号码";
     }
   },
   updated() {
@@ -1477,6 +1503,7 @@ a {
   height: 9 / @vw;
 }
 .botttomjz {
+  align-self: flex-end;
   width: 100%;
   line-height: 40 / @vw;
   text-align: center;
@@ -1489,7 +1516,7 @@ a {
   // overflow-y: auto;
   padding: 0 10 / @vw;
   box-sizing: border-box;
-  // height: 352 / @vw;
+  min-height: 352 / @vw;
 }
 .Mobile_phone .start {
   width: 170 / @vw;
@@ -1603,7 +1630,7 @@ a {
 }
 .Mobile_phone .opeateing ul {
   width: 100%;
-  height: 88 / @vw;
+  height: 133 / @vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;

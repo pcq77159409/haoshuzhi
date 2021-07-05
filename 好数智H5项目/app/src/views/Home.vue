@@ -120,7 +120,7 @@
         </p>
       </div>
     </div>
-    <div class="cap">
+    <div class="cap" v-if="dataList.length != 0">
       <router-link
         :to="{ path: '/details', query: { 'ids[]': value.id } }"
         v-for="(value, index) in dataList"
@@ -159,7 +159,7 @@
         <li
           v-for="(item, index) in likeList"
           :key="index"
-          @click="onclickToLike(item.url)"
+          @click="onclickToLike(item.link)"
         >
           <img :src="item.image" alt="" />
         </li>
@@ -325,12 +325,20 @@ export default {
         }
       });
 
-    this.$post("/api/home_page/cailike").then((r) => {
-      console.log(r);
-      if (r.code == 200) {
+    this.$axios
+      .get("/api/home_page/getBanner", {
+        params: { type: 6 },
+      })
+      .then((r) => {
+        console.log(r);
         this.likeList = r.data;
-      }
-    });
+      });
+    // this.$post("/api/home_page/cailike").then((r) => {
+    //   console.log(r);
+    //   if (r.code == 200) {
+    //     this.likeList = r.data;
+    //   }
+    // });
   },
 };
 </script>

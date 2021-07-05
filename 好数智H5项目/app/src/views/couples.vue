@@ -220,7 +220,9 @@
           <h5 v-html="item[0].number_tag"></h5>
           <div class="commission">
             <p>{{ item[0].location }}</p>
-            <span v-show="commissionShow">佣金￥{{ item[0].returned_commission }}</span>
+            <span v-show="commissionShow"
+              >佣金￥{{ item[0].returned_commission }}</span
+            >
           </div>
           <div class="contains">
             <p>含通话费{{ item[0].contain_charge }}</p>
@@ -232,7 +234,9 @@
           <h5 v-html="item[1].number_tag"></h5>
           <div class="commission">
             <p>{{ item[1].location }}</p>
-            <span v-show="commissionShow">佣金￥{{ item[1].returned_commission }}</span>
+            <span v-show="commissionShow"
+              >佣金￥{{ item[1].returned_commission }}</span
+            >
           </div>
           <div class="contains">
             <p>含通话费{{ item[1].contain_charge }}</p>
@@ -532,6 +536,9 @@ export default {
     });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
       this.chinese = val.data;
+      this.chinese.push({
+        operators_name: "不限",
+      });
     });
   },
   watch: {
@@ -548,6 +555,9 @@ export default {
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 .botttomjz {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   line-height: 40 / @vw;
   text-align: center;
@@ -599,6 +609,8 @@ body {
 }
 .Mobile_phone .start_pinoes {
   position: relative;
+  min-height: 320/@vw;
+  padding-bottom: 40/@vw;
 }
 .Mobile_phone .reds .moveing {
   display: flex;
@@ -741,7 +753,8 @@ body {
   height: 33 / @vw;
   background-color: #fff;
   margin-top: 20 / @vw;
-  border: 1 / @vw solid #e5e5e5;
+  border-top: 1 / @vw solid #e5e5e5;
+  border-bottom: 1 / @vw solid #e5e5e5;
 }
 .Mobile_phone .select_change ul {
   width: 100%;
@@ -884,7 +897,7 @@ body {
 .Mobile_phone .opeateing {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  // background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
   top: -10 / @vw;
@@ -893,7 +906,7 @@ body {
 }
 .Mobile_phone .opeateing ul {
   width: 100%;
-  height: 88 / @vw;
+  height: 133 / @vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;

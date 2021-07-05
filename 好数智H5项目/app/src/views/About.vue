@@ -100,15 +100,15 @@ export default {
             this.arrs = r.data;
             this.arrTao = r.data;
           } else {
-            let jlf=true;
+            let jlf = true;
             r.data.forEach((item) => {
               if (item.name == "套餐") {
-                jlf=false;
+                jlf = false;
                 this.arrTao = r.data[1].child;
               }
             });
             if (jlf) {
-                this.arrTao = [];
+              this.arrTao = [];
             }
             this.arrs = r.data[0].child;
           }
@@ -274,6 +274,9 @@ body {
   font-size: 10 / @vw;
   margin-left: 4%;
   box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
 
