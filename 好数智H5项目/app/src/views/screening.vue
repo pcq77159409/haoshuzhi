@@ -2,7 +2,7 @@
   <div class="Mobile_phone" ref="bugun" @scroll="scrollBox($event)">
     <div class="bb">
       <!-- 头部导航 开始-->
-      <div class="reds">
+      <div class="reds" id="scroll">
         <div class="moveing">
           <img src="../assets/left.png" alt="" @click="onClickGo" />
           <h3>{{ title }}</h3>
@@ -122,7 +122,7 @@
       <!-- 搜索号码 结束-->
 
       <!-- 下拉选择 开始-->
-      <div class="select_change">
+      <div class="select_change" ref="aa">
         <ul>
           <li @click="onClickShow(0)">
             <p @click="onClickDn" ref="gsd">归属地</p>
@@ -385,12 +385,17 @@
       </div>
     </div>
     <!-- 搜索筛选 结束-->
+
+    <!-- 回到顶部 开始-->
+    <div class="top" v-show="topFlag" @click="onClickBackTop">▲</div>
+    <!-- 回到顶部 结束-->
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      topFlag: false,
       commissionShow: false,
       priceShow: true,
       numbers: 1,
@@ -740,6 +745,19 @@ export default {
     };
   },
   methods: {
+    // 回到顶部
+    onClickBackTop: function () {
+      document.querySelector("#scroll").scrollIntoView(true);
+    },
+    handleScrollx(e) {
+      this.scrollTop = e.target.scrollTop; // 滚动条偏移量
+      var midHeight = this.$refs.aa.offsetTop;
+      if (this.scrollTop > midHeight) {
+        this.topFlag = true;
+      } else {
+        this.topFlag = false;
+      }
+    },
     scrollBox(e) {
       // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
@@ -1159,6 +1177,7 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener("scroll", this.handleScrollx, true);
     if (localStorage.getItem("priceShow")) {
       if (localStorage.getItem("priceShow") == "true") {
         this.priceShow = true;
@@ -1281,6 +1300,18 @@ export default {
 }
 a {
   text-decoration: none;
+}
+.top {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 40 / @vw;
+  height: 40 / @vw;
+  background-color: #fe5858;
+  color: #fff;
+  font-size: 12 / @vw;
+  text-align: center;
+  line-height: 40 / @vw;
 }
 .black {
   position: absolute;
