@@ -573,7 +573,7 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
-  top: 0;
+  top: 0/@vw;
   z-index: 99;
 }
 .current {
@@ -750,7 +750,7 @@ body {
 }
 .Mobile_phone .select_change {
   width: 100%;
-  height: 33 / @vw;
+  height: 44 / @vw;
   background-color: #fff;
   margin-top: 20 / @vw;
   border-top: 1 / @vw solid #e5e5e5;
@@ -761,7 +761,7 @@ body {
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  line-height: 33 / @vw;
+  line-height: 44 / @vw;
 }
 .Mobile_phone .select_change ul li {
   display: flex;
@@ -846,13 +846,21 @@ body {
   font-weight: bold;
 }
 
-.Mobile_phone .Belonging,
+.Mobile_phone .Belonging{
+    width: 100%;
+  height: 376 / @vw;
+  position: absolute;
+  left: 0;
+  top: 0 / @vw;
+  display: flex;
+  z-index: 99;
+}
 .Mobile_phone .regular {
   width: 100%;
   height: 376 / @vw;
   position: absolute;
   left: 0;
-  top: -10 / @vw;
+  top: 0 / @vw;
   display: flex;
   z-index: 99;
 }
@@ -900,7 +908,7 @@ body {
   // background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
-  top: -10 / @vw;
+  top: 0;
   display: flex;
   z-index: 99;
 }

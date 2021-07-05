@@ -50,8 +50,8 @@
     <div class="box">
       <ul>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          预存话费<span style="margin-left: 8vw"
-            >￥{{ detailsList.contain_charge }}</span
+          最低消费<span style="margin-left: 8vw"
+            >￥{{ detailsList.min_charge }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
@@ -994,10 +994,10 @@ li {
 .endcsname.endcsname_sh img:nth-of-type(1) {
   width: 20 / @vw;
   height: 29 / @vw;
-  margin: 20 / @vw 15 / @vw 0 20 / @vw;
+  margin: 0 15 / @vw 0 20 / @vw;
 }
 .endcsname.endcsname_sh img:nth-of-type(2) {
-  margin: 25 / @vw 15 / @vw 0 20 / @vw;
+  margin: 0 15 / @vw 0 20 / @vw;
 }
 .endcsname.endcsname_sh p {
   flex: 1;

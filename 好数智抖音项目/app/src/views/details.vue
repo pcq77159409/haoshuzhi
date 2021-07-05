@@ -50,8 +50,8 @@
     <div class="box">
       <ul>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          预存话费<span style="margin-left: 8vw"
-            >￥{{ detailsList.contain_charge }}</span
+          最低消费<span style="margin-left: 8vw"
+            >￥{{ detailsList.min_charge }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
