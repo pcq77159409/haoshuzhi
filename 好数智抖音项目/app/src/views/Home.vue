@@ -180,7 +180,7 @@
           <img src="../assets/filter.png" alt="" />
         </li>
       </ul>
-         <!-- 归属地 开始-->
+      <!-- 归属地 开始-->
       <div class="black" v-show="flag">
         <div class="Belonging">
           <ul class="pro">
@@ -216,7 +216,7 @@
               v-for="(item, index) in rule"
               :key="index"
               :class="{ currents: regList == index }"
-              @click="onclickRegList(index, item.id,item.name)"
+              @click="onclickRegList(index, item.id, item.name)"
             >
               <img src="../assets/right.png" alt="" v-show="regList == index" />
               <p>{{ item.name }}</p>
@@ -227,7 +227,7 @@
       <!-- 规律 结束-->
     </div>
     <!-- 下拉选择 结束-->
-  
+
     <!--手机号 开始-->
     <div class="class_name">
       <!--暂无搜索内容 开始-->
@@ -424,8 +424,8 @@ export default {
       chinese: [],
       rule: [
         {
-          id:'',
-          name:'不限'
+          id: "",
+          name: "不限",
         },
         {
           id: 37,
@@ -684,6 +684,10 @@ export default {
       ],
       arrList: [
         {
+          name: "不限",
+          num: "",
+        },
+        {
           name: "不含0",
           num: "0",
         },
@@ -746,9 +750,9 @@ export default {
       cont: false,
       one: false,
       two: false,
-      three: [],
+      three: [''],
       nums: "",
-      opList: -1,
+      opList: '不限',
       regList: -1,
       typed: 1,
       parameter: {},
@@ -1039,10 +1043,17 @@ export default {
       this.two = index;
     },
     onClickThree(index) {
-      if (this.three.includes(index)) {
-        this.three = this.three.filter((val) => val != index);
+      if (index != "") {
+        if (this.three.includes('')) {
+          this.three.splice(0,1);
+        }
+        if (this.three.includes(index)) {
+          this.three = this.three.filter((val) => val != index);
+        } else {
+          this.three.push(index);
+        }
       } else {
-        this.three.push(index);
+        this.three = [""];
       }
     },
     onClickReset() {
@@ -1060,14 +1071,14 @@ export default {
     onSearch() {
       this.parameter = {};
       this.parameter.type = 1;
-      this.parameter.from = '上海';
+      this.parameter.from = "上海";
       this.parameter.search = this.searchInput;
       this.onclickQuery();
     },
     onSearchs() {
       this.parameter = {};
       this.parameter.type = 0;
-      this.parameter.from = '上海';
+      this.parameter.from = "上海";
       this.parameter.search = this.searchInputs;
       this.onclickQuery();
     },
@@ -1086,8 +1097,10 @@ export default {
         id = 2;
       } else if (index == "中国电信") {
         id = 3;
-      } else {
+      } else if (index == "虚拟运营商") {
         id = 4;
+      } else {
+        id = "";
       }
       this.cut = false;
       this.opList = index;
@@ -1095,7 +1108,7 @@ export default {
       this.parameter.operator_id = id;
       this.onclickQuery();
     },
-    onclickRegList(index, id,name) {
+    onclickRegList(index, id, name) {
       this.parameter = {};
       this.regList = index;
       this.$refs.m.style = "overflow:auto";
@@ -1234,6 +1247,9 @@ export default {
       });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
       this.chinese = val.data;
+      this.chinese.unshift({
+        operators_name: "不限",
+      });
     });
     this.$axios.get("/api/low_consumption/index").then((r) => {
       r.data.forEach((val) => {
@@ -1980,7 +1996,7 @@ a {
 //   margin-right: 142/@vw;
 // }
 .Mobile_phone .Montmorillonite .search_filter .none ul li:last-child {
-  margin-right: 214 / @vw;
+  margin-right: 144 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure {
   width: 100%;
@@ -2025,7 +2041,7 @@ a {
   margin-top: 17 / @vw;
 }
 .Montmorillonite .search_filter .yuny {
-  width: 213 / @vw;
+  // width: 213 / @vw;
   height: 91 / @vw;
   margin-left: 22 / @vw;
 }
@@ -2052,5 +2068,8 @@ a {
   line-height: 25 / @vw;
   border-radius: 4 / @vw;
   margin-bottom: 15 / @vw;
+}
+.Montmorillonite .search_filter .yuny ul li:last-of-type{
+  margin-right: 105/@vw;
 }
 </style>
