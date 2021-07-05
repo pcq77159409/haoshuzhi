@@ -44,11 +44,6 @@
     </div>
     <div class="box">
       <ul>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          最低消费<span style="margin-left: 8vw"
-            >￥{{ copules[0][0].min_charge }}</span
-          >
-        </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           话费(含)<span style="margin-left: 9.3333vw; color: #666666"
             >￥{{ copules[0][0].contain_charge }}</span
@@ -59,16 +54,23 @@
             >￥{{ copules[0][0].sale_price }}</span
           >
         </li>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          登记方式<span style="margin-left: 8vw; color: #666666"
-            >线上实名制办理</span
+        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
+          最低消费<span style="margin-left: 8vw"
+            >￥{{ copules[0][0].min_charge }}</span
           >
         </li>
+
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
             >{{ copules[0][0].contract }}元/月</span
           >
         </li>
+        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
+          登记方式<span style="margin-left: 8vw; color: #666666"
+            >线上实名制办理</span
+          >
+        </li>
+
         <li style="color: #999999">
           温馨提示<span style="margin-left: 8vw; color: #666666"
             >收到号码后请尽快修改号码</span
@@ -112,13 +114,8 @@
     </div>
     <div class="box">
       <ul>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          最低消费<span style="margin-left: 8vw"
-            >￥{{ copules[1][0].min_charge }}</span
-          >
-        </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          花费(含)<span style="margin-left: 9.3333vw; color: #666666"
+          话费(含)<span style="margin-left: 9.3333vw; color: #666666"
             >￥{{ copules[1][0].contain_charge }}</span
           >
         </li>
@@ -127,9 +124,9 @@
             >￥{{ copules[1][0].sale_price }}</span
           >
         </li>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          登记方式<span style="margin-left: 8vw; color: #666666"
-            >线上实名制办理</span
+        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
+          最低消费<span style="margin-left: 8vw"
+            >￥{{ copules[1][0].min_charge }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
@@ -137,6 +134,13 @@
             >{{ copules[1][0].contract }}元/月</span
           >
         </li>
+
+        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
+          登记方式<span style="margin-left: 8vw; color: #666666"
+            >线上实名制办理</span
+          >
+        </li>
+
         <li style="color: #999999">
           温馨提示<span style="margin-left: 8vw; color: #666666"
             >收到号码后请尽快修改号码</span
@@ -923,7 +927,7 @@ li {
 .bottom .tan {
   display: flex;
   align-items: center;
-  width: 166/@vw;
+  width: 166 / @vw;
   height: 100%;
 }
 .black {

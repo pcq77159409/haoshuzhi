@@ -49,11 +49,6 @@
     </div>
     <div class="box">
       <ul>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          最低消费<span style="margin-left: 8vw"
-            >￥{{ detailsList.min_charge }}</span
-          >
-        </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           话费(含)<span style="margin-left: 9.333vw; color: #666666"
             >￥{{ detailsList.contain_charge }}</span
@@ -64,16 +59,22 @@
             >￥{{ detailsList.sale_price }}</span
           >
         </li>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          登记方式<span style="margin-left: 8vw; color: #666666">{{
-            detailsList.handle_type | handle_types
-          }}</span>
+        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
+          最低消费<span style="margin-left: 8vw"
+            >￥{{ detailsList.min_charge }}</span
+          >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
             >{{ detailsList.contract }}/年</span
           >
         </li>
+        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
+          登记方式<span style="margin-left: 8vw; color: #666666">{{
+            detailsList.handle_type | handle_types
+          }}</span>
+        </li>
+
         <li style="color: #999999">
           温馨提示<span style="margin-left: 8vw; color: #666666"
             >收到号码后请尽快修改密码</span
@@ -612,7 +613,7 @@ li {
 }
 .liji {
   width: 100%;
-   height: 100vh;
+  height: 100vh;
   padding: 65 / @vw 0 100 / @vw;
   background-color: #f8f8f8;
   overflow: auto;
