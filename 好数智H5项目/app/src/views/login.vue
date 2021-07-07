@@ -52,7 +52,6 @@ export default {
   methods: {
     onClickJump() {
       this.$axios.get("/api/user/getcode?mobile=" + this.mobile).then((val) => {
-        console.log(val);
         if (val.code == 200) {
           this.$refs.yan.innerText = this.countdown;
           if (!this.timer) {
@@ -83,8 +82,6 @@ export default {
           verify: this.code,
         })
         .then((val) => {
-          console.log(val);
-          console.log(this.mobile);
           if (val.code == 200) {
             localStorage.setItem("token", val.data.token);
             localStorage.setItem("user-id", val.data.id);

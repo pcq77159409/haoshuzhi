@@ -385,13 +385,11 @@ export default {
       this.$router.go(-1);
     },
     onClickBack(id) {
-      console.log(id);
       if (this.back == false) {
         this.$get("/api/order/packageDetail", { id: id }).then((r) => {
           if (r.code == 200) {
             this.packagDetail = r.data;
             this.$router.push("/details");
-            console.log(r.data);
           } else if (r.code == 700) {
             this.$router.push("/login");
           } else {
@@ -407,12 +405,10 @@ export default {
     onclickTaocanZX(id, name) {
       this.taocanXZ = id;
       this.taocan = name;
-      console.log(id);
       //获取套餐详情
       this.$get("/api/order/packageDetail", { id: id }).then((r) => {
         if (r.code == 200) {
           this.packagDetail = r.data;
-          console.log(r.data);
         } else if (r.code == 700) {
           this.$router.push("/login");
         } else {
@@ -434,7 +430,6 @@ export default {
         },
       ];
       this.$post("/api/order/create", obj).then((val) => {
-        console.log(val);
         this.order_id = val.data.id;
         if (this.shdzShow) {
           this.$router.push({
@@ -455,13 +450,11 @@ export default {
       this.onCreateTheOrders();
     },
     onclickCollection() {
-      console.log(this.detailsList.id);
       //收藏
       this.$get("/api/number/collectnumber", {
         user_id: localStorage.getItem("user-id"),
         number_id: this.detailsList.id,
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           alert("收藏成功");
         } else {
@@ -491,7 +484,6 @@ export default {
     }
     // 获取手机号信息
     this.$get("/api/number/getNumberInfo", this.$route.query).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.detailsList = r.data[0][0];
         this.numberpackage = this.detailsList.numberpackage;
@@ -505,11 +497,9 @@ export default {
               operator: r.data[0][0].operator,
               location: r.data[0][0].location,
             }).then((val) => {
-              console.log(val);
               this.taocan = val.data.data[0].package_name;
               this.taocanXZ = val.data.data[0].id;
               this.numberpackage = val.data.data;
-              console.log(this.taocan);
             });
           }
         }
@@ -568,8 +558,6 @@ export default {
     },
   },
   beforeRouteUpdate(to, from, next) {
-    // console.log(to);
-    // console.log(from);
     to;
     from;
     next();

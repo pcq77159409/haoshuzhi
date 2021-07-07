@@ -707,7 +707,6 @@ export default {
   },
   methods: {
     scrollBox(e) {
-      // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
@@ -716,12 +715,10 @@ export default {
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
-          console.log(this.numbers1);
           this.pList.page = this.numbers;
           this.$axios
             .post("/api/home_page/getNumList", this.$route.query)
             .then((val) => {
-              console.log(val);
               val.data.data.forEach((i) => {
                 this.list.push(i);
               });
@@ -914,15 +911,12 @@ export default {
       // }
       this.searchFilter.no_include = "";
       this.three.forEach((val, index) => {
-        console.log(val);
         if (this.three.length - 1 == index) {
           this.searchFilter.no_include += val;
         } else {
           this.searchFilter.no_include += val + ",";
         }
       });
-
-      console.log(this.searchFilter.no_include);
 
       this.searchFilter.type = 1;
       this.parameter = this.searchFilter;
@@ -1091,19 +1085,14 @@ export default {
       //   this.parameter.from = "上海";
       // }
       if (flag) {
-        console.log(this.parameter);
         this.$router.push({
           path: "/screen",
           query: this.parameter,
         });
-        console.log(this.parameter);
-        console.log(this.$route.query);
-
         this.pList = this.$route.query;
         this.$axios
           .post("/api/home_page/getNumList", this.$route.query)
           .then((val) => {
-            console.log(val);
             if (val.code == 200) {
               this.list = val.data.data;
               this.sumsid = val.data.last_page;
@@ -1144,7 +1133,6 @@ export default {
     this.$axios
       .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
-        console.log(val);
         if (val.code == 200) {
           this.list = val.data.data;
           this.sumsid = val.data.last_page;
@@ -1174,7 +1162,6 @@ export default {
         }
       });
     });
-    // console.log(this.$route.query);
     if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
       this.title = "移动号码";
     } else if (
@@ -1203,7 +1190,6 @@ export default {
   },
   watch: {
     opList(val) {
-      console.log(val);
       if (val == "中国移动") {
         this.title = "移动号码";
       } else if (val == "中国联通") {

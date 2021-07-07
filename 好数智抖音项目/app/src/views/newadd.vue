@@ -118,12 +118,10 @@ export default {
   },
   watch: {
     prov: function () {
-      console.log(123);
       this.updateCity();
       this.updateDistrict();
     },
     city: function () {
-      console.log(456);
       this.updateDistrict();
       if (this.$route.query.id) {
         this.index++;
@@ -144,7 +142,6 @@ export default {
           }
         }
       }
-      console.log(this.numid);
       if (this.numid != 0) {
         this.city = this.cityArr[1].name;
       } else {
@@ -175,11 +172,7 @@ export default {
     },
     //===========================================
     onClickCreateAddress() {
-      // console.log(this.prov);
-      // console.log(this.city);
-      // console.log(this.district);
 
-      console.log(this.$route.query.id);
       if (this.$route.query.id) {
         //编辑
         this.$post("/api/address/edit", {
@@ -193,7 +186,6 @@ export default {
           address: this.detailed,
           is_default: this.value,
         }).then((val) => {
-          console.log(val);
           this.$router.go(-1);
           if (val.code != 200) {
             alert(val.msg);
@@ -211,7 +203,6 @@ export default {
           address: this.detailed,
           is_default: this.value,
         }).then((val) => {
-          console.log(val);
           this.$router.go(-1);
           if (val.code != 200) {
             alert(val.msg);
@@ -226,7 +217,6 @@ export default {
         user_id: localStorage.getItem("user-id"),
         id: this.$route.query.id,
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           this.username = r.data.name;
           this.way = r.data.mobile;
@@ -234,7 +224,6 @@ export default {
           this.prov = r.data.province;
           this.cnum = r.data.city;
           this.dnum = r.data.area;
-          console.log(this.dis);
           if (r.data.is_default == 1) {
             this.value = true;
           } else {
@@ -248,7 +237,6 @@ export default {
     if (!this.$route.query.id) {
       this.numid = 1;
     }
-    console.log(this.numid);
   },
 };
 </script>

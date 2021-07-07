@@ -60,9 +60,7 @@ export default {
         user_id: localStorage.getItem("user-id"),
         pledgetype: number,
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
-          console.log(r);
           if (number == 3) {
             this.$refs.box.innerHTML = r.data;
             document.querySelector('.box input[type="submit"]').click();
@@ -128,7 +126,6 @@ export default {
       this.zfbShow = false;
     }
     this.$post("/api/order/pledgeinfo").then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.pledge = r.data.pledge;
       }

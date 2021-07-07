@@ -20,7 +20,8 @@ import axios from 'axios';
 export default {
     mounted(){
         axios.get('/app/api/home_page/getNav').then(res =>{
-            console.log(res);
+            // console.log(res);
+            res;
         })
     }
 }

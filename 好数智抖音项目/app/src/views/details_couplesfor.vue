@@ -517,7 +517,6 @@ export default {
       if (this.back == false) {
         this.$get("/api/number/getNumberInfo", this.$route.query).then(
           (val) => {
-            console.log(val);
             this.copules = val.data;
             this.price =
               parseInt(this.copules[0][0].sale_price) +
@@ -546,7 +545,6 @@ export default {
           this.tjb = this.copules[1][0].numberpackage[0].stroepackage;
           this.pcq = r.data;
           this.tjb = r.data;
-          console.log(this.pcq);
         } else if (r.code == 700) {
           this.$router.push("/login");
         } else {
@@ -574,7 +572,6 @@ export default {
       ];
       this.$post("/api/order/create", obj).then((val) => {
         this.order_id = val.data.id;
-        console.log(val.data.id);
         let order = this.$route.query;
         order.order_id = this.order_id;
         order.goods_id1 = obj.buyer[0].goods_id;
@@ -601,7 +598,6 @@ export default {
           user_id: localStorage.getItem("user-id"),
           number_id: val[0].id,
         }).then((r) => {
-          console.log(r);
           if (r.code == 200) {
             alert("收藏成功");
           } else {
@@ -620,7 +616,6 @@ export default {
   },
   created() {
     this.$get("/api/number/getNumberInfo", this.$route.query).then((val) => {
-      console.log(val);
       this.copules = val.data;
       this.price =
         parseInt(this.copules[0][0].sale_price) +

@@ -55,7 +55,6 @@ Vue.prototype.$get = function(url, val) {
                     uuid: localStorage.getItem('uuid')
                 }
             }).then((r) => {
-                console.log(r);
                 if (r.code == 200) {
                     localStorage.setItem('user-id', r.data.id);
                     localStorage.setItem('token', r.data.token);
@@ -85,7 +84,6 @@ Vue.prototype.$post = function(url, val) {
                     uuid: localStorage.getItem('uuid')
                 }
             }).then((r) => {
-                console.log(r);
                 if (r.code == 200) {
                     localStorage.setItem('user-id', r.data.id);
                     localStorage.setItem('token', r.data.token);
@@ -137,9 +135,7 @@ if (ua.match(/MicroMessenger/i) == "micromessenger") {
             // alert(window.location.href);
         } else {
             // getOpenId(code) //把code传给后台获取用户信息
-            console.log(3333, code);
             axios.get('/api/home_page/getOpenid?code=' + code).then((r) => {
-                console.log(222222222222222, r);
                 if (r.data.openid && r.data.openid) {
                     localStorage.setItem('uuid', r.data.openid);
                     axios.post('api/user/uuidlogin', {}, {
@@ -149,7 +145,6 @@ if (ua.match(/MicroMessenger/i) == "micromessenger") {
                             uuid: r.data.openid
                         }
                     }).then((r) => {
-                        console.log(444, r);
                         if (r.code == 200) {
                             if (r.code == 200) {
                                 localStorage.setItem('user-id', r.data.id);

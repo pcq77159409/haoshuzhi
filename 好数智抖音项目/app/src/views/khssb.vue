@@ -43,7 +43,6 @@ export default {
   created(){
     this.$get('/api/order/packageDetail',this.$route.query).then(val=>{
       this.taco=val.data
-      console.log(this.taco);
     })
   }
 };

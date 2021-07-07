@@ -318,7 +318,6 @@ export default {
         id: id,
         status: 2,
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           location.reload();
         }
@@ -337,8 +336,8 @@ export default {
       }
     },
     handleClick(tab, event) {
-      console.log(tab, event);
-      console.log(this.activenamed);
+      tab;
+      event;
       this.$router.push({ path: "order", query: { name: this.activenamed } });
       if (this.activenamed == "first") {
         this.getlist(1);
@@ -400,7 +399,7 @@ export default {
             id: id,
             status: 1,
           }).then((r) => {
-            console.log(r);
+            r;
             location.reload();
           });
           // this.$router.go(-1); //时间到了返回上一个页面
@@ -415,10 +414,8 @@ export default {
         user_id: localStorage.getItem("user-id"),
         status: status,
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           this.getDataList = r.data.data;
-          console.log(status);
           if (status == 1 || status == undefined) {
             r.data.data.forEach((val, index) => {
               if (val.status == 1) {
@@ -474,19 +471,6 @@ export default {
       return str;
     },
   },
-  // beforeRouteUpdate(to, from, next) {
-  //   console.log(to);
-  //   console.log(from);
-  //   from;
-  //   next;
-  //   console.log(this.coco);
-  //   // if () {
-
-  //   // }
-  //   this.coco.forEach((val) => {
-  //     clearInterval(val.timer);
-  //   });
-  // },
   // 路由离开生命周期函数
   beforeRouteLeave(to, from, next) {
     to;

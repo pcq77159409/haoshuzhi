@@ -56,7 +56,6 @@ export default {
     onclickTo(val, index) {
       if (this.$route.fullPath != val) {
         this.hover = index;
-        console.log(this.hover);
         this.$router.push(val);
         this.src = require("../assets/lei1.png.png");
         // this.$refs.lei.style = "color:#666;";
@@ -70,7 +69,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.fullPath);
     if (this.$route.fullPath == "/commons/home/m") {
       this.hover = 1;
     } else if (this.$route.fullPath == "/commons/about") {

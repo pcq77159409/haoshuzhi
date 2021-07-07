@@ -94,7 +94,6 @@ export default {
     onClickTab(v, id) {
       this.flag = v;
       this.$get("/api/home_page/getChildCategory", { id: id }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           if (r.data.length == 0) {
             this.arrs = r.data;

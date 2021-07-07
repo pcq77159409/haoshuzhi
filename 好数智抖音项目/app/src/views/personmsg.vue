@@ -59,7 +59,6 @@ export default {
     geng(id) {
       var oFReader = new FileReader();
       var file = document.getElementById(id).files[0];
-      console.log(document.getElementById(id).files[0]);
       oFReader.readAsDataURL(file);
 
       oFReader.onloadend = (oFRevent) => {
@@ -76,7 +75,8 @@ export default {
             user_id: localStorage.getItem("user-id"),
             head_img: this.head_img,
           }).then((val) => {
-            console.log(val);
+            // console.log(val);
+            val
           });
         } else {
           alert("上传失败");
@@ -90,7 +90,6 @@ export default {
         sex: this.sex,
         birthday: this.birsday,
       }).then((val) => {
-        console.log(val);
         if (val.code == 200) {
           this.show = false;
           this.flag = true;
@@ -114,23 +113,7 @@ export default {
         this.img = require("../assets/圆角矩形 2@2x.png");
         this.sex = 2;
       }
-    },
-    // onSex(){
-    //   this.$post("/api/user/updateinfo", {
-    //     user_id: localStorage.getItem("user-id"),
-    //     sex: this.sex,
-    //   }).then((val) => {
-    //     console.log(val);
-    //   });
-    // },
-    // onbirsday(){
-    //    this.$post("/api/user/updateinfo", {
-    //     user_id: localStorage.getItem("user-id"),
-    //     birsday: this.birsday,
-    //   }).then((val) => {
-    //     console.log(val);
-    //   });
-    // }
+    }
   },
   mounted() {
     this.$get("/api/user/getinfo", {
@@ -149,7 +132,6 @@ export default {
           this.sex = "未知";
         }
       }
-      console.log(val.data.sex);
     });
   },
 };

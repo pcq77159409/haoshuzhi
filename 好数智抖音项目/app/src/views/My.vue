@@ -285,7 +285,6 @@ export default {
     this.$get("/api/user/getinfo", {
       user_id: localStorage.getItem("user-id"),
     }).then((val) => {
-      console.log(val);
       if (val.data.head_img != null) {
         this.src = val.data.head_img;
       }
@@ -310,7 +309,6 @@ export default {
       status: 1,
     }).then((r) => {
       if (r.code == 200) {
-        console.log(r);
         if (r.data.total == 0) {
           this.unapid = [];
           this.status1 = "";
@@ -318,8 +316,6 @@ export default {
           this.status1 = r.data.total;
           // let num = 0;
           this.unapid = r.data.data;
-          console.log(this.status1);
-          // console.log(this.unapid);
           // this.timer = setInterval(() => {
           //   num++;
           //   if (num >= r.data.data.length) {

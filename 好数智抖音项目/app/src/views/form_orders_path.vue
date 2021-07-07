@@ -201,7 +201,6 @@ export default {
   },
   mounted() {
     this.money = this.$route.query.money;
-    console.log(this.$store.state.createTheOrder);
   },
 };
 </script>

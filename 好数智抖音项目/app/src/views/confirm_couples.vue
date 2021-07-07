@@ -277,7 +277,6 @@ export default {
     this.$get("/api/address/getlist", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      // console.log(r);
       if (r.code == 200) {
         if (r.data.length != 0) {
           this.shdzShow = true;
@@ -300,7 +299,6 @@ export default {
       order_id: this.$route.query.order_id,
       user_id: localStorage.getItem('user-id'),
     }).then((val) => {
-      console.log(val);
       this.arrcoup = val.data;
       // this.price =
       //   parseInt(this.arrcoup[0][0].sale_price) +

@@ -235,12 +235,10 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.query.id);
     this.$get("/api/order/info", {
       user_id: localStorage.getItem("user-id"),
       order_id: this.$route.query.id,
     }).then((r) => {
-      console.log(r);
       this.dataInfo = r.data;
       this.orderdetail = r.data.orderdetail[0];
     });

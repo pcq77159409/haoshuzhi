@@ -54,7 +54,6 @@ export default {
     this.$get("/api/balance_log/balance", {
       user_id: localStorage.getItem("user-id"),
     }).then((val) => {
-      console.log(val);
       this.dataList = val.data;
     });
   },

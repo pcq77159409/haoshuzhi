@@ -69,7 +69,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.fullPath);
     if (this.$route.fullPath == "/commons/home/m") {
       this.hover = 1;
     } else if (this.$route.fullPath == "/commons/about") {

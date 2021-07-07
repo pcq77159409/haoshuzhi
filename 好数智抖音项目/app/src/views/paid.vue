@@ -255,7 +255,6 @@ export default {
         id: this.$route.query.id,
         status: 1,
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           this.$router.push("/cancel");
         }
@@ -267,7 +266,6 @@ export default {
       user_id: localStorage.getItem("user-id"),
       order_id: this.$route.query.id,
     }).then((r) => {
-      console.log(r);
       this.dataInfo = r.data;
       this.orderdetail = r.data.orderdetail[0];
     });

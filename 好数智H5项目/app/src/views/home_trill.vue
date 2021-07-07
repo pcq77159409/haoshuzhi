@@ -827,15 +827,12 @@ export default {
       // }
       this.searchFilter.no_include = "";
       this.three.forEach((val, index) => {
-        console.log(val);
         if (this.three.length - 1 == index) {
           this.searchFilter.no_include += val;
         } else {
           this.searchFilter.no_include += val + ",";
         }
       });
-
-      console.log(this.searchFilter.no_include);
 
       this.searchFilter.type = 1;
       this.parameter = this.searchFilter;
@@ -969,17 +966,13 @@ export default {
       }
 
       if (flag) {
-        console.log(this.parameter);
         this.$router.push({
           path: "/commons/home_trill/m",
           query: this.parameter,
         });
-        console.log(this.parameter);
-        console.log(this.$route.query);
         this.$axios
           .post("/api/home_page/getNumList", this.$route.query)
           .then((val) => {
-            console.log(val);
             this.list = val.data.data;
           });
       }
@@ -989,7 +982,6 @@ export default {
     this.$axios
       .post("/api/home_page/getNumList", this.$route.query)
       .then((val) => {
-        console.log(val);
         this.list = val.data.data;
       });
     this.$axios.get("api/home_page/getLocation").then((val) => {
@@ -1011,7 +1003,6 @@ export default {
         }
       });
     });
-    // console.log(this.$route.query);
     if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
       this.title = "移动号码";
     } else if (
@@ -1040,7 +1031,6 @@ export default {
   },
   watch: {
     opList(val) {
-      console.log(val);
       if (val == "中国移动") {
         this.title = "移动号码";
       } else if (val == "中国联通") {

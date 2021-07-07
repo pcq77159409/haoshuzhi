@@ -104,7 +104,6 @@ export default {
           },
         })
         .then((r) => {
-          console.log(r);
           if (r.code == 200) {
             localStorage.setItem("user-id", r.data.id);
             localStorage.setItem("token", r.data.token);

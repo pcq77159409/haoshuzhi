@@ -143,7 +143,6 @@ export default {
         cards: [{}],
       };
 
-      console.log(arr);
       arr.cards[0].card_back = this.card_back;
       arr.cards[0].card_front = this.card_front;
       arr.cards[0].card_face = this.card_face;
@@ -151,7 +150,6 @@ export default {
       arr.cards[0].cardnumber = this.userid;
       arr.cards[0].goods_id = this.$route.query.goods_id;
       this.$post("api/order/updateusercode", arr).then((val) => {
-        console.log(val);
         if (val.code == 200) {
           this.$router.push({path:'/confirm',query:this.$route.query});
         }
@@ -185,7 +183,6 @@ export default {
 
       this.$axios.post("/api/upload/upload", formData).then((r) => {
         if (r.error == 0) {
-          console.log(r);
           if (index == 1) {
             this.card_back = r.url; //身份证正面
           } else if (index == 2) {
@@ -201,7 +198,6 @@ export default {
   },
   mounted() {
     this.money = this.$route.query.money;
-    console.log(this.$store.state.createTheOrder);
   },
 };
 </script>

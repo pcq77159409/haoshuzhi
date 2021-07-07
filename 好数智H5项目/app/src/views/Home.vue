@@ -338,11 +338,9 @@ export default {
         params: { type: 6 },
       })
       .then((r) => {
-        console.log(r);
         this.likeList = r.data;
       });
     // this.$post("/api/home_page/cailike").then((r) => {
-    //   console.log(r);
     //   if (r.code == 200) {
     //     this.likeList = r.data;
     //   }

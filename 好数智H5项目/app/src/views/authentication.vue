@@ -87,7 +87,6 @@ export default {
 
       this.$axios.post("/api/upload/upload", formData).then((r) => {
         if (r.error == 0) {
-          console.log(r);
           if (index == 1) {
             this.card_back = r.url; //身份证正面
           } else if (index == 2) {
@@ -101,9 +100,6 @@ export default {
       });
     },
     onclickSubmit() {
-      console.log(this.card_front);
-      console.log(this.card_face);
-      console.log(this.card_back);
       if (
         this.card_front != "" &&
         this.card_face != "" &&
@@ -114,7 +110,7 @@ export default {
           sfz_img:
             this.card_back + "," + this.card_front + "," + this.card_face,
         }).then((r) => {
-          console.log(r);
+          r;
         });
       } else {
         alert("请将信息填写完整");
@@ -125,7 +121,6 @@ export default {
     this.$get("/api/user/getinfo", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
       if (r.data.sfz_img != "" || r.data.sfz_img.length != 0) {
         this.card_back = r.data.sfz_img[0];
         this.card_front = r.data.sfz_img[1];

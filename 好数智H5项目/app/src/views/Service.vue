@@ -71,7 +71,6 @@ export default {
   },
   methods: {
     scrollBox(e) {
-      // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
@@ -80,12 +79,10 @@ export default {
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
-          console.log(this.numbers1);
           // this.pList.page = this.numbers;
           this.$get("/api/number/collectlist", {
             user_id: localStorage.getItem("user-id"),
           }).then((val) => {
-            console.log(val);
             val.data.data.forEach((i) => {
               this.taocany.push(i);
             });
@@ -100,11 +97,9 @@ export default {
       }
     },
     swiperleft: function (index) {
-      console.log("左划");
       this.tranShow = index;
     },
     swiperright: function () {
-      console.log("右滑");
       this.tranShow = -1;
     },
     onclickDel(id) {
@@ -112,13 +107,11 @@ export default {
         number_ids: [id],
         user_id: localStorage.getItem("user-id"),
       }).then((r) => {
-        // console.log(r);
         if (r.code == 200) {
           this.tranShow = -1;
           this.$get("/api/number/collectlist", {
             user_id: localStorage.getItem("user-id"),
           }).then((r) => {
-            console.log(r);
             if (r.code == 200) {
               this.dataList = r.data;
               if (r.data.length == 0) {
@@ -140,7 +133,6 @@ export default {
     this.$get("/api/number/collectlist", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.dataList = r.data;
         if (r.data.length == 0) {

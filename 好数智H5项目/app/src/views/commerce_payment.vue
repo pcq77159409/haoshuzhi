@@ -77,9 +77,7 @@ export default {
         order_id: this.$route.query.order_id,
         paytype: number,
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
-          console.log(r);
           if (number == 3) {
             this.$refs.box.innerHTML = r.data;
             document.querySelector('.box input[type="submit"]').click();
@@ -194,7 +192,8 @@ export default {
           id:this.$route.query.order_id,
           status:1
         }).then(r=>{
-          console.log(r);
+          // console.log(r);
+          r;
         });
         this.$router.go(-1); //时间到了返回上一个页面
       }
@@ -207,7 +206,6 @@ export default {
       user_id: localStorage.getItem("user-id"),
       order_id: this.$route.query.order_id,
     }).then((r) => {
-      console.log(r);
       if (r.code == 200) {
         this.timer = setInterval(() => {
           showtime(r.data.created_at);
@@ -229,7 +227,6 @@ export default {
     this.$get("/api/balance_log/balance", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      // console.log(r);
       if (r.code == 200) {
         if (r.data.balance == null) {
           this.balance = 0;

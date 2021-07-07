@@ -282,14 +282,12 @@ export default {
       user_id: localStorage.getItem('user-id'),
       order_id: this.$route.query.order_id,
     }).then((r) => {
-      console.log(r.data);
       if (r.code == 200) {
         this.orderRetails = r.data;
         this.prepaid_charge = r.data.orderdetail[0].numberinfo.prepaid_charge;
         this.$get("/api/number/getNumberInfo", {
           "ids[]": r.data.orderdetail[0].numberinfo.id,
         }).then((r) => {
-          console.log(r);
           if (r.code == 200) {
             this.detailsList = r.data[0][0];
           } else {
@@ -305,7 +303,6 @@ export default {
     this.$get("/api/address/getlist", {
       user_id: localStorage.getItem("user-id"),
     }).then((r) => {
-      // console.log(r);
       if (r.code == 200) {
         if (r.data.length != 0) {
           this.shdzShow = true;

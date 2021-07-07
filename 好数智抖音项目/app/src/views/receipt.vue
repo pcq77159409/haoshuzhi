@@ -230,7 +230,6 @@ export default {
         order_id: id,
         user_id: localStorage.getItem('user-id'),
       }).then((r) => {
-        console.log(r);
         if (r.code == 200) {
           alert("申请成功,等待商家退款");
         } else {
@@ -243,7 +242,6 @@ export default {
       window.location.href = "https://m.kuaidi100.com/result.jsp?nu=" + id;
     },
     onclickQDSH(id) {
-      console.log(id);
       //完成订单
       this.$post("/api/order/orderfinish", {
         order_id: id,
@@ -262,7 +260,6 @@ export default {
       user_id:localStorage.getItem('user-id'),
       order_id: this.$route.query.id,
     }).then((r) => {
-      console.log(r);
       this.dataInfo = r.data;
       this.orderdetail = r.data.orderdetail[0];
     });

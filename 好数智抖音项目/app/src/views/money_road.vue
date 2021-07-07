@@ -82,7 +82,6 @@ export default {
       var code = document.getElementById("code"); //获取到code容器
       QRCode.toCanvas(canvas, xxx, (error) => {
         if (error) console.error(error);
-        console.log("success!");
       });
       var image = new Image(); //实例一个img
       image.src = canvas.toDataURL("image/png"); //转换成base64格式路径的png图片

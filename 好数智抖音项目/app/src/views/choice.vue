@@ -244,7 +244,6 @@ export default {
   },
   methods: {
     scrollBox(e) {
-      // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
@@ -253,7 +252,6 @@ export default {
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
-          console.log(this.numbers1);
           // this.pList.page = this.numbers;
           this.$axios
             .get("/api/package/getPackage", {
@@ -263,7 +261,6 @@ export default {
               page: this.page,
             })
             .then((val) => {
-              console.log(val);
               val.data.data.forEach((i) => {
                 this.taocany.push(i);
               });
@@ -354,8 +351,6 @@ export default {
       .then((val) => {
         this.taocany = val.data.data;
         this.id = this.taocany[0].id;
-        console.log(this.id);
-        console.log(val.data);
         this.sumsid = val.data.last_page;
         if (this.sumsid == 1) {
           this.$refs.bjz.innerText = "已经到底了";

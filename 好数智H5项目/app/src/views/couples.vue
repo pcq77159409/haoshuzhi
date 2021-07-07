@@ -311,22 +311,18 @@ export default {
   },
   methods: {
     scrollBox(e) {
-      // console.log(e.target.scrollTop);
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
-      console.log(this.numbers);
       if (e.target.scrollTop >= 500 * this.numbers) {
         // this.rember();
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
-          console.log(this.numbers1);
           this.pList.page = this.numbers;
           this.$axios
             .post("/api/home_page/loveNumber", this.$route.query)
             .then((val) => {
-              console.log(val);
               val.data.data.forEach((i) => {
                 this.love.push(i);
               });
@@ -400,7 +396,6 @@ export default {
       }
       this.ruleDui = val;
       this.active = null;
-      console.log(val);
       // this.require = false;
       this.parameter.type = val;
       this.onclickQuery();
@@ -437,7 +432,6 @@ export default {
           path: "/couples",
           query: this.parameter,
         });
-        console.log(this.$route.query);
         if (localStorage.getItem("from")) {
           this.$route.query.from = localStorage.getItem("from");
         } else {
@@ -514,7 +508,6 @@ export default {
     this.$axios
       .post("/api/home_page/loveNumber", this.$route.query)
       .then((val) => {
-        console.log(val);
         if (val.code == 200) {
           this.love = val.data.data;
           this.sumsid = val.data.last_page;

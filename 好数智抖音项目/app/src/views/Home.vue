@@ -1300,7 +1300,6 @@ export default {
       }
     },
     list(val){
-      console.log(val);
       if (val.length<=40) {
         this.numbers = 1;
         this.numbers1 = 1;
@@ -1310,16 +1309,13 @@ export default {
 
   // //在页面离开时记录滚动位置
   // beforeRouteLeave(to, from, next) {
-  //   console.log(this.scrollTop);
   //   this.top = this.$refs.m.scrollTop;
   //   next();
   // },
   // //进入该页面时，用之前保存的滚动位置赋值
   // beforeRouteEnter(to, from, next) {
   //   next((vm) => {
-  //     console.log(vm.$refs.m);
   //     // vm.$refs.m.scrollTop = vm.top;
-  //     console.log(vm.$refs);
   //   });
   // },
 };
