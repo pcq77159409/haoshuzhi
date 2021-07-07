@@ -1299,6 +1299,13 @@ export default {
         this.title = "虚拟号码";
       }
     },
+    list(val){
+      console.log(val);
+      if (val.length<=40) {
+        this.numbers = 1;
+        this.numbers1 = 1;
+      }
+    }
   },
 
   // //在页面离开时记录滚动位置

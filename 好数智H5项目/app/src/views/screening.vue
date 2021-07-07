@@ -1287,6 +1287,13 @@ export default {
         this.$refs.bugun.style = "overflow:hidden";
       }
     },
+    list(val) {
+      console.log(val);
+      if (val.length <= 40) {
+        this.numbers = 1;
+        this.numbers1 = 1;
+      }
+    },
   },
 };
 </script>
