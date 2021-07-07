@@ -46,7 +46,7 @@
     <div class="head">
       <div class="locations" @click="$router.push('/citys')">
         <img src="../assets/123.png" alt="" />
-        <p>上海</p>
+        <p >{{weiz}}</p>
       </div>
       <!-- <p class="haoshu">好数智</p> -->
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
@@ -251,6 +251,7 @@ export default {
       commissionShow: false,
       priceShow: true,
       likeList: [],
+      weiz:''
     };
   },
   methods: {
@@ -311,14 +312,21 @@ export default {
       this.footprintData = JSON.parse(localStorage.getItem("footprintData"));
     }
     this.$axios
-      .post("/api/home_page/getNumList", { recommend: 2, from: "上海" })
+      .post("/api/home_page/getNumList", {
+        recommend: 2,
+        from: localStorage.getItem("from"),
+      })
       .then((val) => {
         if (val.code == 200) {
           this.dataList = val.data.data;
         }
       });
+    this.weiz = localStorage.getItem("city");
     this.$axios
-      .post("/api/home_page/getNumList", { recommend: 1, from: "上海" })
+      .post("/api/home_page/getNumList", {
+        recommend: 1,
+        from: localStorage.getItem("from"),
+      })
       .then((val) => {
         if (val.code == 200) {
           this.dataTj = val.data.data;
@@ -532,9 +540,9 @@ a {
 }
 .head .locations p {
   position: absolute;
-  left: 30 / @vw*1.3;
+  left: 26 / @vw*1.3;
   top: 21 / @vw*1.3;
-  font-size: 16 / @vw;
+  font-size: 14 / @vw;
 }
 .heads {
   width: 340 / @vw;

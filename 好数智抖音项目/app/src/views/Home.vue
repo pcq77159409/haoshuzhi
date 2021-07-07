@@ -750,9 +750,9 @@ export default {
       cont: false,
       one: false,
       two: false,
-      three: [''],
+      three: [""],
       nums: "",
-      opList: '不限',
+      opList: "不限",
       regList: -1,
       typed: 1,
       parameter: {},
@@ -1044,8 +1044,8 @@ export default {
     },
     onClickThree(index) {
       if (index != "") {
-        if (this.three.includes('')) {
-          this.three.splice(0,1);
+        if (this.three.includes("")) {
+          this.three.splice(0, 1);
         }
         if (this.three.includes(index)) {
           this.three = this.three.filter((val) => val != index);
@@ -1232,19 +1232,20 @@ export default {
       }
       this.cityList = val.data;
     });
-    this.$axios
-      .post("/api/home_page/getNumList", this.$route.query)
-      .then((val) => {
-        if (val.code == 200) {
-          this.list = val.data.data;
-          this.sumsid = val.data.last_page;
-          if (this.sumsid == 1) {
-            this.$refs.bjz.innerText = "已经到底了";
-          }
-        } else {
-          alert(val.msg);
+    let data = this.$route.query;
+    data.from = localStorage.getItem("city");
+    this.$refs.gsd.innerText = localStorage.getItem("city");
+    this.$axios.post("/api/home_page/getNumList", data).then((val) => {
+      if (val.code == 200) {
+        this.list = val.data.data;
+        this.sumsid = val.data.last_page;
+        if (this.sumsid == 1) {
+          this.$refs.bjz.innerText = "已经到底了";
         }
-      });
+      } else {
+        alert(val.msg);
+      }
+    });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
       this.chinese = val.data;
       this.chinese.unshift({
@@ -2069,7 +2070,7 @@ a {
   border-radius: 4 / @vw;
   margin-bottom: 15 / @vw;
 }
-.Montmorillonite .search_filter .yuny ul li:last-of-type{
-  margin-right: 105/@vw;
+.Montmorillonite .search_filter .yuny ul li:last-of-type {
+  margin-right: 105 / @vw;
 }
 </style>

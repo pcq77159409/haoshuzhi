@@ -134,13 +134,11 @@
             >{{ copules[1][0].contract }}元/月</span
           >
         </li>
-
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           登记方式<span style="margin-left: 8vw; color: #666666"
             >线上实名制办理</span
           >
         </li>
-
         <li style="color: #999999">
           温馨提示<span style="margin-left: 8vw; color: #666666"
             >收到号码后请尽快修改号码</span

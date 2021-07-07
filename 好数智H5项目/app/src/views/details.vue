@@ -33,17 +33,14 @@
     <div class="phone">
       <p>
         号码套餐
-        <em
+        <!-- <em
           v-if="detailsList.numberpackage.length != 0"
           style="width: 10px; font-style: normal"
-        >
-          <span v-if="detailsList.numberpackage[0].storepackage != null">
-            <span
-              @click="onClickBack(detailsList.numberpackage[0].storepackage.id)"
-              >{{ taocan }}</span
-            >
-          </span>
-        </em>
+        > -->
+        <span>
+          <span @click="onClickBack(taocanXZ)">{{ taocan }}</span>
+        </span>
+        <!-- </em> -->
       </p>
       <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
@@ -141,25 +138,30 @@
         </div>
         <div class="traffic">
           <h5>套餐</h5>
-          <div v-if="detailsList.numberpackage.length != 0">
-            <ul v-if="detailsList.numberpackage[0].storepackage != null">
+          <div>
+            <ul v-if="detailsList.numberpackage[0].package_id == 0">
               <li
-                v-for="(item, index) in detailsList.numberpackage"
+                v-for="(item, index) in numberpackage"
                 :key="index"
-                :class="{ current: taocanXZ == item.storepackage.id }"
-                @click="
-                  onclickTaocanZX(
-                    item.storepackage.id,
-                    item.storepackage.package_name
-                  )
-                "
+                :class="{ current: taocanXZ == item.id }"
+                @click="onclickTaocanZX(item.id, item.package_name)"
               >
-                {{ item.storepackage.package_name }}
+                {{ item.package_name }}
               </li>
               <!-- <li>19元移动花卡宝藏版</li>
             <li>19元移动花卡宝藏版</li>
             <li>18元小魔卡</li>
             <li>58元流量+语音畅享套餐</li> -->
+            </ul>
+            <ul v-if="detailsList.numberpackage[0].package_id != '0'">
+              <li
+                v-for="(item, index) in detailsList.numberpackage"
+                :key="index"
+                :class="{ current: taocanXZ == item.storepackage.id }"
+                @click="onclickTaocanZX(item.storepackage.id, item.storepackage.package_name)"
+              >
+                {{ item.storepackage.package_name }}
+              </li>
             </ul>
           </div>
         </div>
@@ -215,6 +217,7 @@
 export default {
   data() {
     return {
+      numberpackage: [],
       value: true,
       back: false,
       taocan: "",
@@ -491,11 +494,23 @@ export default {
       console.log(r);
       if (r.code == 200) {
         this.detailsList = r.data[0][0];
+        this.numberpackage = this.detailsList.numberpackage;
         let numberpackage = r.data[0][0].numberpackage[0];
         if (r.data[0][0].numberpackage.length != 0) {
           if (numberpackage.storepackage != null) {
             this.taocanXZ = numberpackage.storepackage.id;
             this.taocan = numberpackage.storepackage.package_name;
+          } else {
+            this.$get("/api/package/getPackage", {
+              operator: r.data[0][0].operator,
+              location: r.data[0][0].location,
+            }).then((val) => {
+              console.log(val);
+              this.taocan = val.data.data[0].package_name;
+              this.taocanXZ = val.data.data[0].id;
+              this.numberpackage = val.data.data;
+              console.log(this.taocan);
+            });
           }
         }
       } else if (r.code == 700) {
@@ -545,8 +560,10 @@ export default {
     handle_types(val) {
       if (val == 1) {
         return "线上实名制办理";
-      } else {
+      } else if (val == 2) {
         return "线下营业厅办理";
+      } else {
+        return "线上实名/线下办理";
       }
     },
   },
