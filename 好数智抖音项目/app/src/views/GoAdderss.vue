@@ -30,10 +30,10 @@
           </div>
           <p style="fontsize: 2.1333vw; color: #333333; marginright: 5.3333vw">
             <img src="../assets/111.png" style="margin-right: 1.6vw" />
-            <span style="margin-right: 5.333vw" @click="onClickEditGoods(item.id)"
+            <span style="margin-right: 5.333vw" @click.stop="onClickEditGoods(item.id)"
               >编辑</span
             ><img src="../assets/222.png" style="margin-right: 1.6vw" />
-            <span style="margin-right: 2.6666vw" @click="onClickDelete(item.id)">删除</span>
+            <span style="margin-right: 2.6666vw" @click.stop="onClickDelete(item.id)">删除</span>
           </p>
         </div>
       </div>
