@@ -63,7 +63,7 @@
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
-            >{{ detailsList.contract }}/年</span
+            >{{ detailsList.contract }}/月</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
