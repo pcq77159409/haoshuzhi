@@ -321,7 +321,7 @@ export default {
           this.dataList = val.data.data;
         }
       });
-    this.weiz = localStorage.getItem("city");
+    this.weiz = localStorage.getItem("cityTop");
     this.$axios
       .post("/api/home_page/getNumList", {
         recommend: 1,

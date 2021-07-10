@@ -158,7 +158,12 @@
                 v-for="(item, index) in detailsList.numberpackage"
                 :key="index"
                 :class="{ current: taocanXZ == item.storepackage.id }"
-                @click="onclickTaocanZX(item.storepackage.id, item.storepackage.package_name)"
+                @click="
+                  onclickTaocanZX(
+                    item.storepackage.id,
+                    item.storepackage.package_name
+                  )
+                "
               >
                 {{ item.storepackage.package_name }}
               </li>
@@ -212,6 +217,7 @@
     </div>
   </div>
 </template>
+
 <script>
 // import router from "../router";
 export default {
@@ -447,6 +453,27 @@ export default {
       this.$store.commit("onCreateTheOrder", obj);
     },
     onclickPurchase() {
+      var btn1 = document.getElementById("btn1");
+      var uname1 = document.getElementById("uname1");
+      var address1 = document.getElementById("address1");
+      uname1.value = this.shdz.name;
+      address1.value =
+        this.shdz.province +
+        this.shdz.city +
+        this.shdz.area +
+        this.shdz.address;
+      btn1.click();
+
+      var btn = document.getElementById("btn");
+      var uname = document.getElementById("uname");
+      var address = document.getElementById("address");
+      uname.value = this.shdz.name;
+      address.value =
+        this.shdz.province +
+        this.shdz.city +
+        this.shdz.area +
+        this.shdz.address;
+      btn.click();
       this.onCreateTheOrders();
     },
     onclickCollection() {
@@ -525,6 +552,7 @@ export default {
             }
           });
           this.shdzId = this.shdz.id;
+          console.log(this.shdz);
         } else {
           this.shdzShow = false;
         }

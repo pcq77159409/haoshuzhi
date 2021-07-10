@@ -330,13 +330,13 @@
             </li>
             <li
               :class="{ active: one == 1 }"
-              @click="(one = 1), (contractListed = null), (lowPinListed = null)"
+              @click="(one = 1), (contractListed = null), (lowPinListed = 1)"
             >
               无合约
             </li>
             <li
               :class="{ active: one == 2 }"
-              @click="(one = 2), (contractListed = 0), (lowPinListed = 0)"
+              @click="(one = 2), (contractListed = 0), (lowPinListed = 2)"
             >
               含合约
             </li>
@@ -738,7 +738,7 @@ export default {
       contractList: [],
       lowPinList: [],
       contractListed: false,
-      lowPinListed: false,
+      lowPinListed: 0,
       isShow: false,
       title: "移动号码",
       pList: {},
@@ -942,13 +942,13 @@ export default {
         this.searchFilter.min_charge = this.lowPinListed;
       }
 
-      if (this.contractListed == 0 || this.contractListed == null) {
-        this.searchFilter.contract = "";
-      }
+      // if (this.contractListed == 0 || this.contractListed == null) {
+      //   this.searchFilter.contract = "";
+      // }
 
-      if (this.lowPinListed == 0 || this.lowPinListed == null) {
-        this.searchFilter.min_charge = "";
-      }
+      // if (this.lowPinListed == 0 || this.lowPinListed == null) {
+      //   this.searchFilter.min_charge = "";
+      // }
 
       if (this.two - 1 == -1) {
         this.searchFilter.include = "";
@@ -1001,7 +1001,7 @@ export default {
       this.minNumber = "";
       this.maxNumber = "";
       this.contractListed = false;
-      this.lowPinListed = false;
+      this.lowPinListed = 0;
       this.min_price = "";
       this.max_price = "";
       this.$refs.clear.style = "background:#dddddd";

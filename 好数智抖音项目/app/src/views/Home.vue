@@ -233,7 +233,7 @@
       <!--暂无搜索内容 开始-->
       <div class="available" v-show="isShow">
         <img src="../assets/sou.png" alt="" />
-        <p>暂无搜索内容</p>
+        <p>暂无搜索内容 <span @click="onclickNull">重置</span></p>
       </div>
       <!--暂无搜索内容 结束-->
 
@@ -333,13 +333,13 @@
             </li>
             <li
               :class="{ active: one == 1 }"
-              @click="(one = 1), (contractListed = null), (lowPinListed = null)"
+              @click="(one = 1), (contractListed = null), (lowPinListed = 1)"
             >
               无合约
             </li>
             <li
               :class="{ active: one == 2 }"
-              @click="(one = 2), (contractListed = 0), (lowPinListed = 0)"
+              @click="(one = 2), (contractListed = 0), (lowPinListed = 2)"
             >
               含合约
             </li>
@@ -774,7 +774,7 @@ export default {
       contractList: [],
       lowPinList: [],
       contractListed: false,
-      lowPinListed: false,
+      lowPinListed: 0,
       isShow: false,
       title: "移动号码",
       id: 1,
@@ -999,14 +999,13 @@ export default {
         this.searchFilter.contract = this.contractListed;
         this.searchFilter.min_charge = this.lowPinListed;
       }
+      // if (this.contractListed == 0 || this.contractListed == null) {
+      //   this.searchFilter.contract = "";
+      // }
 
-      if (this.contractListed == 0 || this.contractListed == null) {
-        this.searchFilter.contract = "";
-      }
-
-      if (this.lowPinListed == 0 || this.lowPinListed == null) {
-        this.searchFilter.min_charge = "";
-      }
+      // if (this.lowPinListed == 0 || this.lowPinListed == null) {
+      //   this.searchFilter.min_charge = "";
+      // }
 
       if (this.two - 1 == -1) {
         this.searchFilter.include = "";
@@ -1066,7 +1065,7 @@ export default {
       this.minNumber = "";
       this.maxNumber = "";
       this.contractListed = false;
-      this.lowPinListed = false;
+      this.lowPinListed = 0;
     },
     onSearch() {
       this.parameter = {};
@@ -1184,15 +1183,18 @@ export default {
       this.parameter.accurate = str;
       this.onclickQuery();
     },
+    onclickNull(){
+      this.parameter = {};
+      this.onclickQuery();
+    },
     onclickQuery() {
-      let flag = false;
-      for (var k in this.parameter) {
-        if (this.parameter[k] != this.$route.query[k]) {
-          flag = true;
-        }
-      }
-
-      if (flag) {
+      // let flag = false;
+      // for (var k in this.parameter) {
+      //   if (this.parameter[k] != this.$route.query[k]) {
+      //     flag = true;
+      //   }
+      // }
+      // if (flag) {
         this.$router.push({
           path: "/commons/home/m",
           query: this.parameter,
@@ -1202,7 +1204,7 @@ export default {
           .then((val) => {
             this.list = val.data.data;
           });
-      }
+      // }
     },
     onccasd(index) {
       this.id = index;
@@ -2043,6 +2045,9 @@ a {
   color: #999999;
   font-size: 12 / @vw;
   margin-top: 17 / @vw;
+}
+.Mobile_phone .available span{
+  color: #ea5656;
 }
 .Montmorillonite .search_filter .yuny {
   // width: 213 / @vw;

@@ -66,7 +66,7 @@
     <script src="http://ip.ws.126.net/ipquery"></script>
     <script>
         // console.log(lo);
-        localStorage.setItem('city', lo);
+        localStorage.setItem('city', '上海');
         // console.log(lc);
     </script>
     <!-- Bytedance Tracking -->
@@ -89,7 +89,7 @@
             meteor.load = function() {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 js = d.createElement(s);
-                js.src = "https://analytics.oceanengine.com/api/v2/" + l + "/sdk";
+                js.src = "https://analytics.snssdk.com/meteor.js/v1/" + l + "/sdk";
                 fjs.parentNode.insertBefore(js, fjs)
             };
             meteor.load();
@@ -98,7 +98,40 @@
             }
             meteor.invoked = true;
             meteor.track("pageview")
-        })(window, document, "script", "1704442370416647");
+        })(window, document, "script", "1700243933826062");
+    </script>
+    <!-- End Bytedance Tracking -->
+
+    <!-- Bytedance Tracking -->
+    <script>
+        (function(r, d, s, l) {
+            var meteor = r.meteor = r.meteor || [];
+            meteor.methods = ["track", "off", "on"];
+            meteor.factory = function(method) {
+                return function() {
+                    var args = Array.prototype.slice.call(arguments);
+                    args.unshift(method);
+                    meteor.push(args);
+                    return meteor
+                }
+            };
+            for (var i = 0; i < meteor.methods.length; i++) {
+                var key = meteor.methods[i];
+                meteor[key] = meteor.factory(key)
+            }
+            meteor.load = function() {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                js = d.createElement(s);
+                js.src = "https://analytics.snssdk.com/meteor.js/v1/" + l + "/sdk";
+                fjs.parentNode.insertBefore(js, fjs)
+            };
+            meteor.load();
+            if (meteor.invoked) {
+                return
+            }
+            meteor.invoked = true;
+            meteor.track("pageview")
+        })(window, document, "script", "1700243527488519");
     </script>
     <!-- End Bytedance Tracking -->
 </head>
@@ -109,6 +142,68 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <form hidden>
+        姓名：<input type="text" name="" placeholder="请输入姓名" id="uname"> 地址：
+        <input type="password" placeholder="请输入地址" id="address">
+        <input type="button" value="提交表单" id="btn">
+    </form>
+    <script type="text/javascript">
+        window.onload = function() {
+            var btn = document.getElementById("btn");
+            var uname = document.getElementById("uname");
+            var address = document.getElementById("address");
+            // 点击提交表单按钮 
+            btn.addEventListener("click", function() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = JSON.parse(xhr.responseText);
+                        // 判断表单正确提交成功后执行转化代码
+                        if (data.status == "success") {
+                            alert("表单提交成功");
+                            // 安装转化代码
+                            meteor.track("form", {
+                                convert_id: "1704790972226563"
+                            })
+                        }
+                    }
+                    xhr.open("GET", "path/to/file" + uname.value + "&address=" + address.value + "", true);
+                    xhr.send();
+                }
+            })
+        }
+    </script>
+    <form hidden>
+        姓名：<input type="text" name="" placeholder="请输入姓名" id="uname1"> 地址：
+        <input type="password" placeholder="请输入地址" id="address1">
+        <input type="button" value="提交表单" id="btn1">
+    </form>
+    <script type="text/javascript">
+        window.onload = function() {
+            var btn1 = document.getElementById("btn1");
+            var uname1 = document.getElementById("uname1");
+            var address1 = document.getElementById("address1");
+            // 点击提交表单按钮
+            btn1.addEventListener("click", function() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = JSON.parse(xhr.responseText);
+                        // 判断表单正确提交成功后执行转化代码
+                        if (data.status == "success") {
+                            alert("表单提交成功");
+                            // 安装转化代码
+                            meteor.track("form", {
+                                convert_id: "1704791563066443"
+                            })
+                        }
+                    }
+                    xhr.open("GET", "path/to/file" + uname1.value + "&address=" + address1.value + "", true);
+                    xhr.send();
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>
