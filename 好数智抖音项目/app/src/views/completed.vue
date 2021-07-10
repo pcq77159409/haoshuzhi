@@ -93,18 +93,18 @@
       <div class="borders"></div>
       <div class="bo">
         <img src="../assets/kefu.png" alt="" />
-        <p>咨询客服</p>
+        <p @click="onclickTel">咨询客服</p>
       </div>
     </div>
-    <el-dialog :visible.sync="centerDialogVisible" width="78.666vw" center>
+    <el-dialog :visible.sync="centerDialogVisible" width="78.6666vw" center>
       <span class="phones">拨打电话</span>
-      <p class="phonel">030—79772486</p>
+      <p class="phonel">{{ tel }}</p>
       <div class="xia"></div>
       <span slot="footer" class="dialog-footer">
         <div class="buttom">
           <div class="cancal" @click="centerDialogVisible = false">取消</div>
           <div class="rightss"></div>
-          <div class="que">确定</div>
+          <div class="que" @click="onclickTel">确定</div>
         </div>
       </span>
     </el-dialog>
@@ -119,6 +119,7 @@
 export default {
   data() {
     return {
+      tel: null,
       flag: false,
       centerDialogVisible: false,
       onclickCenel: false,
@@ -221,6 +222,9 @@ export default {
         }
       });
     },
+    onclickTel() {
+      location.href = "tel:" + this.tel;
+    },
   },
   mounted() {
     this.$get("/api/order/info", {
@@ -229,6 +233,10 @@ export default {
     }).then((r) => {
       this.dataInfo = r.data;
       this.orderdetail = r.data.orderdetail[0];
+    });
+    this.$post("/api/home_page/getConfig").then((r) => {
+      console.log(r);
+      this.tel = r.data.value.phone;
     });
   },
 };

@@ -103,7 +103,7 @@
         <p @click="centerDialogVisible = true">拨打电话</p>
       </div>
       <div class="borders"></div>
-      <div class="bo">
+      <div class="bo" @click="onclickTel">
         <img src="../assets/kefu.png" alt="" />
         <p>咨询客服</p>
       </div>
@@ -111,13 +111,13 @@
 
     <el-dialog :visible.sync="centerDialogVisible" width="78.6666vw" center>
       <span class="phones">拨打电话</span>
-      <p class="phonel">030—79772486</p>
+      <p class="phonel">{{tel}}</p>
       <div class="xia"></div>
       <span slot="footer" class="dialog-footer">
         <div class="buttom">
           <div class="cancal" @click="centerDialogVisible = false">取消</div>
           <div class="rightss"></div>
-          <div class="que">确定</div>
+          <div class="que" @click="onclickTel">确定</div>
         </div>
       </span>
     </el-dialog>
@@ -131,7 +131,6 @@
       <el-dialog :visible.sync="onclickCenel" width="78.6666vw" center>
         <span class="cencl"> </span>
         <p class="phonels">请问您是否确认取消此订单？</p>
-
         <div class="xia"></div>
         <span slot="footer" class="dialog-footer">
           <div class="buttom">
@@ -234,6 +233,7 @@ export default {
           ],
         },
       ],
+      tel: null,
     };
   },
   methods: {
@@ -260,6 +260,9 @@ export default {
         }
       });
     },
+    onclickTel() {
+      location.href = "tel:" + this.tel;
+    },
   },
   mounted() {
     this.$get("/api/order/info", {
@@ -268,6 +271,10 @@ export default {
     }).then((r) => {
       this.dataInfo = r.data;
       this.orderdetail = r.data.orderdetail[0];
+    });
+    this.$post("/api/home_page/getConfig").then((r) => {
+      console.log(r);
+      this.tel = r.data.value.phone;
     });
   },
 };
@@ -313,6 +320,7 @@ export default {
   overflow: auto;
   margin: 0;
 }
+
 .cencl {
   margin-left: 43 / @vw;
   color: #333333;

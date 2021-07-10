@@ -100,14 +100,26 @@
     <div class="make">
       <div class="bo">
         <img src="../assets/dianhua.png" alt="" />
-        <p>拨打电话</p>
+        <p @click="centerDialogVisible = true">拨打电话</p>
       </div>
       <div class="borders"></div>
       <div class="bo">
         <img src="../assets/kefu.png" alt="" />
-        <p>咨询客服</p>
+        <p @click="onclickTel">咨询客服</p>
       </div>
     </div>
+    <el-dialog :visible.sync="centerDialogVisible" width="78.6666vw" center>
+      <span class="phones">拨打电话</span>
+      <p class="phonel">{{ tel }}</p>
+      <div class="xia"></div>
+      <span slot="footer" class="dialog-footer">
+        <div class="buttom">
+          <div class="cancal" @click="centerDialogVisible = false">取消</div>
+          <div class="rightss"></div>
+          <div class="que" @click="onclickTel">确定</div>
+        </div>
+      </span>
+    </el-dialog>
     <div class="delivery">
       <div class="del" @click="onClickOpen">
         <p>提醒发货</p>
@@ -126,6 +138,8 @@ export default {
   data() {
     return {
       flag: false,
+      tel: null,
+      centerDialogVisible: false,
       orderdetail: {
         id: 5,
         order_id: 11,
@@ -233,6 +247,9 @@ export default {
         }
       });
     },
+    onclickTel() {
+      location.href = "tel:" + this.tel;
+    },
   },
   mounted() {
     this.$get("/api/order/info", {
@@ -242,12 +259,131 @@ export default {
       this.dataInfo = r.data;
       this.orderdetail = r.data.orderdetail[0];
     });
+    this.$post("/api/home_page/getConfig").then((r) => {
+      console.log(r);
+      this.tel = r.data.value.phone;
+    });
   },
 };
 </script>
 
 <style lang="less" scoped>
-@import "../assets/css/base.less";
+@import "../assets/css/base.less";.phonels {
+  margin-left: 42 / @vw;
+  margin-bottom: 41 / @vw;
+  margin-top: -29 / @vw;
+}
+.A /deep/ .el-dialog {
+  border-radius: 6 / @vw;
+}
+.A /deep/ .el-dialog--center .el-dialog__body {
+  padding: 60 / @vw 25 / @vw 0;
+}
+.A /deep/ .el-dialog__header {
+  padding: 0;
+}
+.A /deep/ .el-dialog--center .el-dialog__footer {
+  padding-bottom: 0;
+}
+.A /deep/ .el-icon-close:before {
+  content: none;
+}
+.A /deep/ .el-dialog__headerbtn {
+  background-color: white;
+}
+.phonel {
+  margin-left: 65 / @vw;
+  margin-bottom: 15 / @vw;
+  margin-top: 10 / @vw;
+}
+.el-dialog__wrapper {
+  position: fixed;
+  top: 132 / @vw;
+  right: 0 / @vw;
+  bottom: -1 / @vw;
+  left: 0;
+  overflow: auto;
+  margin: 0;
+}
+
+.cencl {
+  margin-left: 43 / @vw;
+  color: #333333;
+  font-weight: bold;
+}
+.phones {
+  margin-left: 95 / @vw;
+  color: #333333;
+  font-weight: bold;
+}
+.el-dialog--center .el-dialog__footer {
+  height: 51 / @vw;
+  margin-top: -30 / @vw;
+}
+.xia {
+  width: 295 / @vw;
+  height: 1 / @vw;
+  background-color: #f5f5f5;
+  margin-top: 10 / @vw;
+  margin-left: -25 / @vw;
+}
+.que {
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
+  color: #0443d1;
+}
+.cancal {
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
+  color: #0443d1;
+}
+.el-dialog--center {
+  text-align: center;
+  border-radius: 10 / @vw;
+}
+.rightss {
+  width: 1 / @vw;
+  height: 51 / @vw;
+  background-color: #f5f5f5;
+  margin-top: -10 / @vw;
+}
+.buttom {
+  display: flex;
+  justify-content: space-around;
+}
+.el-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1 / @vw solid white;
+  color: #409eff;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 12 / @vw 20 / @vw;
+  font-size: 14 / @vw;
+  border-radius: 4 / @vw;
+}
+.el-button--primary:hover {
+  background: white;
+  border-color: white;
+  color: white;
+}
+.el-button--primary {
+  color: #409eff;
+  background-color: white;
+  border-color: white;
+}
+
+.el-button + .el-button {
+  margin-left: 42 / @vw;
+}
 .signs {
   width: 100%;
   height: 100%;
