@@ -330,13 +330,13 @@
             </li>
             <li
               :class="{ active: one == 1 }"
-              @click="(one = 1), (contractListed = null), (lowPinListed = 1)"
+              @click="(one = 1), (contractListed = 1), (lowPinListed = 2)"
             >
               无合约
             </li>
             <li
               :class="{ active: one == 2 }"
-              @click="(one = 2), (contractListed = 0), (lowPinListed = 2)"
+              @click="(one = 2), (contractListed = 2), (lowPinListed = 1)"
             >
               含合约
             </li>
@@ -737,7 +737,7 @@ export default {
       },
       contractList: [],
       lowPinList: [],
-      contractListed: false,
+      contractListed: 0,
       lowPinListed: 0,
       isShow: false,
       title: "移动号码",
@@ -759,6 +759,13 @@ export default {
       }
     },
     scrollBox(e) {
+      this.scrollTop = e.target.scrollTop; // 滚动条偏移量
+      var midHeight = this.$refs.aa.offsetTop;
+      if (this.scrollTop > midHeight) {
+        this.topFlag = true;
+      } else {
+        this.topFlag = false;
+      }
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
@@ -930,17 +937,18 @@ export default {
       } else {
         this.searchFilter.prepaid_charge = 1;
       }
+        this.searchFilter.contract = this.contractListed;
 
-      if (this.one == 0 || this.one == false) {
-        this.searchFilter.contract = this.contractListed;
-        this.searchFilter.min_charge = this.lowPinListed;
-      } else if (this.one == 1) {
-        this.searchFilter.contract = "";
-        this.searchFilter.min_charge = "";
-      } else if (this.one == 2) {
-        this.searchFilter.contract = this.contractListed;
-        this.searchFilter.min_charge = this.lowPinListed;
-      }
+      // if (this.one == 0 || this.one == false) {
+      //   this.searchFilter.contract = this.contractListed;
+      //   this.searchFilter.min_charge = this.lowPinListed;
+      // } else if (this.one == 1) {
+      //   this.searchFilter.contract = "";
+      //   this.searchFilter.min_charge = "";
+      // } else if (this.one == 2) {
+      //   this.searchFilter.contract = this.contractListed;
+      //   this.searchFilter.min_charge = this.lowPinListed;
+      // }
 
       // if (this.contractListed == 0 || this.contractListed == null) {
       //   this.searchFilter.contract = "";
@@ -1166,7 +1174,7 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScrollx, true);
+    // window.addEventListener("scroll", this.handleScrollx, true);
     if (localStorage.getItem("priceShow")) {
       if (localStorage.getItem("priceShow") == "true") {
         this.priceShow = true;

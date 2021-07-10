@@ -333,13 +333,13 @@
             </li>
             <li
               :class="{ active: one == 1 }"
-              @click="(one = 1), (contractListed = null), (lowPinListed = 1)"
+              @click="(one = 1), (contractListed = 1), (lowPinListed = 2)"
             >
               无合约
             </li>
             <li
               :class="{ active: one == 2 }"
-              @click="(one = 2), (contractListed = 0), (lowPinListed = 2)"
+              @click="(one = 2), (contractListed = 2), (lowPinListed = 1)"
             >
               含合约
             </li>
@@ -773,8 +773,8 @@ export default {
       },
       contractList: [],
       lowPinList: [],
-      contractListed: false,
-      lowPinListed: 0,
+      contractListed: 0,
+      lowPinListed: false,
       isShow: false,
       title: "移动号码",
       id: 1,
@@ -988,17 +988,17 @@ export default {
       } else {
         this.searchFilter.prepaid_charge = 1;
       }
-
-      if (this.one == 0 || this.one == false) {
         this.searchFilter.contract = this.contractListed;
-        this.searchFilter.min_charge = this.lowPinListed;
-      } else if (this.one == 1) {
-        this.searchFilter.contract = "";
-        this.searchFilter.min_charge = "";
-      } else if (this.one == 2) {
-        this.searchFilter.contract = this.contractListed;
-        this.searchFilter.min_charge = this.lowPinListed;
-      }
+      // if (this.one == 0 || this.one == false) {
+      //   this.searchFilter.contract = this.contractListed;
+      //   this.searchFilter.min_charge = this.lowPinListed;
+      // } else if (this.one == 1) {
+      //   this.searchFilter.contract = "";
+      //   this.searchFilter.min_charge = "";
+      // } else if (this.one == 2) {
+      //   this.searchFilter.contract = this.contractListed;
+      //   this.searchFilter.min_charge = this.lowPinListed;
+      // }
       // if (this.contractListed == 0 || this.contractListed == null) {
       //   this.searchFilter.contract = "";
       // }
