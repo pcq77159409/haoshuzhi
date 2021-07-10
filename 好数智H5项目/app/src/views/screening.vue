@@ -232,7 +232,7 @@
       <!--暂无搜索内容 开始-->
       <div class="available" v-show="isShow">
         <img src="../assets/sou.png" alt="" />
-        <p>暂无搜索内容</p>
+        <p>暂无搜索内容 <span @click="onclickNull">重置</span></p>
       </div>
       <!--暂无搜索内容 结束-->
 
@@ -937,7 +937,7 @@ export default {
       } else {
         this.searchFilter.prepaid_charge = 1;
       }
-        this.searchFilter.contract = this.contractListed;
+      this.searchFilter.contract = this.contractListed;
 
       // if (this.one == 0 || this.one == false) {
       //   this.searchFilter.contract = this.contractListed;
@@ -1137,19 +1137,23 @@ export default {
       }, 360);
       this.onclickQuery();
     },
+    onclickNull() {
+      this.parameter = {};
+      this.onclickQuery();
+    },
     onclickQuery() {
-      let flag = false;
-      for (var k in this.parameter) {
-        if (this.parameter[k] != this.$route.query[k]) {
-          flag = true;
-        }
-      }
+      // let flag = false;
+      // for (var k in this.parameter) {
+      //   if (this.parameter[k] != this.$route.query[k]) {
+      //     flag = true;
+      //   }
+      // }
       // if (localStorage.getItem("from")) {
       //   this.parameter.from = localStorage.getItem("from");
       // } else {
       //   this.parameter.from = "上海";
       // }
-      if (flag) {
+      // if (flag) {
         this.$router.push({
           path: "/screen",
           query: this.parameter,
@@ -1170,7 +1174,7 @@ export default {
               alert(val.msg);
             }
           });
-      }
+      // }
     },
   },
   mounted() {
@@ -1991,6 +1995,9 @@ a {
   color: #999999;
   font-size: 12 / @vw;
   margin-top: 17 / @vw;
+}
+.Mobile_phone .available span{
+  color: #ea5656;
 }
 @media screen and (max-width: 400px) and (min-height: 811px) {
   .Mobile_phone .class_name {
