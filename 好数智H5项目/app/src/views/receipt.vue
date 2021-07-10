@@ -89,15 +89,15 @@
         </li>
         <li>
           快递方式:
-          <p class="rights">{{dataInfo.delivery}}</p>
+          <p class="rights">{{ dataInfo.delivery }}</p>
         </li>
         <li>
           运单编号:
-          <p class="rights">{{dataInfo.express_number}}</p>
+          <p class="rights">{{ dataInfo.express_number }}</p>
         </li>
       </ul>
     </div>
-       <div class="make">
+    <div class="make">
       <div class="bo">
         <img src="../assets/dianhua.png" alt="" />
         <p @click="centerDialogVisible = true">拨打电话</p>
@@ -105,19 +105,19 @@
       <div class="borders"></div>
       <div class="bo">
         <img src="../assets/kefu.png" alt="" />
-        <p>咨询客服</p>
+        <p @click="onclickTel">咨询客服</p>
       </div>
     </div>
 
-    <el-dialog :visible.sync="centerDialogVisible" width="78.666/@vw" center>
+    <el-dialog :visible.sync="centerDialogVisible" width="78.6666vw" center>
       <span class="phones">拨打电话</span>
-      <p class="phonel">030—79772486</p>
+      <p class="phonel">{{ tel }}</p>
       <div class="xia"></div>
       <span slot="footer" class="dialog-footer">
         <div class="buttom">
           <div class="cancal" @click="centerDialogVisible = false">取消</div>
           <div class="rightss"></div>
-          <div class="que">确定</div>
+          <div class="que" @click="onclickTel">确定</div>
         </div>
       </span>
     </el-dialog>
@@ -132,6 +132,7 @@
 export default {
   data() {
     return {
+      tel: null,
       flag: false,
       centerDialogVisible: false,
       onclickCenel: false,
@@ -228,7 +229,7 @@ export default {
       //退款
       this.$post("/api/order/orderrefund", {
         order_id: id,
-        user_id: localStorage.getItem('user-id'),
+        user_id: localStorage.getItem("user-id"),
       }).then((r) => {
         if (r.code == 200) {
           alert("申请成功,等待商家退款");
@@ -245,7 +246,7 @@ export default {
       //完成订单
       this.$post("/api/order/orderfinish", {
         order_id: id,
-        user_id: localStorage.getItem('user-id'),
+        user_id: localStorage.getItem("user-id"),
       }).then((r) => {
         if (r.code == 200) {
           this.$router.push({ path: "/completed", query: { id: id } });
@@ -254,14 +255,21 @@ export default {
         }
       });
     },
+    onclickTel() {
+      location.href = "tel:" + this.tel;
+    },
   },
   mounted() {
     this.$get("/api/order/info", {
-      user_id:localStorage.getItem('user-id'),
+      user_id: localStorage.getItem("user-id"),
       order_id: this.$route.query.id,
     }).then((r) => {
       this.dataInfo = r.data;
       this.orderdetail = r.data.orderdetail[0];
+    });
+    this.$post("/api/home_page/getConfig").then((r) => {
+      console.log(r);
+      this.tel = r.data.value.phone;
     });
   },
 };
@@ -271,28 +279,28 @@ export default {
 <style lang="less" scoped>
 @import "../assets/css/base.less";
 .liu {
-  width: 66/@vw;
-  height: 17/@vw;
-  font-size: 12/@vw;
+  width: 66 / @vw;
+  height: 17 / @vw;
+  font-size: 12 / @vw;
   float: right;
-  margin: -28/@vw -60/@vw;
-  border: 1/@vw solid #666666;
-  border-radius: 20/@vw;
+  margin: -28 / @vw -60 / @vw;
+  border: 1 / @vw solid #666666;
+  border-radius: 20 / @vw;
   text-align: center;
-  line-height: 17/@vw;
+  line-height: 17 / @vw;
   color: #666666;
 }
 .phonels {
-  margin-left: 42/@vw;
-  margin-bottom: 41/@vw;
-  margin-top: -29/@vw;
+  margin-left: 42 / @vw;
+  margin-bottom: 41 / @vw;
+  margin-top: -29 / @vw;
 }
 
 .A /deep/ .el-dialog {
-  border-radius: 6/@vw;
+  border-radius: 6 / @vw;
 }
 .A /deep/ .el-dialog--center .el-dialog__body {
-  padding: 30/@vw 25/@vw 0;
+  padding: 30 / @vw 25 / @vw 0;
 }
 .A /deep/ .el-dialog__header {
   padding: 0;
@@ -307,59 +315,59 @@ export default {
   background-color: white;
 }
 .phonel {
-  margin-left: 65/@vw;
-  margin-bottom: 15/@vw;
-  margin-top: 10/@vw;
+  margin-left: 65 / @vw;
+  margin-bottom: 15 / @vw;
+  margin-top: 10 / @vw;
 }
 .el-dialog__wrapper {
   position: fixed;
-  top: 132/@vw;
-  right: 0/@vw;
-  bottom: -1/@vw;
+  top: 132 / @vw;
+  right: 0 / @vw;
+  bottom: -1 / @vw;
   left: 0;
   overflow: auto;
   margin: 0;
 }
 .cencl {
-  margin-left: 43/@vw;
+  margin-left: 43 / @vw;
   color: #333333;
   font-weight: bold;
 }
 .phones {
-  margin-left: 95/@vw;
+  margin-left: 95 / @vw;
   color: #333333;
   font-weight: bold;
 }
 .el-dialog--center .el-dialog__footer {
-  height: 51/@vw;
-  margin-top: -30/@vw;
+  height: 51 / @vw;
+  margin-top: -30 / @vw;
 }
 .xia {
-  width: 295/@vw;
-  height: 1/@vw;
+  width: 295 / @vw;
+  height: 1 / @vw;
   background-color: #f5f5f5;
-  margin-top: 10/@vw;
-  margin-left: -25/@vw;
+  margin-top: 10 / @vw;
+  margin-left: -25 / @vw;
 }
 .que {
-  font-size: 15/@vw;
-  margin-top: 9/@vw;
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
   color: #0443d1;
 }
 .cancal {
-  font-size: 15/@vw;
-  margin-top: 9/@vw;
+  font-size: 15 / @vw;
+  margin-top: 9 / @vw;
   color: #0443d1;
 }
 .el-dialog--center {
   text-align: center;
-  border-radius: 10/@vw;
+  border-radius: 10 / @vw;
 }
 .rightss {
-  width: 1/@vw;
-  height: 51/@vw;
+  width: 1 / @vw;
+  height: 51 / @vw;
   background-color: #f5f5f5;
-  margin-top: -10/@vw;
+  margin-top: -10 / @vw;
 }
 .buttom {
   display: flex;
@@ -372,7 +380,7 @@ export default {
   white-space: nowrap;
   cursor: pointer;
   background: #fff;
-  border: 1/@vw solid white;
+  border: 1 / @vw solid white;
   color: #409eff;
   -webkit-appearance: none;
   text-align: center;
@@ -381,9 +389,9 @@ export default {
   margin: 0;
   transition: 0.1s;
   font-weight: 500;
-  padding: 12/@vw 20/@vw;
-  font-size: 14/@vw;
-  border-radius: 4/@vw;
+  padding: 12 / @vw 20 / @vw;
+  font-size: 14 / @vw;
+  border-radius: 4 / @vw;
 }
 .el-button--primary:hover {
   background: white;
@@ -397,66 +405,66 @@ export default {
 }
 
 .el-button + .el-button {
-  margin-left: 42/@vw;
+  margin-left: 42 / @vw;
 }
 .cancel {
-  width: 100/@vw;
-  height: 40/@vw;
+  width: 100 / @vw;
+  height: 40 / @vw;
 }
 .cancel p {
   position: absolute;
-  right: 114/@vw;
-  bottom: 13/@vw;
-  border: 1/@vw solid #f5f5f5;
+  right: 114 / @vw;
+  bottom: 13 / @vw;
+  border: 1 / @vw solid #f5f5f5;
   text-align: center;
-  border-radius: 15/@vw;
+  border-radius: 15 / @vw;
   color: #999999;
-  padding: 6/@vw 17/@vw;
-  font-size: 15/@vw;
+  padding: 6 / @vw 17 / @vw;
+  font-size: 15 / @vw;
 }
 
 .del p {
   position: absolute;
-  right: 11/@vw;
-  bottom: 13/@vw;
-  border: 1/@vw solid #fe5858;
+  right: 11 / @vw;
+  bottom: 13 / @vw;
+  border: 1 / @vw solid #fe5858;
   text-align: center;
-  border-radius: 25/@vw;
+  border-radius: 25 / @vw;
   color: #fe5858;
-  font-size: 14/@vw;
-  width: 112/@vw;
-  height: 30/@vw;
-  line-height: 30/@vw;
+  font-size: 14 / @vw;
+  width: 112 / @vw;
+  height: 30 / @vw;
+  line-height: 30 / @vw;
 }
 .del {
-  width: 100/@vw;
-  height: 40/@vw;
+  width: 100 / @vw;
+  height: 40 / @vw;
 }
 .delivery {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60/@vw;
+  height: 60 / @vw;
   background-color: white;
 }
 .borders {
-  border-right: 1/@vw solid #ccc;
-  width: 1/@vw;
-  height: 40/@vw;
-  margin-top: 10/@vw;
+  border-right: 1 / @vw solid #ccc;
+  width: 1 / @vw;
+  height: 40 / @vw;
+  margin-top: 10 / @vw;
 }
 .make {
-  width: 350/@vw;
-  height: 46/@vw;
+  width: 350 / @vw;
+  height: 46 / @vw;
   background-color: white;
-  margin: -52/@vw 13/@vw;
-  border-radius: 5/@vw;
+  margin: -52 / @vw 13 / @vw;
+  border-radius: 5 / @vw;
   display: flex;
   color: #666666;
   justify-content: space-evenly;
-  line-height: 46/@vw;
-  margin-bottom: 20/@vw;
+  line-height: 46 / @vw;
+  margin-bottom: 20 / @vw;
   align-items: center;
 }
 .make .bo {
@@ -464,46 +472,46 @@ export default {
   align-items: center;
 }
 .make p {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
 }
 .make img {
-  width: 15/@vw;
-  height: 15/@vw;
-  margin-right: 10/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
+  margin-right: 10 / @vw;
 }
 .rights {
-  margin-left: 25/@vw;
+  margin-left: 25 / @vw;
 }
 .information {
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   font-weight: bold;
-  margin-left: 20/@vw;
-  margin-top: 20/@vw;
-  width: 200/@vw;
-  height: 30/@vw;
-  line-height: 40/@vw;
+  margin-left: 20 / @vw;
+  margin-top: 20 / @vw;
+  width: 200 / @vw;
+  height: 30 / @vw;
+  line-height: 40 / @vw;
 }
 .table {
-  font-size: 12/@vw;
-  line-height: 40/@vw;
+  font-size: 12 / @vw;
+  line-height: 40 / @vw;
 }
 .table li {
   display: flex;
   /* width: 200/@vw; */
-  height: 30/@vw;
-  margin-left: 20/@vw;
-  margin-top: 9/@vw;
+  height: 30 / @vw;
+  margin-left: 20 / @vw;
+  margin-top: 9 / @vw;
 }
 .no {
-  width: 350/@vw;
-  height: 290/@vw;
+  width: 350 / @vw;
+  height: 290 / @vw;
   background-color: white;
-  margin: 15/@vw 13/@vw 65/@vw;
-  border-radius: 5/@vw;
-  font-size: 13/@vw;
+  margin: 15 / @vw 13 / @vw 65 / @vw;
+  border-radius: 5 / @vw;
+  font-size: 13 / @vw;
 }
 .yes p {
-  line-height: 40/@vw;
+  line-height: 40 / @vw;
   display: flex;
   align-items: center;
 }
@@ -511,114 +519,114 @@ export default {
   color: #fe5858;
 }
 .yes {
-  width: 350/@vw;
-  height: 40/@vw;
+  width: 350 / @vw;
+  height: 40 / @vw;
   background-color: white;
-  margin: -52/@vw 13/@vw;
-  border-radius: 5/@vw;
-  font-size: 13/@vw;
+  margin: -52 / @vw 13 / @vw;
+  border-radius: 5 / @vw;
+  font-size: 13 / @vw;
 }
 .v {
-  width: 20/@vw;
-  height: 20/@vw;
-  margin: 0 14/@vw;
+  width: 20 / @vw;
+  height: 20 / @vw;
+  margin: 0 14 / @vw;
 }
 .redmoney {
   color: #fe5858;
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
 }
 .heng {
   display: flex;
   justify-content: space-between;
 }
 .this {
-  margin-left: 5/@vw;
+  margin-left: 5 / @vw;
 }
 .moneys {
   position: absolute;
-  right: 11/@vw;
-  bottom: 47/@vw;
-  border: 1/@vw solid #666666;
+  right: 11 / @vw;
+  bottom: 47 / @vw;
+  border: 1 / @vw solid #666666;
   text-align: center;
-  border-radius: 15/@vw;
+  border-radius: 15 / @vw;
   color: #666666;
   font-weight: 600;
-  padding: 0 18/@vw;
-  font-size: 12/@vw;
+  padding: 0 18 / @vw;
+  font-size: 12 / @vw;
 }
 .pay {
-  margin: -25/@vw 0/@vw -25/@vw 28/@vw;
-  font-size: 16/@vw;
+  margin: -25 / @vw 0 / @vw -25 / @vw 28 / @vw;
+  font-size: 16 / @vw;
   color: #fe5858;
 }
 .need {
   /* margin: 0 255/@vw; */
   /* display: block; */
   font-weight: bold;
-  font-size: 14/@vw;
+  font-size: 14 / @vw;
   color: #333333;
 }
 .ordertime {
   width: 100%;
-  font-size: 12/@vw;
+  font-size: 12 / @vw;
   display: flex;
-  margin-top: 5/@vw;
+  margin-top: 5 / @vw;
   justify-content: flex-end;
 }
 .spend {
-  font-size: 12/@vw;
-  margin-top: 5/@vw;
+  font-size: 12 / @vw;
+  margin-top: 5 / @vw;
 }
 .yidong {
-  font-size: 12/@vw;
-  margin-top: 5/@vw;
+  font-size: 12 / @vw;
+  margin-top: 5 / @vw;
 }
 .phonenumber {
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: bold;
   color: #333333;
 }
 .xian {
-  width: 330/@vw;
-  height: 1/@vw;
+  width: 330 / @vw;
+  height: 1 / @vw;
   background-color: #f2f2f2;
-  margin: 10/@vw auto;
+  margin: 10 / @vw auto;
 }
 .names {
-  margin: 0 10/@vw;
-  line-height: 25/@vw;
+  margin: 0 10 / @vw;
+  line-height: 25 / @vw;
   color: #666666;
 }
 
 .shoping {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
   font-weight: bold;
-  margin-top: 10/@vw;
+  margin-top: 10 / @vw;
   display: flex;
   align-items: center;
 }
 .shops {
-  width: 15/@vw;
-  height: 15/@vw;
-  padding: 0/@vw 2/@vw;
-  margin-right: 8/@vw;
+  width: 15 / @vw;
+  height: 15 / @vw;
+  padding: 0 / @vw 2 / @vw;
+  margin-right: 8 / @vw;
 }
 .times {
   display: flex;
   justify-content: space-between;
-  margin: 10/@vw 10/@vw;
+  margin: 10 / @vw 10 / @vw;
 }
 .orders {
-  width: 350/@vw;
-  height: 183/@vw;
+  width: 350 / @vw;
+  height: 183 / @vw;
   background-color: white;
-  margin: 64/@vw 13/@vw 14/@vw;
-  border-radius: 5/@vw;
+  margin: 64 / @vw 13 / @vw 14 / @vw;
+  border-radius: 5 / @vw;
   position: relative;
 }
 
 .number {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   font-weight: 500;
   color: #333333;
 }
@@ -628,7 +636,7 @@ export default {
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-bottom: 50/@vw;
+  padding-bottom: 50 / @vw;
   background-color: #f5f5f5;
   box-sizing: border-box;
 }
@@ -638,85 +646,85 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
-  padding: 20/@vw 0 37/@vw 0; 
+  padding: 20 / @vw 0 37 / @vw 0;
 }
 
 .back {
-  width: 10/@vw;
-  height: 16/@vw;
+  width: 10 / @vw;
+  height: 16 / @vw;
   position: absolute;
-  left: 15/@vw;
+  left: 15 / @vw;
   pointer-events: auto;
 }
 .detalis {
   margin: 0 auto;
   color: white;
-  font-size: 16/@vw;
+  font-size: 16 / @vw;
   font-weight: Medium;
   font-family: PingFang-SC-Medium;
   text-align: center;
-  line-height: 30/@vw;
+  line-height: 30 / @vw;
 }
 .total {
   display: flex;
 }
 .delivered {
-  width: 255/@vw;
-  height: 95/@vw;
+  width: 255 / @vw;
+  height: 95 / @vw;
   background-color: #fe5858;
 }
 .right {
-  width: 120/@vw;
-  height: 95/@vw;
+  width: 120 / @vw;
+  height: 95 / @vw;
   background-color: #fe5858;
 }
 .right img {
-  width: 60/@vw;
-  height: 52/@vw;
-  margin: 0 29/@vw;
+  width: 60 / @vw;
+  height: 52 / @vw;
+  margin: 0 29 / @vw;
 }
 .address {
   position: absolute;
-  margin: -27/@vw 13/@vw;
-  width: 350/@vw;
-  height: 80/@vw;
+  margin: -27 / @vw 13 / @vw;
+  width: 350 / @vw;
+  height: 80 / @vw;
   background-color: white;
-  border-radius: 5/@vw;
+  border-radius: 5 / @vw;
   display: flex;
   align-items: center;
 }
 .address img {
-  width: 24/@vw*1.3;
-  height: 24/@vw*1.3;
-  margin-left: 20/@vw;
-  margin-top: 8/@vw;
+  width: 24 / @vw*1.3;
+  height: 24 / @vw*1.3;
+  margin-left: 20 / @vw;
+  margin-top: 8 / @vw;
 }
 .name {
-  font-size: 15/@vw;
+  font-size: 15 / @vw;
   font-weight: bold;
   color: #333333;
-  width: 200/@vw;
-  margin: 6/@vw 15/@vw;
+  width: 200 / @vw;
+  margin: 6 / @vw 15 / @vw;
 }
 .add {
-  font-size: 13/@vw;
+  font-size: 13 / @vw;
   color: #333333;
   /* width: 200/@vw; */
-  margin: 0 15/@vw;
+  margin: 0 15 / @vw;
 }
 .one {
-  width: 100/@vw;
-  height: 35/@vw;
-  font-size: 20/@vw;
+  width: 100 / @vw;
+  height: 35 / @vw;
+  font-size: 20 / @vw;
   font-weight: bold;
   color: white;
-  margin-left: 40/@vw;
+  margin-left: 40 / @vw;
 }
 .two {
-  width: 220/@vw;
-  height: 30/@vw;
-  font-size: 14/@vw;
+  width: 220 / @vw;
+  height: 30 / @vw;
+  font-size: 14 / @vw;
   color: white;
-  margin-left: 42/@vw;
+  margin-left: 42 / @vw;
 }
 </style>
