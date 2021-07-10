@@ -235,7 +235,6 @@ export default {
       this.orderdetail = r.data.orderdetail[0];
     });
     this.$post("/api/home_page/getConfig").then((r) => {
-      console.log(r);
       this.tel = r.data.value.phone;
     });
   },
