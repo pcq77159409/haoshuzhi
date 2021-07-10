@@ -115,7 +115,7 @@
         <p>特价专场</p>
       </div>
       <div class="six">
-        <p @click="$router.push('/screen')">
+        <p @click="$router.push('/screen?recommend=2')">
           更多<img src="../assets/形状 20@2x.png" alt="" />
         </p>
       </div>
@@ -203,7 +203,7 @@
         <p>靓号推荐</p>
       </div>
       <div class="six">
-        <p @click="$router.push('/screen')">
+        <p @click="$router.push('/screen?recommend=1')">
           更多<img src="../assets/形状 20@2x.png" alt="" />
         </p>
       </div>
