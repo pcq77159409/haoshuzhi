@@ -889,7 +889,7 @@ li {
   margin: 16 / @vw 0 0 10 / @vw;
 }
 .black .consumption .traffic ul {
-  width: 253 / @vw;
+  // width: 253 / @vw;
   margin: 15 / @vw 0 0 8 / @vw;
   display: flex;
   justify-content: flex-start;
@@ -904,6 +904,10 @@ li {
   color: #666666;
   margin: 0 10 / @vw 10 / @vw 0;
   border-radius: 4 / @vw;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .black .consumption .unlimited {
   width: 100%;

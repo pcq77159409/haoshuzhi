@@ -988,7 +988,7 @@ export default {
       } else {
         this.searchFilter.prepaid_charge = 1;
       }
-        this.searchFilter.contract = this.contractListed;
+      this.searchFilter.contract = this.contractListed;
       // if (this.one == 0 || this.one == false) {
       //   this.searchFilter.contract = this.contractListed;
       //   this.searchFilter.min_charge = this.lowPinListed;
@@ -1166,24 +1166,24 @@ export default {
       this.onclickQuery();
     },
     onclickResetInput() {
-      var number = document.querySelectorAll(".number");
-      let str = "";
-      number.forEach((val, index) => {
-        if (index != 0) {
-          val.value = "";
-          str += "_";
-        } else {
-          str += val.value;
-        }
-      });
-      this.$refs.cz.style = "background:#dddddd";
-      setTimeout(() => {
-        this.$refs.cz.style = "background:#f0eeee";
-      }, 360);
-      this.parameter.accurate = str;
+      // var number = document.querySelectorAll(".number");
+      // let str = "";
+      // number.forEach((val, index) => {
+      //   if (index != 0) {
+      //     val.value = "";
+      //     str += "_";
+      //   } else {
+      //     str += val.value;
+      //   }
+      // });
+      // this.$refs.cz.style = "background:#dddddd";
+      // setTimeout(() => {
+      //   this.$refs.cz.style = "background:#f0eeee";
+      // }, 360);
+      this.parameter = {};
       this.onclickQuery();
     },
-    onclickNull(){
+    onclickNull() {
       this.parameter = {};
       this.onclickQuery();
     },
@@ -1195,15 +1195,16 @@ export default {
       //   }
       // }
       // if (flag) {
-        this.$router.push({
-          path: "/commons/home/m",
-          query: this.parameter,
+      this.parameter.from = localStorage.getItem("city");
+      this.$router.push({
+        path: "/commons/home/m",
+        query: this.parameter,
+      });
+      this.$axios
+        .post("/api/home_page/getNumList", this.$route.query)
+        .then((val) => {
+          this.list = val.data.data;
         });
-        this.$axios
-          .post("/api/home_page/getNumList", this.$route.query)
-          .then((val) => {
-            this.list = val.data.data;
-          });
       // }
     },
     onccasd(index) {
@@ -1301,12 +1302,12 @@ export default {
         this.title = "虚拟号码";
       }
     },
-    list(val){
-      if (val.length<=40) {
+    list(val) {
+      if (val.length <= 40) {
         this.numbers = 1;
         this.numbers1 = 1;
       }
-    }
+    },
   },
 
   // //在页面离开时记录滚动位置
@@ -2046,7 +2047,7 @@ a {
   font-size: 12 / @vw;
   margin-top: 17 / @vw;
 }
-.Mobile_phone .available span{
+.Mobile_phone .available span {
   color: #ea5656;
 }
 .Montmorillonite .search_filter .yuny {

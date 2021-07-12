@@ -1130,7 +1130,7 @@ export default {
         }
       });
       str;
-      this.parameter = { accurate: "" };
+      this.parameter = {};
       this.$refs.cz.style = "background:#dddddd";
       setTimeout(() => {
         this.$refs.cz.style = "background:#f0eeee";
@@ -1154,26 +1154,27 @@ export default {
       //   this.parameter.from = "上海";
       // }
       // if (flag) {
-        this.$router.push({
-          path: "/screen",
-          query: this.parameter,
-        });
-        this.pList = this.$route.query;
-        this.$axios
-          .post("/api/home_page/getNumList", this.$route.query)
-          .then((val) => {
-            if (val.code == 200) {
-              this.list = val.data.data;
-              this.sumsid = val.data.last_page;
-              this.numbers = 1;
-              this.numbers1 = 1;
-              if (this.sumsid == 1) {
-                this.$refs.bjz.innerText = "已经到底了";
-              }
-            } else {
-              alert(val.msg);
+        this.parameter.from=localStorage.getItem('city');
+      this.$router.push({
+        path: "/screen",
+        query: this.parameter,
+      });
+      this.pList = this.$route.query;
+      this.$axios
+        .post("/api/home_page/getNumList", this.$route.query)
+        .then((val) => {
+          if (val.code == 200) {
+            this.list = val.data.data;
+            this.sumsid = val.data.last_page;
+            this.numbers = 1;
+            this.numbers1 = 1;
+            if (this.sumsid == 1) {
+              this.$refs.bjz.innerText = "已经到底了";
             }
-          });
+          } else {
+            alert(val.msg);
+          }
+        });
       // }
     },
   },
@@ -1996,7 +1997,7 @@ a {
   font-size: 12 / @vw;
   margin-top: 17 / @vw;
 }
-.Mobile_phone .available span{
+.Mobile_phone .available span {
   color: #ea5656;
 }
 @media screen and (max-width: 400px) and (min-height: 811px) {
