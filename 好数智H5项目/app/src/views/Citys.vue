@@ -12,21 +12,21 @@
     <!-- 定位城市 -->
     <div class="headers">
       <p>定位城市</p>
-      <div class="city">上海</div>
+      <div class="city">{{city}}</div>
     </div>
     <!-- 热门城市 -->
     <div style="hot">
       <p class="hotCitys">热门城市</p>
       <div class="hotcity">
-        <div class="hots">
+        <div class="hots" v-for="(item,index) in cityList" :key="index">
+          <div class="AA">{{item}}</div>
+        </div>
+        <!-- <div class="hots">
           <div class="AA">北京</div>
         </div>
         <div class="hots">
           <div class="AA">北京</div>
-        </div>
-        <div class="hots">
-          <div class="AA">北京</div>
-        </div>
+        </div> -->
       </div>
 
       <div style="num">
@@ -60,13 +60,26 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      city:localStorage.getItem('cityTop'),
+      cityList:[]
+    };
   },
   methods: {
       onBack (){
           this.$router.go(-1)
       }
   },
+  mounted(){
+    this.$get('/api/home_page/getLocation').then(r=>{
+      for(var k in r.data){
+        console.log(r.data[k]);
+        r.data[k].forEach(val=>{
+        this.cityList.push(val);
+        })
+      }
+    })
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -99,11 +112,10 @@ body {
   margin: 10/@vw 15/@vw;
 }
 .hotcity {
-  width: 90%;
+  // width: 90%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-left: 10/@vw;
+  // justify-content: space-evenly;
 }
 .num {
   width: 100%;
@@ -172,6 +184,7 @@ body {
   height: 32/@vw;
   border-radius: 5/@vw;
   border: 1/@vw solid #999999;
+  margin-left: 15/@vw;
 }
 .hots:hover {
   border-color: #fe5858;

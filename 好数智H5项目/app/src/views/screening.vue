@@ -774,15 +774,19 @@ export default {
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
+          this.pList = this.$route.query;
           this.pList.page = this.numbers;
+          this.$refs.bjz.innerText = "加载中...";
           this.$axios
-            .post("/api/home_page/getNumList", this.$route.query)
+            .post("/api/home_page/getNumList", this.pList)
             .then((val) => {
+              if (val.data.data.length < 40 ) {
+                this.$refs.bjz.innerText = "已经到底了";
+              }
               val.data.data.forEach((i) => {
                 this.list.push(i);
               });
             });
-          this.$refs.bjz.innerText = "加载中...";
           if (this.numbers1 == this.sumsid) {
             this.$refs.bjz.innerText = "已经到底了";
           }
@@ -1154,7 +1158,7 @@ export default {
       //   this.parameter.from = "上海";
       // }
       // if (flag) {
-        this.parameter.from=localStorage.getItem('city');
+      this.parameter.from = localStorage.getItem("city");
       this.$router.push({
         path: "/screen",
         query: this.parameter,

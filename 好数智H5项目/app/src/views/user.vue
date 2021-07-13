@@ -31,7 +31,7 @@
         <div class="tanc">
           <p @click="onClickk">×</p>
           <img :src="src" alt="" />
-          <span>微信扫一扫添加谈谈二维码</span>
+          <span>微信扫一扫添加客服二维码</span>
           <div class="bao">长按保存图中二维码</div>
         </div>
       </div>

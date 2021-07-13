@@ -259,9 +259,7 @@
       </router-link>
     </div>
     <!--手机号 结束-->
-    <div class="botttomjz" ref="bjz" v-show="!isShow" style="margin: 0 auto">
-      加载中...
-    </div>
+    <div class="botttomjz" ref="bjz" v-show="!isShow">加载中...</div>
     <!-- 搜索筛选 开始-->
     <div class="Montmorillonite" v-show="back">
       <div class="search_filter animate__animated animate__fadeInRight">
@@ -809,15 +807,19 @@ export default {
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
-          this.pList.page = this.numbers;
+          this.pList = this.$route.query;
+          this.pList.page = this.numbers1;
+          this.$refs.bjz.innerText = "加载中...";
           this.$axios
-            .post("/api/home_page/getNumList", this.$route.query)
+            .post("/api/home_page/getNumList", this.pList)
             .then((val) => {
+              if (val.data.data.length < 40) {
+                this.$refs.bjz.innerText = "已经到底了";
+              }
               val.data.data.forEach((i) => {
                 this.list.push(i);
               });
             });
-          this.$refs.bjz.innerText = "加载中...";
           if (this.numbers1 == this.sumsid) {
             this.$refs.bjz.innerText = "已经到底了";
           }
@@ -905,7 +907,7 @@ export default {
     },
     onClickTo() {
       this.back = false;
-      this.parameter = {};
+      // this.parameter = {};
       if (this.tranges === null) {
         this.searchFilter.handle_type = "";
       } else if (this.tranges === true) {
@@ -1028,8 +1030,11 @@ export default {
       });
 
       this.searchFilter.type = 1;
-      this.parameter = this.searchFilter;
 
+      // this.parameter = this.searchFilter;
+      for (var k in this.searchFilter) {
+        this.parameter[k] = this.searchFilter[k];
+      }
       this.onclickQuery();
     },
     onTab(index) {
@@ -1325,6 +1330,10 @@ export default {
 </script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
+.botttomjz {
+  text-align: center;
+  margin-bottom: 60 / @vw;
+}
 .top {
   position: fixed;
   right: 0;
@@ -1632,7 +1641,7 @@ a {
   overflow-y: auto;
   padding: 0 15 / @vw;
   box-sizing: border-box;
-  margin-bottom: 60 / @vw;
+  margin-bottom: 20 / @vw;
   position: relative;
 }
 .Mobile_phone .start {
