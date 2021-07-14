@@ -236,6 +236,26 @@
         <p>暂无搜索内容 <span @click="onclickNull">重置</span></p>
       </div>
       <!--暂无搜索内容 结束-->
+      <router-link
+        :to="{ path: '/details', query: { 'ids[]': val.id } }"
+        v-for="(val, index) in listTj"
+        :key="index"
+      >
+        <div class="start">
+          <img src="../assets/矩形 47@2x.png" alt="" style="" />
+          <h5 v-html="val.number_tag"></h5>
+          <div class="commission">
+            <p>{{ val.location }}</p>
+            <span v-show="commissionShow"
+              >佣金{{ val.returned_commission }}</span
+            >
+          </div>
+          <div class="contains">
+            <p>含话费{{ val.contain_charge }}</p>
+            <span v-show="priceShow">￥{{ val.sale_price }}</span>
+          </div>
+        </div>
+      </router-link>
 
       <router-link
         :to="{ path: '/details', query: { 'ids[]': val.id } }"
@@ -723,6 +743,7 @@ export default {
         },
       ],
       list: [],
+      listTj: [],
       arr: [
         {
           name: "精准搜号",
@@ -1191,6 +1212,15 @@ export default {
     onclickNull() {
       this.parameter = {};
       this.onclickQuery();
+      this.$axios
+        .post("/api/home_page/getNumList", { recommend: 1 })
+        .then((val) => {
+          if (val.code == 200) {
+            this.listTj = val.data.data;
+          } else {
+            alert(val.msg);
+          }
+        });
     },
     onclickQuery() {
       // let flag = false;
@@ -1200,6 +1230,7 @@ export default {
       //   }
       // }
       // if (flag) {
+      this.listTj = [];
       this.parameter.from = localStorage.getItem("city");
       this.$router.push({
         path: "/commons/home/m",
@@ -1254,6 +1285,15 @@ export default {
         alert(val.msg);
       }
     });
+    this.$axios
+      .post("/api/home_page/getNumList", { recommend: 1 })
+      .then((val) => {
+        if (val.code == 200) {
+          this.listTj = val.data.data;
+        } else {
+          alert(val.msg);
+        }
+      });
     this.$axios.get("/api/home_page/getOperator").then((val) => {
       this.chinese = val.data;
       this.chinese.unshift({
