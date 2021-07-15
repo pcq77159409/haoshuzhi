@@ -63,7 +63,7 @@
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
-            >{{ detailsList.contract }}/月</span
+            >{{ detailsList.contract }}月</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
@@ -475,11 +475,12 @@ export default {
       window.location.href = "tel:18817744333";
     },
     onClickNickname() {
-      if (this.metric == false) {
-        this.metric = true;
-      } else {
-        this.metric = false;
-      }
+      // if (this.metric == false) {
+      //   this.metric = true;
+      // } else {
+      //   this.metric = false;
+      // }
+      this.$router.push({path:'//commons/user'});
     },
   },
   mounted() {
