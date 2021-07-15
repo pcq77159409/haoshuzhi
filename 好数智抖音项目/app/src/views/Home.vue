@@ -1134,7 +1134,7 @@ export default {
       this.onclickQuery();
     },
     onclickRegList(index, id, name) {
-      this.parameter = {};
+      // this.parameter = {};
       this.regList = index;
       this.$refs.m.style = "overflow:auto";
       this.$refs.rule.innerText = name;
@@ -1192,25 +1192,31 @@ export default {
       this.onclickQuery();
     },
     onclickResetInput() {
-      // var number = document.querySelectorAll(".number");
-      // let str = "";
-      // number.forEach((val, index) => {
-      //   if (index != 0) {
-      //     val.value = "";
-      //     str += "_";
-      //   } else {
-      //     str += val.value;
-      //   }
-      // });
-      // this.$refs.cz.style = "background:#dddddd";
-      // setTimeout(() => {
-      //   this.$refs.cz.style = "background:#f0eeee";
-      // }, 360);
-      this.parameter = {};
+      var number = document.querySelectorAll(".number");
+      number.forEach((val) => {
+        val.value ='';
+      });
+      this.$refs.cz.style = "background:#dddddd";
+      setTimeout(() => {
+        this.$refs.cz.style = "background:#f0eeee";
+      }, 360);
+      this.$refs.rule.innerText = '不限';
+      this.parameter.accurate = '';
+      this.parameter.tag = '';
+      this.regList = 0;
       this.onclickQuery();
     },
     onclickNull() {
+      var number = document.querySelectorAll(".number");
+      number.forEach((val) => {
+        val.value ='';
+      });
+      this.$refs.rule.innerText = '不限';
+      this.parameter.accurate = '';
+      this.parameter.tag = '';
+      this.regList = 0;
       this.parameter = {};
+      this.onClickReset();
       this.onclickQuery();
       this.$axios
         .post("/api/home_page/getNumList", { recommend: 1 })

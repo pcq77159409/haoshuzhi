@@ -44,8 +44,8 @@
     </div>
     <div class="box">
       <ul>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          话费(含)<span style="margin-left: 9.3333vw; color: #666666"
+        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
+          话费(含)<span style="margin-left: 9.3333vw; color: #ff5757"
             >￥{{ copules[0][0].contain_charge }}</span
           >
         </li>
@@ -54,15 +54,15 @@
             >￥{{ copules[0][0].sale_price }}</span
           >
         </li>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          最低消费<span style="margin-left: 8vw"
+        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
+          最低消费<span style="margin-left: 8vw; color: #666666"
             >￥{{ copules[0][0].min_charge }}</span
           >
         </li>
 
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
-            >{{ copules[0][0].contract }}月</span
+            >{{ copules[0][0].contract }}个月</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
@@ -114,8 +114,8 @@
     </div>
     <div class="box">
       <ul>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          话费(含)<span style="margin-left: 9.3333vw; color: #666666"
+        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
+          话费(含)<span style="margin-left: 9.3333vw; color: #ff5757"
             >￥{{ copules[1][0].contain_charge }}</span
           >
         </li>
@@ -124,14 +124,14 @@
             >￥{{ copules[1][0].sale_price }}</span
           >
         </li>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          最低消费<span style="margin-left: 8vw"
+        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
+          最低消费<span style="margin-left: 8vw; color: #666666"
             >￥{{ copules[1][0].min_charge }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
-            >{{ copules[1][0].contract }}月</span
+            >{{ copules[1][0].contract }}个月</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">

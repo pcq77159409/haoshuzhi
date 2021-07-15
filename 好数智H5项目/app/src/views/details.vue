@@ -46,8 +46,8 @@
     </div>
     <div class="box">
       <ul>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
-          话费(含)<span style="margin-left: 9.333vw; color: #666666"
+        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
+          话费(含)<span style="margin-left: 9.333vw; color: #ff5757"
             >￥{{ detailsList.contain_charge }}</span
           >
         </li>
@@ -56,14 +56,14 @@
             >￥{{ detailsList.sale_price }}</span
           >
         </li>
-        <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          最低消费<span style="margin-left: 8vw"
+        <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
+          最低消费<span style="margin-left: 8vw; color: #666666"
             >￥{{ detailsList.min_charge }}</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
           号码合约<span style="margin-left: 8vw; color: #666666"
-            >{{ detailsList.contract }}月</span
+            >{{ detailsList.contract }}个月</span
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #999999">
