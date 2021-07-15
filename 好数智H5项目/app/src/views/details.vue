@@ -480,7 +480,7 @@ export default {
       // } else {
       //   this.metric = false;
       // }
-      this.$router.push({path:'//commons/user'});
+      this.$router.push({path:'/commons/user'});
     },
   },
   mounted() {
