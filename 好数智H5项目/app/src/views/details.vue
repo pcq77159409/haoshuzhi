@@ -390,7 +390,8 @@ export default {
       this.$router.go(-1);
     },
     onClickBack(id) {
-      if (this.back == false) {
+      if (this.taocan!= '自选套餐') {
+        if (this.back == false) {
         this.$get("/api/order/packageDetail", { id: id }).then((r) => {
           if (r.code == 200) {
             this.packagDetail = r.data;
@@ -405,6 +406,7 @@ export default {
         this.back = true;
       } else {
         this.back = false;
+      }
       }
     },
     onclickTaocanZX(id, name) {
@@ -499,14 +501,15 @@ export default {
             this.taocanXZ = numberpackage.storepackage.id;
             this.taocan = numberpackage.storepackage.package_name;
           } else {
-            this.$get("/api/package/getPackage", {
-              operator: r.data[0][0].operator,
-              location: r.data[0][0].location,
-            }).then((val) => {
-              this.taocan = val.data.data[0].package_name;
-              this.taocanXZ = val.data.data[0].id;
-              this.numberpackage = val.data.data;
-            });
+            this.taocan = '自选套餐';
+            // this.$get("/api/package/getPackage", {
+            //   operator: r.data[0][0].operator,
+            //   location: r.data[0][0].location,
+            // }).then((val) => {
+            //   this.taocan = val.data.data[0].package_name;
+            //   this.taocanXZ = val.data.data[0].id;
+            //   this.numberpackage = val.data.data;
+            // });
           }
         }
       } else if (r.code == 700) {

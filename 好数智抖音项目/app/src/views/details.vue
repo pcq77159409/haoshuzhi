@@ -391,7 +391,8 @@ export default {
       this.$router.go(-1);
     },
     onClickBack(id) {
-      if (this.back == false) {
+      if (this.taocan!= '自选套餐') {
+        if (this.back == false) {
         this.$get("/api/order/packageDetail", { id: id }).then((r) => {
           if (r.code == 200) {
             this.packagDetail = r.data;
@@ -407,6 +408,8 @@ export default {
       } else {
         this.back = false;
       }
+      }
+      
     },
     onclickTaocanZX(id, name) {
       this.taocanXZ = id;
@@ -453,17 +456,6 @@ export default {
       this.$store.commit("onCreateTheOrder", obj);
     },
     onclickPurchase() {
-      var btn1 = document.getElementById("btn1");
-      var uname1 = document.getElementById("uname1");
-      var address1 = document.getElementById("address1");
-      uname1.value = this.shdz.name;
-      address1.value =
-        this.shdz.province +
-        this.shdz.city +
-        this.shdz.area +
-        this.shdz.address;
-      btn1.click();
-
       var btn = document.getElementById("btn");
       var uname = document.getElementById("uname");
       var address = document.getElementById("address");
@@ -473,7 +465,21 @@ export default {
         this.shdz.city +
         this.shdz.area +
         this.shdz.address;
+      //           setTimeout(()=>{
+      // btn.click();
+      //   },200);
       btn.click();
+      
+      // var btn1 = document.getElementById("btn1");
+      // var uname1 = document.getElementById("uname1");
+      // var address1 = document.getElementById("address1");
+      // uname1.value = this.shdz.name;
+      // address1.value =
+      //   this.shdz.province +
+      //   this.shdz.city +
+      //   this.shdz.area +
+      //   this.shdz.address;
+      // btn1.click();
       this.onCreateTheOrders();
     },
     onclickCollection() {
@@ -521,14 +527,15 @@ export default {
             this.taocanXZ = numberpackage.storepackage.id;
             this.taocan = numberpackage.storepackage.package_name;
           } else {
-            this.$get("/api/package/getPackage", {
-              operator: r.data[0][0].operator,
-              location: r.data[0][0].location,
-            }).then((val) => {
-              this.taocan = val.data.data[0].package_name;
-              this.taocanXZ = val.data.data[0].id;
-              this.numberpackage = val.data.data;
-            });
+            this.taocan='自选套餐';
+            // this.$get("/api/package/getPackage", {
+            //   operator: r.data[0][0].operator,
+            //   location: r.data[0][0].location,
+            // }).then((val) => {
+            //   this.taocan = val.data.data[0].package_name;
+            //   this.taocanXZ = val.data.data[0].id;
+            //   this.numberpackage = val.data.data;
+            // });
           }
         }
       } else if (r.code == 700) {

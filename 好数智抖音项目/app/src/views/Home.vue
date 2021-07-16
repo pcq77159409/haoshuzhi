@@ -1087,7 +1087,7 @@ export default {
       this.cont = false;
       this.one = false;
       this.two = false;
-      this.three = [];
+      this.three = [''];
       this.minNumber = "";
       this.maxNumber = "";
       this.contractListed = false;
