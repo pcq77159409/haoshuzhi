@@ -210,6 +210,22 @@
             <p>{{ item.operators_name }}</p>
           </li>
         </ul>
+
+        <ul>
+          <li
+            v-for="(item, index) in haoduanList"
+            :key="index"
+            :class="{ currents: haodaunName == item.name }"
+            @click="onclickHaoduan(item.name)"
+          >
+            <img
+              src="../assets/right.png"
+              alt=""
+              v-show="haodaunName == item.name"
+            />
+            <p>{{ item.name }}</p>
+          </li>
+        </ul>
       </div>
       <!-- 运营商 结束-->
 
@@ -217,10 +233,43 @@
       <div class="regular" v-show="active == 2">
         <ul>
           <li
+            v-for="(item, index) in guilvList"
+            :key="index"
+            :class="{ currents: glShow == item }"
+            @click="glShow = item"
+          >
+            <img src="../assets/right.png" alt="" v-show="glShow == item" />
+            <p>{{ item }}</p>
+          </li>
+        </ul>
+        <ul v-show="glShow == '全部'">
+          <li
             v-for="(item, index) in rule"
             :key="index"
-            :class="{ currents: regList == index }"
-            @click="onclickRegList(index, item.id, item.name)"
+            :class="{ currents: regList == item.id }"
+            @click="onclickRegList(item.id, item.name)"
+          >
+            <img src="../assets/right.png" alt="" v-show="regList == index" />
+            <p>{{ item.name }}</p>
+          </li>
+        </ul>
+        <ul v-show="glShow == '中间'">
+          <li
+            v-for="(item, index) in rulez"
+            :key="index"
+            :class="{ currents: regList == item.id }"
+            @click="onclickRegList(item.id, item.name)"
+          >
+            <img src="../assets/right.png" alt="" v-show="regList == index" />
+            <p>{{ item.name }}</p>
+          </li>
+        </ul>
+        <ul v-show="glShow == '尾数'">
+          <li
+            v-for="(item, index) in rulew"
+            :key="index"
+            :class="{ currents: regList == item.id }"
+            @click="onclickRegList(item.id, item.name)"
           >
             <img src="../assets/right.png" alt="" v-show="regList == index" />
             <p>{{ item.name }}</p>
@@ -395,6 +444,11 @@
 export default {
   data() {
     return {
+      glShow: "全部",
+      guilvList: ["全部", "中间", "尾数"], //规律
+      haoduanTitle: "",
+      haodaunName: "全部",
+      haoduanList: [{ id: -1, name: "全部" }], //号段
       topFlag: false,
       commissionShow: false,
       priceShow: true,
@@ -404,21 +458,27 @@ export default {
       active: null,
       proList: [],
       cityList: [],
-      chinese: [{
-        operators_name:'移动号码'
-      },{
-        operators_name:'联通号码'
-      },{
-        operators_name:'电信号码'
-      },{
-        operators_name:'虚拟号码'
-      },{
-        operators_name:'不限'
-      }],
+      chinese: [
+        {
+          operators_name: "全部",
+        },
+        {
+          operators_name: "移动号码",
+        },
+        {
+          operators_name: "联通号码",
+        },
+        {
+          operators_name: "电信号码",
+        },
+        {
+          operators_name: "虚拟号码",
+        },
+      ],
       rule: [
         {
           id: "",
-          name: "不限",
+          name: "全部",
         },
         {
           id: 37,
@@ -455,6 +515,182 @@ export default {
         {
           id: 43,
           name: "中间ABCDE",
+        },
+        {
+          id: 33,
+          name: "*ABC*ABC",
+        },
+        {
+          id: 25,
+          name: "AA",
+        },
+        {
+          id: 1,
+          name: "AAA",
+        },
+        {
+          id: 17,
+          name: "AAA*BBB*",
+        },
+        {
+          id: 2,
+          name: "AAAA",
+        },
+        {
+          id: 3,
+          name: "AAAAA",
+        },
+        {
+          id: 4,
+          name: "AAAAAA",
+        },
+        {
+          id: 12,
+          name: "AAAAAB",
+        },
+        {
+          id: 13,
+          name: "AAAAB",
+        },
+        {
+          id: 29,
+          name: "AAAABB",
+        },
+        {
+          id: 5,
+          name: "AAAABBBB",
+        },
+        {
+          id: 14,
+          name: "AAAB",
+        },
+        {
+          id: 21,
+          name: "AAABAAAB",
+        },
+        {
+          id: 27,
+          name: "AAABB",
+        },
+        {
+          id: 6,
+          name: "AAABBB",
+        },
+        {
+          id: 9,
+          name: "AABB",
+        },
+        {
+          id: 24,
+          name: "AABBB",
+        },
+        {
+          id: 8,
+          name: "AABBCC",
+        },
+        {
+          id: 34,
+          name: "AABBCC*",
+        },
+        {
+          id: 7,
+          name: "AABBCCDD",
+        },
+        {
+          id: 16,
+          name: "ABAB",
+        },
+        {
+          id: 15,
+          name: "ABABAB",
+        },
+        {
+          id: 32,
+          name: "ABABAB*",
+        },
+        {
+          id: 20,
+          name: "ABABCCDD",
+        },
+        {
+          id: 22,
+          name: "ABBA",
+        },
+        {
+          id: 28,
+          name: "ABBABB",
+        },
+        {
+          id: 19,
+          name: "ABC",
+        },
+        {
+          id: 18,
+          name: "ABCABC",
+        },
+        {
+          id: 10,
+          name: "ABCD",
+        },
+        {
+          id: 23,
+          name: "ABCDABCD",
+        },
+        {
+          id: 11,
+          name: "ABCDE",
+        },
+        {
+          id: 26,
+          name: "AABBAABB",
+        },
+      ],
+      rulez: [
+        {
+          id: "",
+          name: "全部",
+        },
+        {
+          id: 37,
+          name: "AAAA",
+        },
+        {
+          id: 38,
+          name: "AAAAA",
+        },
+        {
+          id: 39,
+          name: "AAAAAA",
+        },
+        {
+          id: 42,
+          name: "AAAB",
+        },
+        {
+          id: 35,
+          name: "AABB",
+        },
+        {
+          id: 36,
+          name: "ABAB",
+        },
+        {
+          id: 40,
+          name: "ABBA",
+        },
+        {
+          id: 41,
+          name: "ABBB",
+        },
+        {
+          id: 43,
+          name: "ABCDE",
+        },
+      ],
+      rulew: [
+        {
+          id: "",
+          name: "全部",
         },
         {
           id: 33,
@@ -677,6 +913,10 @@ export default {
       ],
       arrList: [
         {
+          name:'不限',
+          num:''
+        },
+        {
           name: "不含0",
           num: "0",
         },
@@ -714,8 +954,8 @@ export default {
         },
       ],
       list: [],
-      num: null,
-      wrap: null,
+      num: 0,
+      wrap: '上海市',
       flag: false,
       cut: false,
       regulars: false,
@@ -725,10 +965,10 @@ export default {
       cont: false,
       one: false,
       two: false,
-      three: [],
+      three: [''],
       nums: "",
-      opList: -1,
-      regList: -1,
+      opList: "全部",
+      regList: '',
       typed: 1,
       parameter: {},
       minNumber: "",
@@ -1008,10 +1248,17 @@ export default {
       this.two = index;
     },
     onClickThree(index) {
-      if (this.three.includes(index)) {
-        this.three = this.three.filter((val) => val != index);
+      if (index != "") {
+        if (this.three.includes("")) {
+          this.three.splice(0, 1);
+        }
+        if (this.three.includes(index)) {
+          this.three = this.three.filter((val) => val != index);
+        } else {
+          this.three.push(index);
+        }
       } else {
-        this.three.push(index);
+        this.three = [""];
       }
     },
     onClickReset() {
@@ -1020,7 +1267,7 @@ export default {
       this.cont = false;
       this.one = false;
       this.two = false;
-      this.three = [];
+      this.three = [''];
       this.minNumber = "";
       this.maxNumber = "";
       this.contractListed = false;
@@ -1046,8 +1293,9 @@ export default {
         }
       });
       str;
-      this.parameter = { accurate: "" };
-      this.parameter = {};
+      // this.parameter = { accurate: "" };
+      // this.parameter = {};
+      this.parameter.accurate='';
       if (this.typed) {
         this.parameter.type = 1;
       } else {
@@ -1066,6 +1314,7 @@ export default {
     },
     onclickOpeateing(index) {
       this.$refs.yys.innerText = index;
+      this.getHaoduan(index);
       let id = 0;
       if (index == "移动号码") {
         id = 1;
@@ -1080,14 +1329,14 @@ export default {
       }
       this.cut = false;
       this.opList = index;
-      this.active = -1;
+      // this.active = -1;
       this.parameter.operator_id = id;
       this.onclickQuery();
     },
-    onclickRegList(index, id, name) {
+    onclickRegList(id, name) {
       this.$refs.rule.innerText = name;
       // this.parameter = {};
-      this.regList = index;
+      this.regList = id;
       this.regulars = false;
       this.active = -1;
       this.parameter.tag = id;
@@ -1102,11 +1351,11 @@ export default {
       var words = number[index].value.replace(/\D+/g, "");
       words = words.substring(words.length - 1, words.length);
       number[index].value = words;
-
+console.log(event.keyCode);
       if (event.keyCode == 8) {
         if (index >= 1) {
           number[index - 1].focus();
-          number[index - 1].value='';
+          number[index - 1].value = "";
         }
       } else {
         if (index < number.length - 1) {
@@ -1129,7 +1378,7 @@ export default {
       setTimeout(() => {
         this.$refs.jz.style = "background:#fe5858";
       }, 360);
-      this.parameter = {};
+      // this.parameter = {};
       this.parameter.accurate = str;
       this.parameter.from = localStorage.getItem("from");
       this.onclickQuery();
@@ -1146,7 +1395,8 @@ export default {
         }
       });
       str;
-      this.parameter = {};
+      // this.parameter = {};
+      this.parameter.accurate = '';
       this.$refs.cz.style = "background:#dddddd";
       setTimeout(() => {
         this.$refs.cz.style = "background:#f0eeee";
@@ -1156,6 +1406,54 @@ export default {
     onclickNull() {
       this.parameter = {};
       this.onclickQuery();
+    },
+    getHaoduan(name) {
+      let id = "";
+      if (name == "移动号码") {
+        id = 1;
+      } else if (name == "联通号码") {
+        id = 52;
+      } else if (name == "电信号码") {
+        id = 3;
+      } else if (name == "虚拟号码") {
+        id = 68;
+      }
+      this.haoduanList = [
+        {
+          name: "全部",
+        },
+      ];
+      let idList = [1, 3, 52, 68];
+      if (id == "") {
+        idList.forEach((val) => {
+          this.$get("/api/home_page/getChildCategory", {
+            id: val,
+            from: localStorage.getItem("from"),
+          }).then((r) => {
+            this.haoduanList.push.apply(this.haoduanList, r.data[0].child);
+          });
+        });
+      } else {
+        this.$get("/api/home_page/getChildCategory", {
+          id: id,
+          from: localStorage.getItem("from"),
+        }).then((r) => {
+          this.haoduanList.push.apply(this.haoduanList, r.data[0].child);
+        });
+      }
+    },
+    onclickHaoduan(name) {
+      if (name == "全部") {
+        this.active = -1;
+        this.haodaunName = name;
+        this.parameter.haoduan = "";
+        this.onclickOpeateing(this.opList);
+      } else {
+        this.active = -1;
+        this.haodaunName = name;
+        this.parameter.haoduan = name;
+        this.onclickQuery();
+      }
     },
     onclickQuery() {
       // let flag = false;
@@ -1262,28 +1560,36 @@ export default {
     });
     if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
       this.title = "移动号码";
-      this.$refs.yys.innerText = '移动号码';
+      this.$refs.yys.innerText = "移动号码";
+      this.opList = "移动号码";
     } else if (
       this.$route.query.operator_id &&
       this.$route.query.operator_id == 2
     ) {
       this.title = "联通号码";
-      this.$refs.yys.innerText = '联通号码';
+      this.$refs.yys.innerText = "联通号码";
+      this.opList = "联通号码";
     } else if (
       this.$route.query.operator_id &&
       this.$route.query.operator_id == 3
     ) {
       this.title = "电信号码";
-      this.$refs.yys.innerText = '电信号码';
+      this.$refs.yys.innerText = "电信号码";
+      this.opList = "电信号码";
     } else if (
       this.$route.query.operator_id &&
       this.$route.query.operator_id == 4
     ) {
       this.title = "虚拟号码";
-      this.$refs.yys.innerText = '虚拟号码';
+      this.$refs.yys.innerText = "虚拟号码";
+      this.opList = "虚拟号码";
     } else if (this.$route.query.tag == 44) {
       this.title = "生日号码";
+    } else if (this.$route.query.recommend || !this.$route.query.operator_id) {
+      this.title = "全部号码";
+      this.$refs.yys.innerText = "全部";
     }
+    this.getHaoduan(this.title);
   },
   updated() {
     if (this.list.length == 0) {
@@ -1349,7 +1655,6 @@ a {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
 .Mobile_phone .active {
@@ -1632,15 +1937,17 @@ a {
 .Mobile_phone .Belonging,
 .Mobile_phone .regular {
   width: 100%;
-  height: 365 / @vw;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0 / @vw;
   display: flex;
   z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
 }
 .Mobile_phone .Belonging .pro {
   width: 40%;
+  height: 365 / @vw;
   background-color: #fff;
 }
 .Mobile_phone .Belonging .pro li,
@@ -1670,7 +1977,7 @@ a {
 }
 .Mobile_phone .Belonging .city {
   width: 60%;
-  height: 100%;
+  height: 365 / @vw;
   background-color: #f8f8f8;
 }
 .Mobile_phone .Belonging .city li p {
@@ -1690,15 +1997,21 @@ a {
   z-index: 999;
 }
 .Mobile_phone .opeateing ul {
-  width: 100%;
-  height: 133 / @vw;
+  width: 50%;
+  height: 365 / @vw;
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-direction: column;
+  // flex-wrap: wrap;
+  overflow: auto;
+}
+.Mobile_phone .opeateing ul:last-of-type {
+  box-sizing: border-box;
+  border-left: 1px solid #eee;
+  background-color: #f8f8f8;
 }
 .Mobile_phone .opeateing ul li {
-  width: 187 / @vw;
+  width: 100%;
   height: 43 / @vw;
   display: flex;
   align-items: center;
@@ -1735,10 +2048,15 @@ a {
 //   display: block;
 // }
 .Mobile_phone .regular ul {
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff;
+  width: 50%;
+  height: 365 / @vw;
+  background-color: #f8f8f8;
   overflow: auto;
+}
+.Mobile_phone .regular ul:first-of-type {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-right: 1px solid #eee;
 }
 .Mobile_phone .regular ul li {
   width: 100%;
@@ -1859,7 +2177,9 @@ a {
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
   width: 68 / @vw;
 }
-
+.Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-of-type{
+  margin-right:70/@vw ;
+}
 .Mobile_phone .Montmorillonite .search_filter .price ul li span,
 .Mobile_phone .Montmorillonite .search_filter .charge span {
   position: absolute;
@@ -1981,7 +2301,7 @@ a {
 //   margin-right: 142/@vw;
 // }
 .Mobile_phone .Montmorillonite .search_filter .none ul li:last-child {
-  margin-right: 214 / @vw;
+  margin-right: 145 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .sure {
   width: 100%;
