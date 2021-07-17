@@ -37,9 +37,9 @@
           v-if="detailsList.numberpackage.length != 0"
           style="width: 10px; font-style: normal"
         > -->
-        <span>
+        <!-- <span> -->
           <span @click="onClickBack(taocanXZ)">{{ taocan }}</span>
-        </span>
+        <!-- </span> -->
         <!-- </em> -->
       </p>
       <img src="../assets/跳转箭头@2x.png" alt="" />
@@ -52,7 +52,7 @@
           >
         </li>
         <li style="border-bottom: 1px solid #f8f8f8; color: #ff5757">
-          卡费<span style="margin-left: 14.666vw"
+          卡费<span style="margin-left: 12.666vw"
             >￥{{ detailsList.sale_price }}</span
           >
         </li>
@@ -669,8 +669,8 @@ li {
 }
 .phone p span {
   display: inline-block;
-  width: 220 / @vw;
-  margin-left: 15 / @vw;
+  width: 215 / @vw;
+  margin-left: 20 / @vw;
   font-size: 12 / @vw;
 }
 .phone img {

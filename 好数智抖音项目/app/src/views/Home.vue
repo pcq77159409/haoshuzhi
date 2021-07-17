@@ -1082,12 +1082,13 @@ export default {
       }
     },
     onClickReset() {
+      this.opList = "不限";
       this.tranges = null;
       this.went = false;
       this.cont = false;
       this.one = false;
       this.two = false;
-      this.three = [''];
+      this.three = [""];
       this.minNumber = "";
       this.maxNumber = "";
       this.contractListed = false;
@@ -1147,12 +1148,14 @@ export default {
       this.typed = !this.typed;
     },
     onkeyupInputSearch(index) {
+      if (index == 10 && event.keyCode == 13) {
+        this.onclickAccurateSearch();
+      }
       var number = document.querySelectorAll(".number");
 
       var words = number[index].value.replace(/\D+/g, "");
       words = words.substring(words.length - 1, words.length);
       number[index].value = words;
-
       // if (event.code == "Backspace") {
       //   if (index >= 1) {
       //     number[index - 1].focus();
@@ -1166,6 +1169,7 @@ export default {
       if (event.keyCode == 8) {
         if (index >= 1) {
           number[index - 1].focus();
+          number[index - 1].value='';
         }
       } else {
         if (index < number.length - 1) {
@@ -1193,27 +1197,37 @@ export default {
     },
     onclickResetInput() {
       var number = document.querySelectorAll(".number");
-      number.forEach((val) => {
-        val.value ='';
+      number.forEach((val,index) => {
+        if (index != 0) {
+          val.value = "";
+        }
       });
+      // number[0].value = "1";
+      this.searchInput = "";
+      this.searchInputs = "";
       this.$refs.cz.style = "background:#dddddd";
       setTimeout(() => {
         this.$refs.cz.style = "background:#f0eeee";
       }, 360);
-      this.$refs.rule.innerText = '不限';
-      this.parameter.accurate = '';
-      this.parameter.tag = '';
+      this.$refs.rule.innerText = "不限";
+      this.parameter.accurate = "";
+      this.parameter.tag = "";
       this.regList = 0;
       this.onclickQuery();
     },
     onclickNull() {
       var number = document.querySelectorAll(".number");
-      number.forEach((val) => {
-        val.value ='';
+      number.forEach((val, index) => {
+        if (index != 0) {
+          val.value = "";
+        }
       });
-      this.$refs.rule.innerText = '不限';
-      this.parameter.accurate = '';
-      this.parameter.tag = '';
+      // number[0].value = "1";
+      this.searchInput = "";
+      this.searchInputs = "";
+      this.$refs.rule.innerText = "不限";
+      this.parameter.accurate = "";
+      this.parameter.tag = "";
       this.regList = 0;
       this.parameter = {};
       this.onClickReset();
@@ -1246,6 +1260,9 @@ export default {
         .post("/api/home_page/getNumList", this.$route.query)
         .then((val) => {
           this.list = val.data.data;
+        if (val.data.data.length < 40) {
+          this.$refs.bjz.innerText = "已经到底了";
+        }
         });
       // }
     },
@@ -1284,7 +1301,10 @@ export default {
       if (val.code == 200) {
         this.list = val.data.data;
         this.sumsid = val.data.last_page;
-        if (this.sumsid == 1) {
+        // if (this.sumsid == 1) {
+        //   this.$refs.bjz.innerText = "已经到底了";
+        // }
+        if (val.data.data.length < 40) {
           this.$refs.bjz.innerText = "已经到底了";
         }
       } else {
@@ -1516,7 +1536,7 @@ a {
   background-color: #e0e0e0;
 }
 .Mobile_phone .accurate .input_bg .searchs {
-  width: 75%;
+  width: 88%;
   display: flex;
   justify-content: space-between;
 }
@@ -1528,7 +1548,7 @@ a {
 .Mobile_phone .accurate .input_bg .searchs .want {
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 100%;
 }
 .Mobile_phone .accurate .input_bg .searchs .want img {
   width: 10 / @vw*1.3;
@@ -1536,6 +1556,7 @@ a {
   margin: 0 10 / @vw 0 4 / @vw;
 }
 .Mobile_phone .accurate .input_bg .searchs .want input {
+  flex: 1;
   font-size: 12 / @vw;
   color: #999999;
   background: transparent;

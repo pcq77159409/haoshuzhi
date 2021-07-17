@@ -12,14 +12,14 @@
     <!-- 定位城市 -->
     <div class="headers">
       <p>定位城市</p>
-      <div class="city">{{city}}</div>
+      <div class="city" @click="onclickCity(city)">{{city}}</div>
     </div>
     <!-- 热门城市 -->
     <div style="hot">
       <p class="hotCitys">热门城市</p>
       <div class="hotcity">
         <div class="hots" v-for="(item,index) in cityList" :key="index">
-          <div class="AA">{{item}}</div>
+          <div class="AA" @click="onclickCity(item)">{{item}}</div>
         </div>
         <!-- <div class="hots">
           <div class="AA">北京</div>
@@ -68,6 +68,12 @@ export default {
   methods: {
       onBack (){
           this.$router.go(-1)
+      },
+      onclickCity(item){
+        localStorage.setItem('cityTop',item);
+        localStorage.setItem('city',item);
+        localStorage.setItem('from',item);
+        this.$router.push('/commons/home/m');
       }
   },
   mounted(){

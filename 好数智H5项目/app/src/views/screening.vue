@@ -404,7 +404,17 @@ export default {
       active: null,
       proList: [],
       cityList: [],
-      chinese: [],
+      chinese: [{
+        operators_name:'移动号码'
+      },{
+        operators_name:'联通号码'
+      },{
+        operators_name:'电信号码'
+      },{
+        operators_name:'虚拟号码'
+      },{
+        operators_name:'不限'
+      }],
       rule: [
         {
           id: "",
@@ -780,7 +790,7 @@ export default {
           this.$axios
             .post("/api/home_page/getNumList", this.pList)
             .then((val) => {
-              if (val.data.data.length < 40 ) {
+              if (val.data.data.length < 40) {
                 this.$refs.bjz.innerText = "已经到底了";
               }
               val.data.data.forEach((i) => {
@@ -859,6 +869,7 @@ export default {
       this.back = false;
       this.active = -1;
       // this.parameter = {};
+      this.searchFilter = this.parameter;
       if (this.tranges === null) {
         this.searchFilter.handle_type = "";
       } else if (this.tranges === true) {
@@ -1056,13 +1067,13 @@ export default {
     onclickOpeateing(index) {
       this.$refs.yys.innerText = index;
       let id = 0;
-      if (index == "中国移动") {
+      if (index == "移动号码") {
         id = 1;
-      } else if (index == "中国联通") {
+      } else if (index == "联通号码") {
         id = 2;
-      } else if (index == "中国电信") {
+      } else if (index == "电信号码") {
         id = 3;
-      } else if (index == "虚拟运营商") {
+      } else if (index == "虚拟号码") {
         id = 4;
       } else {
         id = "";
@@ -1095,6 +1106,7 @@ export default {
       if (event.keyCode == 8) {
         if (index >= 1) {
           number[index - 1].focus();
+          number[index - 1].value='';
         }
       } else {
         if (index < number.length - 1) {
@@ -1172,7 +1184,10 @@ export default {
             this.sumsid = val.data.last_page;
             this.numbers = 1;
             this.numbers1 = 1;
-            if (this.sumsid == 1) {
+            // if (this.sumsid == 1) {
+            //   this.$refs.bjz.innerText = "已经到底了";
+            // }
+            if (val.data.data.length < 40) {
               this.$refs.bjz.innerText = "已经到底了";
             }
           } else {
@@ -1213,7 +1228,10 @@ export default {
         if (val.code == 200) {
           this.list = val.data.data;
           this.sumsid = val.data.last_page;
-          if (this.sumsid == 1) {
+          // if (this.sumsid == 1) {
+          //   this.$refs.bjz.innerText = "已经到底了";
+          // }
+          if (val.data.data.length < 40) {
             this.$refs.bjz.innerText = "已经到底了";
           }
         } else {
@@ -1227,12 +1245,12 @@ export default {
       }
       this.cityList = val.data;
     });
-    this.$axios.get("/api/home_page/getOperator").then((val) => {
-      this.chinese = val.data;
-      this.chinese.push({
-        operators_name: "不限",
-      });
-    });
+    // this.$axios.get("/api/home_page/getOperator").then((val) => {
+    //   this.chinese = val.data;
+    //   this.chinese.push({
+    //     operators_name: "不限",
+    //   });
+    // });
     this.$axios.get("/api/low_consumption/index").then((r) => {
       r.data.forEach((val) => {
         if (val.type == 1) {
@@ -1244,21 +1262,25 @@ export default {
     });
     if (this.$route.query.operator_id && this.$route.query.operator_id == 1) {
       this.title = "移动号码";
+      this.$refs.yys.innerText = '移动号码';
     } else if (
       this.$route.query.operator_id &&
       this.$route.query.operator_id == 2
     ) {
       this.title = "联通号码";
+      this.$refs.yys.innerText = '联通号码';
     } else if (
       this.$route.query.operator_id &&
       this.$route.query.operator_id == 3
     ) {
       this.title = "电信号码";
+      this.$refs.yys.innerText = '电信号码';
     } else if (
       this.$route.query.operator_id &&
       this.$route.query.operator_id == 4
     ) {
       this.title = "虚拟号码";
+      this.$refs.yys.innerText = '虚拟号码';
     } else if (this.$route.query.tag == 44) {
       this.title = "生日号码";
     }
@@ -1272,13 +1294,13 @@ export default {
   },
   watch: {
     opList(val) {
-      if (val == "中国移动") {
+      if (val == "移动号码") {
         this.title = "移动号码";
-      } else if (val == "中国联通") {
+      } else if (val == "联通号码") {
         this.title = "联通号码";
-      } else if (val == "中国电信") {
+      } else if (val == "电信号码") {
         this.title = "电信号码";
-      } else if (val == "虚拟运营商") {
+      } else if (val == "虚拟号码") {
         this.title = "虚拟号码";
       }
     },
