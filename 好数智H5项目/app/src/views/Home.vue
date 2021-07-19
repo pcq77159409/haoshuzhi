@@ -534,7 +534,7 @@ a {
   height: 14 / @vw;
   position: absolute;
   left: 15 / @vw*1.3;
-  top: 24 / @vw*1.3;
+  top: 22 / @vw*1.3;
 }
 .head .locations p {
   position: absolute;

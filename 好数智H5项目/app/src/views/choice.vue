@@ -5,10 +5,10 @@
       <h4>套餐资费</h4>
     </div>
     <!-- 下拉选择 开始-->
-    <!-- <div class="select_change">
+    <div class="select_change">
       <ul>
         <li @click="onClickShow(0)">
-          <p @click="onClickDn">归属地</p>
+          <p>归属地</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 0" />
           <img
             src="../assets/red_triangle.png"
@@ -18,7 +18,7 @@
           />
         </li>
         <li @click="onClickShow(1)">
-          <p @click="onClickOperating">运营商</p>
+          <p>运营商</p>
           <img src="../assets/triangle.png" alt="" v-show="active !== 1" />
           <img
             src="../assets/red_triangle.png"
@@ -28,7 +28,7 @@
           />
         </li>
       </ul>
-    </div> -->
+    </div>
     <!-- 下拉选择 结束-->
 
     <!-- 小魔卡 开始-->
@@ -75,7 +75,7 @@
     <!-- 小魔卡 结束-->
 
     <!-- 归属地 开始-->
-    <!-- <div class="Belonging" v-show="flag">
+    <div class="Belonging" v-show="active == 0">
       <ul class="pro">
         <li
           v-for="(item, index) in proList"
@@ -83,8 +83,8 @@
           :class="{ current: num == index }"
           @click="onClickHide(index)"
         >
-          <img :src="item.src" alt="" v-show="num == index" />
-          <p>{{ item.username }}</p>
+          <img src="../assets/right.png" alt="" v-show="num == index" />
+          <p>{{ item }}</p>
         </li>
       </ul>
       <ul class="city">
@@ -94,34 +94,30 @@
           :class="{ currents: wrap == index }"
           @click="onClickHided(index)"
         >
-          <img :src="item.src" alt="" v-show="wrap == index" />
-          <p>{{ item.username }}</p>
+          <img src="../assets/right.png" alt="" v-show="wrap == index" />
+          <p>{{ item }}</p>
         </li>
       </ul>
-    </div> -->
+    </div>
     <!-- 归属地 结束-->
 
     <!-- 运营商 开始-->
-    <!-- <div class="opeateing" v-show="cut">
+    <div class="opeateing" v-show="active == 1">
       <ul>
-        <li>
+        <li @click="onclickYys(1)" :class="{ yysActive: yys == 1 }">
           <img src="../assets/right.png" alt="" />
           <p>中国移动</p>
         </li>
-        <li>
-          <img src="../assets/right.png" alt="" />
-          <p>中国电信</p>
-        </li>
-        <li>
+        <li @click="onclickYys(3)" :class="{ yysActive: yys == 3 }">
           <img src="../assets/right.png" alt="" />
           <p>中国联通</p>
         </li>
-        <li>
+        <li @click="onclickYys(2)" :class="{ yysActive: yys == 2 }">
           <img src="../assets/right.png" alt="" />
-          <p>虚拟号码</p>
+          <p>中国电信</p>
         </li>
       </ul>
-    </div> -->
+    </div>
     <!-- 运营商 结束-->
   </div>
 </template>
@@ -129,77 +125,12 @@
 export default {
   data() {
     return {
+      yys: 0,
       numbers: 1,
       numbers1: 1,
       sumsid: 0,
-      proList: [
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "全国",
-        },
-      ],
-      cityList: [
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-        {
-          src: require("../assets/right.png"),
-          username: "石家庄市",
-        },
-      ],
+      proList: [],
+      cityList: [],
       taocany: [
         {
           id: 25,
@@ -227,7 +158,6 @@ export default {
       cont: false,
       went: false,
       wrap: null,
-      flag: false,
       num: null,
       active: null,
       cut: false,
@@ -247,24 +177,22 @@ export default {
       // 找一个滚动到合适加载的位置(与数据多少有关)，并拿到值，做处理
       // 如果滚动的位置为2100加载
       // 并且到每次滚动的位置一定与2100有关
-      if (e.target.scrollTop >= 400 * this.numbers) {
+      if (e.target.scrollTop >= 200 * this.numbers) {
         // this.rember();
         if (this.numbers1 <= this.sumsid - 1) {
           this.numbers += 1.2;
           this.numbers1++;
           // this.pList.page = this.numbers;
-          this.$axios
-            .get("/api/package/getPackage", {
-              operator: this.operator,
-              location: this.location,
-              package_name: this.package_name,
-              page: this.page,
-            })
-            .then((val) => {
-              val.data.data.forEach((i) => {
-                this.taocany.push(i);
-              });
+          this.$get("/api/package/getPackage", {
+            operator: this.operator,
+            location: this.location,
+            package_name: this.package_name,
+            page: this.numbers1,
+          }).then((val) => {
+            val.data.data.forEach((i) => {
+              this.taocany.push(i);
             });
+          });
           this.$refs.bjz.innerText = "加载中...";
           if (this.numbers1 == this.sumsid) {
             this.$refs.bjz.innerText = "已经到底了";
@@ -274,35 +202,39 @@ export default {
         }
       }
     },
+    onclickYys(val) {
+      this.yys = val;
+      this.active = null;
+      this.operator = val;
+      this.getPackage();
+    },
+    getPackage() {
+      this.$get("/api/package/getPackage", {
+        operator: this.operator,
+        location: this.location,
+        package_name: this.package_name,
+        page: this.page,
+      }).then((r) => {
+        this.taocany = r.data.data;
+        this.sumsid = r.data.last_page;
+      });
+    },
     onClickHide(val) {
       this.num = val;
     },
     onClickHided(val) {
-      this.wrap = val;
+      if (this.num != null) {
+        this.active = null;
+        this.wrap = val;
+        this.location = val;
+        this.getPackage();
+      }
     },
     onClickShow(num) {
       if (this.active == num) {
         this.active = null;
       } else {
         this.active = num;
-      }
-    },
-    onClickOperating() {
-      if (this.cut == false) {
-        this.cut = true;
-        this.flag = false;
-        this.regulars = false;
-      } else {
-        this.cut = false;
-      }
-    },
-    onClickDn() {
-      if (this.flag == false) {
-        this.flag = true;
-        this.cut = false;
-        this.regulars = false;
-      } else {
-        this.flag = false;
       }
     },
     onClickTo() {
@@ -340,6 +272,12 @@ export default {
       });
     },
   },
+  updated() {
+    if (this.taocany.length <= 10) {
+      this.numbers1 = 1;
+      this.numbers = 1;
+    }
+  },
   created() {
     this.$axios
       .get("/api/package/getPackage", {
@@ -356,6 +294,14 @@ export default {
           this.$refs.bjz.innerText = "已经到底了";
         }
       });
+    this.$get("/api/home_page/getLocation").then((r) => {
+      // this.proList
+      // this.cityList
+      for (var k in r.data) {
+        this.proList.push(k);
+      }
+      this.cityList = r.data[this.proList[0]];
+    });
   },
 };
 </script>
@@ -422,7 +368,8 @@ html {
   width: 100%;
   height: 43 / @vw;
   background-color: #fff;
-  border: 1 / @vw solid #e5e5e5;
+  border-top: 1 / @vw solid #e5e5e5;
+  border-bottom: 1 / @vw solid #e5e5e5;
 }
 .choice_box .select_change ul {
   width: 100%;
@@ -535,13 +482,13 @@ html {
   margin-left: 63 / @vw;
   text-align: center;
 }
-.choice_box .opeateing ul li:hover {
+.choice_box .opeateing .yysActive {
   background-color: #ececec;
 }
-.choice_box .opeateing ul li:hover p {
+.choice_box .opeateing .yysActive p {
   color: #fe5858;
 }
-.choice_box .opeateing ul li:hover img {
+.choice_box .opeateing .yysActive img {
   display: block;
 }
 

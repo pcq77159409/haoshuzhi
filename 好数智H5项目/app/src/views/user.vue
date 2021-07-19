@@ -31,7 +31,7 @@
         <div class="tanc">
           <p @click="onClickk">×</p>
           <img :src="src" alt="" />
-          <span>微信扫一扫添加客服二维码</span>
+          <!-- <span>微信扫一扫添加客服二维码</span> -->
           <div class="bao">长按保存图中二维码</div>
         </div>
       </div>
@@ -45,25 +45,25 @@ export default {
       arr: [
         {
           src: require("../assets/webp.webp@2x.png"),
-          srcs: require("../assets/娇娇@2x.png"),
+          srcs: require("../assets/微信扫一扫添加娇娇二维码@2x .png"),
           name: "客服娇娇",
           id: 1,
         },
         {
           src: require("../assets/webp.webp (1)@2x.png"),
-          srcs: require("../assets/媛媛@2x.png"),
+          srcs: require("../assets/微信扫一扫添加媛媛二维码@2x.png"),
           name: "客服媛媛",
           id: 2,
         },
         {
           src: require("../assets/webp.webp (2)@2x.png"),
-          srcs: require("../assets/谈谈@2x.png"),
+          srcs: require("../assets/微信扫一扫添加谈谈二维码@2x.png"),
           name: "客服谈谈",
           id: 3,
         },
         {
           src: require("../assets/webp.webp (3)@2x.png"),
-          srcs: require("../assets/伊伊@2x.png"),
+          srcs: require("../assets/微信扫一扫添加伊伊二维码@2x.png"),
           name: "客服伊伊",
           id: 4,
         },
@@ -222,18 +222,24 @@ html {
       justify-content: center;
       align-items: center;
       .tanc {
+        position: relative;
         width: 175 / @vw*1.3;
         height: 249 / @vw*1.3;
         background-color: #fff;
         img {
-          width: 129 / @vw*1.3;
-          height: 148 / @vw*1.3;
-          margin: 0 30 / @vw;
+          // width: 129 / @vw*1.3;
+          // height: 148 / @vw*1.3;
+          width: 100%;
+          height: 100%;
+          // margin: 0 30 / @vw;
         }
         p {
+          position: absolute;
+          top: 5/@vw;
+          right: 10/@vw;
           font-size: 20 / @vw;
           text-align: right;
-          padding: 10 / @vw 10 / @vw 0 0;
+          // padding: 10 / @vw 10 / @vw 0 0;
           box-sizing: border-box;
         }
         span {
@@ -245,6 +251,7 @@ html {
           display: block;
         }
         .bao {
+          position: relative;
           width: 126 / @vw*1.3;
           height: 32 / @vw;
           background-color: #fe5858;
@@ -253,7 +260,7 @@ html {
           color: #fff;
           font-size: 14 / @vw;
           border-radius: 25 / @vw;
-          margin: 20 / @vw auto;
+          margin: -50 / @vw auto 0;
         }
       }
     }

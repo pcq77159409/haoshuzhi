@@ -283,26 +283,26 @@ export default {
       detailsList: {
         //号码详情
         id: 1,
-        number: "18755226962",
-        location: "蚌埠市", //归属地
+        number: "",
+        location: "", //归属地
         operator: "1", //运营商：1中国移动 2中国电信 3中国联通
         tag: null,
-        initial_charge: 150,
+        initial_charge: 0,
         min_charge: 88, //低消
-        prepaid_charge: 50,
+        prepaid_charge: 0,
         contain_charge: 0, //含话费
         contract: "0", // 协议期，单位月
-        purchase_price: "50.00",
-        sale_price: "100.00", //卡费
+        purchase_price: "0",
+        sale_price: "0", //卡费
         package_group: "YD00001,YD00002",
         status: 2,
         handle_type: 1,
         recommend: 0,
-        describe: "测试数据1",
+        describe: "",
         store_id: 1,
         store_phone: 2147483647,
         owner: "cecil",
-        owner_phone: "18876548765",
+        owner_phone: "",
         create_time: 1618325669,
         update_time: null,
         returned_commission: 7.5,
@@ -317,7 +317,7 @@ export default {
               store_id: 1,
               type: 1,
               package_id: "YD00001",
-              package_name: "19元小魔卡", //套餐名称
+              package_name: "", //套餐名称
               operator: 1,
               month_charge: "20",
               general_flow: "10",

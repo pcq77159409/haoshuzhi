@@ -24,9 +24,13 @@ Swiper;
 
 Vue.use(Swipe);
 Vue.use(SwipeItem);
-
+axios.interceptors.request.use(res => {
+    document.getElementById('login').style.display = 'flex';
+    return res;
+});
 //response拦截器
 axios.interceptors.response.use(res => {
+    document.getElementById('login').style.display = 'none';
     return res.data;
 }, error => {
     //token失效返回401处理
@@ -121,7 +125,7 @@ if (ua.match(/MicroMessenger/i) == "micromessenger") {
     };
     // 强制关注公众号， 获取openid
     const getCode = function() {
-        if (sessionStorage.getItem("code") && sessionStorage.getItem("code") != "undefined") {
+        if (sessionStorage.getItem("code") && sessionStorage.getItem("code") != "undefined" && sessionStorage.getItem("code") != null) {
             return false;
         }
         var code = getUrlParam('code') // 截取路径中的code，如果没有就去微信授权，如果已经获取到了就直接传code给后台获取openId

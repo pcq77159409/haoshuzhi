@@ -181,7 +181,7 @@ body {
 .search {
   position: absolute;
   left: 135/@vw;
-  top: 89/@vw;
+  top: 82/@vw;
   width: 10/@vw*1.3;
   height: 10/@vw*1.3;
 }

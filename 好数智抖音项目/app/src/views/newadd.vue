@@ -316,7 +316,7 @@ export default {
 .new_add .save {
   width: 345 / @vw;
   height: 44 / @vw;
-  margin: 90 / @vw auto;
+  margin: 60 / @vw auto 0;
   background-color: #ea5656;
   border-radius: 25 / @vw;
   color: #fff;
