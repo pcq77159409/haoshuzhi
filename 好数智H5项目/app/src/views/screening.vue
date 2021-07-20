@@ -7,7 +7,7 @@
           <img src="../assets/left.png" alt="" @click="onClickGo" />
           <h3>{{ title }}</h3>
         </div>
-        <div class="input_bg">
+        <!-- <div class="input_bg">
           <div class="tail" @click="onclickTyped">
             <div class="img">
               <img src="../assets/yes.png" alt="" v-show="typed == 0" />
@@ -27,12 +27,32 @@
             </div>
             <h4 @click="onSearch">搜索</h4>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- 头部导航 结束-->
-
+      <!-- tab搜索 开始 -->
+      <div class="tab_search">
+        <ul>
+          <li :class="{ tab_li: liClass == 1 }" @click="liClass = 1">
+            精准搜索
+          </li>
+          <li
+            :class="{ tab_li: liClass == 2 }"
+            @click="(liClass = 2), (typed = 1), (searchInput = '')"
+          >
+            任意搜索
+          </li>
+          <li
+            :class="{ tab_li: liClass == 3 }"
+            @click="(liClass = 3), (typed = 0), (searchInput = '')"
+          >
+            末位搜索
+          </li>
+        </ul>
+      </div>
+      <!-- tab搜索 结束 -->
       <!-- 搜索号码 开始-->
-      <div class="accurate">
+      <div class="accurate" v-show="liClass == 1">
         <ul class="phoneNumber">
           <li>
             <input
@@ -118,6 +138,21 @@
           <li @click="onclickResetInput" ref="cz">重置</li>
           <li @click="onclickAccurateSearch" ref="jz">精准搜索</li>
         </ul>
+      </div>
+      <div class="input_bg" v-show="liClass == 2 || liClass == 3">
+        <div class="searchs">
+          <div class="want">
+            <img src="../assets/搜索@2x.png" alt="" />
+            <input
+              type="number"
+              placeholder="搜索你想要的号码"
+              v-model="searchInput"
+              @keyup.enter="onSearch"
+            />
+          </div>
+          <h4 @click="onSearch">搜索</h4>
+        </div>
+        <p>* 请在输入框内填写任意数字进行搜索</p>
       </div>
       <!-- 搜索号码 结束-->
 
@@ -444,6 +479,7 @@
 export default {
   data() {
     return {
+      liClass: 1,
       glShow: "全部",
       guilvList: ["全部", "中间", "尾数"], //规律
       haoduanTitle: "",
@@ -913,8 +949,8 @@ export default {
       ],
       arrList: [
         {
-          name:'不限',
-          num:''
+          name: "不限",
+          num: "",
         },
         {
           name: "不含0",
@@ -955,7 +991,7 @@ export default {
       ],
       list: [],
       num: 0,
-      wrap: '上海市',
+      wrap: "上海市",
       flag: false,
       cut: false,
       regulars: false,
@@ -965,10 +1001,10 @@ export default {
       cont: false,
       one: false,
       two: false,
-      three: [''],
+      three: [""],
       nums: "",
       opList: "全部",
-      regList: '',
+      regList: "",
       typed: 1,
       parameter: {},
       minNumber: "",
@@ -1267,18 +1303,18 @@ export default {
       this.cont = false;
       this.one = false;
       this.two = false;
-      this.three = [''];
+      this.three = [""];
       this.minNumber = "";
       this.maxNumber = "";
       this.contractListed = false;
       this.lowPinListed = 0;
       this.min_price = "";
       this.max_price = "";
+      this.active = -1;
       this.$refs.clear.style = "background:#dddddd";
       setTimeout(() => {
         this.$refs.clear.style = "background:#f0eeee";
       }, 360);
-      this.active = -1;
       this.onClickTo();
     },
     onSearch() {
@@ -1295,7 +1331,7 @@ export default {
       str;
       // this.parameter = { accurate: "" };
       // this.parameter = {};
-      this.parameter.accurate='';
+      this.parameter.accurate = "";
       if (this.typed) {
         this.parameter.type = 1;
       } else {
@@ -1346,21 +1382,27 @@ export default {
       this.typed = !this.typed;
     },
     onkeyupInputSearch(index) {
-      var number = document.querySelectorAll(".number");
-
-      var words = number[index].value.replace(/\D+/g, "");
-      words = words.substring(words.length - 1, words.length);
-      number[index].value = words;
-console.log(event.keyCode);
-      if (event.keyCode == 8) {
-        if (index >= 1) {
-          number[index - 1].focus();
-          number[index - 1].value = "";
-        }
+      let e = event.keyCode;
+      if (e == 13) {
+        this.onclickAccurateSearch();
       } else {
-        if (index < number.length - 1) {
-          number[index + 1].focus();
-        }
+        setTimeout(() => {
+          var number = document.querySelectorAll(".number");
+
+          var words = number[index].value.replace(/\D+/g, "");
+          words = words.substring(words.length - 1, words.length);
+          number[index].value = words;
+          if (e == 8) {
+            if (index >= 1) {
+              number[index - 1].focus();
+              number[index - 1].value = "";
+            }
+          } else {
+            if (index < number.length - 1) {
+              number[index + 1].focus();
+            }
+          }
+        }, 10);
       }
     },
     onclickAccurateSearch() {
@@ -1396,7 +1438,7 @@ console.log(event.keyCode);
       });
       str;
       // this.parameter = {};
-      this.parameter.accurate = '';
+      this.parameter.accurate = "";
       this.$refs.cz.style = "background:#dddddd";
       setTimeout(() => {
         this.$refs.cz.style = "background:#f0eeee";
@@ -1404,6 +1446,30 @@ console.log(event.keyCode);
       this.onclickQuery();
     },
     onclickNull() {
+      var number = document.querySelectorAll(".number");
+      let str = "";
+      number.forEach((val, index) => {
+        if (index != 0) {
+          val.value = "";
+          str += "_";
+        } else {
+          str += val.value;
+        }
+      });
+      str;
+      this.tranges = null;
+      this.went = false;
+      this.cont = false;
+      this.one = false;
+      this.two = false;
+      this.three = [""];
+      this.minNumber = "";
+      this.maxNumber = "";
+      this.contractListed = false;
+      this.lowPinListed = 0;
+      this.min_price = "";
+      this.max_price = "";
+      this.active = -1;
       this.parameter = {};
       this.onclickQuery();
     },
@@ -1585,8 +1651,11 @@ console.log(event.keyCode);
       this.opList = "虚拟号码";
     } else if (this.$route.query.tag == 44) {
       this.title = "生日号码";
-    } else if (this.$route.query.recommend || !this.$route.query.operator_id) {
-      this.title = "全部号码";
+    } else if (this.$route.query.recommend == 1) {
+      this.title = "推荐号码";
+      this.$refs.yys.innerText = "全部";
+    }if (this.$route.query.recommend == 2) {
+      this.title = "特价号码";
       this.$refs.yys.innerText = "全部";
     }
     this.getHaoduan(this.title);
@@ -1637,6 +1706,26 @@ console.log(event.keyCode);
 a {
   text-decoration: none;
 }
+.tab_search {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  text-align: center;
+  font-size: 14 / @vw;
+  line-height: 40 / @vw;
+  // margin-top: 20 / @vw;
+  color: #666666;
+  ul {
+    display: flex;
+    li {
+      flex: 1;
+      border-bottom: 1px solid #fff;
+    }
+    .tab_li {
+      border-bottom: 1px solid #fe5858;
+    }
+  }
+}
 .top {
   position: fixed;
   right: 0;
@@ -1684,7 +1773,7 @@ a {
 }
 .Mobile_phone .reds {
   width: 100%;
-  height: 122 / @vw;
+  height: 62 / @vw;
   background-color: #fe5858;
 }
 .Mobile_phone .reds .moveing {
@@ -1704,21 +1793,21 @@ a {
   font-size: 18 / @vw;
   font-weight: 500;
 }
-.Mobile_phone .reds .input_bg {
+.Mobile_phone .input_bg {
   width: 345 / @vw;
-  height: 28 / @vw;
-  background: url("../assets/input_bg.png") no-repeat;
+  height: 92 / @vw;
   background-size: 345 / @vw 28 / @vw;
   margin: 22 / @vw auto 0;
-  display: flex;
+  overflow: hidden;
+  // display: flex;
 }
-.Mobile_phone .reds .input_bg .tail {
+.Mobile_phone .input_bg .tail {
   width: 25%;
   height: 100%;
   display: flex;
   align-items: center;
 }
-.Mobile_phone .reds .input_bg .tail .img {
+.Mobile_phone .input_bg .tail .img {
   width: 10 / @vw;
   height: 10 / @vw;
   margin: 0 10 / @vw 0 15 / @vw;
@@ -1728,7 +1817,7 @@ a {
   background-size: 10 / @vw 10 / @vw;
 }
 
-.Mobile_phone .reds .input_bg .tail img {
+.Mobile_phone .input_bg .tail img {
   width: 10 / @vw;
   height: 10 / @vw;
   // vertical-align: middle;
@@ -1736,37 +1825,47 @@ a {
   display: block;
   box-sizing: border-box;
 }
-.Mobile_phone .reds .input_bg .tail p {
-  font-size: 10 / @vw*1.3;
-  color: #666666;
-  margin-right: 10 / @vw;
-  margin-bottom: 1 / @vw;
+.Mobile_phone .input_bg p {
+  font-size: 14 / @vw;
+  color: red;
+  line-height: 50 / @vw;
 }
-.Mobile_phone .reds .input_bg .tail span {
+// .Mobile_phone .input_bg .tail p {
+//   font-size: 10 / @vw*1.3;
+//   color: #666666;
+//   margin-right: 10 / @vw;
+//   margin-bottom: 1 / @vw;
+// }
+.Mobile_phone .input_bg .tail span {
   width: 1 / @vw;
   height: 12 / @vw;
   background-color: #e0e0e0;
 }
-.Mobile_phone .reds .input_bg .searchs {
-  width: 75%;
+.Mobile_phone .input_bg .searchs {
+  width: 100%;
+  height: 28 / @vw;
   display: flex;
   justify-content: space-between;
+  background: url("../assets/input_bg.png") no-repeat;
+  background-size: 100%;
+  margin: 10 / @vw 0;
 }
-.Mobile_phone .reds .input_bg .searchs .want {
+.Mobile_phone .input_bg .searchs .want {
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 87%;
 }
-.Mobile_phone .reds .input_bg .searchs .want img {
+.Mobile_phone .input_bg .searchs .want img {
   width: 10 / @vw*1.3;
   height: 10 / @vw*1.3;
-  margin: 0 10 / @vw 0 4 / @vw;
+  margin: 0 10 / @vw 0 12 / @vw;
 }
-.Mobile_phone .reds .input_bg .searchs .want input {
+.Mobile_phone .input_bg .searchs .want input {
+  flex: 1;
   font-size: 12 / @vw;
   color: #999999;
 }
-.Mobile_phone .reds .input_bg .searchs h4 {
+.Mobile_phone .input_bg .searchs h4 {
   font-size: 14 / @vw;
   color: #ffffff;
   font-weight: 500;
@@ -1775,6 +1874,7 @@ a {
 }
 .Mobile_phone .accurate {
   width: 100%;
+  height: 94 / @vw;
 }
 .Mobile_phone .accurate .phoneNumber {
   display: flex;
@@ -2095,7 +2195,7 @@ a {
 }
 .Mobile_phone .Montmorillonite .search_filter .back {
   width: 100%;
-  height: 40 / @vw;
+  height: 45 / @vw;
   border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
@@ -2106,7 +2206,7 @@ a {
   margin-left: 11 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .back p {
-  font-size: 12 / @vw;
+  font-size: 15 / @vw;
   color: #666666;
   margin-left: 5 / @vw;
 }
@@ -2177,8 +2277,8 @@ a {
 .Mobile_phone .Montmorillonite .search_filter .more_number ul li {
   width: 68 / @vw;
 }
-.Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-of-type{
-  margin-right:70/@vw ;
+.Mobile_phone .Montmorillonite .search_filter .more_number ul li:last-of-type {
+  margin-right: 70 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .price ul li span,
 .Mobile_phone .Montmorillonite .search_filter .charge span {

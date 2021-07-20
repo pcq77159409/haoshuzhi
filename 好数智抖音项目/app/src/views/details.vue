@@ -456,30 +456,16 @@ export default {
       this.$store.commit("onCreateTheOrder", obj);
     },
     onclickPurchase() {
-      var btn = document.getElementById("btn");
-      var uname = document.getElementById("uname");
-      var address = document.getElementById("address");
-      uname.value = this.shdz.name;
-      address.value =
-        this.shdz.province +
-        this.shdz.city +
-        this.shdz.area +
-        this.shdz.address;
-      //           setTimeout(()=>{
-      // btn.click();
-      //   },200);
-      btn.click();
-      
-      // var btn1 = document.getElementById("btn1");
-      // var uname1 = document.getElementById("uname1");
-      // var address1 = document.getElementById("address1");
-      // uname1.value = this.shdz.name;
-      // address1.value =
+      // var btn = document.getElementById("btn");
+      // var uname = document.getElementById("uname");
+      // var address = document.getElementById("address");
+      // uname.value = this.shdz.name;
+      // address.value =
       //   this.shdz.province +
       //   this.shdz.city +
       //   this.shdz.area +
       //   this.shdz.address;
-      // btn1.click();
+      // btn.click();
       this.onCreateTheOrders();
     },
     onclickCollection() {

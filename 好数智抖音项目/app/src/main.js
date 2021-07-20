@@ -117,56 +117,60 @@ if (localStorage.getItem('user-id') == null && localStorage.getItem('token') == 
 }
 var ua = navigator.userAgent.toLowerCase();
 
-if (ua.match(/MicroMessenger/i) == "micromessenger") {
-    const getUrlParam = function(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]);
-        return null;
-    };
-    // 强制关注公众号， 获取openid
-    const getCode = function() {
-        if (sessionStorage.getItem("code") && sessionStorage.getItem("code") != "undefined" && sessionStorage.getItem("code") != null) {
-            return false;
-        }
-        var code = getUrlParam('code') // 截取路径中的code，如果没有就去微信授权，如果已经获取到了就直接传code给后台获取openId
-        var local = window.location.href;
-        var APPID = 'wx979caaad1131e6c2';
-        if (code == null || code === '') {
-            let num = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + encodeURIComponent(local) + '&response_type=code&scope=snsapi_base&state=#wechat_redirect';
-            // alert(num);
-            // return false;
-            window.location.href = num;
-            // alert(window.location.href);
-        } else {
-            // getOpenId(code) //把code传给后台获取用户信息
-            axios.get('/api/home_page/getOpenid?code=' + code).then((r) => {
-                if (r.data.openid && r.data.openid) {
-                    localStorage.setItem('uuid', r.data.openid);
-                    axios.post('api/user/uuidlogin', {}, {
-                        headers: {
-                            token: localStorage.getItem('token'),
-                            user_id: localStorage.getItem('user-id'),
-                            uuid: r.data.openid
-                        }
-                    }).then((r) => {
-                        if (r.code == 200) {
-                            if (r.code == 200) {
-                                localStorage.setItem('user-id', r.data.id);
-                                localStorage.setItem('token', r.data.token);
-                                localStorage.setItem('uuidstatus', r.data.uuidstatus);
+if (ua.match(/MicroMessenger/i) == "micromessenger") { //判断是否微信浏览器打开
+    if (window.location.host != 'www.haoshuzhi.com') {
+        window.location.href = 'http://www.haoshuzhi.com';
+    } else {
+        const getUrlParam = function(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        };
+        // 强制关注公众号， 获取openid
+        const getCode = function() {
+            if (sessionStorage.getItem("code") && sessionStorage.getItem("code") != "undefined" && sessionStorage.getItem("code") != null) {
+                return false;
+            }
+            var code = getUrlParam('code') // 截取路径中的code，如果没有就去微信授权，如果已经获取到了就直接传code给后台获取openId
+            var local = window.location.href;
+            var APPID = 'wx979caaad1131e6c2';
+            if (code == null || code === '') {
+                let num = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + encodeURIComponent(local) + '&response_type=code&scope=snsapi_base&state=#wechat_redirect';
+                // alert(num);
+                // return false;
+                window.location.href = num;
+                // alert(window.location.href);
+            } else {
+                // getOpenId(code) //把code传给后台获取用户信息
+                axios.get('/api/home_page/getOpenid?code=' + code).then((r) => {
+                    if (r.data.openid && r.data.openid) {
+                        localStorage.setItem('uuid', r.data.openid);
+                        axios.post('api/user/uuidlogin', {}, {
+                            headers: {
+                                token: localStorage.getItem('token'),
+                                user_id: localStorage.getItem('user-id'),
+                                uuid: r.data.openid
                             }
-                        }
-                    })
-                } else {
-                    // location.reload();
-                }
+                        }).then((r) => {
+                            if (r.code == 200) {
+                                if (r.code == 200) {
+                                    localStorage.setItem('user-id', r.data.id);
+                                    localStorage.setItem('token', r.data.token);
+                                    localStorage.setItem('uuidstatus', r.data.uuidstatus);
+                                }
+                            }
+                        })
+                    } else {
+                        // location.reload();
+                    }
 
-            });
-            return false;
+                });
+                return false;
+            }
         }
+        getCode();
     }
-    getCode();
 } else {
     const uuid = require('uuid')
     if (localStorage.getItem('uuid') == null) {

@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1626749804446') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tubiao_wode:before {
+  content: "\e602";
+}
+
+.icon-tubiao_shoucang:before {
+  content: "\e607";
+}
+
+.icon-tubiao_shouye:before {
+  content: "\e608";
+}
+
+.icon-tubiao_fenlei:before {
+  content: "\e60a";
+}
+
+.icon-tubiao_liaotian:before {
+  content: "\e60e";
+}
+

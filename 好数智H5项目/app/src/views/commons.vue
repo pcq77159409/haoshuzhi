@@ -6,13 +6,13 @@
         @click="onclickTo('/commons/home/m', 1)"
       >
         <dl>
-          <dt><i class="el-icon-house"></i></dt>
+          <dt><i class="iconfont icon-tubiao_shouye"></i></dt>
           <dd><span>首页</span></dd>
         </dl>
       </li>
       <li :class="{ current: hover == 2 }" @click="onClickCnmmb">
         <dl>
-          <dt><img :src="src" alt="" /></dt>
+          <dt><span class="iconfont icon-tubiao_fenlei"></span></dt>
           <dd><span ref="lei">类别</span></dd>
         </dl>
       </li>
@@ -21,7 +21,7 @@
         @click="onclickTo('/commons/user', 3)"
       >
         <dl>
-          <dt><i class="el-icon-chat-dot-round"></i></dt>
+          <dt><i class="iconfont icon-tubiao_liaotian"></i></dt>
           <dd><span>咨询</span></dd>
         </dl>
       </li>
@@ -30,13 +30,13 @@
         @click="onclickTo('/commons/service', 4)"
       >
         <dl>
-          <dt><i class="el-icon-star-off"></i></dt>
+          <dt><i class="iconfont icon-tubiao_shoucang"></i></dt>
           <dd><span>收藏</span></dd>
         </dl>
       </li>
       <li :class="{ current: hover == 5 }" @click="onclickTo('/commons/my', 5)">
         <dl>
-          <dt><i class="el-icon-user"></i></dt>
+          <dt><i class="iconfont icon-tubiao_wode"></i></dt>
           <dd><span>我的</span></dd>
         </dl>
       </li>
@@ -85,7 +85,28 @@ export default {
 </script>
 <style lang="less" scoped>
 @import "../assets/css/base.less";
+@import "../assets/font/iconfont.css";
 
+// @font-face {
+//   font-family: 'iconfont';
+//   src: url('iconfont.ttf?t=1626747881604') format('truetype');
+// }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20/@vw;
+  font-style: normal;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+// .icon-shouye,
+// .icon-fenlei{
+//   font-weight: 600;
+// }
+// .icon-shouye{
+// font-size: 21/@vw;
+// }
 * {
   margin: 0;
   padding: 0;

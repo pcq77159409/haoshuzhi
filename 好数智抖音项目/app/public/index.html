@@ -84,7 +84,7 @@
         // console.log(lc);
     </script>
     <!-- Bytedance Tracking -->
-    <script>
+    <!-- <script>
         (function(r, d, s, l) {
             var meteor = r.meteor = r.meteor || [];
             meteor.methods = ["track", "off", "on"];
@@ -113,12 +113,12 @@
             meteor.invoked = true;
             meteor.track("pageview")
         })(window, document, "script", "1700243527488519");
-    </script>
+    </script> -->
     <!-- End Bytedance Tracking -->
 
 
     <!-- Bytedance Tracking -->
-    <script>
+    <!-- <script>
         (function(r, d, s, l) {
             var meteor = r.meteor = r.meteor || [];
             meteor.methods = ["track", "off", "on"];
@@ -147,9 +147,9 @@
             meteor.invoked = true;
             meteor.track("pageview")
         })(window, document, "script", "1700243933826062");
-    </script>
+    </script> -->
     <!-- End Bytedance Tracking -->
-    <form hidden>
+    <!-- <form hidden>
         姓名：<input type="text" name="value" placeholder="请输入姓名" id="uname"> 地址：
         <input type="password" placeholder="请输入地址" id="address" name="address">
         <input type="button" value="提交表单" id="btn">
@@ -188,43 +188,6 @@
                 //         }
                 //     }
                 // }
-            })
-        }
-    </script>
-    <!-- <form hidden>
-        姓名：<input type="text" name="" placeholder="请输入姓名" id="uname1"> 地址：
-        <input type="password" placeholder="请输入地址" id="address1">
-        <input type="button" value="提交表单" id="btn1">
-    </form> -->
-    <!-- <script type="text/javascript">
-        window.onload = function() {
-            var btn1 = document.getElementById("btn1");
-            var uname1 = document.getElementById("uname1");
-            var address1 = document.getElementById("address1");
-            // 点击提交表单按钮
-            btn1.addEventListener("click", function() {
-                var xhr = new XMLHttpRequest();
-                console.log(123);
-                xhr.onreadystatechange = function() {
-                    console.log(xhr.readyState);
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        console.log(xhr.responseText);
-                        var data = JSON.parse(xhr.responseText);
-                        console.log(data);
-                        console.log(789);
-                        // 判断表单正确提交成功后执行转化代码
-                        if (data.status == "success" || data.code == 0 || data.status == 200 || data.code == 200) {
-                            // alert("表单提交成功");
-                            console.log('success');
-                            // 安装转化代码
-                            meteor.track("form", {
-                                convert_id: "1705345939563531"
-                            })
-                        }
-                    }
-                }
-                xhr.open("GET", "path/to/file?value=" + uname1.value + "&address=" + address1.value + "", true);
-                xhr.send();
             })
         }
     </script> -->

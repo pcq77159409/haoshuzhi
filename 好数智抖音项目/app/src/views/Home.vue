@@ -1148,33 +1148,27 @@ export default {
       this.typed = !this.typed;
     },
     onkeyupInputSearch(index) {
-      if (index == 10 && event.keyCode == 13) {
+      let e = event.keyCode;
+      if (e == 13) {
         this.onclickAccurateSearch();
-      }
-      var number = document.querySelectorAll(".number");
-
-      var words = number[index].value.replace(/\D+/g, "");
-      words = words.substring(words.length - 1, words.length);
-      number[index].value = words;
-      // if (event.code == "Backspace") {
-      //   if (index >= 1) {
-      //     number[index - 1].focus();
-      //   }
-      // } else {
-      //   if (index < number.length - 1) {
-      //     number[index + 1].focus();
-      //   }
-      // }
-
-      if (event.keyCode == 8) {
-        if (index >= 1) {
-          number[index - 1].focus();
-          number[index - 1].value='';
-        }
       } else {
-        if (index < number.length - 1) {
-          number[index + 1].focus();
-        }
+        setTimeout(() => {
+          var number = document.querySelectorAll(".number");
+
+          var words = number[index].value.replace(/\D+/g, "");
+          words = words.substring(words.length - 1, words.length);
+          number[index].value = words;
+          if (e == 8) {
+            if (index >= 1) {
+              number[index - 1].focus();
+              number[index - 1].value = "";
+            }
+          } else {
+            if (index < number.length - 1) {
+              number[index + 1].focus();
+            }
+          }
+        }, 10);
       }
     },
     onclickAccurateSearch() {
@@ -1876,7 +1870,7 @@ a {
 }
 .Mobile_phone .Montmorillonite .search_filter .back {
   width: 100%;
-  height: 40 / @vw;
+  height: 45 / @vw;
   border-bottom: 1 / @vw solid #f2f2f2;
   display: flex;
   align-items: center;
@@ -1887,7 +1881,7 @@ a {
   margin-left: 11 / @vw;
 }
 .Mobile_phone .Montmorillonite .search_filter .back p {
-  font-size: 12 / @vw;
+  font-size: 15 / @vw;
   color: #666666;
   margin-left: 5 / @vw;
 }

@@ -40,6 +40,7 @@ axios.interceptors.response.use(res => {
     return Promise.reject(error.response.data) // 返回错误信息
 });
 
+
 Vue.prototype.$get = function(url, val) {
     return axios.get(url, {
         params: val,
@@ -116,7 +117,10 @@ if (localStorage.getItem('user-id') == null && localStorage.getItem('token') == 
 }
 var ua = navigator.userAgent.toLowerCase();
 
-if (ua.match(/MicroMessenger/i) == "micromessenger") {
+if (ua.match(/MicroMessenger/i) == "micromessenger") { //判断是否微信浏览器打开
+    if (window.location.host != 'www.haoshuzhi.com') {
+        window.location.href = 'http://www.haoshuzhi.com';
+    }
     const getUrlParam = function(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);

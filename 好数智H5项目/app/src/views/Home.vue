@@ -50,7 +50,8 @@
       </div>
       <!-- <p class="haoshu">好数智</p> -->
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
-      <i @click="onclickSearchShow" ref="search1">请输入您要搜索的内容</i>
+      <!-- <i @click="onclickSearchShow" ref="search1">请输入您要搜索的内容</i> -->
+      <i @click="$router.push('/screen')" ref="search1">请输入您要搜索的内容</i>
       <img src="../assets/搜索@2x.png" alt="" class="search" />
     </div>
     <div class="heads">

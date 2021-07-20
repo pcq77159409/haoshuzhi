@@ -33,8 +33,7 @@
         class="immediately"
         @click="
           $router.push({
-            path: '/screen',
-            query: { package_id: $route.query.id },
+            path: '/screen'
           })
         "
       >
