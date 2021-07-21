@@ -40,7 +40,13 @@ axios.interceptors.response.use(res => {
     return Promise.reject(error.response.data) // 返回错误信息
 });
 
+let getPost = {};
 
+if (localStorage.getItem('pid')) {
+    getPost = {
+        pid: localStorage.getItem('pid')
+    };
+}
 Vue.prototype.$get = function(url, val) {
     return axios.get(url, {
         params: val,
@@ -53,7 +59,7 @@ Vue.prototype.$get = function(url, val) {
         if (r.code == 700 || r.code == 600) {
             Vue.$router.push('/login');
         } else if (r.code == 601) {
-            axios.post('/api/user/uuidlogin', '', {
+            axios.post('/api/user/uuidlogin', getPost, {
                 headers: {
                     token: localStorage.getItem('token'),
                     user_id: localStorage.getItem('user-id'),
@@ -82,7 +88,7 @@ Vue.prototype.$post = function(url, val) {
         if (r.code == 700 || r.code == 600) {
             Vue.$router.push('/login');
         } else if (r.code == 601) {
-            axios.post('/api/user/uuidlogin', {}, {
+            axios.post('/api/user/uuidlogin', getPost, {
                 headers: {
                     token: localStorage.getItem('token'),
                     user_id: localStorage.getItem('user-id'),
@@ -146,7 +152,7 @@ if (ua.match(/MicroMessenger/i) == "micromessenger") { //判断是否微信浏�
             axios.get('/api/home_page/getOpenid?code=' + code).then((r) => {
                 if (r.data.openid && r.data.openid) {
                     localStorage.setItem('uuid', r.data.openid);
-                    axios.post('api/user/uuidlogin', {}, {
+                    axios.post('api/user/uuidlogin', getPost, {
                         headers: {
                             token: localStorage.getItem('token'),
                             user_id: localStorage.getItem('user-id'),
