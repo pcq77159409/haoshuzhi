@@ -21,8 +21,8 @@
         </div>
         <del></del>
         <div class="zero">
-          <p><i>0</i>人</p>
-          <span>新增客户</span>
+          <p><i>0</i>元</p>
+          <span>本月收益</span>
         </div>
       </div>
       <img
@@ -53,8 +53,7 @@
     </div>
     <!-- 蒙层 -->
     <div class="mongolia" v-show="flag" @click="flag = false">
-      <canvas id="codebc" width="507px" height="768px"></canvas>
-      <img :src="codeSrcbc" alt="" class="codeimg" />
+      <img :src="codeSrc" alt="" class="codeimg">
       <div class="stratum" @click.stop>
         <div class="long">
           <img :src="codeSrc" alt="" />
@@ -72,9 +71,6 @@ export default {
     return {
       flag: false,
       codeSrc: "../assets/组 27@2x (3).png",
-      codeSrcbc: "",
-      src: require("../assets/百万靓号“大放送”@2x.png"),
-      hbsrc: require('../assets/红包@2x.png'),
     };
   },
   // components: {
@@ -95,52 +91,10 @@ export default {
       code.appendChild(image); //添加到code 容器中
       this.codeSrc = image.src;
       canvas.style.display = "none"; //隐藏掉canvas
-      this.getcodebc();
-    },
-    getcodebc() {
-      var canvas1 = document.getElementById("codebc"); //获取到canvas
-      var ctx = canvas1.getContext("2d");
-      var image = new Image();
-      image.onload = function () {
-        ctx.drawImage(image, 0, 0, 507, 768, 0, 0, 507, 768);
-      };
-      image.src = this.src;
-      setTimeout(() => {
-        ctx.beginPath();
-        ctx.save();
-        ctx.rect(100, 200, 300, 350);
-        ctx.clip();
-        ctx.strokeStyle = 'rgba(0,0,0,0)';
-        ctx.stroke();
-        var image1 = new Image();
-        image1.onload = function () {
-          ctx.drawImage(image1, 100, 200, 300, 350);
-          ctx.restore();
-        };
-        image1.src = this.hbsrc;
-        this.codeSrcbc = this.codeSrc;
-      }, 500);
-      setTimeout(() => {
-        ctx.beginPath();
-        ctx.save();
-        ctx.rect(160, 212, 180, 180);
-        ctx.clip();
-        ctx.stroke();
-        var image1 = new Image();
-        image1.onload = function () {
-          ctx.drawImage(image1, 160, 212, 180, 180);
-          ctx.restore();
-        };
-        image1.src = this.codeSrc;
-        this.codeSrcbc = this.codeSrc;
-      }, 1000);
-      setTimeout(() => {
-        this.codeSrcbc = canvas1.toDataURL("image/png");
-      }, 2000);
     },
   },
   mounted() {
-    var xxx = "http://www.haoshuzhi.com?pid="+localStorage.getItem('user-id');
+    var xxx = "http://haoshuzhi.cn";
     this.getUrl(xxx);
   },
 };
@@ -150,17 +104,12 @@ export default {
 img {
   pointer-events: auto;
 }
-#codebc {
-  display: none;
-  // position: relative;
-  // z-index: 9999999;
-}
 #code {
   width: 116 / @vw;
   height: 113 / @vw;
   margin-top: 15 / @vw;
 }
-.codeimg {
+.codeimg{
   position: relative;
   width: 100%;
   height: 100%;

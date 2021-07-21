@@ -76,32 +76,24 @@ export default {
       });
     },
     onClicLogin() {
-      let data;
-      if (localStorage.getItem("pid")) {
-        data = {
+      this.$axios
+        .post("/api/user/codelogin", {
           mobile: this.mobile,
           verify: this.code,
-          pid: localStorage.getItem("pid"),
-        };
-      } else {
-        data = {
-          mobile: this.mobile,
-          verify: this.code,
-        };
-      }
-      this.$axios.post("/api/user/codelogin", data).then((val) => {
-        if (val.code == 200) {
-          localStorage.setItem("token", val.data.token);
-          localStorage.setItem("user-id", val.data.id);
-          localStorage.setItem("uuidstatus", val.data.uuidstatus);
-          alert("登陆成功");
-          setTimeout(() => {
-            this.$router.go(-1);
-          }, 2000);
-        } else {
-          alert(val.msg);
-        }
-      });
+        })
+        .then((val) => {
+          if (val.code == 200) {
+            localStorage.setItem("token", val.data.token);
+            localStorage.setItem("user-id", val.data.id);
+            localStorage.setItem("uuidstatus", val.data.uuidstatus);
+            alert("登陆成功");
+            setTimeout(() => {
+              this.$router.go(-1);
+            }, 2000);
+          } else {
+            alert(val.msg);
+          }
+        });
       this.$router.go(-1);
     },
   },
@@ -120,76 +112,76 @@ export default {
   align-items: center;
 }
 .login-box .white_box {
-  width: 249 / @vw;
-  height: 256 / @vw;
+  width: 249/@vw;
+  height: 256/@vw;
   background-color: #fff;
-  border-radius: 4 / @vw;
+  border-radius: 4/@vw;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .login-box .white_box .colse {
-  width: 15 / @vw;
-  height: 15 / @vw;
+  width: 15/@vw;
+  height: 15/@vw;
   position: absolute;
-  top: 6 / @vw;
-  right: 8 / @vw;
+  top: 6/@vw;
+  right: 8/@vw;
 }
 .login-box .white_box .logo {
-  width: 136 / @vw;
-  height: 44 / @vw;
-  margin-top: 27 / @vw;
+  width: 136/@vw;
+  height: 44/@vw;
+  margin-top: 27/@vw;
 }
 .login-box .white_box ul {
-  width: 200 / @vw;
-  height: 102 / @vw;
-  margin-top: 10 / @vw;
+  width: 200/@vw;
+  height: 102/@vw;
+  margin-top: 10/@vw;
 }
 .login-box .white_box ul li {
   display: flex;
   align-items: flex-end;
   width: 100%;
-  height: 50 / @vw;
-  border-bottom: 1 / @vw solid #fe5858;
-  padding-bottom: 6 / @vw;
+  height: 50/@vw;
+  border-bottom: 1/@vw solid #fe5858;
+  padding-bottom: 6/@vw;
   box-sizing: border-box;
 }
 .login-box .white_box ul li img {
-  width: 10 / @vw;
-  height: 14 / @vw;
-  margin: 0 10 / @vw 5 / @vw 4 / @vw;
+  width: 10/@vw;
+  height: 14/@vw;
+  margin: 0 10/@vw 5/@vw 4/@vw;
 }
 .login-box .white_box ul li input {
-  font-size: 12 / @vw;
+  font-size: 12/@vw;
   color: #999999;
-  width: 122 / @vw;
-  margin-bottom: 5 / @vw;
+  width: 122/@vw;
+  margin-bottom: 5/@vw;
 }
 .login-box .white_box ul li button {
-  font-size: 12 / @vw;
+  font-size: 12/@vw;
   color: #fe5858;
-  border: 1 / @vw dashed #fe5858;
+  border: 1/@vw dashed #fe5858;
   text-align: center;
   background: transparent;
-  width: 50 / @vw;
-  height: 24 / @vw;
+  width: 50/@vw;
+  height: 24/@vw;
 }
 .login-box .white_box .login {
-  width: 214 / @vw;
-  height: 33 / @vw;
+  width: 214/@vw;
+  height: 33/@vw;
   background-color: #fe5858;
   color: #fff;
-  font-size: 14 / @vw;
+  font-size: 14/@vw;
   text-align: center;
-  line-height: 33 / @vw;
+  line-height: 33/@vw;
   margin: 0 auto;
-  border-radius: 25 / @vw;
-  margin-top: 20 / @vw;
+  border-radius: 25/@vw;
+  margin-top: 20/@vw;
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: #999999;
-  font-size: 12 / @vw;
+  font-size: 12/@vw;
 }
 </style>

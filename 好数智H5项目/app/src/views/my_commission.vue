@@ -77,6 +77,70 @@
             <span><i>120</i>人</span>
           </div>
         </li>
+        <li class="paim">
+          <del>4</del>
+          <img src="../assets/user.png" alt="" />
+          <div class="one">
+            <p>张珊珊</p>
+            <span>ID:123456</span>
+          </div>
+          <div class="two">
+            <p>本月消费</p>
+            <span><i>9630</i>元</span>
+          </div>
+          <div class="three">
+            <p>客户邀请</p>
+            <span><i>120</i>人</span>
+          </div>
+        </li>
+        <li class="paim">
+          <del>5</del>
+          <img src="../assets/user.png" alt="" />
+          <div class="one">
+            <p>张珊珊</p>
+            <span>ID:123456</span>
+          </div>
+          <div class="two">
+            <p>本月消费</p>
+            <span><i>9630</i>元</span>
+          </div>
+          <div class="three">
+            <p>客户邀请</p>
+            <span><i>120</i>人</span>
+          </div>
+        </li>
+        <li class="paim">
+          <del>6</del>
+          <img src="../assets/user.png" alt="" />
+          <div class="one">
+            <p>张珊珊</p>
+            <span>ID:123456</span>
+          </div>
+          <div class="two">
+            <p>本月消费</p>
+            <span><i>9630</i>元</span>
+          </div>
+          <div class="three">
+            <p>客户邀请</p>
+            <span><i>120</i>人</span>
+          </div>
+        </li>
+        <li class="paim">
+          <del>7</del>
+          <img src="../assets/user.png" alt="" />
+          <div class="one">
+            <p>张珊珊</p>
+            <span>ID:123456</span>
+          </div>
+          <div class="two">
+            <p>本月消费</p>
+            <span><i>9630</i>元</span>
+          </div>
+          <div class="three">
+            <p>客户邀请</p>
+            <span><i>120</i>人</span>
+          </div>
+        </li>
       </ul>
       <h5>查看更多 <img src="../assets/xia.png" alt="" /></h5>
     </div>

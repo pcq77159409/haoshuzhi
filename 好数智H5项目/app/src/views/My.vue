@@ -14,6 +14,7 @@
           >
             手机号登录
           </div>
+
           <div class="id">
             <p>{{ user.username }}</p>
             <p>ID:{{ user.id }}</p>

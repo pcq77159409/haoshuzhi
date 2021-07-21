@@ -38,7 +38,7 @@
           style="width: 10px; font-style: normal"
         > -->
         <!-- <span> -->
-          <span @click="onClickBack(taocanXZ)">{{ taocan }}</span>
+        <span @click="onClickBack(taocanXZ)">{{ taocan }}</span>
         <!-- </span> -->
         <!-- </em> -->
       </p>
@@ -116,6 +116,11 @@
       <img src="../assets/跳转箭头@2x.png" alt="" />
     </div>
     <div class="bottom">
+      <div @click="ToShopHome" class="shophome">
+        <img src="../assets/店铺@3x.png" alt="" />
+        <p class="goshop">进店</p>
+      </div>
+
       <p>合计:</p>
       <span>￥{{ detailsList.sale_price }}</span>
       <!-- <router-link to="/form_orders_path"> -->
@@ -382,6 +387,16 @@ export default {
     };
   },
   methods: {
+    //跳转到商家首页
+    ToShopHome() {
+      console.log("商户id", this.packagDetail.store_id);
+      this.$router.push({
+        path: "/ShopHome",
+        query: {
+          id: this.packagDetail.store_id,
+        },
+      });
+    },
     onBack() {
       this.$router.back();
     },
@@ -390,23 +405,23 @@ export default {
       this.$router.go(-1);
     },
     onClickBack(id) {
-      if (this.taocan!= '自选套餐') {
+      if (this.taocan != "自选套餐") {
         if (this.back == false) {
-        this.$get("/api/order/packageDetail", { id: id }).then((r) => {
-          if (r.code == 200) {
-            this.packagDetail = r.data;
-            this.$router.push("/details");
-          } else if (r.code == 700) {
-            this.$router.push("/login");
-          } else {
-            alert(r.msg);
-          }
-        });
+          this.$get("/api/order/packageDetail", { id: id }).then((r) => {
+            if (r.code == 200) {
+              this.packagDetail = r.data;
+              this.$router.push("/details");
+            } else if (r.code == 700) {
+              this.$router.push("/login");
+            } else {
+              alert(r.msg);
+            }
+          });
 
-        this.back = true;
-      } else {
-        this.back = false;
-      }
+          this.back = true;
+        } else {
+          this.back = false;
+        }
       }
     },
     onclickTaocanZX(id, name) {
@@ -482,7 +497,7 @@ export default {
       // } else {
       //   this.metric = false;
       // }
-      this.$router.push({path:'/commons/user'});
+      this.$router.push({ path: "/commons/user" });
     },
   },
   mounted() {
@@ -501,7 +516,7 @@ export default {
             this.taocanXZ = numberpackage.storepackage.id;
             this.taocan = numberpackage.storepackage.package_name;
           } else {
-            this.taocan = '自选套餐';
+            this.taocan = "自选套餐";
             // this.$get("/api/package/getPackage", {
             //   operator: r.data[0][0].operator,
             //   location: r.data[0][0].location,
@@ -650,6 +665,28 @@ li {
   font-size: 12 / @vw;
   margin: auto 15 / @vw;
 }
+
+//商家首页部分
+.shophome {
+  width: 30 / @vw;
+  height: 30 / @vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  img {
+    margin-left: 5 / @vw;
+    width: 15 / @vw;
+    height: 15 / @vw;
+  }
+  .goshop {
+    width: 24 / @vw;
+    height: 12 / @vw;
+    font-size: 11 / @vw;
+    color: #a8a1a1;
+  }
+}
+//商家首页部分结束
 .phone {
   width: 345 / @vw;
   height: 44 / @vw;

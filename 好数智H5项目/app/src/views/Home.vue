@@ -46,7 +46,7 @@
     <div class="head">
       <div class="locations" @click="$router.push('/citys')">
         <img src="../assets/123.png" alt="" />
-        <p >{{weiz}}</p>
+        <p>{{ weiz }}</p>
       </div>
       <!-- <p class="haoshu">好数智</p> -->
       <img src="../assets/矩形 12@2x.png" alt="" class="bg_img" />
@@ -252,7 +252,7 @@ export default {
       commissionShow: false,
       priceShow: true,
       likeList: [],
-      weiz:''
+      weiz: "",
     };
   },
   methods: {

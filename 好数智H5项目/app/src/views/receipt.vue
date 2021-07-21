@@ -105,7 +105,7 @@
       <div class="borders"></div>
       <div class="bo">
         <img src="../assets/kefu.png" alt="" />
-        <p @click="$router.push('/commons/user')">咨询客服</p>
+        <p @click="onclickTel">咨询客服</p>
       </div>
     </div>
 

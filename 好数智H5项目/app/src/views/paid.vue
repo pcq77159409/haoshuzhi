@@ -103,7 +103,7 @@
         <p @click="centerDialogVisible = true">拨打电话</p>
       </div>
       <div class="borders"></div>
-      <div class="bo" @click="$router.push('/commons/user')">
+      <div class="bo" @click="onclickTel">
         <img src="../assets/kefu.png" alt="" />
         <p>咨询客服</p>
       </div>

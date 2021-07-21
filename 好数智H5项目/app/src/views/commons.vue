@@ -65,7 +65,7 @@ export default {
       this.src = require("../assets/分类@2x.png");
       this.$refs.lei.style = "color:#fe5858;";
       this.hover = 2;
-      this.$router.push('/commons/about')
+      this.$router.push("/commons/about");
     },
   },
   mounted() {
@@ -94,7 +94,7 @@ export default {
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 20/@vw;
+  font-size: 20 / @vw;
   font-style: normal;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
