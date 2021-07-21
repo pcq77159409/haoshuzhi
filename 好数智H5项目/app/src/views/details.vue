@@ -389,7 +389,7 @@ export default {
   methods: {
     //跳转到商家首页
     ToShopHome() {
-      console.log("商户id", this.packagDetail.store_id);
+      // console.log("商户id", this.packagDetail.store_id);
       this.$router.push({
         path: "/ShopHome",
         query: {

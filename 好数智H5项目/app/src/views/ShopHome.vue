@@ -1123,7 +1123,10 @@ export default {
           this.pList.page = this.numbers;
           this.$refs.bjz.innerText = "加载中...";
           this.$axios
-            .post("/api/home_page/getNumList", this.pList)
+            .post(
+              `/api/home_page/getNumList?store_id=${this.store_id}`,
+              this.pList
+            )
             .then((val) => {
               if (val.data.data.length < 40) {
                 this.$refs.bjz.innerText = "已经到底了";
@@ -1402,7 +1405,9 @@ export default {
     },
     onFen(id) {
       this.$axios
-        .get("/api/home_page/getChildCategory?id=" + id)
+        .get(
+          `/api/home_page/getChildCategory??store_id=${this.store_id}&id=${id}`
+        )
         .then((val) => {
           this.rule = val.data;
         });
@@ -1551,15 +1556,18 @@ export default {
       let idList = [1, 3, 52, 68];
       if (id == "") {
         idList.forEach((val) => {
-          this.$get("/api/home_page/getChildCategory", {
-            id: val,
-            from: localStorage.getItem("from"),
-          }).then((r) => {
+          this.$get(
+            `/api/home_page/getChildCategory?store_id=${this.store_id}`,
+            {
+              id: val,
+              from: localStorage.getItem("from"),
+            }
+          ).then((r) => {
             this.haoduanList.push.apply(this.haoduanList, r.data[0].child);
           });
         });
       } else {
-        this.$get("/api/home_page/getChildCategory", {
+        this.$get(`/api/home_page/getChildCategory?store_id=${this.store_id}`, {
           id: id,
           from: localStorage.getItem("from"),
         }).then((r) => {
@@ -1595,7 +1603,7 @@ export default {
       // if (flag) {
       this.parameter.from = localStorage.getItem("city");
       this.$router.push({
-        path: "/screen",
+        path: "/shopHome",
         query: this.parameter,
       });
       this.pList = this.$route.query;
@@ -1622,7 +1630,7 @@ export default {
     onGetShop() {
       this.$axios({
         method: "post",
-        url: "/api/Home_page/storeInfo",
+        url: `/api/Home_page/storeInfo?store_id=${this.store_id}`,
         data: {
           store_id: this.store_id,
         },
@@ -1645,10 +1653,11 @@ export default {
     });
 
     this.$axios
-      .get("/api/home_page/getBanner", {
+      .get(`/api/home_page/getBanner?store_id=${this.store_id}`, {
         params: { type: 2 },
       })
       .then((r) => {
+        console.log("banner图", r);
         this.bannerList = r.data;
       });
     // window.addEventListener("scroll", this.handleScrollx, true);
@@ -1841,6 +1850,15 @@ export default {
   --swiper-theme-color: #ff6600; /* 设置Swiper风格 */
   --swiper-navigation-color: #00ff33; /* 单独设置按钮颜色 */
   --swiper-navigation-size: 30 / @vw; /* 设置按钮大小 */
+}
+.m-box /deep/ .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #fff !important;
+}
+.m-box /deep/ .swiper-pagination-bullet {
+  background: transparent;
+  border: 1 / @vw solid #fff;
+  box-sizing: border-box;
+  opacity: 1;
 }
 .shopbg {
   width: 100%;
