@@ -77,14 +77,14 @@
     <title>
         好数智
     </title>
-    <script src="http://ip.ws.126.net/ipquery"></script>
+    <script src="https://ip.ws.126.net/ipquery"></script>
     <script>
         // console.log(lo);
         localStorage.setItem('city', '上海');
         // console.log(lc);
     </script>
     <!-- Bytedance Tracking -->
-    <!-- <script>
+    <script>
         (function(r, d, s, l) {
             var meteor = r.meteor = r.meteor || [];
             meteor.methods = ["track", "off", "on"];
@@ -112,44 +112,10 @@
             }
             meteor.invoked = true;
             meteor.track("pageview")
-        })(window, document, "script", "1700243527488519");
-    </script> -->
+        })(window, document, "script", "1700243389197320");
+    </script>
     <!-- End Bytedance Tracking -->
-
-
-    <!-- Bytedance Tracking -->
-    <!-- <script>
-        (function(r, d, s, l) {
-            var meteor = r.meteor = r.meteor || [];
-            meteor.methods = ["track", "off", "on"];
-            meteor.factory = function(method) {
-                return function() {
-                    var args = Array.prototype.slice.call(arguments);
-                    args.unshift(method);
-                    meteor.push(args);
-                    return meteor
-                }
-            };
-            for (var i = 0; i < meteor.methods.length; i++) {
-                var key = meteor.methods[i];
-                meteor[key] = meteor.factory(key)
-            }
-            meteor.load = function() {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                js = d.createElement(s);
-                js.src = "https://analytics.snssdk.com/meteor.js/v1/" + l + "/sdk";
-                fjs.parentNode.insertBefore(js, fjs)
-            };
-            meteor.load();
-            if (meteor.invoked) {
-                return
-            }
-            meteor.invoked = true;
-            meteor.track("pageview")
-        })(window, document, "script", "1700243933826062");
-    </script> -->
-    <!-- End Bytedance Tracking -->
-    <!-- <form hidden>
+    <form hidden>
         姓名：<input type="text" name="value" placeholder="请输入姓名" id="uname"> 地址：
         <input type="password" placeholder="请输入地址" id="address" name="address">
         <input type="button" value="提交表单" id="btn">
@@ -163,10 +129,7 @@
             btn.addEventListener("click", function() {
                 // 安装转化代码
                 meteor.track("form", {
-                    convert_id: "1705346073061384"
-                });
-                meteor.track("form", {
-                    convert_id: "1705345939563531"
+                    convert_id: "1705795085919243"
                 });
                 // var xhr = new XMLHttpRequest();
                 // xhr.open("GET", "path/to/file" + uname.value + "&address=" + address.value + "", true);
@@ -190,7 +153,7 @@
                 // }
             })
         }
-    </script> -->
+    </script>
 </head>
 
 <body>

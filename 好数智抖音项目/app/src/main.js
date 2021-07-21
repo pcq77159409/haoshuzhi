@@ -116,7 +116,9 @@ if (localStorage.getItem('user-id') == null && localStorage.getItem('token') == 
     localStorage.setItem('token', '');
 }
 var ua = navigator.userAgent.toLowerCase();
-
+if (window.location.host != 'www.haoshuzhi.cn') {
+    window.location.href = 'https://www.haoshuzhi.cn';
+}
 if (ua.match(/MicroMessenger/i) == "micromessenger") { //判断是否微信浏览器打开
     if (window.location.host != 'www.haoshuzhi.com') {
         window.location.href = 'http://www.haoshuzhi.com';

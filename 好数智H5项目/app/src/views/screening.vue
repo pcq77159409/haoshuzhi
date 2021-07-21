@@ -1026,7 +1026,7 @@ export default {
       contractListed: 0,
       lowPinListed: 0,
       isShow: false,
-      title: "移动号码",
+      title: "全部号码",
       pList: {},
     };
   },
@@ -1586,22 +1586,7 @@ export default {
       this.$refs.gsd.innerText = "上海市";
     }
     this.pList = this.$route.query;
-    this.$axios
-      .post("/api/home_page/getNumList", this.$route.query)
-      .then((val) => {
-        if (val.code == 200) {
-          this.list = val.data.data;
-          this.sumsid = val.data.last_page;
-          // if (this.sumsid == 1) {
-          //   this.$refs.bjz.innerText = "已经到底了";
-          // }
-          if (val.data.data.length < 40) {
-            this.$refs.bjz.innerText = "已经到底了";
-          }
-        } else {
-          alert(val.msg);
-        }
-      });
+
     this.$axios.get("api/home_page/getLocation").then((val) => {
       this.nums = Object.keys(val.data)[0];
       for (var k in val.data) {
@@ -1652,12 +1637,38 @@ export default {
     } else if (this.$route.query.tag == 44) {
       this.title = "生日号码";
     } else if (this.$route.query.recommend == 1) {
-      this.title = "推荐号码";
+      this.title = "靓号推荐";
       this.$refs.yys.innerText = "全部";
-    }if (this.$route.query.recommend == 2) {
-      this.title = "特价号码";
+    } else if (this.$route.query.recommend == 2) {
+      this.title = "特价专场";
       this.$refs.yys.innerText = "全部";
+    } else {
+      // this.$axios
+      //   .post("/api/home_page/getNumList", {recommend:1})
+      //   .then((val) => {
+      //     if (val.code == 200) {
+      //       this.list = val.data.data;
+      //     } else {
+      //       alert(val.msg);
+      //     }
+      //   });
     }
+    this.$axios
+      .post("/api/home_page/getNumList", this.$route.query)
+      .then((val) => {
+        if (val.code == 200) {
+          this.list = val.data.data;
+          this.sumsid = val.data.last_page;
+          // if (this.sumsid == 1) {
+          //   this.$refs.bjz.innerText = "已经到底了";
+          // }
+          if (val.data.data.length < 40) {
+            this.$refs.bjz.innerText = "已经到底了";
+          }
+        } else {
+          alert(val.msg);
+        }
+      });
     this.getHaoduan(this.title);
   },
   updated() {

@@ -456,16 +456,16 @@ export default {
       this.$store.commit("onCreateTheOrder", obj);
     },
     onclickPurchase() {
-      // var btn = document.getElementById("btn");
-      // var uname = document.getElementById("uname");
-      // var address = document.getElementById("address");
-      // uname.value = this.shdz.name;
-      // address.value =
-      //   this.shdz.province +
-      //   this.shdz.city +
-      //   this.shdz.area +
-      //   this.shdz.address;
-      // btn.click();
+      var btn = document.getElementById("btn");
+      var uname = document.getElementById("uname");
+      var address = document.getElementById("address");
+      uname.value = this.shdz.name;
+      address.value =
+        this.shdz.province +
+        this.shdz.city +
+        this.shdz.area +
+        this.shdz.address;
+      btn.click();
       this.onCreateTheOrders();
     },
     onclickCollection() {
