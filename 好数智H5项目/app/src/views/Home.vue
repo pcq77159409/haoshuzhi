@@ -239,7 +239,7 @@
 
 <script>
 // import axios from "axios";
-
+import wxShare from "../assets/js/wxShare";
 export default {
   data() {
     return {
@@ -256,6 +256,16 @@ export default {
     };
   },
   methods: {
+    //微信分享
+    onshare() {
+      this.$get("/api/Wxfx/index").then((res) => {
+        console.log(res);
+        let data = res.data;
+        console.log("微信返回内容", data);
+        console.log(wxShare);
+        wxShare.getJSSDK(data);
+      });
+    },
     onCLickTiao(obj) {
       this.$router.push({ path: "/screen", query: obj });
     },
@@ -294,6 +304,7 @@ export default {
     },
   },
   created() {
+    this.onshare();
     if (localStorage.getItem("priceShow")) {
       if (localStorage.getItem("priceShow") == "true") {
         this.priceShow = true;
